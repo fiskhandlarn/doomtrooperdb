@@ -28,10 +28,10 @@
     <link rel="stylesheet" type="text/css"
           href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"/>
     {% stylesheets filter="cssrewrite,scssphp" output="css/app.css"
-        'bundles/app/css/bootstrap.css'
-        'bundles/app/css/style.css'
-        'bundles/app/css/icons.css'
-        'bundles/app/css/languages.css' %}
+        '../src/AppBundle/Resources/public/css/bootstrap.css'
+        '../src/AppBundle/Resources/public/css/style.css'
+        '../src/AppBundle/Resources/public/css/icons.css'
+        '../src/AppBundle/Resources/public/css/languages.css' %}
         <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
     <!--[if lt IE 9]>

@@ -62,7 +62,7 @@
             if (show_quantity) {
                 out = out + card.indeck + 'x ';
             }
-            out  = out + '[' + card.name + ' \\('+ card.pack_code +'\\)](https://thronesdb.com/card/' + card.code + ')';
+            out  = out + '[' + card.name + ' \\('+ card.pack_code +'\\)](https://localhost/card/' + card.code + ')';
             return out;
         };
 
