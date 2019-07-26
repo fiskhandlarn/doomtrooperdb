@@ -72,8 +72,8 @@ class DeckManager
         $deck->setUser($user);
         $deck->setMinorVersion($deck->getMinorVersion() + 1);
         $cards = [];
-        /* @var $latestPack \AppBundle\Entity\Pack */
-        $latestPack = null;
+        /* @var $latestExpansion \AppBundle\Entity\Expansion */
+        $latestExpansion = null;
         foreach ($content as $card_code => $qty) {
             $card = $this->doctrine->getRepository('AppBundle:Card')->findOneBy(array(
                 "code" => $card_code
@@ -84,17 +84,17 @@ class DeckManager
 
             $cards [$card_code] = $card;
 
-            $pack = $card->getPack();
-            if (!$latestPack) {
-                $latestPack = $pack;
-            } elseif (empty($pack->getDateRelease())) {
-                $latestPack = $pack;
-            } elseif (empty($latestPack->getDateRelease())) {
-            } elseif ($latestPack->getDateRelease() < $pack->getDateRelease()) {
-                $latestPack = $pack;
+            $expansion = $card->getExpansion();
+            if (!$latestExpansion) {
+                $latestExpansion = $expansion;
+            } elseif (empty($expansion->getDateRelease())) {
+                $latestExpansion = $expansion;
+            } elseif (empty($latestExpansion->getDateRelease())) {
+            } elseif ($latestExpansion->getDateRelease() < $expansion->getDateRelease()) {
+                $latestExpansion = $expansion;
             }
         }
-        $deck->setLastPack($latestPack);
+        $deck->setLastExpansion($latestExpansion);
         if (empty($tags)) {
             // tags can never be empty. if it is we put faction in
             $tags = [$faction->getCode()];

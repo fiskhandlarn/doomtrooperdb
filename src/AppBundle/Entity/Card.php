@@ -39,7 +39,7 @@ class Card implements \Serializable
 
         $externalFields = [
                 'faction',
-                'pack',
+                'expansion',
                 'type'
         ];
 
@@ -225,9 +225,9 @@ class Card implements \Serializable
     private $reviews;
 
     /**
-     * @var \AppBundle\Entity\Pack
+     * @var \AppBundle\Entity\Expansion
      */
-    private $pack;
+    private $expansion;
 
     /**
      * @var \AppBundle\Entity\Type
@@ -854,27 +854,27 @@ class Card implements \Serializable
     }
 
     /**
-     * Set pack
+     * Set expansion
      *
-     * @param \AppBundle\Entity\Pack $pack
+     * @param \AppBundle\Entity\Expansion $expansion
      *
      * @return Card
      */
-    public function setPack(\AppBundle\Entity\Pack $pack = null)
+    public function setExpansion(\AppBundle\Entity\Expansion $expansion = null)
     {
-        $this->pack = $pack;
+        $this->expansion = $expansion;
 
         return $this;
     }
 
     /**
-     * Get pack
+     * Get expansion
      *
-     * @return \AppBundle\Entity\Pack
+     * @return \AppBundle\Entity\Expansion
      */
-    public function getPack()
+    public function getExpansion()
     {
-        return $this->pack;
+        return $this->expansion;
     }
 
     /**

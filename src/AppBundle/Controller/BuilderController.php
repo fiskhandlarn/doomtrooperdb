@@ -97,7 +97,7 @@ class BuilderController extends Controller
                     "%faction%" => $faction->getName(),
                 )
             );
-            $pack = $em->getRepository('AppBundle:Pack')->findOneBy(array("code" => "Core"));
+            $expansion = $em->getRepository('AppBundle:Expansion')->findOneBy(array("code" => "Core"));
         } else {
             $agenda = $em->getRepository('AppBundle:Card')->findByCode($agenda_code);
             $name = $translator->trans(
@@ -107,7 +107,7 @@ class BuilderController extends Controller
                     "%agenda%" => $agenda->getName(),
                 )
             );
-            $pack = $agenda->getPack();
+            $expansion = $agenda->getExpansion();
             $tags[] = $this->get('agenda_helper')->getMinorFactionCode($agenda);
         }
 
@@ -115,7 +115,7 @@ class BuilderController extends Controller
         $deck = new Deck();
         $deck->setDescriptionMd("");
         $deck->setFaction($faction);
-        $deck->setLastPack($pack);
+        $deck->setLastExpansion($expansion);
         $deck->setName($name);
         $deck->setProblem('too_few_cards');
         $deck->setTags(join(' ', array_unique($tags)));
@@ -248,8 +248,8 @@ class BuilderController extends Controller
             case 'octgn':
                 return $this->downloadInOctgnFormat($deck);
                 break;
-            case 'text_cycle':
-                return $this->downloadInTextFormatSortedByCycle($deck);
+            case 'text_expansion':
+                return $this->downloadInTextFormatSortedByExpansion($deck);
                 break;
             case 'text':
             default:
@@ -306,12 +306,12 @@ class BuilderController extends Controller
         return $response;
     }
 
-    protected function downloadInTextFormatSortedByCycle(Deck $deck)
+    protected function downloadInTextFormatSortedByExpansion(Deck $deck)
     {
         $content = $this->renderView(
-            'AppBundle:Export:sortedbycycle.txt.twig',
+            'AppBundle:Export:sortedbyexpansion.txt.twig',
             [
-                "deck" => $deck->getCycleOrderExport(),
+                "deck" => $deck->getExpansionOrderExport(),
             ]
         );
         $content = str_replace("\n", "\r\n", $content);

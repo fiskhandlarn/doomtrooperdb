@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use AppBundle\Model\DecklistManager;
 use AppBundle\Services\Pagination;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use AppBundle\Entity\Pack;
+use AppBundle\Entity\Expansion;
 
 class SocialController extends Controller
 {
@@ -69,8 +69,8 @@ class SocialController extends Controller
             return $this->redirect($this->generateUrl('deck_view', ['deck_id' => $deck->getId()]));
         }
 
-        $lastPack = $deck->getLastPack();
-        if (!$lastPack->getDateRelease() || $lastPack->getDateRelease() > new \DateTime()) {
+        $lastExpansion = $deck->getLastExpansion();
+        if (!$lastExpansion->getDateRelease() || $lastExpansion->getDateRelease() > new \DateTime()) {
             $this->get('session')
                 ->getFlashBag()
                 ->set('error', $translator->trans('decklist.publish.errors.unreleased'));
@@ -345,105 +345,103 @@ class SocialController extends Controller
         )));
     }
 
-    private function searchForm(Request $request)
-    {
-        $doctrine = $this->getDoctrine();
-        $dbh = $doctrine->getConnection();
-        $em = $doctrine->getEntityManager();
+    // private function searchForm(Request $request)
+    // {
+    //     $doctrine = $this->getDoctrine();
+    //     $dbh = $doctrine->getConnection();
+    //     $em = $doctrine->getEntityManager();
 
-        $cards_code = $request->query->get('cards');
-        $faction_code = filter_var($request->query->get('faction'), FILTER_SANITIZE_STRING);
-        $tournament = filter_var($request->query->get('tournament'), FILTER_SANITIZE_NUMBER_INT);
-        $author_name = filter_var($request->query->get('author'), FILTER_SANITIZE_STRING);
-        $decklist_name = filter_var($request->query->get('name'), FILTER_SANITIZE_STRING);
-        $sort = $request->query->get('sort');
-        $packs = $request->query->get('packs');
+    //     $cards_code = $request->query->get('cards');
+    //     $faction_code = filter_var($request->query->get('faction'), FILTER_SANITIZE_STRING);
+    //     $tournament = filter_var($request->query->get('tournament'), FILTER_SANITIZE_NUMBER_INT);
+    //     $author_name = filter_var($request->query->get('author'), FILTER_SANITIZE_STRING);
+    //     $decklist_name = filter_var($request->query->get('name'), FILTER_SANITIZE_STRING);
+    //     $sort = $request->query->get('sort');
+    //     $expansions = $request->query->get('expansions');
 
-        if (!is_array($packs)) {
-            $packs = $dbh->executeQuery("select id from pack")->fetchAll(\PDO::FETCH_COLUMN);
-        }
+    //     if (!is_array($expansions)) {
+    //         $expansions = $dbh->executeQuery("select id from expansion")->fetchAll(\PDO::FETCH_COLUMN);
+    //     }
 
-        $categories = [];
-        $on = 0;
-        $off = 0;
-        $categories[] = array(
-            "label" => $this->get("translator")->trans('decklist.list.search.allowed.core'),
-            "packs" => []
-        );
-        $list_cycles = $this->getDoctrine()->getRepository('AppBundle:Cycle')->findAll();
-        foreach ($list_cycles as $cycle) {
-            $size = count($cycle->getPacks());
-            if ($cycle->getPosition() == 0 || $size == 0) {
-                continue;
-            }
-            $first_pack = $cycle->getPacks()[0];
-            if ($cycle->getCode() == 'core' || ($size === 1 && $first_pack->getName() == $cycle->getName())) {
-                $checked = count($packs) ? in_array($first_pack->getId(), $packs) : true;
-                if ($checked) {
-                    $on++;
-                } else {
-                    $off++;
-                }
-                $categories[0]["packs"][] = array(
-                    "id" => $first_pack->getId(),
-                    "label" => $first_pack->getName(),
-                    "checked" => $checked,
-                    "future" => $first_pack->getDateRelease() === null
-                );
-            } else {
-                $category = array("label" => $cycle->getName(), "packs" => []);
-                foreach ($cycle->getPacks() as $pack) {
-                    $checked = count($packs) ? in_array($pack->getId(), $packs) : true;
-                    if ($checked) {
-                        $on++;
-                    } else {
-                        $off++;
-                    }
-                    $category['packs'][] = array(
-                        "id" => $pack->getId(),
-                        "label" => $pack->getName(),
-                        "checked" => $checked,
-                        "future" => $pack->getDateRelease() === null
-                    );
-                }
-                $categories[] = $category;
-            }
-        }
+    //     $categories = [];
+    //     $on = 0;
+    //     $off = 0;
+    //     $categories[] = array(
+    //         "label" => $this->get("translator")->trans('decklist.list.search.allowed.core'),
+    //         "expansions" => []
+    //     );
+    //     $list_expansions = $this->getDoctrine()->getRepository('AppBundle:Expansion')->findAll();
+    //     $size = count($list_expansion);
+    //     if ($expansion->getPosition() == 0 || $size == 0) {
+    //         continue;
+    //     }
+    //     $first_expansion = $list_expansions[0];
+    //     if ($expansion->getCode() == 'core' || ($size === 1 && $first_expansion->getName() == $expansion->getName())) {
+    //         $checked = count($expansions) ? in_array($first_expansion->getId(), $expansions) : true;
+    //         if ($checked) {
+    //             $on++;
+    //         } else {
+    //             $off++;
+    //         }
+    //         $categories[0]["expansions"][] = array(
+    //             "id" => $first_expansion->getId(),
+    //             "label" => $first_expansion->getName(),
+    //             "checked" => $checked,
+    //             "future" => $first_expansion->getDateRelease() === null
+    //         );
+    //     } else {
+    //         $category = array("label" => $expansion->getName(), "expansions" => []);
+    //         foreach ($list_expansions as $expansion) {
+    //             $checked = count($expansions) ? in_array($expansion->getId(), $expansions) : true;
+    //             if ($checked) {
+    //                 $on++;
+    //             } else {
+    //                 $off++;
+    //             }
+    //             $category['expansions'][] = array(
+    //                 "id" => $expansion->getId(),
+    //                 "label" => $expansion->getName(),
+    //                 "checked" => $checked,
+    //                 "future" => $expansion->getDateRelease() === null
+    //             );
+    //         }
+    //         $categories[] = $category;
+    //     }
 
-        $activeTournamentTiers = $this->getDoctrine()
-            ->getRepository(Tournament::class)
-            ->findBy(['active'=> true]);
+    //     $activeTournamentTiers = $this->getDoctrine()
+    //         ->getRepository(Tournament::class)
+    //         ->findBy(['active'=> true]);
 
-        $inactiveTournamentTiers = $this->getDoctrine()
-            ->getRepository(Tournament::class)
-            ->findBy(['active'=> false]);
+    //     $inactiveTournamentTiers = $this->getDoctrine()
+    //         ->getRepository(Tournament::class)
+    //         ->findBy(['active'=> false]);
 
-        $params = array(
-            'allowed' => $categories,
-            'on' => $on,
-            'off' => $off,
-            'author' => $author_name,
-            'name' => $decklist_name,
-            'activeTournamentTiers' => $activeTournamentTiers,
-            'inactiveTournamentTiers' => $inactiveTournamentTiers,
-        );
-        $params['sort_' . $sort] = ' selected="selected"';
-        $params['factions'] = $this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName();
-        $params['faction_selected'] = $faction_code;
-        $params['selectedTournament'] = $tournament;
+    //     $params = array(
+    //         'allowed' => $categories,
+    //         'on' => $on,
+    //         'off' => $off,
+    //         'author' => $author_name,
+    //         'name' => $decklist_name,
+    //         'activeTournamentTiers' => $activeTournamentTiers,
+    //         'inactiveTournamentTiers' => $inactiveTournamentTiers,
+    //     );
+    //     $params['sort_' . $sort] = ' selected="selected"';
+    //     $params['factions'] = $this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName();
+    //     $params['faction_selected'] = $faction_code;
+    //     $params['selectedTournament'] = $tournament;
 
-        if (!empty($cards_code) && is_array($cards_code)) {
-            $cards = $this->getDoctrine()->getRepository('AppBundle:Card')->findAllByCodes($cards_code);
+    //     if (!empty($cards_code) && is_array($cards_code)) {
+    //         $cards = $this->getDoctrine()->getRepository('AppBundle:Card')->findAllByCodes($cards_code);
 
-            $params['cards'] = '';
-            foreach ($cards as $card) {
-                $cardinfo = $this->get('cards_data')->getCardInfo($card, false, null);
-                $params['cards'] .= $this->renderView('AppBundle:Search:card.html.twig', $cardinfo);
-            }
-        }
+    //         $params['cards'] = '';
+    //         foreach ($cards as $card) {
+    //             $cardinfo = $this->get('cards_data')->getCardInfo($card, false, null);
+    //             $params['cards'] .= $this->renderView('AppBundle:Search:card.html.twig', $cardinfo);
+    //         }
+    //     }
 
-        return $this->renderView('AppBundle:Search:form.html.twig', $params);
-    }
+    //     return $this->renderView('AppBundle:Search:form.html.twig', $params);
+    // }
 
     /*
      * displays the lists of decklists
@@ -886,8 +884,8 @@ class SocialController extends Controller
             case 'octgn':
                 return $this->downloadInOctgnFormat($decklist);
                 break;
-            case 'text_cycle':
-                return $this->downloadInTextFormatSortedByCycle($decklist);
+            case 'text_expansion':
+                return $this->downloadInTextFormatSortedByExpansion($decklist);
                 break;
             case 'text':
             default:
@@ -948,12 +946,12 @@ class SocialController extends Controller
         return $response;
     }
 
-    protected function downloadInTextFormatSortedByCycle(Decklist $decklist)
+    protected function downloadInTextFormatSortedByExpansion(Decklist $decklist)
     {
         $content = $this->renderView(
-            'AppBundle:Export:sortedbycycle.txt.twig',
+            'AppBundle:Export:sortedbyexpansion.txt.twig',
             [
-                "deck" => $decklist->getCycleOrderExport()
+                "deck" => $decklist->getExpansionOrderExport()
             ]
         );
         $content = str_replace("\n", "\r\n", $content);
@@ -1121,94 +1119,92 @@ class SocialController extends Controller
                         ), $response);
     }
 
-    public function searchAction(Request $request)
-    {
-        $translator = $this->get("translator");
+    // public function searchAction(Request $request)
+    // {
+    //     $translator = $this->get("translator");
 
-        $response = new Response();
-        $response->setPublic();
-        $response->setMaxAge($this->container->getParameter('cache_expiration'));
+    //     $response = new Response();
+    //     $response->setPublic();
+    //     $response->setMaxAge($this->container->getParameter('cache_expiration'));
 
-        $factions = $this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName();
+    //     $factions = $this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName();
 
-        $categories = [];
-        $on = 0;
-        $off = 0;
-        $categories[] = array("label" => $translator->trans("decklist.list.search.allowed.core"), "packs" => []);
-        $list_cycles = $this->getDoctrine()->getRepository('AppBundle:Cycle')->findAll();
-        foreach ($list_cycles as $cycle) {
-            $size = count($cycle->getPacks());
-            if ($cycle->getPosition() == 0 || $size == 0) {
-                continue;
-            }
-            $first_pack = $cycle->getPacks()[0];
-            if ($cycle->getCode() === 'core' || ($size === 1 && $first_pack->getName() == $cycle->getName())) {
-                $checked = $first_pack->getDateRelease() !== null;
-                if ($checked) {
-                    $on++;
-                } else {
-                    $off++;
-                }
-                $categories[0]["packs"][] = array(
-                    "id" => $first_pack->getId(),
-                    "label" => $first_pack->getName(),
-                    "checked" => $checked,
-                    "future" => $first_pack->getDateRelease() === null
-                );
-            } else {
-                $category = array("label" => $cycle->getName(), "packs" => []);
-                foreach ($cycle->getPacks() as $pack) {
-                    $checked = $pack->getDateRelease() !== null;
-                    if ($checked) {
-                        $on++;
-                    } else {
-                        $off++;
-                    }
-                    $category['packs'][] = array(
-                        "id" => $pack->getId(),
-                        "label" => $pack->getName(),
-                        "checked" => $checked,
-                        "future" => $pack->getDateRelease() === null
-                    );
-                }
-                $categories[] = $category;
-            }
-        }
+    //     $categories = [];
+    //     $on = 0;
+    //     $off = 0;
+    //     $categories[] = array("label" => $translator->trans("decklist.list.search.allowed.core"), "expansions" => []);
+    //     $list_expansions = $this->getDoctrine()->getRepository('AppBundle:Expansion')->findAll();
+    //     $size = count($list_expansions);
+    //     if ($expansion->getPosition() == 0 || $size == 0) {
+    //         continue;
+    //     }
+    //     $first_expansion = $list_expansions[0];
+    //     if ($expansion->getCode() === 'core' || ($size === 1 && $first_expansion->getName() == $expansion->getName())) {
+    //         $checked = $first_expansion->getDateRelease() !== null;
+    //         if ($checked) {
+    //             $on++;
+    //         } else {
+    //             $off++;
+    //         }
+    //         $categories[0]["expansions"][] = array(
+    //             "id" => $first_expansion->getId(),
+    //             "label" => $first_expansion->getName(),
+    //             "checked" => $checked,
+    //             "future" => $first_expansion->getDateRelease() === null
+    //         );
+    //     } else {
+    //         $category = array("label" => $expansion->getName(), "expansions" => []);
+    //         foreach ($expansion->getExpansions() as $expansion) {
+    //             $checked = $expansion->getDateRelease() !== null;
+    //             if ($checked) {
+    //                 $on++;
+    //             } else {
+    //                 $off++;
+    //             }
+    //             $category['expansions'][] = array(
+    //                 "id" => $expansion->getId(),
+    //                 "label" => $expansion->getName(),
+    //                 "checked" => $checked,
+    //                 "future" => $expansion->getDateRelease() === null
+    //             );
+    //         }
+    //         $categories[] = $category;
+    //     }
 
-        $activeTournamentTiers = $this->getDoctrine()
-            ->getRepository(Tournament::class)
-            ->findBy(['active'=> true]);
+    //     $activeTournamentTiers = $this->getDoctrine()
+    //         ->getRepository(Tournament::class)
+    //         ->findBy(['active'=> true]);
 
-        $inactiveTournamentTiers = $this->getDoctrine()
-            ->getRepository(Tournament::class)
-            ->findBy(['active'=> false]);
+    //     $inactiveTournamentTiers = $this->getDoctrine()
+    //         ->getRepository(Tournament::class)
+    //         ->findBy(['active'=> false]);
 
-        $searchForm = $this->renderView(
-            'AppBundle:Search:form.html.twig',
-            array(
-                'factions' => $factions,
-                'allowed' => $categories,
-                'on' => $on,
-                'off' => $off,
-                'author' => '',
-                'name' => '',
-                'activeTournamentTiers' => $activeTournamentTiers,
-                'inactiveTournamentTiers' => $inactiveTournamentTiers,
-                'selectedTournament' => 0
-            )
-        );
+    //     $searchForm = $this->renderView(
+    //         'AppBundle:Search:form.html.twig',
+    //         array(
+    //             'factions' => $factions,
+    //             'allowed' => $categories,
+    //             'on' => $on,
+    //             'off' => $off,
+    //             'author' => '',
+    //             'name' => '',
+    //             'activeTournamentTiers' => $activeTournamentTiers,
+    //             'inactiveTournamentTiers' => $inactiveTournamentTiers,
+    //             'selectedTournament' => 0
+    //         )
+    //     );
 
-        return $this->render('AppBundle:Decklist:decklists.html.twig', array(
-                    'pagetitle' => $translator->trans('decklist.list.titles.search'),
-                    'decklists' => null,
-                    'url' => $request->getRequestUri(),
-                    'header' => $searchForm,
-                    'type' => 'find',
-                    'pages' => null,
-                    'prevurl' => null,
-                    'nexturl' => null,
-                        ), $response);
-    }
+    //     return $this->render('AppBundle:Decklist:decklists.html.twig', array(
+    //                 'pagetitle' => $translator->trans('decklist.list.titles.search'),
+    //                 'decklists' => null,
+    //                 'url' => $request->getRequestUri(),
+    //                 'header' => $searchForm,
+    //                 'type' => 'find',
+    //                 'pages' => null,
+    //                 'prevurl' => null,
+    //                 'nexturl' => null,
+    //                     ), $response);
+    // }
 
     public function donatorsAction(Request $request)
     {

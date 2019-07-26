@@ -9,8 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Filesystem\Filesystem;
 use Doctrine\ORM\EntityManager;
-use AppBundle\Entity\Cycle;
-use AppBundle\Entity\Pack;
+use AppBundle\Entity\Expansion;
 use AppBundle\Entity\Card;
 use Symfony\Component\Console\Helper\ProgressBar;
 
@@ -20,7 +19,7 @@ class ImportTransCommand extends ContainerAwareCommand
     private $em;
     /* @var $output OutputInterface */
     private $output;
-        
+
     protected function configure()
     {
         $this
@@ -45,21 +44,21 @@ class ImportTransCommand extends ContainerAwareCommand
     {
         $this->em = $this->getContainer()->get('doctrine')->getEntityManager();
         $this->output = $output;
-        
+
         $supported_locales = $this->getContainer()->getParameter('supported_locales');
         $default_locale = $this->getContainer()->getParameter('locale');
         $locales = $input->getOption('locale');
         if (empty($locales)) {
             $locales = $supported_locales;
         }
-                
+
         $path = $input->getArgument('path');
         if (substr($path, -1) === '/') {
             $path = substr($path, 0, strlen($path) - 1);
         }
-        
-        $things = ['faction', 'type', 'cycle', 'pack'];
-        
+
+        $things = ['faction', 'type', 'expansion'];
+
         foreach ($locales as $locale) {
             if ($locale === $default_locale) {
                 continue;
@@ -71,9 +70,9 @@ class ImportTransCommand extends ContainerAwareCommand
                 $this->importThingsJsonFile($fileInfo, $locale, $thing);
             }
             $this->em->flush();
-            
+
             $fileSystemIterator = $this->getFileSystemIterator("${path}/translations/${locale}");
-            
+
             $output->writeln("Importing translations for <info>cards</info> in <info>${locale}</info>");
             foreach ($fileSystemIterator as $fileInfo) {
                 $output->writeln(
@@ -83,11 +82,11 @@ class ImportTransCommand extends ContainerAwareCommand
                 );
                 $this->importCardsJsonFile($fileInfo, $locale);
             }
-            
+
             $this->em->flush();
         }
     }
-    
+
     protected function importThingsJsonFile(\SplFileInfo $fileinfo, $locale, $thing)
     {
         $list = $this->getDataFromFile($fileinfo);
@@ -110,13 +109,13 @@ class ImportTransCommand extends ContainerAwareCommand
     protected function importCardsJsonFile(\SplFileInfo $fileinfo, $locale)
     {
         $cardsData = $this->getDataFromFile($fileinfo);
-        
+
         $progress = new ProgressBar($this->output, count($cardsData));
         $progress->start();
-                
+
         foreach ($cardsData as $cardData) {
             $progress->advance();
-            
+
             $this->updateEntityFromData($locale, 'AppBundle\Entity\Card', $cardData, [
                     'code',
                     'name'
@@ -127,7 +126,7 @@ class ImportTransCommand extends ContainerAwareCommand
                     'text'
             ]);
         }
-        
+
         $progress->finish();
         $progress->clear();
         $this->output->write("\n");
@@ -136,14 +135,14 @@ class ImportTransCommand extends ContainerAwareCommand
     {
         $metadata = $this->em->getClassMetadata($entityName);
         $type = $metadata->fieldMappings[$fieldName]['type'];
-    
+
         // new value, by default what json gave us is the correct typed value
         $newTypedValue = $newJsonValue;
-    
+
         // current value, by default the json, serialized value is the same as what's in the entity
         $getter = 'get'.ucfirst($fieldName);
         $currentJsonValue = $currentTypedValue = $entity->$getter();
-    
+
         // if the field is a data, the default assumptions above are wrong
         if (in_array($type, ['date', 'datetime'])) {
             if ($newJsonValue !== null) {
@@ -159,18 +158,18 @@ class ImportTransCommand extends ContainerAwareCommand
                 }
             }
         }
-    
+
         $different = ($currentJsonValue !== $newJsonValue);
         if ($different) {
             $setter = 'set'.ucfirst($fieldName);
             $entity->$setter($newTypedValue);
         }
     }
-    
+
     protected function copyKeyToEntity($entity, $entityName, $data, $key, $isMandatory = true)
     {
         $metadata = $this->em->getClassMetadata($entityName);
-    
+
         if (!key_exists($key, $data)) {
             if ($isMandatory) {
                 throw new \Exception("Missing key [$key] in ".json_encode($data));
@@ -179,26 +178,26 @@ class ImportTransCommand extends ContainerAwareCommand
             }
         }
         $value = $data[$key];
-    
+
         if (!key_exists($key, $metadata->fieldNames)) {
             throw new \Exception("Invalid key [$key] in ".json_encode($data));
         }
         $fieldName = $metadata->fieldNames[$key];
-    
+
         $this->copyFieldValueToEntity($entity, $entityName, $fieldName, $value);
     }
-    
+
     protected function updateEntityFromData($locale, $entityName, $data, $mandatoryKeys, $optionalKeys)
     {
         if (!key_exists('code', $data)) {
             throw new \Exception("Missing key [code] in ".json_encode($data));
         }
-    
+
         # skip empty translations
         if (!isset($data['title']) && !isset($data['name'])) {
             return;
         }
-        
+
         $entity = $this->em->getRepository($entityName)->findOneBy(['code' => $data['code']]);
         if (!$entity) {
             throw new \Exception("Cannot find entity [code]");
@@ -206,7 +205,7 @@ class ImportTransCommand extends ContainerAwareCommand
         die('entity are not translatable anymore');
         $entity->setTranslatableLocale($locale);
         $this->em->refresh($entity);
-        
+
         foreach ($mandatoryKeys as $key) {
             $this->copyKeyToEntity($entity, $entityName, $data, $key, true);
         }
@@ -214,12 +213,12 @@ class ImportTransCommand extends ContainerAwareCommand
             $this->copyKeyToEntity($entity, $entityName, $data, $key, false);
         }
     }
-    
+
     protected function getDataFromFile(\SplFileInfo $fileinfo)
     {
         $file = $fileinfo->openFile('r');
         $file->setFlags(\SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
-    
+
         $lines = [];
         foreach ($file as $line) {
             if ($line !== false) {
@@ -227,9 +226,9 @@ class ImportTransCommand extends ContainerAwareCommand
             }
         }
         $content = implode('', $lines);
-    
+
         $data = json_decode($content, true);
-    
+
         if ($data === null) {
             throw new \Exception(
                 "File ["
@@ -239,30 +238,30 @@ class ImportTransCommand extends ContainerAwareCommand
                 . ")"
             );
         }
-    
+
         return $data;
     }
-    
+
     /**
      * @return \SplFileInfo
      */
     protected function getFileInfo($path, $filename)
     {
         $fs = new Filesystem();
-        
+
         if (!$fs->exists($path)) {
             throw new \Exception("No repository found at [$path]");
         }
-        
+
         $filepath = "$path/$filename";
-        
+
         if (!$fs->exists($filepath)) {
             throw new \Exception("No $filename file found at [$path]");
         }
-        
+
         return new \SplFileInfo($filepath);
     }
-    
+
     /**
      *
      * @param unknown $path
@@ -272,23 +271,23 @@ class ImportTransCommand extends ContainerAwareCommand
     protected function getFileSystemIterator($path)
     {
         $fs = new Filesystem();
-        
+
         if (!$fs->exists($path)) {
             throw new \Exception("No repository found at [$path]");
         }
-        
-        $directory = 'pack';
-        
+
+        $directory = 'cards';
+
         if (!$fs->exists("$path/$directory")) {
             throw new \Exception("No '$directory' directory found at [$path]");
         }
-        
+
         $iterator = new \GlobIterator("$path/$directory/*.json");
-        
+
         if (!$iterator->count()) {
             throw new \Exception("No json file found at [$path/set]");
         }
-        
+
         return $iterator;
     }
 }

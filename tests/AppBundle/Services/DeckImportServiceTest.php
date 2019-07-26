@@ -3,9 +3,9 @@
 namespace AppBundle\Tests\Service;
 
 use AppBundle\Entity\Card;
-use AppBundle\Entity\Pack;
+use AppBundle\Entity\Expansion;
 use AppBundle\Repository\CardRepository;
-use AppBundle\Repository\PackRepository;
+use AppBundle\Repository\ExpansionRepository;
 use AppBundle\Services\DeckImportService;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
@@ -32,7 +32,7 @@ class DeckImportServiceTest extends TestCase
     /**
      * @var m\MockInterface;
      */
-    protected $mockPackRepository;
+    protected $mockExpansionRepository;
 
     /**
      * @var DeckImportService $service
@@ -46,15 +46,15 @@ class DeckImportServiceTest extends TestCase
     {
         $this->mockEntityManager = m::mock(EntityManager::class);
         $this->mockCardRepository = m::mock(CardRepository::class);
-        $this->mockPackRepository  = m::mock(PackRepository::class);
+        $this->mockExpansionRepository  = m::mock(ExpansionRepository::class);
         $this->mockEntityManager
             ->shouldReceive('getRepository')
             ->with('AppBundle:Card')
             ->andReturn($this->mockCardRepository);
         $this->mockEntityManager
             ->shouldReceive('getRepository')
-            ->with('AppBundle:Pack')
-            ->andReturn($this->mockPackRepository);
+            ->with('AppBundle:Expansion')
+            ->andReturn($this->mockExpansionRepository);
         $this->service = new DeckImportService($this->mockEntityManager);
     }
 
@@ -66,13 +66,13 @@ class DeckImportServiceTest extends TestCase
         unset($this->service);
         unset($this->mockEntityManager);
         unset($this->mockCardRepository);
-        unset($this->mockPackRepository);
+        unset($this->mockExpansionRepository);
     }
 
     /**
      * @return array
      */
-    public function testParseTextImportForCardWithPackNameProvider()
+    public function testParseTextImportForCardWithExpansionNameProvider()
     {
         return [
             ["1x The Hand's Judgment (Core Set)", 1, "The Hand's Judgment", "Core Set"],
@@ -91,20 +91,20 @@ class DeckImportServiceTest extends TestCase
 
     /**
      * @covers \AppBundle\Services\DeckImportService::parseTextImport
-     * @dataProvider testParseTextImportForCardWithPackNameProvider
+     * @dataProvider testParseTextImportForCardWithExpansionNameProvider
      */
-    public function testParseTextImportForCardWithPackName($input, $expectedQuantity, $expectedName, $expectedPackName)
+    public function testParseTextImportForCardWithExpansionName($input, $expectedQuantity, $expectedName, $expectedExpansionName)
     {
         $cardCode = "does-not-matter";
         $card = new Card();
         $card->setCode($cardCode);
-        $pack = new Pack();
-        $pack->setId(2000);
-        $pack->setName($expectedPackName);
-        $this->mockPackRepository->expects('findAll')->andReturn([ $pack ]);
+        $expansion = new Expansion();
+        $expansion->setId(2000);
+        $expansion->setName($expectedExpansionName);
+        $this->mockExpansionRepository->expects('findAll')->andReturn([ $expansion ]);
         $this->mockCardRepository
             ->expects('findOneBy')
-            ->with(['name' => $expectedName, 'pack' => $pack->getId()])
+            ->with(['name' => $expectedName, 'expansion' => $expansion->getId()])
             ->andReturn($card);
         $data = $this->service->parseTextImport($input);
         $this->assertEquals($expectedQuantity, $data['content'][$cardCode]);
@@ -113,7 +113,7 @@ class DeckImportServiceTest extends TestCase
     /**
      * @return array
      */
-    public function testParseTextImportForCardWithPackCodeProvider()
+    public function testParseTextImportForCardWithExpansionCodeProvider()
     {
         return [
             ["1x The Hand's Judgment (Core)", 1, "The Hand's Judgment", "Core"],
@@ -127,20 +127,20 @@ class DeckImportServiceTest extends TestCase
 
     /**
      * @covers \AppBundle\Services\DeckImportService::parseTextImport
-     * @dataProvider testParseTextImportForCardWithPackCodeProvider
+     * @dataProvider testParseTextImportForCardWithExpansionCodeProvider
      */
-    public function testParseTextImportForCardWithPackCode($input, $expectedQuantity, $expectedName, $expectedPackCode)
+    public function testParseTextImportForCardWithExpansionCode($input, $expectedQuantity, $expectedName, $expectedExpansionCode)
     {
         $cardCode = "does-not-matter";
         $card = new Card();
         $card->setCode($cardCode);
-        $pack = new Pack();
-        $pack->setId(2000);
-        $pack->setName('does not matter');
-        $pack->setCode($expectedPackCode);
-        $this->mockPackRepository->expects('findAll')->andReturn([ $pack ]);
+        $expansion = new Expansion();
+        $expansion->setId(2000);
+        $expansion->setName('does not matter');
+        $expansion->setCode($expectedExpansionCode);
+        $this->mockExpansionRepository->expects('findAll')->andReturn([ $expansion ]);
         $this->mockCardRepository->expects('findOneBy')
-            ->with(['name' => $expectedName, 'pack' => $pack->getId()])
+            ->with(['name' => $expectedName, 'expansion' => $expansion->getId()])
             ->andReturn($card);
         $data = $this->service->parseTextImport($input);
         $this->assertEquals($expectedQuantity, $data['content'][$cardCode]);
@@ -149,7 +149,7 @@ class DeckImportServiceTest extends TestCase
     /**
      * @return array
      */
-    public function parseTextImportForCardWithoutPackInfoProvider()
+    public function parseTextImportForCardWithoutExpansionInfoProvider()
     {
         return [
             ["1x The Hand's Judgment", 1, "The Hand's Judgment"],
@@ -163,14 +163,14 @@ class DeckImportServiceTest extends TestCase
 
     /**
      * @covers \AppBundle\Services\DeckImportService::parseTextImport
-     * @dataProvider parseTextImportForCardWithoutPackInfoProvider
+     * @dataProvider parseTextImportForCardWithoutExpansionInfoProvider
      */
-    public function testParseTextImportForCardWithoutPackInfo($input, $expectedQuantity, $expectedName)
+    public function testParseTextImportForCardWithoutExpansionInfo($input, $expectedQuantity, $expectedName)
     {
         $cardCode = "does-not-matter";
         $card = new Card();
         $card->setCode($cardCode);
-        $this->mockPackRepository->expects('findAll')->andReturn([]);
+        $this->mockExpansionRepository->expects('findAll')->andReturn([]);
         $this->mockCardRepository->expects('findOneBy')->with(['name' => $expectedName])->andReturn($card);
         $data = $this->service->parseTextImport($input);
         $this->assertEquals($expectedQuantity, $data['content'][$cardCode]);

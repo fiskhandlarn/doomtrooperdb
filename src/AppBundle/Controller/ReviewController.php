@@ -41,12 +41,7 @@ class ReviewController extends Controller
         if (!$card) {
             throw new \Exception("This card does not exist.");
         }
-        /*
-          if(!$card->getPack()->getDateRelease())
-          {
-          throw new \Exception("You may not write a review for an unreleased card.");
-          }
-         */
+
         // checking the user didn't already write a review for that card
         $review = $em->getRepository('AppBundle:Review')->findOneBy(array('card' => $card, 'user' => $user));
         if ($review) {
@@ -221,7 +216,7 @@ class ReviewController extends Controller
         /* @var $em EntityManager */
         $em = $this->getDoctrine()->getManager();
 
-        $dql = "SELECT r FROM AppBundle:Review r JOIN r.card c JOIN c.pack p ORDER BY r.dateCreation DESC";
+        $dql = "SELECT r FROM AppBundle:Review r JOIN r.card c JOIN c.expansion y ORDER BY r.dateCreation DESC";
         $query = $em->createQuery($dql)->setFirstResult($start)->setMaxResults($limit);
 
         $paginator = new Paginator($query, false);

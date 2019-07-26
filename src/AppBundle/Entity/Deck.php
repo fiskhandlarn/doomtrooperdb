@@ -44,9 +44,9 @@ class Deck extends ExportableDeck implements JsonSerializable
     private $changes;
 
     /**
-     * @var Pack
+     * @var Expansion
      */
-    private $lastPack;
+    private $lastExpansion;
 
     /**
      * @var Decklist
@@ -290,27 +290,27 @@ class Deck extends ExportableDeck implements JsonSerializable
     }
 
     /**
-     * Set lastPack
+     * Set lastExpansion
      *
-     * @param Pack $lastPack
+     * @param Expansion $lastExpansion
      *
      * @return Deck
      */
-    public function setLastPack(Pack $lastPack = null)
+    public function setLastExpansion(Expansion $lastExpansion = null)
     {
-        $this->lastPack = $lastPack;
+        $this->lastExpansion = $lastExpansion;
 
         return $this;
     }
 
     /**
-     * Get lastPack
+     * Get lastExpansion
      *
-     * @return Pack
+     * @return Expansion
      */
-    public function getLastPack()
+    public function getLastExpansion()
     {
-        return $this->lastPack;
+        return $this->lastExpansion;
     }
 
     /**

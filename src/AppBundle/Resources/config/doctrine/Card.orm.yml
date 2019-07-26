@@ -3,11 +3,11 @@ AppBundle\Entity\Card:
     table: card
     repositoryClass: AppBundle\Repository\CardRepository
     manyToOne:
-        pack:
-            targetEntity: Pack
+        expansion:
+            targetEntity: Expansion
             inversedBy: cards
             joinColumn:
-                name: pack_id
+                name: expansion_id
                 referencedColumnName: id
         type:
             targetEntity: Type

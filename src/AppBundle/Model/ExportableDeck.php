@@ -177,7 +177,7 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
             'faction' => $this->getFaction(),
             'draw_deck_size' => $slots->getDrawDeck()->countCards(),
             'plot_deck_size' => $slots->getPlotDeck()->countCards(),
-            'included_packs' => $slots->getIncludedPacks(),
+            'included_expansions' => $slots->getIncludedExpansions(),
             'slots_by_type' => $slots->getSlotsByType()
         ];
     }
@@ -185,7 +185,7 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
     /**
      * @return array
      */
-    public function getCycleOrderExport()
+    public function getExpansionOrderExport()
     {
         $slots = $this->getSlots();
         return [
@@ -195,8 +195,8 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
             'faction' => $this->getFaction(),
             'draw_deck_size' => $slots->getDrawDeck()->countCards(),
             'plot_deck_size' => $slots->getPlotDeck()->countCards(),
-            'included_packs' => $slots->getIncludedPacks(),
-            'slots_by_cycle_order' => $slots->getSlotsByCycleOrder()
+            'included_expansions' => $slots->getIncludedExpansions(),
+            'slots_by_expansion_order' => $slots->getSlotsByExpansionOrder()
         ];
     }
 

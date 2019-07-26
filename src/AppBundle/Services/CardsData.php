@@ -4,7 +4,7 @@ namespace AppBundle\Services;
 
 use AppBundle\Controller\SearchController;
 use AppBundle\Entity\Card;
-use AppBundle\Entity\Cycle;
+use AppBundle\Entity\Expansion;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
@@ -111,80 +111,71 @@ class CardsData
 
     public function allsetsdata()
     {
-        /** @var Cycle[] $list_cycles */
-        $list_cycles = $this->doctrine->getRepository('AppBundle:Cycle')->findAll();
+        /** @var Expansion[] $list_expansions */
+        $list_expansions = $this->doctrine->getRepository('AppBundle:Expansion')->findAll();
         $lines = [];
 
-        foreach ($list_cycles as $cycle) {
-            $packs = $cycle->getPacks();
+        foreach ($list_expansions as $expansion) {
+            $expansions = $expansion->getExpansions();
 
-            foreach ($packs as $pack) {
-                if ($cycle->getSize() === 1) {
-                    $label = $pack->getName();
-                } else {
-                    $label = $pack->getPosition() . '. ' . $pack->getName();
-                }
-                $lines[] = array(
-                    "code" => $pack->getCode(),
-                    "label" => $label,
-                    "available" => $pack->getDateRelease() ? true : false,
-                    "url" => $this->router->generate(
-                        'cards_list',
-                        array('pack_code' => $pack->getCode()),
-                        UrlGeneratorInterface::ABSOLUTE_URL
-                    ),
-                );
+            if ($expansion->getSize() === 1) {
+                $label = $expansion->getName();
+            } else {
+                $label = $expansion->getPosition() . '. ' . $expansion->getName();
             }
+            $lines[] = array(
+                "code" => $expansion->getCode(),
+                "label" => $label,
+                "available" => $expansion->getDateRelease() ? true : false,
+                "url" => $this->router->generate(
+                    'cards_list',
+                    array('expansion_code' => $expansion->getCode()),
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
+            );
         }
         return $lines;
     }
 
     public function allsetsdatathreaded()
     {
-        $list_cycles = $this->doctrine->getRepository('AppBundle:Cycle')->findBy(
+        $list_expansions = $this->doctrine->getRepository('AppBundle:Expansion')->findBy(
             [],
             array("position" => "ASC")
         );
-        $cycles = [];
+        $expansions = [];
 
-        /* @var $cycle \AppBundle\Entity\Cycle */
-        foreach ($list_cycles as $cycle) {
-            $list_packs = $cycle->getPacks();
-            $packs = [];
+        /* @var $expansion \AppBundle\Entity\Expansion */
+        foreach ($list_expansions as $expansion) {
+            $label = $expansion->getName();
 
-            /* @var $pack \AppBundle\Entity\Pack */
-            foreach ($list_packs as $pack) {
-                $label = $pack->getName();
+            $expansions[] = [
+                "code" => $expansion->getCode(),
+                "label" => $label,
+                "available" => $expansion->getDateRelease() ? true : false,
+                "url" => $this->router->generate(
+                    'cards_list',
+                    array('expansion_code' => $expansion->getCode()),
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
+            ];
 
-                $packs[] = [
-                    "code" => $pack->getCode(),
-                    "label" => $label,
-                    "available" => $pack->getDateRelease() ? true : false,
-                    "url" => $this->router->generate(
-                        'cards_list',
-                        array('pack_code' => $pack->getCode()),
-                        UrlGeneratorInterface::ABSOLUTE_URL
-                    ),
-                ];
-            }
-
-            if ($cycle->getSize() === 1) {
-                $cycles[] = $packs[0];
+            if ($expansion->getSize() === 1) {
+                $expansions[] = $expansions[0];
             } else {
-                $cycles[] = [
-                    "code" => $cycle->getCode(),
-                    "label" => $cycle->getName(),
-                    "packs" => $packs,
+                $expansions[] = [
+                    "code" => $expansion->getCode(),
+                    "label" => $expansion->getName(),
                     "url" => $this->router->generate(
-                        'cards_cycle',
-                        array('cycle_code' => $cycle->getCode()),
+                        'cards_expansion',
+                        array('expansion_code' => $expansion->getCode()),
                         UrlGeneratorInterface::ABSOLUTE_URL
                     ),
                 ];
             }
         }
 
-        return $cycles;
+        return $expansions;
     }
 
     public function getPrimaryFactions()
@@ -200,9 +191,8 @@ class CardsData
         // construction de la requete sql
         $repo = $this->doctrine->getRepository('AppBundle:Card');
         $qb = $repo->createQueryBuilder('c')
-                ->select('c', 'p', 'y', 't', 'f')
-                ->leftJoin('c.pack', 'p')
-                ->leftJoin('p.cycle', 'y')
+                ->select('c', 'y', 't', 'f')
+                ->leftJoin('c.expansion', 'y')
                 ->leftJoin('c.type', 't')
                 ->leftJoin('c.faction', 'f');
         $qb2 = null;
@@ -229,7 +219,7 @@ class CardsData
                     break;
                 case 'integer':
                     switch ($searchCode) {
-                        case 'c': // cycle
+                        case 'e': // expansion
                             $or = [];
                             foreach ($condition as $arg) {
                                 switch ($operator) {
@@ -274,21 +264,21 @@ class CardsData
                             foreach ($condition as $arg) {
                                 switch ($operator) {
                                     case ':':
-                                            $or[] = "(p.code = ?$i)";
+                                            $or[] = "(y.code = ?$i)";
                                         break;
                                     case '!':
-                                            $or[] = "(p.code != ?$i)";
+                                            $or[] = "(y.code != ?$i)";
                                         break;
                                     case '<':
                                         if (!isset($qb2)) {
                                             $qb2 = $this->doctrine
-                                                ->getRepository('AppBundle:Pack')
-                                                ->createQueryBuilder('p2');
+                                                ->getRepository('AppBundle:Expansion')
+                                                ->createQueryBuilder('y2');
                                             $or[] = $qb->expr()->lt(
-                                                'p.dateRelease',
+                                                'y.dateRelease',
                                                 '('
-                                                . $qb2->select('p2.dateRelease')
-                                                    ->where("p2.code = ?$i")
+                                                . $qb2->select('y2.dateRelease')
+                                                    ->where("y2.code = ?$i")
                                                     ->getDql()
                                                 . ')'
                                             );
@@ -297,13 +287,13 @@ class CardsData
                                     case '>':
                                         if (!isset($qb3)) {
                                             $qb3 = $this->doctrine
-                                                ->getRepository('AppBundle:Pack')
-                                                ->createQueryBuilder('p3');
+                                                ->getRepository('AppBundle:Expansion')
+                                                ->createQueryBuilder('y3');
                                             $or[] = $qb->expr()->gt(
-                                                'p.dateRelease',
+                                                'y.dateRelease',
                                                 '('
-                                                . $qb3->select('p3.dateRelease')
-                                                    ->where("p3.code = ?$i")
+                                                . $qb3->select('y3.dateRelease')
+                                                    ->where("y3.code = ?$i")
                                                     ->getDql()
                                                 . ')'
                                             );
@@ -451,10 +441,10 @@ class CardsData
                             foreach ($condition as $arg) {
                                 switch ($operator) {
                                     case '<':
-                                            $or[] = "(p.dateRelease <= ?$i)";
+                                            $or[] = "(y.dateRelease <= ?$i)";
                                         break;
                                     case '>':
-                                            $or[] = "(p.dateRelease > ?$i or p.dateRelease IS NULL)";
+                                            $or[] = "(y.dateRelease > ?$i or y.dateRelease IS NULL)";
                                         break;
                                 }
                                 if ($arg == "now") {
@@ -475,7 +465,7 @@ class CardsData
         }
         switch ($sortorder) {
             case 'set':
-                $qb->orderBy('y.position')->addOrderBy('p.position')->addOrderBy('c.position');
+                $qb->orderBy('y.position')->addOrderBy('y.position')->addOrderBy('c.position');
                 break;
             case 'faction':
                 $qb->orderBy('c.faction')->addOrderBy('c.type');
@@ -495,7 +485,7 @@ class CardsData
         $rows = $qb->getQuery()->getResult();
 
         return $rows;
-    }
+        }
 
     /**
      * @param Card        $card
@@ -555,7 +545,7 @@ class CardsData
         );
 
         if ($card->getIsMultiple()) {
-            $cardinfo['label'] = $card->getName() . ' (' . $card->getPack()->getCode() . ')';
+            $cardinfo['label'] = $card->getName() . ' (' . $card->getExpansion()->getCode() . ')';
         } else {
             $cardinfo['label'] = $card->getName();
         }

@@ -4,7 +4,7 @@ namespace AppBundle\Model;
 
 use AppBundle\Classes\RestrictedListChecker;
 use AppBundle\Entity\Decklistslot;
-use AppBundle\Entity\Pack;
+use AppBundle\Entity\Expansion;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -112,48 +112,48 @@ class SlotCollectionDecorator implements SlotCollectionInterface
     /**
      * @inheritdoc
      */
-    public function getIncludedPacks()
+    public function getIncludedExpansions()
     {
-        $packs = [];
+        $expansions = [];
         /** @var SlotInterface $slot */
         foreach ($this->slots as $slot) {
             $card = $slot->getCard();
-            $pack = $card->getPack();
-            if (!isset($packs[$pack->getId()])) {
-                $packs[$pack->getId()] = [
-                    'pack' => $pack,
+            $expansion = $card->getExpansion();
+            if (!isset($expansions[$expansion->getId()])) {
+                $expansions[$expansion->getId()] = [
+                    'expansion' => $expansion,
                     'nb' => 0,
                 ];
             }
 
-            $nbpacks = ceil($slot->getQuantity() / $card->getQuantity());
-            if ($packs[$pack->getId()]['nb'] < $nbpacks) {
-                $packs[$pack->getId()]['nb'] = $nbpacks;
+            $nbexpansions = ceil($slot->getQuantity() / $card->getQuantity());
+            if ($expansions[$expansion->getId()]['nb'] < $nbexpansions) {
+                $expansions[$expansion->getId()]['nb'] = $nbexpansions;
             }
         }
 
-        $packs =  array_values($packs);
-        usort($packs, function ($arr1, $arr2) {
-            /** @var Pack $pack1 */
-            $pack1 = $arr1['pack'];
-            /** @var Pack $pack2 */
-            $pack2 = $arr2['pack'];
-            $cycle1 = $pack1->getCycle();
-            $cycle2 = $pack2->getCycle();
-            if ($cycle1->getPosition() > $cycle2->getPosition()) {
+        $expansions =  array_values($expansions);
+        usort($expansions, function ($arr1, $arr2) {
+            /** @var Expansion $expansion1 */
+            $expansion1 = $arr1['expansion'];
+            /** @var Expansion $expansion2 */
+            $expansion2 = $arr2['expansion'];
+            $expansion1 = $expansion1->getExpansion();
+            $expansion2 = $expansion2->getExpansion();
+            if ($expansion1->getPosition() > $expansion2->getPosition()) {
                 return 1;
-            } elseif ($cycle1->getPosition() < $cycle2->getPosition()) {
+            } elseif ($expansion1->getPosition() < $expansion2->getPosition()) {
                 return -1;
             }
 
-            if ($pack1->getPosition() > $pack2->getPosition()) {
+            if ($expansion1->getPosition() > $expansion2->getPosition()) {
                 return 1;
-            } elseif ($pack1->getPosition() < $pack2->getPosition()) {
+            } elseif ($expansion1->getPosition() < $expansion2->getPosition()) {
                 return -1;
             }
             return 0;
         });
-        return $packs;
+        return $expansions;
     }
 
     /**
@@ -176,7 +176,7 @@ class SlotCollectionDecorator implements SlotCollectionInterface
     /**
      * @inheritdoc
      */
-    public function getSlotsByCycleOrder()
+    public function getSlotsByExpansionOrder()
     {
         $slots_array = [];
         foreach ($this->slots as $slot) {
@@ -184,11 +184,11 @@ class SlotCollectionDecorator implements SlotCollectionInterface
         }
 
         usort($slots_array, array($this, "sortByCardCode"));
-        $cycles = [];
+        $expansions = [];
         foreach ($slots_array as $slot) {
-            $cycles[$slot->getCard()->getPack()->getCycle()->getName()][] = $slot;
+            $expansions[$slot->getCard()->getExpansion()->getName()][] = $slot;
         }
-        return $cycles;
+        return $expansions;
     }
 
     /**

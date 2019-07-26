@@ -1,12 +1,7 @@
-AppBundle\Entity\Cycle:
+AppBundle\Entity\Expansion:
     type: entity
-    table: cycle
-    repositoryClass: AppBundle\Repository\CycleRepository
-    oneToMany:
-        packs:
-            targetEntity: Pack
-            orderBy: {'position':'ASC'}
-            mappedBy: cycle
+    table: expansion
+    repositoryClass: AppBundle\Repository\ExpansionRepository
     fields:
         id:
             type: integer
@@ -42,6 +37,5 @@ AppBundle\Entity\Cycle:
                 timestampable:
                     on: update
     uniqueConstraints:
-        cycle_code_idx:
+        expansion_code_idx:
             columns: [ code ]
-                    

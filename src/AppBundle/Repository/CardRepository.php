@@ -11,11 +11,10 @@ class CardRepository extends EntityRepository
     public function findAll()
     {
         $qb = $this->createQueryBuilder('c')
-            ->select('c, t, f, p, y')
+            ->select('c, t, f, y')
             ->join('c.type', 't')
             ->join('c.faction', 'f')
-            ->join('c.pack', 'p')
-            ->join('p.cycle', 'y')
+            ->join('p.expansion', 'y')
             ->orderBy('c.code', 'ASC');
 
         return $qb->getQuery()->getResult();
@@ -24,8 +23,7 @@ class CardRepository extends EntityRepository
     public function findByType($type)
     {
         $qb = $this->createQueryBuilder('c')
-            ->select('c, p')
-            ->join('c.pack', 'p')
+            ->select('c')
             ->join('c.type', 't')
             ->andWhere('t.code = ?1')
             ->orderBy('c.code', 'ASC');
@@ -49,11 +47,10 @@ class CardRepository extends EntityRepository
     public function findAllByCodes($codes)
     {
         $qb = $this->createQueryBuilder('c')
-            ->select('c, t, f, p, y')
+            ->select('c, t, f, y')
             ->join('c.type', 't')
             ->join('c.faction', 'f')
-            ->join('c.pack', 'p')
-            ->join('p.cycle', 'y')
+            ->join('p.expansion', 'y')
             ->andWhere('c.code in (?1)')
             ->orderBy('c.code', 'ASC');
 
@@ -66,11 +63,11 @@ class CardRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('c')
             ->select('c')
-            ->join('c.pack', 'p')
-            ->andWhere('p.code = ?1')
+            ->join('c.expansion', 'y')
+            ->andWhere('y.code = ?1')
             ->andWhere('c.position = ?2');
 
-        $qb->setParameter(1, $card->getPack()->getCode());
+        $qb->setParameter(1, $card->getExpansion()->getCode());
         $qb->setParameter(2, $card->getPosition()+$position);
 
         return $qb->getQuery()->getOneOrNullResult();
@@ -102,8 +99,8 @@ class CardRepository extends EntityRepository
     public function getAgendasForNewDeckWizard($excludedAgendas = array()): array
     {
         $qb = $this->createQueryBuilder('c')
-            ->select('c, p')
-            ->join('c.pack', 'p')
+            ->select('c, y')
+            ->join('c.expansion', 'y')
             ->join('c.type', 't')
             ->where('t.code = :type')
             ->orderBy('c.name', 'ASC');

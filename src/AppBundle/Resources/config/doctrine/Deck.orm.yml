@@ -15,11 +15,11 @@ AppBundle\Entity\Deck:
             joinColumn:
                 name: faction_id
                 referencedColumnName: id
-        lastPack:
-            targetEntity: Pack
+        lastExpansion:
+            targetEntity: Expansion
             nullable: false
             joinColumn:
-                name: last_pack_id
+                name: last_expansion_id
                 referencedColumnName: id
         parent:
             targetEntity: Decklist

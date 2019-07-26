@@ -96,11 +96,11 @@ class ImportStdCommand extends ContainerAwareCommand
         $this->loadCollection('Type');
         $output->writeln("Done.");
 
-        // cycles
+        // expansions
 
-        $output->writeln("Importing Cycles...");
-        $cyclesFileInfo = $this->getFileInfo($path, 'cycles.json');
-        $imported = $this->importCyclesJsonFile($cyclesFileInfo);
+        $output->writeln("Importing Expansions...");
+        $expansionsFileInfo = $this->getFileInfo($path, 'expansions.json');
+        $imported = $this->importExpansionsJsonFile($expansionsFileInfo);
         if (count($imported)) {
             $question = new ConfirmationQuestion("Do you confirm? (Y/n) ", true);
             if (!$helper->ask($input, $output, $question)) {
@@ -108,22 +108,7 @@ class ImportStdCommand extends ContainerAwareCommand
             }
         }
         $this->em->flush();
-        $this->loadCollection('Cycle');
-        $output->writeln("Done.");
-
-        // second, packs
-
-        $output->writeln("Importing Packs...");
-        $packsFileInfo = $this->getFileInfo($path, 'packs.json');
-        $imported = $this->importPacksJsonFile($packsFileInfo);
-        if (count($imported)) {
-            $question = new ConfirmationQuestion("Do you confirm? (Y/n) ", true);
-            if (!$helper->ask($input, $output, $question)) {
-                die();
-            }
-        }
-        $this->em->flush();
-        $this->loadCollection('Pack');
+        $this->loadCollection('Expansion');
         $output->writeln("Done.");
 
         // third, cards
@@ -210,64 +195,24 @@ class ImportStdCommand extends ContainerAwareCommand
      * @throws ORMException
      * @throws Exception
      */
-    protected function importCyclesJsonFile(SplFileInfo $fileinfo)
+    protected function importExpansionsJsonFile(SplFileInfo $fileinfo)
     {
         $result = [];
         $position = 0;
-        $cyclesData = $this->getDataFromFile($fileinfo);
-        foreach ($cyclesData as $cycleData) {
-            $cycleData['position'] = $position;
-            $cycle = $this->getEntityFromData('AppBundle\Entity\Cycle', $cycleData, [
+        $expansionsData = $this->getDataFromFile($fileinfo);
+        foreach ($expansionsData as $expansionData) {
+            $expansionData['position'] = $position;
+            $expansion = $this->getEntityFromData('AppBundle\Entity\Expansion', $expansionData, [
                     'code',
                     'name',
                     'position',
                     'size'
             ], [], []);
-            if ($cycle) {
-                $result[] = $cycle;
-                $this->em->persist($cycle);
+            if ($expansion) {
+                $result[] = $expansion;
+                $this->em->persist($expansion);
             }
             $position++;
-        }
-
-        return $result;
-    }
-
-    /**
-     * @param SplFileInfo $fileinfo
-     * @return array
-     * @throws ORMException
-     * @throws Exception
-     */
-    protected function importPacksJsonFile(SplFileInfo $fileinfo)
-    {
-        $result = [];
-
-        $position = [];
-
-        $packsData = $this->getDataFromFile($fileinfo);
-        foreach ($packsData as $packData) {
-            $cycleCode = $packData['cycle_code'];
-            if (array_key_exists($cycleCode, $position)) {
-                $position[$cycleCode] = $position[$cycleCode] + 1;
-            } else {
-                $position[$cycleCode] = 1;
-            }
-            $packData['position'] = $position[$cycleCode];
-            $pack = $this->getEntityFromData('AppBundle\Entity\Pack', $packData, [
-                    'code',
-                    'name',
-                    'position',
-                    'size',
-                    'date_release',
-                    'cgdb_id'
-            ], [
-                    'cycle_code'
-            ], []);
-            if ($pack) {
-                $result[] = $pack;
-                $this->em->persist($pack);
-            }
         }
 
         return $result;
@@ -298,7 +243,7 @@ class ImportStdCommand extends ContainerAwareCommand
                     'is_multiple'
             ], [
                     'faction_code',
-                    'pack_code',
+                    'expansion_code',
                     'type_code'
             ], [
                     'designer',
@@ -647,7 +592,7 @@ class ImportStdCommand extends ContainerAwareCommand
             throw new Exception("No repository found at [$path]");
         }
 
-        $directory = 'pack';
+        $directory = 'cards';
 
         if (!$fs->exists("$path/$directory")) {
             throw new Exception("No '$directory' directory found at [$path]");
@@ -685,9 +630,9 @@ class ImportStdCommand extends ContainerAwareCommand
     {
         $code = $fileInfo->getBasename('.json');
 
-        $pack = $this->em->getRepository('AppBundle:Pack')->findOneBy(['code' => $code]);
-        if (!$pack) {
-            throw new Exception("Unable to find Pack [$code]");
+        $expansion = $this->em->getRepository('AppBundle:Expansion')->findOneBy(['code' => $code]);
+        if (!$expansion) {
+            throw new Exception("Unable to find Expansion [$code]");
         }
 
         return $this->getDataFromFile($fileInfo);

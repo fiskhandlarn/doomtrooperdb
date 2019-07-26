@@ -2,31 +2,28 @@
 
 namespace AppBundle\Entity;
 
-class Pack implements \Serializable
+class Expansion implements \Serializable
 {
     public function serialize()
     {
         return [
                 'code' => $this->code,
-                'cycle_code' => $this->cycle ? $this->cycle->getCode() : null,
-                'date_release' => $this->dateRelease ? $this->dateRelease->format('Y-m-d') : null,
                 'name' => $this->name,
                 'position' => $this->position,
-                'size' => $this->size,
-                'cgdb_id' => $this->cgdbId
+                'size' => $this->size
         ];
     }
-    
+
     public function unserialize($serialized)
     {
         throw new \Exception("unserialize() method unsupported");
     }
-    
+
     public function toString()
     {
         return $this->name;
     }
-    
+
     /**
      * @var integer
      */
@@ -63,24 +60,9 @@ class Pack implements \Serializable
     private $dateUpdate;
 
     /**
-     * @var \DateTime
-     */
-    private $dateRelease;
-
-    /**
-     * @var integer
-     */
-    private $cgdbId;
-    
-    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $cards;
-
-    /**
-     * @var \AppBundle\Entity\Cycle
-     */
-    private $cycle;
 
     /**
      * Constructor
@@ -88,16 +70,6 @@ class Pack implements \Serializable
     public function __construct()
     {
         $this->cards = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * @param int $id
-     * @return Pack
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
     }
 
     /**
@@ -115,7 +87,7 @@ class Pack implements \Serializable
      *
      * @param string $code
      *
-     * @return Pack
+     * @return Expansion
      */
     public function setCode($code)
     {
@@ -139,7 +111,7 @@ class Pack implements \Serializable
      *
      * @param string $name
      *
-     * @return Pack
+     * @return Expansion
      */
     public function setName($name)
     {
@@ -163,7 +135,7 @@ class Pack implements \Serializable
      *
      * @param integer $position
      *
-     * @return Pack
+     * @return Expansion
      */
     public function setPosition($position)
     {
@@ -187,7 +159,7 @@ class Pack implements \Serializable
      *
      * @param integer $size
      *
-     * @return Pack
+     * @return Expansion
      */
     public function setSize($size)
     {
@@ -211,7 +183,7 @@ class Pack implements \Serializable
      *
      * @param \DateTime $dateCreation
      *
-     * @return Pack
+     * @return Expansion
      */
     public function setDateCreation($dateCreation)
     {
@@ -235,7 +207,7 @@ class Pack implements \Serializable
      *
      * @param \DateTime $dateUpdate
      *
-     * @return Pack
+     * @return Expansion
      */
     public function setDateUpdate($dateUpdate)
     {
@@ -255,59 +227,11 @@ class Pack implements \Serializable
     }
 
     /**
-     * Set dateRelease
-     *
-     * @param \DateTime $dateRelease
-     *
-     * @return Pack
-     */
-    public function setDateRelease($dateRelease)
-    {
-        $this->dateRelease = $dateRelease;
-
-        return $this;
-    }
-
-    /**
-     * Get dateRelease
-     *
-     * @return \DateTime
-     */
-    public function getDateRelease()
-    {
-        return $this->dateRelease;
-    }
-
-    /**
-     * Set cgdbId
-     *
-     * @param integer $cgdbId
-     *
-     * @return Pack
-     */
-    public function setCgdbId($cgdbId)
-    {
-        $this->cgdbId = $cgdbId;
-    
-        return $this;
-    }
-    
-    /**
-     * Get cgdbId
-     *
-     * @return integer
-     */
-    public function getCgdbId()
-    {
-        return $this->cgdbId;
-    }
-    
-    /**
      * Add card
      *
      * @param \AppBundle\Entity\Card $card
      *
-     * @return Pack
+     * @return Expansion
      */
     public function addCard(\AppBundle\Entity\Card $card)
     {
@@ -334,29 +258,5 @@ class Pack implements \Serializable
     public function getCards()
     {
         return $this->cards;
-    }
-
-    /**
-     * Set cycle
-     *
-     * @param \AppBundle\Entity\Cycle $cycle
-     *
-     * @return Pack
-     */
-    public function setCycle(\AppBundle\Entity\Cycle $cycle = null)
-    {
-        $this->cycle = $cycle;
-
-        return $this;
-    }
-
-    /**
-     * Get cycle
-     *
-     * @return \AppBundle\Entity\Cycle
-     */
-    public function getCycle()
-    {
-        return $this->cycle;
     }
 }
