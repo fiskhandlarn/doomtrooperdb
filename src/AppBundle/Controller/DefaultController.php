@@ -23,17 +23,17 @@ class DefaultController extends Controller
          */
         $decklist_manager = $this->get('decklist_manager');
         $decklist_manager->setLimit(1);
-        
+
         $typeNames = [];
         foreach ($this->getDoctrine()->getRepository('AppBundle:Type')->findAll() as $type) {
             $typeNames[$type->getCode()] = $type->getName();
         }
-        
+
         $decklists_by_faction = [];
         $factions = $this->getDoctrine()
             ->getRepository('AppBundle:Faction')
-            ->findBy(['isPrimary' => true], ['code' => 'ASC']);
-        
+            ->findBy(['code' => 'ASC']);
+
         foreach ($factions as $faction) {
             $array = [];
             $array['faction'] = $faction;
@@ -44,7 +44,7 @@ class DefaultController extends Controller
              * @var $decklist Decklist
              */
             $decklist = $paginator->getIterator()->current();
-            
+
             if ($decklist) {
                 $array['decklist'] = $decklist;
 
@@ -73,7 +73,7 @@ class DefaultController extends Controller
 
         $game_name = $this->container->getParameter('game_name');
         $publisher_name = $this->container->getParameter('publisher_name');
-        
+
         return $this->render('AppBundle:Default:index.html.twig', [
             'pagetitle' =>  "$game_name Deckbuilder",
             'pagedescription' => "Build your deck for $game_name by $publisher_name."

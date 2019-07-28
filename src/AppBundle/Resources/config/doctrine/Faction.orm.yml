@@ -21,10 +21,6 @@ AppBundle\Entity\Faction:
             type: string
             length: 1024
             nullable: false
-        isPrimary:
-            type: boolean
-            nullable: false
-            column: is_primary
         octgnId:
             type: string
             nullable: true
@@ -32,4 +28,3 @@ AppBundle\Entity\Faction:
     uniqueConstraints:
         faction_code_idx:
             columns: [ code ]
-            
