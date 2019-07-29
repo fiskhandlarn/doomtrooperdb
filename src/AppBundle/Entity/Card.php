@@ -18,52 +18,35 @@ class Card implements \Serializable
         }
 
         $mandatoryFields = [
-                'code',
-                'deck_limit',
-                'position',
-                'quantity',
-                'name',
-                'traits',
-                'is_loyal',
-                'is_unique',
-                'is_multiple',
-                'octgn_id',
+            'code',
+            'deck_limit',
+            'name',
+            'rarity',
+            'octgn_id'
         ];
 
         $optionalFields = [
-                'illustrator',
-                'flavor',
-                'text',
-                'cost',
+            'clarification_text',
+            'flavor',
+            'illustrator',
+            'image_url',
+            'notes',
+            'post_play',
+            'text',
         ];
 
         $externalFields = [
-                'faction',
-                'expansion',
-                'type'
+            'faction',
+            'expansion',
+            'type'
         ];
 
         switch ($this->type->getCode()) {
-            case 'agenda':
-            case 'title':
-                break;
-            case 'attachment':
-            case 'event':
-            case 'location':
-                $mandatoryFields[] = 'cost';
-                break;
-            case 'character':
-                $mandatoryFields[] = 'cost';
-                $mandatoryFields[] = 'strength';
-                $mandatoryFields[] = 'is_military';
-                $mandatoryFields[] = 'is_intrigue';
-                $mandatoryFields[] = 'is_power';
-                break;
-            case 'plot':
-                $mandatoryFields[] = 'claim';
-                $mandatoryFields[] = 'income';
-                $mandatoryFields[] = 'initiative';
-                $mandatoryFields[] = 'reserve';
+            case 'warrior':
+                $mandatoryFields[] = 'armor';
+                $mandatoryFields[] = 'fight';
+                $mandatoryFields[] = 'shoot';
+                $mandatoryFields[] = 'value';
                 break;
         }
 
@@ -105,11 +88,6 @@ class Card implements \Serializable
     private $id;
 
     /**
-     * @var integer
-     */
-    private $position;
-
-    /**
      * @var string
      */
     private $code;
@@ -118,11 +96,6 @@ class Card implements \Serializable
      * @var string
      */
     private $name;
-
-    /**
-     * @var string
-     */
-    private $cost;
 
     /**
      * @var string
@@ -142,82 +115,68 @@ class Card implements \Serializable
     /**
      * @var integer
      */
-    private $quantity;
-
-    /**
-     * @var integer
-     */
-    private $income;
-
-    /**
-     * @var integer
-     */
-    private $initiative;
-
-    /**
-     * @var integer
-     */
-    private $claim;
-
-    /**
-     * @var integer
-     */
-    private $reserve;
-
-    /**
-     * @var integer
-     */
     private $deckLimit;
 
-    /**
-     * @var integer
-     */
-    private $strength;
 
     /**
-     * @var string
+     * @var string|null
      */
-    private $traits;
+    private $armor;
 
     /**
-     * @var string
+     * @var string|null
+     */
+    private $clarificationText;
+
+    /**
+     * @var string|null
+     */
+    private $fight;
+
+    /**
+     * @var string|null
      */
     private $flavor;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $illustrator;
 
     /**
-     * @var boolean
+     * @var string|null
      */
-    private $isUnique;
+    private $imageUrl;
 
     /**
-     * @var boolean
+     * @var string|null
      */
-    private $isLoyal;
-
-    /**
-     * @var boolean
-     */
-    private $isMilitary;
-
-    /**
-     * @var boolean
-     */
-    private $isIntrigue;
-
-    /**
-     * @var boolean
-     */
-    private $isPower;
+    private $notes;
 
     /**
      * @var string
      */
     private $octgnId;
+
+    /**
+     * @var string|null
+     */
+    private $postPlay;
+
+    /**
+     * @var string
+     */
+    private $rarity;
+
+    /**
+     * @var string|null
+     */
+    private $shoot;
+
+    /**
+     * @var string|null
+     */
+    private $value;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -340,30 +299,6 @@ class Card implements \Serializable
     }
 
     /**
-     * Set cost
-     *
-     * @param string $cost
-     *
-     * @return Card
-     */
-    public function setCost($cost)
-    {
-        $this->cost = $cost;
-
-        return $this;
-    }
-
-    /**
-     * Get cost
-     *
-     * @return string
-     */
-    public function getCost()
-    {
-        return $this->cost;
-    }
-
-    /**
      * Set text
      *
      * @param string $text
@@ -436,126 +371,6 @@ class Card implements \Serializable
     }
 
     /**
-     * Set quantity
-     *
-     * @param integer $quantity
-     *
-     * @return Card
-     */
-    public function setQuantity($quantity)
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    /**
-     * Get quantity
-     *
-     * @return integer
-     */
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
-
-    /**
-     * Set income
-     *
-     * @param integer $income
-     *
-     * @return Card
-     */
-    public function setIncome($income)
-    {
-        $this->income = $income;
-
-        return $this;
-    }
-
-    /**
-     * Get income
-     *
-     * @return integer
-     */
-    public function getIncome()
-    {
-        return $this->income;
-    }
-
-    /**
-     * Set initiative
-     *
-     * @param integer $initiative
-     *
-     * @return Card
-     */
-    public function setInitiative($initiative)
-    {
-        $this->initiative = $initiative;
-
-        return $this;
-    }
-
-    /**
-     * Get initiative
-     *
-     * @return integer
-     */
-    public function getInitiative()
-    {
-        return $this->initiative;
-    }
-
-    /**
-     * Set claim
-     *
-     * @param integer $claim
-     *
-     * @return Card
-     */
-    public function setClaim($claim)
-    {
-        $this->claim = $claim;
-
-        return $this;
-    }
-
-    /**
-     * Get claim
-     *
-     * @return integer
-     */
-    public function getClaim()
-    {
-        return $this->claim;
-    }
-
-    /**
-     * Set reserve
-     *
-     * @param integer $reserve
-     *
-     * @return Card
-     */
-    public function setReserve($reserve)
-    {
-        $this->reserve = $reserve;
-
-        return $this;
-    }
-
-    /**
-     * Get reserve
-     *
-     * @return integer
-     */
-    public function getReserve()
-    {
-        return $this->reserve;
-    }
-
-    /**
      * Set deckLimit
      *
      * @param integer $deckLimit
@@ -577,54 +392,6 @@ class Card implements \Serializable
     public function getDeckLimit()
     {
         return $this->deckLimit;
-    }
-
-    /**
-     * Set strength
-     *
-     * @param integer $strength
-     *
-     * @return Card
-     */
-    public function setStrength($strength)
-    {
-        $this->strength = $strength;
-
-        return $this;
-    }
-
-    /**
-     * Get strength
-     *
-     * @return integer
-     */
-    public function getStrength()
-    {
-        return $this->strength;
-    }
-
-    /**
-     * Set traits
-     *
-     * @param string $traits
-     *
-     * @return Card
-     */
-    public function setTraits($traits)
-    {
-        $this->traits = $traits;
-
-        return $this;
-    }
-
-    /**
-     * Get traits
-     *
-     * @return string
-     */
-    public function getTraits()
-    {
-        return $this->traits;
     }
 
     /**
@@ -673,126 +440,6 @@ class Card implements \Serializable
     public function getIllustrator()
     {
         return $this->illustrator;
-    }
-
-    /**
-     * Set isUnique
-     *
-     * @param boolean $isUnique
-     *
-     * @return Card
-     */
-    public function setIsUnique($isUnique)
-    {
-        $this->isUnique = $isUnique;
-
-        return $this;
-    }
-
-    /**
-     * Get isUnique
-     *
-     * @return boolean
-     */
-    public function getIsUnique()
-    {
-        return $this->isUnique;
-    }
-
-    /**
-     * Set isLoyal
-     *
-     * @param boolean $isLoyal
-     *
-     * @return Card
-     */
-    public function setIsLoyal($isLoyal)
-    {
-        $this->isLoyal = $isLoyal;
-
-        return $this;
-    }
-
-    /**
-     * Get isLoyal
-     *
-     * @return boolean
-     */
-    public function getIsLoyal()
-    {
-        return $this->isLoyal;
-    }
-
-    /**
-     * Set isMilitary
-     *
-     * @param boolean $isMilitary
-     *
-     * @return Card
-     */
-    public function setIsMilitary($isMilitary)
-    {
-        $this->isMilitary = $isMilitary;
-
-        return $this;
-    }
-
-    /**
-     * Get isMilitary
-     *
-     * @return boolean
-     */
-    public function getIsMilitary()
-    {
-        return $this->isMilitary;
-    }
-
-    /**
-     * Set isIntrigue
-     *
-     * @param boolean $isIntrigue
-     *
-     * @return Card
-     */
-    public function setIsIntrigue($isIntrigue)
-    {
-        $this->isIntrigue = $isIntrigue;
-
-        return $this;
-    }
-
-    /**
-     * Get isIntrigue
-     *
-     * @return boolean
-     */
-    public function getIsIntrigue()
-    {
-        return $this->isIntrigue;
-    }
-
-    /**
-     * Set isPower
-     *
-     * @param boolean $isPower
-     *
-     * @return Card
-     */
-    public function setIsPower($isPower)
-    {
-        $this->isPower = $isPower;
-
-        return $this;
-    }
-
-    /**
-     * Get isPower
-     *
-     * @return boolean
-     */
-    public function getIsPower()
-    {
-        return $this->isPower;
     }
 
     /**
@@ -926,89 +573,6 @@ class Card implements \Serializable
     }
 
     /**
-     * @return string
-     */
-    public function getCostIncome()
-    {
-        $cost = $this->getCost();
-        $income = $this->getIncome();
-
-        if (is_null($income) && is_null($cost)) {
-            return "";
-        }
-
-        return $cost ?? (string) $income;
-    }
-
-    /**
-     * @return int
-     */
-    public function getStrengthInitiative()
-    {
-        $strength = $this->getStrength();
-        $initiative = $this->getInitiative();
-
-        if (is_null($strength) and is_null($initiative)) {
-            return -1;
-        }
-        return max($strength, $initiative);
-    }
-    /**
-     * @var string
-     */
-    private $designer;
-
-
-    /**
-     * Set designer
-     *
-     * @param string $designer
-     *
-     * @return Card
-     */
-    public function setDesigner($designer)
-    {
-        $this->designer = $designer;
-
-        return $this;
-    }
-
-    /**
-     * Get designer
-     *
-     * @return string
-     */
-    public function getDesigner()
-    {
-        return $this->designer;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getIsMultiple(): bool
-    {
-        return $this->isMultiple;
-    }
-
-    /**
-     * @param bool $isMultiple
-     *
-     * @return self
-     */
-    public function setIsMultiple(bool $isMultiple): self
-    {
-        $this->isMultiple = $isMultiple;
-
-        return $this;
-    }
-
-    /**
-     * @var string|null
-     */
-    private $imageUrl;
-
-    /**
      * @return string|null
      */
     public function getImageUrl()
@@ -1029,16 +593,163 @@ class Card implements \Serializable
     }
 
     /**
-     * Checks if this card has the "Shadow" keyword.
-     * @param string $shadow The keyword "Shadow" in whatever language.
-     * @return bool
+     * @return string|null
      */
-    public function hasShadowKeyword($shadow): bool
+    public function getArmor()
     {
-        // "Shadow (<cost>).", with <cost> being either digits or the letter "X"
-        $regex = "/${shadow} \\(([0-9]+|X)\\)\\./";
-        // check if first line in the card text has that keyword.
-        $textLines = explode("\n", $this->getText());
-        return preg_match($regex, $textLines[0]) ? true : false;
+        return $this->armor;
     }
+
+    /**
+     * @param string $armor
+     *
+     * @return Card
+     */
+    public function setArmor($armor)
+    {
+        $this->armor = $armor;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getClarificationText()
+    {
+        return $this->clarificationText;
+    }
+
+    /**
+     * @param string $clarificationText
+     *
+     * @return Card
+     */
+    public function setClarificationText($clarificationText)
+    {
+        $this->clarificationText = $clarificationText;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFight()
+    {
+        return $this->fight;
+    }
+
+    /**
+     * @param string $fight
+     *
+     * @return Card
+     */
+    public function setFight($fight)
+    {
+        $this->fight = $fight;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+
+    /**
+     * @param string $notes
+     *
+     * @return Card
+     */
+    public function setNotes($notes)
+    {
+        $this->notes = $notes;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPostPlay()
+    {
+        return $this->postPlay;
+    }
+
+    /**
+     * @param string $postPlay
+     *
+     * @return Card
+     */
+    public function setPostPlay($postPlay)
+    {
+        $this->postPlay = $postPlay;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRarity()
+    {
+        return $this->rarity;
+    }
+
+    /**
+     * @param string $rarity
+     *
+     * @return Card
+     */
+    public function setRarity($rarity)
+    {
+        $this->rarity = $rarity;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getShoot()
+    {
+        return $this->shoot;
+    }
+
+    /**
+     * @param string $shoot
+     *
+     * @return Card
+     */
+    public function setShoot($shoot)
+    {
+        $this->shoot = $shoot;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return Card
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
 }

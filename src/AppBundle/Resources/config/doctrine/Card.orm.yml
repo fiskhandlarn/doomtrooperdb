@@ -32,9 +32,6 @@ AppBundle\Entity\Card:
             id: true
             generator:
                 strategy: AUTO
-        position:
-            type: smallint
-            nullable: false
         code:
             type: string
             length: 255
@@ -43,10 +40,6 @@ AppBundle\Entity\Card:
             type: string
             length: 50
             nullable: false
-        cost:
-            type: string
-            length: 2
-            nullable: true
         text:
             type: text
             nullable: false
@@ -64,36 +57,10 @@ AppBundle\Entity\Card:
             gedmo:
                 timestampable:
                     on: update
-        quantity:
-            type: smallint
-            nullable: false
-        income:
-            type: smallint
-            nullable: true
-        initiative:
-            type: smallint
-            nullable: true
-        claim:
-            type: smallint
-            nullable: true
-        reserve:
-            type: smallint
-            nullable: true
         deckLimit:
             type: smallint
             nullable: true
             column: deck_limit
-        designer:
-            type: text
-            length: 255
-            nullable: true
-        strength:
-            type: smallint
-            nullable: true
-        traits:
-            type: string
-            length: 255
-            nullable: false
         flavor:
             type: text
             nullable: false
@@ -101,37 +68,38 @@ AppBundle\Entity\Card:
             type: string
             length: 255
             nullable: true
-        isUnique:
-            type: boolean
-            nullable: false
-            column: is_unique
-        isLoyal:
-            type: boolean
-            nullable: false
-            column: is_loyal
-        isMilitary:
-            type: boolean
-            nullable: false
-            column: is_military
-        isIntrigue:
-            type: boolean
-            nullable: false
-            column: is_intrigue
-        isPower:
-            type: boolean
-            nullable: false
-            column: is_power
         octgnId:
             type: string
             nullable: true
             column: octgn_id
-        isMultiple:
-            type: boolean
-            nullable: false
-            column: is_multiple
         imageUrl:
             type: string
             length: 255
+            nullable: true
+        armor:
+            type: smallint
+            nullable: true
+        clarificationText:
+            type: text
+            nullable: false
+        fight:
+            type: smallint
+            nullable: true
+        notes:
+            type: text
+            nullable: false
+        postPlay:
+            type: string
+            length: 1
+            nullable: true
+        rarity:
+            type: string
+            length: 2
+        shoot:
+            type: smallint
+            nullable: true
+        value:
+            type: smallint
             nullable: true
     uniqueConstraints:
         card_code_idx:
