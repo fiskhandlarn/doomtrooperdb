@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/ThronesDB/thronesdb.svg?branch=master)](https://travis-ci.com/ThronesDB/thronesdb)
 
-ThronesDB
+DoomtrooperDB
 =======
 
 # Very quick guide on how to install a local copy
@@ -14,8 +14,8 @@ This guide assumes you know how to use the command-line and that your machine ha
 - run `php bin/console doctrine:database:create`
 - run `php bin/console doctrine:migrations:migrate`
 - run `php bin/console doctrine:fixtures:load --env=prod` to load default application data
-- run `php bin/console app:import:std ../thronesdb-json-data` or whatever the path to your ThronesDB JSON data repository is
-- run `php bin/console app:import:trans ../thronesdb-json-data` if you want to import the translations
+- run `php bin/console app:import:std ../doomtrooperdb-json-data` or whatever the path to your DoomtrooperDB JSON data repository is
+- run `php bin/console app:import:trans ../doomtrooperdb-json-data` if you want to import the translations
 - run `php bin/console server:run`
 
 ## Setup an admin account
