@@ -25,16 +25,6 @@ use AppBundle\Entity\Deckchange;
  */
 class BuilderController extends Controller
 {
-    /**
-     * @const EXCLUDED_AGENDAS Codes of agendas that should not be available for selection in the new deck wizard.
-     * @todo Hardwiring those is good enough for now, rethink this if/as this list grows [ST 2019/04/04]
-     */
-    const EXCLUDED_AGENDAS = [
-        '00001', // The Power of Wealth (VDS)
-        '00002', // Protectors of the Realm (VDS)
-        '00003', // Treaty (VDS)
-        '00004', // Uniting the Seven Kingdoms (VDS)
-    ];
 
     public function buildformAction()
     {
@@ -46,14 +36,12 @@ class BuilderController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $factions = $em->getRepository('AppBundle:Faction')->findPrimaries();
-        $agendas = $em->getRepository('AppBundle:Card')->getAgendasForNewDeckWizard(self::EXCLUDED_AGENDAS);
 
         return $this->render(
             'AppBundle:Builder:initbuild.html.twig',
             [
                 'pagetitle' => $this->get('translator')->trans('decks.form.new'),
                 'factions' => $factions,
-                'agendas' => $agendas,
             ],
             $response
         );
@@ -73,7 +61,6 @@ class BuilderController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $faction_code = $request->request->get('faction');
-        $agenda_code = $request->request->get('agenda');
 
         if (!$faction_code) {
             $this->get('session')->getFlashBag()->set('error', $translator->trans("decks.build.errors.nofaction"));
@@ -89,27 +76,14 @@ class BuilderController extends Controller
         }
         $tags = [$faction_code];
 
-        if (!$agenda_code) {
-            $agenda = null;
-            $name = $translator->trans(
-                "decks.build.newname.noagenda",
-                array(
-                    "%faction%" => $faction->getName(),
-                )
-            );
-            $expansion = $em->getRepository('AppBundle:Expansion')->findOneBy(array("code" => "Core"));
-        } else {
-            $agenda = $em->getRepository('AppBundle:Card')->findByCode($agenda_code);
-            $name = $translator->trans(
-                "decks.build.newname.noagenda",
-                array(
-                    "%faction%" => $faction->getName(),
-                    "%agenda%" => $agenda->getName(),
-                )
-            );
-            $expansion = $agenda->getExpansion();
-            $tags[] = $this->get('agenda_helper')->getMinorFactionCode($agenda);
-        }
+        $agenda = null;
+        $name = $translator->trans(
+            "decks.build.newname.noagenda",
+            array(
+                "%faction%" => $faction->getName(),
+            )
+        );
+        $expansion = $em->getRepository('AppBundle:Expansion')->findOneBy(array("code" => "Core"));
 
 
         $deck = new Deck();
@@ -120,14 +94,6 @@ class BuilderController extends Controller
         $deck->setProblem('too_few_cards');
         $deck->setTags(join(' ', array_unique($tags)));
         $deck->setUser($this->getUser());
-
-        if ($agenda) {
-            $slot = new Deckslot();
-            $slot->setCard($agenda);
-            $slot->setQuantity(1);
-            $slot->setDeck($deck);
-            $deck->addSlot($slot);
-        }
 
         $em->persist($deck);
         $em->flush();

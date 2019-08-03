@@ -57,12 +57,6 @@ interface SlotCollectionInterface extends \Countable, \IteratorAggregate, \Array
     public function getPlotDeck();
 
     /**
-     * Get all the agendas
-     * @return \AppBundle\Model\SlotCollectionInterface
-     */
-    public function getAgendas();
-
-    /**
      * Return true is agenda is Alliance (06018)
      * @return boolean
      */

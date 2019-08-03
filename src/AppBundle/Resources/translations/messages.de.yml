@@ -56,20 +56,15 @@ decks:
     too_many_plots: Enthält zu viele Strategiekarten
     too_few_plots: Enthält zu wenige Strategiekarten
     too_many_different_plots: Enthält mehr als eine Strategiekarte doppelt
-    too_many_agendas: Enthält mehr als eine Agenda
     too_few_cards: Enthält zu wenige Karten
     too_many_copies: Enthält zu viele Kopien einer Karte (nach Titel)
     invalid_cards: Enthält nicht zulässige Karten (nach Fraktion oder Agenda)
-    agenda: Erfüllt die Bedingungen der Agenda nicht
   build:
     choose:
       faction: Wähle eine Fraktion
-      agenda: Wähle eine Agenda
-      noagenda: Keine Agenda
     start: Die Deckliste erstellen und mit dem Bauen beginnen
     newname:
       noagenda: "Neue Deckliste: %faction%"
-      agenda: "Neue Deckliste: %faction%, %agenda%"
     errors:
       nofaction: Es muss Fraktion ausgewählt sein.
   edit:
@@ -453,7 +448,6 @@ icon:
   location: Ort
   character: Charakter
   event: Ereignis
-  agenda: Agenda
   neutral: Neutral
 
 keyword:

@@ -90,28 +90,4 @@ class CardRepository extends EntityRepository
             ->andWhere("c.traits != ''");
         return $qb->getQuery()->getResult();
     }
-
-    /**
-     * Retrieves all agendas eligible for deck building.
-     * @param array $excludedAgendas a list of codes of agendas to exclude.
-     * @return array
-     */
-    public function getAgendasForNewDeckWizard($excludedAgendas = array()): array
-    {
-        $qb = $this->createQueryBuilder('c')
-            ->select('c, y')
-            ->join('c.expansion', 'y')
-            ->join('c.type', 't')
-            ->where('t.code = :type')
-            ->orderBy('c.name', 'ASC');
-
-        $qb->setParameter(':type', 'agenda');
-
-        if (! empty($excludedAgendas)) {
-            $qb->andWhere($qb->expr()->notIn('c.code', ':codes'));
-            $qb->setParameter(':codes', $excludedAgendas, Connection::PARAM_STR_ARRAY);
-        }
-
-        return $qb->getQuery()->getResult();
-    }
 }

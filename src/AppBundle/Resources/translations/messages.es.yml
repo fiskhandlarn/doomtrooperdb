@@ -56,20 +56,15 @@ decks:
     too_many_plots: Contiene demasiadas Tramas
     too_few_plots: Contiene muy pocas Tramas
     too_many_different_plots: Contiene más de una Trama duplicada
-    too_many_agendas: Contiene más de una Estrategia
     too_few_cards: Contiene muy pocas cartas
     too_many_copies: Contiene demasiadas copias de la misma carta (por título)
     invalid_cards: Contiene cartas prohibidas (cartas no permitidas por la Facción o la Estrategia)
-    agenda: No se ajusta a las condiciones de la Estrategia
   build:
     choose:
       faction: Elige tu Facción
-      agenda: Elige tu Estrategia
-      noagenda: Sin Estrategia
     start: Crear el mazo y empezar a construirlo
     newname:
       noagenda: "Nuevo mazo: %faction%"
-      agenda: "Nuevo mazo: %faction%, %agenda%"
     errors:
       nofaction: Se requiere una Facción.
   edit:
@@ -452,7 +447,6 @@ icon:
   location: Lugar
   character: Personaje
   event: Evento
-  agenda: Estrategia
   neutral: Neutral
 
 keyword:

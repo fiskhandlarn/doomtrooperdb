@@ -222,27 +222,8 @@ class SlotCollectionDecorator implements SlotCollectionInterface
     /**
      * @inheritdoc
      */
-    public function getAgendas()
-    {
-        $agendas = [];
-        foreach ($this->slots as $slot) {
-            if ($slot->getCard()->getType()->getCode() === 'agenda') {
-                $agendas[] = $slot;
-            }
-        }
-        return new SlotCollectionDecorator(new ArrayCollection($agendas));
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function isAlliance()
     {
-        foreach ($this->getAgendas() as $agenda) {
-            if ($agenda->getCard()->getCode() === '06018') {
-                return true;
-            }
-        }
         return false;
     }
 

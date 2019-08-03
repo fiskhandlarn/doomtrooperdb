@@ -13,20 +13,17 @@ use Doctrine\ORM\ORMException;
 use Symfony\Bridge\Monolog\Logger;
 use AppBundle\Entity\Deckchange;
 use AppBundle\Helper\DeckValidationHelper;
-use AppBundle\Helper\AgendaHelper;
 
 class DeckManager
 {
     public function __construct(
         EntityManager $doctrine,
         DeckValidationHelper $deck_validation_helper,
-        AgendaHelper $agenda_helper,
         Diff $diff,
         Logger $logger
     ) {
         $this->doctrine = $doctrine;
         $this->deck_validation_helper = $deck_validation_helper;
-        $this->agenda_helper = $agenda_helper;
         $this->diff = $diff;
         $this->logger = $logger;
     }
@@ -163,16 +160,7 @@ class DeckManager
         foreach ($changes as $change) {
             $this->doctrine->remove($change);
         }
-        // if all remaining cards are agendas, delete it
-        $nonAgendaCards = 0;
-        foreach ($deck->getSlots() as $slot) {
-            if ($slot->getCard()->getType()->getCode() !== 'agenda') {
-                $nonAgendaCards += $slot->getQuantity();
-            }
-        }
-        if ($nonAgendaCards === 0) {
-            $this->doctrine->remove($deck);
-        }
+        $this->doctrine->remove($deck);
         $this->doctrine->flush();
     }
 

@@ -9,9 +9,6 @@
 * restore Reviews
 * remove Rules
 * restore Rules
-* remove agendas
-* remove attachment
-* remove character
 * rename 'core' to 'unl'
 * change GoT, throne, Game of Thrones and publisher name
 * more properties in `features/json_schema/cards-v3.0.json`
@@ -19,3 +16,11 @@
 * Replace travis badge
 * factions as array
 * fix API 500 error
+* DeckValidationHelper.php
+* TODO's in source code
+* remove
+  * Plots
+  * Characters
+  * Locations
+  * Attachments
+  * Events

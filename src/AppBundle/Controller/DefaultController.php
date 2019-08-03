@@ -57,14 +57,6 @@ class DefaultController extends Controller
                 $array['count_by_type'] = join(' &bull; ', $counts);
 
                 $factions = [ $faction->getName() ];
-                foreach ($decklist->getSlots()->getAgendas() as $agenda) {
-                    $minor_faction = $this->get('agenda_helper')->getMinorFaction($agenda->getCard());
-                    if ($minor_faction) {
-                        $factions[] = $minor_faction->getName();
-                    } elseif ($agenda->getCard()->getCode() != '06018') { // prevent Alliance agenda to show up
-                        $factions[] = $agenda->getCard()->getName();
-                    }
-                }
                 $array['factions'] = join(' / ', $factions);
 
                 $decklists_by_faction[] = $array;

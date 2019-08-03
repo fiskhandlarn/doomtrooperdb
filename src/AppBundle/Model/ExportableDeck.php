@@ -136,13 +136,6 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
     public function getArrayExport()
     {
         $slots = $this->getSlots();
-        $agendas = $slots->getAgendas();
-        $agendas_code = [];
-        $agenda_urls = [];
-        foreach ($agendas as $agenda) {
-            $agendas_code[] = $agenda->getCard()->getCode();
-            $agendas_urls[] = $agenda->getCard()->getImageUrl();
-        }
         $array = [
             'id' => $this->getId(),
             'name' => $this->getName(),
@@ -153,8 +146,6 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
             'faction_code' => $this->getFaction()->getCode(),
             'faction_name' => $this->getFaction()->getName(),
             'slots' => $slots->getContent(),
-            'agendas' => $agendas_code,
-            'agendaurls' => $agenda_urls,
             'version' => $this->getVersion(),
             'isLegalForJoust' => $this->isLegalForJoust(),
             'isLegalForMelee' => $this->isLegalForMelee(),
@@ -173,7 +164,6 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
         return [
             'name' => $this->getName(),
             'version' => $this->getVersion(),
-            'agendas' => $slots->getAgendas(),
             'faction' => $this->getFaction(),
             'draw_deck_size' => $slots->getDrawDeck()->countCards(),
             'plot_deck_size' => $slots->getPlotDeck()->countCards(),
@@ -191,7 +181,6 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
         return [
             'name' => $this->getName(),
             'version' => $this->getVersion(),
-            'agendas' => $slots->getAgendas(),
             'faction' => $this->getFaction(),
             'draw_deck_size' => $slots->getDrawDeck()->countCards(),
             'plot_deck_size' => $slots->getPlotDeck()->countCards(),
