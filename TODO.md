@@ -18,3 +18,4 @@
 * update tests/
 * Replace travis badge
 * factions as array
+* fix API 500 error

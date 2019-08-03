@@ -1,0 +1,186 @@
+{
+    "$id": "https://localhost/api/public/cards",
+    "type": "array",
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "items": {
+        "$id": "https://localhost/api/public/cards/items",
+        "type": "object",
+        "properties": {
+            "expansion_code": {
+                "$id": "https://localhost/api/public/cards/items/properties/expansion_code",
+                "type": "string",
+                "title": "The Expansion_code Schema ",
+                "default": "",
+                "examples": [
+                    "unl"
+                ]
+            },
+            "expansion_name": {
+                "$id": "https://localhost/api/public/cards/items/properties/expansion_name",
+                "type": "string",
+                "title": "The Expansion_name Schema ",
+                "default": "",
+                "examples": [
+                    "Unlimited (Base Set)"
+                ]
+            },
+            "type_code": {
+                "$id": "https://localhost/api/public/cards/items/properties/type_code",
+                "type": "string",
+                "title": "The Type_code Schema ",
+                "default": "",
+                "examples": [
+                    "alliance"
+                ]
+            },
+            "type_name": {
+                "$id": "https://localhost/api/public/cards/items/properties/type_name",
+                "type": "string",
+                "title": "The Type_name Schema ",
+                "default": "",
+                "examples": [
+                    "Alliance"
+                ]
+            },
+            "faction_code": {
+                "$id": "https://localhost/api/public/cards/items/properties/faction_code",
+                "type": "string",
+                "title": "The Faction_code Schema ",
+                "default": "",
+                "examples": [
+                    "general"
+                ]
+            },
+            "faction_name": {
+                "$id": "https://localhost/api/public/cards/items/properties/faction_name",
+                "type": "string",
+                "title": "The Faction_name Schema ",
+                "default": "",
+                "examples": [
+                    "General"
+                ]
+            },
+            "code": {
+                "$id": "https://localhost/api/public/cards/items/properties/code",
+                "type": "string",
+                "title": "The Code Schema ",
+                "default": "",
+                "examples": [
+                    "01001"
+                ]
+            },
+            "name": {
+                "$id": "https://localhost/api/public/cards/items/properties/name",
+                "type": "string",
+                "title": "The Name Schema ",
+                "default": "",
+                "examples": [
+                    "A NASTY SURPRISE"
+                ]
+            },
+            "text": {
+                "$id": "https://localhost/api/public/cards/items/properties/text",
+                "type": "string",
+                "title": "The Text Schema ",
+                "default": "",
+                "examples": [
+                    "PLAY AT ANY TIME. You must spend 10 D when you play this card. You may place any one non-Special, non-Personality card from your collection into your hand. You must show the card to your opponents. No other card may counter or effect this card (i.e. OH YEAH? and MISCOMMUNICATION)."
+                ]
+            },
+            "deck_limit": {
+                "$id": "https://localhost/api/public/cards/items/properties/deck_limit",
+                "type": "integer",
+                "title": "The Deck_limit Schema ",
+                "default": 0,
+                "examples": [
+                    5
+                ]
+            },
+            "flavor": {
+                "$id": "https://localhost/api/public/cards/items/properties/flavor",
+                "type": "string",
+                "title": "The Flavor Schema ",
+                "default": "",
+                "examples": [
+                    "The Legionnaires of Semai make up the fighting force of the Lord of Spite. They guard his citadels and under his banner charge against the enemies of the Darkness."
+                ]
+            },
+            "illustrator": {
+                "$id": "https://localhost/api/public/cards/items/properties/illustrator",
+                "type": ["string","null"],
+                "title": "The Illustrator Schema ",
+                "default": "",
+                "examples": [
+                    "Paul Bonner"
+                ]
+            },
+            "octgn_id": {
+                "$id": "https://localhost/api/public/cards/items/properties/octgn_id",
+                "type": "string",
+                "title": "The Octgn_id Schema ",
+                "default": "",
+                "examples": [
+                    "de88edda-f5a4-4985-8ac1-2b8205c13416"
+                ]
+            },
+            "image_url": {
+                "$id": "https://localhost/api/public/cards/items/properties/image_url",
+                "type": ["string", "null"],
+                "title": "The Image_url Schema ",
+                "default": "",
+                "examples": [
+                    "https://localhost/images/unl/legionnaireofsemai.jpg"
+                ]
+            },
+            "armor": {
+                "$id": "https://localhost/api/public/cards/items/properties/armor",
+                "type": ["string", "null"],
+                "title": "The Armor Schema ",
+                "default": ""
+            },
+            "clarification_text": {
+                "$id": "https://localhost/api/public/cards/items/properties/clarification_text",
+                "type": ["string", "null"],
+                "title": "The Clarification_text Schema ",
+                "default": ""
+            },
+            "fight": {
+                "$id": "https://localhost/api/public/cards/items/properties/fight",
+                "type": ["string", "null"],
+                "title": "The Fight Schema ",
+                "default": ""
+            },
+            "notes": {
+                "$id": "https://localhost/api/public/cards/items/properties/notes",
+                "type": ["string", "null"],
+                "title": "The Notes Schema ",
+                "default": ""
+            },
+            "post_play": {
+                "$id": "https://localhost/api/public/cards/items/properties/post_play",
+                "type": ["string", "null"],
+                "title": "The Post_play Schema ",
+                "default": ""
+            },
+            "rarity": {
+                "$id": "https://localhost/api/public/cards/items/properties/rarity",
+                "type": ["string", "null"],
+                "title": "The Rarity Schema ",
+                "default": ""
+            },
+            "shoot": {
+                "$id": "https://localhost/api/public/cards/items/properties/shoot",
+                "type": ["string", "null"],
+                "title": "The Shoot Schema ",
+                "default": ""
+            },
+            "value": {
+                "$id": "https://localhost/api/public/cards/items/properties/value",
+                "type": ["string", "null"],
+                "title": "The Value Schema ",
+                "default": ""
+            }
+        }
+    }
+}

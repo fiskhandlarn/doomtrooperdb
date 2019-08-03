@@ -1,8 +1,8 @@
-api_packs:
-    path: /packs/
+api_expansions:
+    path: /expansions/
     methods: [GET]
     defaults:
-        _controller: AppBundle:Api:listPacks
+        _controller: AppBundle:Api:listExpansions
 
 api_card:
     path: /card/{card_code}.{_format}
@@ -19,11 +19,11 @@ api_cards:
     defaults:
         _controller: AppBundle:Api:listCards
 
-api_cards_pack:
-    path: /cards/{pack_code}.{_format}
+api_cards_expansion:
+    path: /cards/{expansion_code}.{_format}
     methods: [GET]
     defaults:
-        _controller: AppBundle:Api:listCardsByPack
+        _controller: AppBundle:Api:listCardsByExpansion
         _format: json
     requirements:
         _format: json|xml|xlsx|xls
