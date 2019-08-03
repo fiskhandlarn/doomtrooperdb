@@ -43,6 +43,7 @@ class Card implements \Serializable
 
         switch ($this->type->getCode()) {
             case 'warrior':
+            case 'warzone':
                 $mandatoryFields[] = 'armor';
                 $mandatoryFields[] = 'fight';
                 $mandatoryFields[] = 'shoot';
