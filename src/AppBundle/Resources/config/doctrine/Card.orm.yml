@@ -42,7 +42,7 @@ AppBundle\Entity\Card:
             nullable: false
         text:
             type: text
-            nullable: false
+            nullable: true
         dateCreation:
             type: datetime
             nullable: false
@@ -59,11 +59,11 @@ AppBundle\Entity\Card:
                     on: update
         deckLimit:
             type: smallint
-            nullable: true
+            nullable: false
             column: deck_limit
         flavor:
             type: text
-            nullable: false
+            nullable: true
         illustrator:
             type: string
             length: 255
@@ -81,13 +81,13 @@ AppBundle\Entity\Card:
             nullable: true
         clarificationText:
             type: text
-            nullable: false
+            nullable: true
         fight:
             type: smallint
             nullable: true
         notes:
             type: text
-            nullable: false
+            nullable: true
         postPlay:
             type: string
             length: 1
@@ -95,6 +95,7 @@ AppBundle\Entity\Card:
         rarity:
             type: string
             length: 2
+            nullable: false
         shoot:
             type: smallint
             nullable: true

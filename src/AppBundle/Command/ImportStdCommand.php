@@ -111,7 +111,7 @@ class ImportStdCommand extends ContainerAwareCommand
         $this->loadCollection('Expansion');
         $output->writeln("Done.");
 
-        // third, cards
+        // cards
 
         $output->writeln("Importing Cards...");
         $fileSystemIterator = $this->getFileSystemIterator($path);
@@ -121,11 +121,9 @@ class ImportStdCommand extends ContainerAwareCommand
             $rawData[$baseName] = $this->readCardsFromJsonFile($fileinfo);
         }
 
-        $multiNames = $this->extractCardNamesWithMultipleInstances($rawData);
-
         $imported = [];
         foreach ($rawData as $cardsData) {
-            $imported = array_merge($imported, $this->importCards($cardsData, $multiNames));
+            $imported = array_merge($imported, $this->importCards($cardsData));
         }
 
         if (count($imported)) {
@@ -151,9 +149,9 @@ class ImportStdCommand extends ContainerAwareCommand
         $list = $this->getDataFromFile($fileinfo);
         foreach ($list as $data) {
             $faction = $this->getEntityFromData('AppBundle\\Entity\\Faction', $data, [
-                    'code',
-                    'name',
-                    'is_primary'
+                'code',
+                'name',
+                'octgn_id',
             ], [], []);
             if ($faction) {
                 $result[] = $faction;
@@ -220,37 +218,36 @@ class ImportStdCommand extends ContainerAwareCommand
 
     /**
      * @param array $cardsData
-     * @param array $multiNames
      * @return array
      * @throws ORMException
      * @throws Exception
      */
-    protected function importCards(array $cardsData, array $multiNames)
+    protected function importCards(array $cardsData)
     {
         $result = [];
         foreach ($cardsData as $cardData) {
-            $cardData['is_multiple'] = in_array($cardData['name'], $multiNames);
             $card = $this->getEntityFromData('AppBundle\Entity\Card', $cardData, [
-                    'code',
-                    'deck_limit',
-                    'position',
-                    'quantity',
-                    'name',
-                    'text',
-                    'flavor',
-                    'is_loyal',
-                    'is_unique',
-                    'is_multiple'
+                'code',
+                'deck_limit',
+                'name',
+                'rarity',
             ], [
-                    'faction_code',
-                    'expansion_code',
-                    'type_code'
+                'expansion_code',
+                'faction_code',
+                'type_code'
             ], [
-                    'designer',
-                    'illustrator',
-                    'traits',
-                    'cost',
-                    'octgn_id'
+                'armor',
+                'clarification_text',
+                'fight',
+                'flavor',
+                'illustrator',
+                'image_url',
+                'notes',
+                'octgn_id',
+                'post_play',
+                'shoot',
+                'text',
+                'value',
             ]);
             if ($card) {
                 $result[] = $card;
@@ -379,6 +376,13 @@ class ImportStdCommand extends ContainerAwareCommand
             if (!key_exists($foreignEntityShortName, $this->collections)) {
                 throw new Exception("No collection for [$foreignEntityShortName] in ".json_encode($data));
             }
+
+            if (is_array($foreignCode)) {
+                // factions
+                // TODO change to array
+                $foreignCode = $foreignCode[0];
+            }
+
             if (!key_exists($foreignCode, $this->collections[$foreignEntityShortName])) {
                 throw new Exception("Invalid code [$foreignCode] for key [$key] in ".json_encode($data));
             }
@@ -393,10 +397,9 @@ class ImportStdCommand extends ContainerAwareCommand
         }
 
         // special case for Card
-        if ($entityName === 'AppBundle\Entity\Card') {
-            // calling a function whose name depends on the type_code
-            $functionName = 'import' . $entity->getType()->getName() . 'Data';
-            $this->$functionName($entity, $data);
+        if ($entityName === 'AppBundle\Entity\Card' &&
+            ('Warrior' === $entity->getType()->getName() || 'Warzone' === $entity->getType()->getName())) {
+            $this->importSFAVData($entity, $data);
         }
 
         if ($entity->serialize() !== $orig) {
@@ -411,111 +414,13 @@ class ImportStdCommand extends ContainerAwareCommand
      * @param $data
      * @throws Exception
      */
-    protected function importAgendaData(Card $card, $data)
+    protected function importSFAVData(Card $card, $data)
     {
         $mandatoryKeys = [
-        ];
-
-        foreach ($mandatoryKeys as $key) {
-            $this->copyKeyToEntity($card, 'AppBundle\Entity\Card', $data, $key, true);
-        }
-    }
-
-    /**
-     * @param Card $card
-     * @param $data
-     * @throws Exception
-     */
-    protected function importAttachmentData(Card $card, $data)
-    {
-        $mandatoryKeys = [
-                'cost'
-        ];
-
-        foreach ($mandatoryKeys as $key) {
-            $this->copyKeyToEntity($card, 'AppBundle\Entity\Card', $data, $key, true);
-        }
-    }
-
-    /**
-     * @param Card $card
-     * @param $data
-     * @throws Exception
-     */
-    protected function importCharacterData(Card $card, $data)
-    {
-        $mandatoryKeys = [
-                'cost',
-                'strength',
-                'is_military',
-                'is_intrigue',
-                'is_power'
-        ];
-
-        foreach ($mandatoryKeys as $key) {
-            $this->copyKeyToEntity($card, 'AppBundle\Entity\Card', $data, $key, true);
-        }
-    }
-
-    /**
-     * @param Card $card
-     * @param $data
-     * @throws Exception
-     */
-    protected function importEventData(Card $card, $data)
-    {
-        $mandatoryKeys = [
-                'cost'
-        ];
-
-        foreach ($mandatoryKeys as $key) {
-            $this->copyKeyToEntity($card, 'AppBundle\Entity\Card', $data, $key, true);
-        }
-    }
-
-    /**
-     * @param Card $card
-     * @param $data
-     * @throws Exception
-     */
-    protected function importLocationData(Card $card, $data)
-    {
-        $mandatoryKeys = [
-                'cost'
-        ];
-
-        foreach ($mandatoryKeys as $key) {
-            $this->copyKeyToEntity($card, 'AppBundle\Entity\Card', $data, $key, true);
-        }
-    }
-
-    /**
-     * @param Card $card
-     * @param $data
-     * @throws Exception
-     */
-    protected function importPlotData(Card $card, $data)
-    {
-        $mandatoryKeys = [
-                'claim',
-                'income',
-                'initiative',
-                'reserve'
-        ];
-
-        foreach ($mandatoryKeys as $key) {
-            $this->copyKeyToEntity($card, 'AppBundle\Entity\Card', $data, $key, true);
-        }
-    }
-
-    /**
-     * @param Card $card
-     * @param $data
-     * @throws Exception
-     */
-    protected function importTitleData(Card $card, $data)
-    {
-        $mandatoryKeys = [
+            'armor',
+            'fight',
+            'shoot',
+            'value',
         ];
 
         foreach ($mandatoryKeys as $key) {
