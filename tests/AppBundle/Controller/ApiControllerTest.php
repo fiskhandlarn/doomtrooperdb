@@ -42,7 +42,7 @@ class ApiControllerTest extends WebTestCase
     public function testListCardsByExpansion()
     {
         $client = static::createClient();
-        $client->request('GET', '/api/public/cards/Core');
+        $client->request('GET', '/api/public/cards/unl');
         $response = $client->getResponse();
         $json = $response->getContent();
         $this->assertJson($json);
@@ -53,7 +53,7 @@ class ApiControllerTest extends WebTestCase
         foreach ($data as $item) {
             $this->assertInternalType('array', $item);
             $this->assertArrayHasKey("expansion_code", $item);
-            $this->assertEquals("Core", $item['expansion_code']);
+            $this->assertEquals("unl", $item['expansion_code']);
         }
     }
 

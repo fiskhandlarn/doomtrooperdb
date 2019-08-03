@@ -241,7 +241,7 @@ class ApiController extends Controller
      *      {
      *          "name"="expansion_code",
      *          "dataType"="string",
-     *          "description"="The code of the expansion to get the cards from, e.g. 'Core'"
+     *          "description"="The code of the expansion to get the cards from, e.g. 'unl'"
      *      },
      *      {
      *          "name"="_format",

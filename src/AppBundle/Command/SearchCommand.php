@@ -17,7 +17,7 @@ class SearchCommand extends ContainerAwareCommand
         ->addArgument(
             'query',
             \Symfony\Component\Console\Input\InputArgument::REQUIRED,
-            "Search query, eg e:core"
+            "Search query, eg e:unl"
         )
         ->addOption(
             'output',
@@ -33,17 +33,17 @@ class SearchCommand extends ContainerAwareCommand
     {
         $query = $input->getArgument('query');
         $fields = explode(',', $input->getOption('output'));
-        
+
         $service = $this->getContainer()->get('cards_data');
-        
+
         $conditions = $service->syntax($query);
-        
+
         $conditions = $service->validateConditions($conditions);
 
         $q = $service->buildQueryFromConditions($conditions);
-        
+
         $result = [];
-        
+
         $rows = $service->getSearchRows($conditions, 'set');
         foreach ($rows as $card) {
             $cardinfo = $service->getCardInfo($card, false, null);
@@ -56,7 +56,7 @@ class SearchCommand extends ContainerAwareCommand
         $table = new \Symfony\Component\Console\Helper\Table($output);
         $table->setRows($result);
         $table->render();
-        
+
         $output->writeln('');
         $output->writeln(count($rows). " cards");
     }

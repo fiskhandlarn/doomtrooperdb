@@ -10,6 +10,8 @@
 * remove Rules
 * restore Rules
 * rename 'core' to 'unl'
+  * `core: "Core / Deluxe"`
+  * `usecore: "{1} Use 1 Core Set | ]1, Inf] Use %core% Core Sets"`
 * change GoT, throne, Game of Thrones and publisher name
 * more properties in `features/json_schema/cards-v3.0.json`
 * update tests/
@@ -24,3 +26,6 @@
   * Locations
   * Attachments
   * Events
+* JS
+* CSS
+* fonts

@@ -83,7 +83,7 @@ class BuilderController extends Controller
                 "%faction%" => $faction->getName(),
             )
         );
-        $expansion = $em->getRepository('AppBundle:Expansion')->findOneBy(array("code" => "Core"));
+        $expansion = $em->getRepository('AppBundle:Expansion')->findOneBy(array("code" => "unl"));
 
 
         $deck = new Deck();
