@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/ThronesDB/thronesdb.svg?branch=master)](https://travis-ci.com/ThronesDB/thronesdb)
+[![Build Status](https://api.travis-ci.org/fiskhandlarn/doomtrooperdb.svg?branch=master](https://travis-ci.org/fiskhandlarn/doomtrooperdb)
 
 DoomtrooperDB
 =======

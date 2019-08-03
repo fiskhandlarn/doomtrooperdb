@@ -13,9 +13,9 @@
   * `core: "Core / Deluxe"`
   * `usecore: "{1} Use 1 Core Set | ]1, Inf] Use %core% Core Sets"`
 * change GoT, throne, Game of Thrones and publisher name
+* replace webmaester
 * more properties in `features/json_schema/cards-v3.0.json`
 * update tests/
-* Replace travis badge
 * factions as array
 * fix API 500 error
 * DeckValidationHelper.php
@@ -29,3 +29,4 @@
 * JS
 * CSS
 * fonts
+* about.*.html.twig
