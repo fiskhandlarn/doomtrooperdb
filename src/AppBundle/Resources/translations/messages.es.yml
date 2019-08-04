@@ -134,7 +134,7 @@ decks:
       text: Fichero de texto
       text_cycle: Fichero de texto, ordenado por ciclo
     export:
-      agotcards: AGoT.cards
+      dtcards: DT.cards
       markdown: Markdown
       plaintext: Texto sin formato
     sort:

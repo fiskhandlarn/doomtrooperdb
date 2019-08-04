@@ -2,7 +2,7 @@
 parameters:
   database_host: 127.0.0.1
   database_port: ~
-  database_name: thronesdb
+  database_name: doomtrooperdb
   database_user: travis
   database_password: ~
 
@@ -22,10 +22,10 @@ parameters:
   email_sender_name: Test
 
   # Branding
-  website_name: ThronesDB
+  website_name: DoomtrooperDB
   website_url: localhost
-  game_name: A Game of Thrones
-  publisher_name: Fantasy Flight Games
+  game_name: Doomtrooper
+  publisher_name: Target Games
 
   # Analytics & AdSense
   google_analytics_tracking_code: UA-00000000-1

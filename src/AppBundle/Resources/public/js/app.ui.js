@@ -91,7 +91,7 @@
         return lines;
     }
 
-    function build_agotcards(deck) {
+    function build_dtcards(deck) {
         var lines = [];
         var included_packs = deck.get_included_packs({ 'cycle_position': 1, 'position': 1 });
 
@@ -178,8 +178,8 @@
         $('#exportModal').modal('show');
     };
 
-    ui.export_agotcards = function export_agotcards(deck) {
-        $('#export-deck').html(build_agotcards(deck).join("\n"));
+    ui.export_dtcards = function export_dtcards(deck) {
+        $('#export-deck').html(build_dtcards(deck).join("\n"));
         $('#exportModal').modal('show');
     };
 

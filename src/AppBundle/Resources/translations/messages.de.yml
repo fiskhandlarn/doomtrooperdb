@@ -134,7 +134,7 @@ decks:
       octgn: OCTGN-Datei
       text_cycle: Textdatei, sortiert nach Zyklus
     export:
-      agotcards: AGoT.cards
+      dtcards: DT.cards
       markdown: Markdown
       plaintext: einfacher Text
     sort:

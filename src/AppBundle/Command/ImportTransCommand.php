@@ -25,7 +25,7 @@ class ImportTransCommand extends ContainerAwareCommand
         $this
         ->setName('app:import:trans')
         ->setDescription(
-            'Import translation data in json format from a copy of https://github.com/ThronesDB/thronesdb-json-data'
+            'Import translation data in json format from a copy of https://github.com/fiskhandlarn/doomtrooperdb-json-data'
         )
         ->addOption(
             'locale',

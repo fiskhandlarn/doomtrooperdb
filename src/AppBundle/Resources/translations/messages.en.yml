@@ -134,7 +134,7 @@ decks:
       text: Text file
       text_cycle: Text file, sorted by Cycle
     export:
-      agotcards: AGoT.cards
+      dtcards: DT.cards
       markdown: Markdown
       plaintext: Plain text
     sort:
