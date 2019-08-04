@@ -12,7 +12,6 @@
 * rename 'core' to 'unl'
   * `core: "Core / Deluxe"`
   * `usecore: "{1} Use 1 Core Set | ]1, Inf] Use %core% Core Sets"`
-* more properties in `features/json_schema/cards-v3.0.json`
 * update tests/
 * factions as array
 * fix API 500 error
