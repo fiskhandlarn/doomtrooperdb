@@ -166,7 +166,6 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
             'version' => $this->getVersion(),
             'faction' => $this->getFaction(),
             'draw_deck_size' => $slots->getDrawDeck()->countCards(),
-            'plot_deck_size' => $slots->getPlotDeck()->countCards(),
             'included_expansions' => $slots->getIncludedExpansions(),
             'slots_by_type' => $slots->getSlotsByType()
         ];
@@ -183,7 +182,6 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
             'version' => $this->getVersion(),
             'faction' => $this->getFaction(),
             'draw_deck_size' => $slots->getDrawDeck()->countCards(),
-            'plot_deck_size' => $slots->getPlotDeck()->countCards(),
             'included_expansions' => $slots->getIncludedExpansions(),
             'slots_by_expansion_order' => $slots->getSlotsByExpansionOrder()
         ];

@@ -33,34 +33,22 @@ interface SlotCollectionInterface extends \Countable, \IteratorAggregate, \Array
     public function getIncludedExpansions();
 
     /**
-     * Get all slots sorted by type code (including plots)
+     * Get all slots sorted by type code
      * @return array
      */
     public function getSlotsByType();
 
     /**
-     * Get all slots sorted by expansion number (including plots)
+     * Get all slots sorted by expansion number
      * @return array
      */
     public function getSlotsByExpansionOrder();
 
     /**
-     * Get all slot counts sorted by type code (excluding plots)
+     * Get all slot counts sorted by type code
      * @return array
      */
     public function getCountByType();
-
-    /**
-     * Get the plot deck
-     * @return \AppBundle\Model\SlotCollectionInterface
-     */
-    public function getPlotDeck();
-
-    /**
-     * Return true is agenda is Alliance (06018)
-     * @return boolean
-     */
-    public function isAlliance();
 
     /**
      * Get the draw deck

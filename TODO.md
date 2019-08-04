@@ -18,13 +18,13 @@
 * DeckValidationHelper.php
 * TODO's in source code
 * remove
-  * Plots
   * Characters
   * Locations
   * Attachments
   * Events
 * JS
 * CSS
+  * selection.json
 * fonts
 * about.*.html.twig
 * footer.*.html.twig
@@ -33,3 +33,5 @@
 * `src/AppBundle/Services/CardsData.php`
 * info@doomtrooperdb.com
 * `google_analytics_tracking_code`
+* sideboard
+* card-props.html.twig

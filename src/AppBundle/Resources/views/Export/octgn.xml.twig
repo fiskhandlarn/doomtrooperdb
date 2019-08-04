@@ -3,33 +3,63 @@
     <section name="Faction" shared="False">
         <card qty="1" id="{{ deck.faction.octgnId }}">{{ deck.faction.name }}</card>
     </section>
-    <section name="Agenda" shared="False">
-        {% for agenda in deck.agendas %}
-            <card qty="1" id="{{ agenda.card.octgnId }}">{{ agenda.card.name }}</card>
-        {% endfor %}
-    </section>
-    <section name="Plots" shared="False">
-        {% for slot in deck.slots_by_type.plot %}
+    <section name="Alliance" shared="False">
+        {% for slot in deck.slots_by_type.alliance %}
             <card qty="{{ slot.quantity }}" id="{{ slot.card.octgnId }}">{{ slot.card.name }}</card>
         {% endfor %}
     </section>
-    <section name="Characters" shared="False">
-        {% for slot in deck.slots_by_type.character %}
+    <section name="Art" shared="False">
+        {% for slot in deck.slots_by_type.art %}
             <card qty="{{ slot.quantity }}" id="{{ slot.card.octgnId }}">{{ slot.card.name }}</card>
         {% endfor %}
     </section>
-    <section name="Locations" shared="False">
-        {% for slot in deck.slots_by_type.location %}
+    <section name="Beast" shared="False">
+        {% for slot in deck.slots_by_type.beast %}
             <card qty="{{ slot.quantity }}" id="{{ slot.card.octgnId }}">{{ slot.card.name }}</card>
         {% endfor %}
     </section>
-    <section name="Attachments" shared="False">
-        {% for slot in deck.slots_by_type.attachment %}
+    <section name="Dark Symmetry" shared="False">
+        {% for slot in deck.slots_by_type.symmetry %}
             <card qty="{{ slot.quantity }}" id="{{ slot.card.octgnId }}">{{ slot.card.name }}</card>
         {% endfor %}
     </section>
-    <section name="Events" shared="False">
-        {% for slot in deck.slots_by_type.event %}
+    <section name="Equipment" shared="False">
+        {% for slot in deck.slots_by_type.equipment %}
+            <card qty="{{ slot.quantity }}" id="{{ slot.card.octgnId }}">{{ slot.card.name }}</card>
+        {% endfor %}
+    </section>
+    <section name="Fortification" shared="False">
+        {% for slot in deck.slots_by_type.fortification %}
+            <card qty="{{ slot.quantity }}" id="{{ slot.card.octgnId }}">{{ slot.card.name }}</card>
+        {% endfor %}
+    </section>
+    <section name="Ki Power" shared="False">
+        {% for slot in deck.slots_by_type.ki %}
+            <card qty="{{ slot.quantity }}" id="{{ slot.card.octgnId }}">{{ slot.card.name }}</card>
+        {% endfor %}
+    </section>
+    <section name="Mission" shared="False">
+        {% for slot in deck.slots_by_type.mission %}
+            <card qty="{{ slot.quantity }}" id="{{ slot.card.octgnId }}">{{ slot.card.name }}</card>
+        {% endfor %}
+    </section>
+    <section name="Relic" shared="False">
+        {% for slot in deck.slots_by_type.relic %}
+            <card qty="{{ slot.quantity }}" id="{{ slot.card.octgnId }}">{{ slot.card.name }}</card>
+        {% endfor %}
+    </section>
+    <section name="Special" shared="False">
+        {% for slot in deck.slots_by_type.special %}
+            <card qty="{{ slot.quantity }}" id="{{ slot.card.octgnId }}">{{ slot.card.name }}</card>
+        {% endfor %}
+    </section>
+    <section name="Warrior" shared="False">
+        {% for slot in deck.slots_by_type.warrior %}
+            <card qty="{{ slot.quantity }}" id="{{ slot.card.octgnId }}">{{ slot.card.name }}</card>
+        {% endfor %}
+    </section>
+    <section name="Warzone" shared="False">
+        {% for slot in deck.slots_by_type.warzone %}
             <card qty="{{ slot.quantity }}" id="{{ slot.card.octgnId }}">{{ slot.card.name }}</card>
         {% endfor %}
     </section>

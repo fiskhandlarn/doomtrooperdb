@@ -161,7 +161,7 @@ class SlotCollectionDecorator implements SlotCollectionInterface
      */
     public function getSlotsByType()
     {
-        $slotsByType = ['plot' => [], 'character' => [], 'location' => [], 'attachment' => [], 'event' => []];
+        $slotsByType = ['alliance' => [], 'art' => [], 'beast' => [], 'symmetry' => [], 'equipment' => [], 'fortification' => [], 'ki' => [], 'mission' => [], 'relic' => [], 'special' => [], 'warrior' => [], 'warzone' => []];
         foreach ($this->slots as $slot) {
             if (array_key_exists($slot->getCard()->getType()->getCode(), $slotsByType)) {
                 $slotsByType[$slot->getCard()->getType()->getCode()][] = $slot;
@@ -196,7 +196,7 @@ class SlotCollectionDecorator implements SlotCollectionInterface
      */
     public function getCountByType()
     {
-        $countByType = ['character' => 0, 'location' => 0, 'attachment' => 0, 'event' => 0];
+        $countByType = ['alliance' => 0, 'art' => 0, 'beast' => 0, 'symmetry' => 0, 'equipment' => 0, 'fortification' => 0, 'ki' => 0, 'mission' => 0, 'relic' => 0, 'special' => 0, 'warrior' => 0, 'warzone' => 0];
         foreach ($this->slots as $slot) {
             if (array_key_exists($slot->getCard()->getType()->getCode(), $countByType)) {
                 $countByType[$slot->getCard()->getType()->getCode()] += $slot->getQuantity();
@@ -208,36 +208,22 @@ class SlotCollectionDecorator implements SlotCollectionInterface
     /**
      * @inheritdoc
      */
-    public function getPlotDeck()
-    {
-        $plotDeck = [];
-        foreach ($this->slots as $slot) {
-            if ($slot->getCard()->getType()->getCode() === 'plot') {
-                $plotDeck[] = $slot;
-            }
-        }
-        return new SlotCollectionDecorator(new ArrayCollection($plotDeck));
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function isAlliance()
-    {
-        return false;
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getDrawDeck()
     {
         $drawDeck = [];
         foreach ($this->slots as $slot) {
-            if ($slot->getCard()->getType()->getCode() === 'character'
-                || $slot->getCard()->getType()->getCode() === 'location'
-                || $slot->getCard()->getType()->getCode() === 'attachment'
-                || $slot->getCard()->getType()->getCode() === 'event') {
+            if ($slot->getCard()->getType()->getCode() === 'alliance'
+                || $slot->getCard()->getType()->getCode() === 'art'
+                || $slot->getCard()->getType()->getCode() === 'beast'
+                || $slot->getCard()->getType()->getCode() === 'symmetry'
+                || $slot->getCard()->getType()->getCode() === 'equipment'
+                || $slot->getCard()->getType()->getCode() === 'fortification'
+                || $slot->getCard()->getType()->getCode() === 'ki'
+                || $slot->getCard()->getType()->getCode() === 'mission'
+                || $slot->getCard()->getType()->getCode() === 'relic'
+                || $slot->getCard()->getType()->getCode() === 'special'
+                || $slot->getCard()->getType()->getCode() === 'warrior'
+                || $slot->getCard()->getType()->getCode() === 'warzone') {
                 $drawDeck[] = $slot;
             }
         }
