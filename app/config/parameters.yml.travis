@@ -25,7 +25,7 @@ parameters:
   website_name: DoomtrooperDB
   website_url: localhost
   game_name: Doomtrooper
-  publisher_name: Target Games
+  publisher_name: 'Target Games'
 
   # Analytics & AdSense
   google_analytics_tracking_code: UA-00000000-1
