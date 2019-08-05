@@ -2,9 +2,6 @@
 {% import "AppBundle::macros.html.twig" as macros %}
 
 {% block javascripts %}
-    {% javascripts '@AppBundle/Resources/public/js/ui.decklist_edit.js' %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
     <script type="text/javascript">
       app.deck.init({{ decklist|json_encode|raw }});
     </script>
@@ -13,7 +10,7 @@
 {% block body %}
     <div class="main white container">
         <div class="row">
-            <div class="col-sm-9">
+          <div class="col-sm-9">
                 <form action="{{ url|raw }}" method="post" enctype="application/x-www-form-urlencoded">
                     <input type="hidden" name="deck_id" value="{% if deck is not null %}{{ deck.id }}{% endif %}">
                     <div class="form-group">

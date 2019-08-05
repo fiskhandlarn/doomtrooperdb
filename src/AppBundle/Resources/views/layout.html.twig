@@ -27,13 +27,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.9.0/css/bootstrap-markdown.min.css">
     <link rel="stylesheet" type="text/css"
           href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"/>
-    {% stylesheets filter="cssrewrite,scssphp" output="css/app.css"
-        '../src/AppBundle/Resources/public/css/bootstrap.css'
-        '../src/AppBundle/Resources/public/css/style.css'
-        '../src/AppBundle/Resources/public/css/icons.css'
-        '../src/AppBundle/Resources/public/css/languages.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}
+    <link rel="stylesheet" href="{{ asset_url }}/css/app.css"/>
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
@@ -156,12 +150,7 @@
 <script src="{{ asset('/bundles/fosjsrouting/js/router.js') }}"></script>
 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
-{% javascripts
-    'bundles/bazingajstranslation/js/translator.min.js'
-    'js/translations/config.js'
-    'js/translations/*/*.js' %}
-    <script src="{{ asset_url }}"></script>
-{% endjavascripts %}
+<script src="{{ asset('/bundles/bazingajstranslation/js/translator.min.js') }}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/forerunnerdb/1.4.40/fdb-all.min.js"></script>
@@ -173,11 +162,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/4.1.7/highcharts.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.9.0/js/bootstrap-markdown.min.js"></script>
-{% javascripts
-    '@AppBundle/Resources/public/js/bootstrap-markdown.es.js'
-    '@AppBundle/Resources/public/js/bootstrap-markdown.de.js' %}
-    <script src="{{ asset_url }}"></script>
-{% endjavascripts %}
 
 <script type="text/javascript">
   var app = {};
@@ -199,28 +183,6 @@
     {% include 'AppBundle:Default:google-analytics.html.twig' %}
 {% endif %}
 
-{% javascripts filter="?jsqueeze" output="js/app.js"
-    '@AppBundle/Resources/public/js/bootstrap.js'
-    '@AppBundle/Resources/public/js/jquery.toc.min.js'
-    '@AppBundle/Resources/public/js/app.data.js'
-    '@AppBundle/Resources/public/js/app.format.js'
-    '@AppBundle/Resources/public/js/app.tip.js'
-    '@AppBundle/Resources/public/js/app.card_modal.js'
-    '@AppBundle/Resources/public/js/app.user.js'
-    '@AppBundle/Resources/public/js/app.binomial.js'
-    '@AppBundle/Resources/public/js/app.hypergeometric.js'
-    '@AppBundle/Resources/public/js/app.draw_simulator.js'
-    '@AppBundle/Resources/public/js/app.textcomplete.js'
-    '@AppBundle/Resources/public/js/app.markdown.js'
-    '@AppBundle/Resources/public/js/app.smart_filter.js'
-    '@AppBundle/Resources/public/js/app.deck.js'
-    '@AppBundle/Resources/public/js/app.diff.js'
-    '@AppBundle/Resources/public/js/app.deck_history.js'
-    '@AppBundle/Resources/public/js/app.deck_charts.js'
-    '@AppBundle/Resources/public/js/app.ui.js' %}
-    <script src="{{ asset_url }}"></script>
-{% endjavascripts %}
-
-{% block javascripts %}{% endblock %}
+<script src="{{ asset_url }}/js/app.js"></script>
 </body>
 </html>

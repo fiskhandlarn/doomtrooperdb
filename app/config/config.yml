@@ -61,17 +61,6 @@ twig:
     form_themes:
         - 'bootstrap_3_layout.html.twig'
 
-# Assetic Configuration
-assetic:
-    debug: "%kernel.debug%"
-    use_controller: false
-    bundles: [ AppBundle ]
-    filters:
-        cssrewrite: ~
-        scssphp:
-            formatter: 'Leafo\ScssPhp\Formatter\Compressed'
-        jsqueeze: ~
-
 # Doctrine Configuration
 doctrine:
     dbal:

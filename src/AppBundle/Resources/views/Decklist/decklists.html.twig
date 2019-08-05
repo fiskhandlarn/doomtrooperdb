@@ -2,9 +2,6 @@
 {% import "AppBundle::macros.html.twig" as macros %}
 
 {% block javascripts %}
-    {% javascripts '@AppBundle/Resources/public/js/ui.decklist_search.js' %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
     <script type="text/javascript">
       $(function () {
         var type = {{ type|json_encode|raw }};

@@ -31,3 +31,11 @@
 * default.txt.twig
 * card-props.html.twig
 * images from https://raw.githubusercontent.com/ instead?
+* stylelint
+* document npm run *
+* languages.png
+* CardsData::addAbbrTags()
+* replace pack
+* remove
+  * influence
+* `macros.html.twig`

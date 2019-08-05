@@ -2,9 +2,6 @@
 {% import "AppBundle::macros.html.twig" as macros %}
 
 {% block javascripts %}
-    {% javascripts '@AppBundle/Resources/public/js/ui.decklist.js' %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
     <script type="text/javascript">
       var Commenters = {{ commenters|json_encode|raw }};
       app.deck.init({{ decklist|json_encode|raw }});
