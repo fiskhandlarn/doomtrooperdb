@@ -6,7 +6,7 @@
     var locale_changed = false;
 
     var fdb = new ForerunnerDB();
-    var database = fdb.db('thronesdb');
+    var database = fdb.db('doomtrooperdb');
 
     data.db = database;
     var masters = {
@@ -42,7 +42,7 @@
                 /*
                  * data has been fetched from local store
                  */
-                
+
                 /*
                  * we set up insert and update listeners now
                  * if we did it before, .load() would have called onInsert

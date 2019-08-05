@@ -31,7 +31,7 @@
                 text: content
             },
             style: {
-                classes: 'card-content qtip-bootstrap qtip-thronesdb qtip-thronesdb-' + mode
+                classes: 'card-content qtip-bootstrap qtip-doomtrooperdb qtip-doomtrooperdb-' + mode
             },
             position: {
                 my: mode === 'text' ? 'center left' : 'top left',
