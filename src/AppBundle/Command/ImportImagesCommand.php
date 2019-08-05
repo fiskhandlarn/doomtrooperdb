@@ -5,8 +5,10 @@ namespace AppBundle\Command;
 use AppBundle\Entity\Card;
 use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
 class ImportImagesCommand extends ContainerAwareCommand
@@ -15,53 +17,61 @@ class ImportImagesCommand extends ContainerAwareCommand
     {
         $this
             ->setName('app:import:images')
-            ->setDescription('Download missing card images from FFG websites');
+            ->setDescription('Copy card images https://github.com/fiskhandlarn/doomtrooperdb-json-data')
+            ->addArgument(
+                'path',
+                InputArgument::REQUIRED,
+                'Path to the repository'
+            )
+            ->addArgument(
+                'destination_path',
+                InputArgument::REQUIRED,
+                'Destination path'
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $client = new Client([
-            'http_errors' => false,
-        ]);
+        $output->writeln("Copying images...");
 
-        /* @var $em \Doctrine\ORM\EntityManager */
+        $filesystem = new Filesystem();
+
+        $path = $input->getArgument('path');
+        $destinationPath = getcwd() . '/' . $input->getArgument('destination_path');
+
+        try {
+            if (!$filesystem->exists($destinationPath)) {
+                $filesystem->mkdir($destinationPath, 0775);
+            }
+        } catch (IOExceptionInterface $exception) {
+            echo 'Error creating directory at'. $exception->getPath();
+        }
+
+         /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getContainer()->get('doctrine')->getManager();
 
         /** @var Card[] $cards */
-        $cards = $em->getRepository('AppBundle:Card')->findBy(['imageUrl' => null]);
+        $cards = $em->getRepository('AppBundle:Card')->findAll();
 
         foreach ($cards as $card) {
-            $position = $card->getPosition();
-            $cgdbId = $card->getExpansion()->getCgdbId();
+            $imageURL = $card->getImageUrl();
 
-            if (empty($cgdbId)) {
-                $output->writeln(sprintf('Skip %s because its cgdb_id is not defined', $card->getExpansion()->getName()));
+            if (empty($imageURL)) {
+                $output->writeln(sprintf('Skip %s because its image URL is not defined', $card->getName()));
                 continue;
             }
 
-            if ($cgdbId === 1 && $position >= 198 && $position <= 205) {
-                $position = $position . 'B';
-            }
+            $output->writeln("Copying image for card <info>" . $card->getName() . "</info>: <info>" . $imageURL . "</info>");
 
-            $url = sprintf('http://lcg-cdn.fantasyflightgames.com/got2nd/GT%02d_%s.jpg', $cgdbId, $position);
-
-            $response = $client->request('GET', $url);
-
-            if ($response->getStatusCode() === 200) {
-                $card->setImageUrl($url);
-                $output->writeln(sprintf('Found image for %s %s at url %s', $card->getCode(), $card->getName(), $url));
-            } else {
-                $output->writeln(
-                    sprintf(
-                        '<error>Image missing for %s %s at url %s</error>',
-                        $card->getCode(),
-                        $card->getName(),
-                        $url
-                    )
-                );
+            try {
+                $filesystem->copy($path . '/'. $imageURL, $destinationPath . '/' . $imageURL);
+            } catch (IOExceptionInterface $exception) {
+                echo 'Error copying file at'. $exception->getPath();
             }
         }
 
         $em->flush();
+
+        $output->writeln("Done.");
     }
 }

@@ -2,6 +2,11 @@ AppBundle\Entity\Expansion:
     type: entity
     table: expansion
     repositoryClass: AppBundle\Repository\ExpansionRepository
+    oneToMany:
+        cards:
+            targetEntity: Card
+            orderBy: {'position':'ASC'}
+            mappedBy: expansion
     fields:
         id:
             type: integer

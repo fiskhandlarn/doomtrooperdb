@@ -1,4 +1,3 @@
-* `php bin/console app:import:images ../doomtrooperdb-json-data`
 * Change localhost to variable
 * update to symfony 4: https://symfony.com/doc/current/setup/upgrade_major.html
 * change default values in Incenteev\ParameterHandler\ScriptHandler::buildParameters

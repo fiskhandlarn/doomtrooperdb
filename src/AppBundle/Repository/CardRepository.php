@@ -14,7 +14,7 @@ class CardRepository extends EntityRepository
             ->select('c, t, f, y')
             ->join('c.type', 't')
             ->join('c.faction', 'f')
-            ->join('p.expansion', 'y')
+            ->join('c.expansion', 'y')
             ->orderBy('c.code', 'ASC');
 
         return $qb->getQuery()->getResult();
@@ -50,7 +50,7 @@ class CardRepository extends EntityRepository
             ->select('c, t, f, y')
             ->join('c.type', 't')
             ->join('c.faction', 'f')
-            ->join('p.expansion', 'y')
+            ->join('c.expansion', 'y')
             ->andWhere('c.code in (?1)')
             ->orderBy('c.code', 'ASC');
 
@@ -81,13 +81,5 @@ class CardRepository extends EntityRepository
     public function findNextCard($card)
     {
         return $this->findByRelativePosition($card, 1);
-    }
-
-    public function findTraits()
-    {
-        $qb = $this->createQueryBuilder('c')
-            ->select('DISTINCT c.traits')
-            ->andWhere("c.traits != ''");
-        return $qb->getQuery()->getResult();
     }
 }

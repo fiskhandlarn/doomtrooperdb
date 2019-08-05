@@ -17,4 +17,5 @@
 /public/bundles/
 .phpcs-cache
 public/css
+public/images
 public/js
