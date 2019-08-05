@@ -17,14 +17,9 @@
 * fix API 500 error
 * DeckValidationHelper.php
 * TODO's in source code
-* remove
-  * Characters
-  * Locations
-  * Attachments
-  * Events
 * JS
 * CSS
-  * selection.json
+    * selection.json
 * fonts
 * about.*.html.twig
 * footer.*.html.twig
@@ -34,4 +29,6 @@
 * info@doomtrooperdb.com
 * `google_analytics_tracking_code`
 * sideboard
+* default.txt.twig
 * card-props.html.twig
+* images from https://raw.githubusercontent.com/ instead?
