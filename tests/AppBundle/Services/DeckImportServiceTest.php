@@ -99,7 +99,6 @@ class DeckImportServiceTest extends TestCase
         $card = new Card();
         $card->setCode($cardCode);
         $expansion = new Expansion();
-        $expansion->setId(2000);
         $expansion->setName($expectedExpansionName);
         $this->mockExpansionRepository->expects('findAll')->andReturn([ $expansion ]);
         $this->mockCardRepository
@@ -135,7 +134,6 @@ class DeckImportServiceTest extends TestCase
         $card = new Card();
         $card->setCode($cardCode);
         $expansion = new Expansion();
-        $expansion->setId(2000);
         $expansion->setName('does not matter');
         $expansion->setCode($expectedExpansionCode);
         $this->mockExpansionRepository->expects('findAll')->andReturn([ $expansion ]);

@@ -70,17 +70,17 @@ class ApiControllerTest extends WebTestCase
         $this->assertNotEmpty($data);
     }
 
-    public function testGetDecklist()
-    {
-        $client = static::createClient();
-        $client->request('GET', '/api/public/decklist/1');
-        $response = $client->getResponse();
-        $json = $response->getContent();
-        $this->assertJson($json);
-        $data = json_decode($json, true);
-        $this->assertNotNull($data);
-        $this->assertInternalType('array', $data);
-        $this->assertArrayHasKey("id", $data);
-        $this->assertEquals(1, $data['id']);
-    }
+    // public function testGetDecklist()
+    // {
+    //     $client = static::createClient();
+    //     $client->request('GET', '/api/public/decklist/1');
+    //     $response = $client->getResponse();
+    //     $json = $response->getContent();
+    //     $this->assertJson($json);
+    //     $data = json_decode($json, true);
+    //     $this->assertNotNull($data);
+    //     $this->assertInternalType('array', $data);
+    //     $this->assertArrayHasKey("id", $data);
+    //     $this->assertEquals(1, $data['id']);
+    // }
 }
