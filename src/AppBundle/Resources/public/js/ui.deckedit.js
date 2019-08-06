@@ -80,7 +80,7 @@
         app.data.cards.find().forEach(function (record)
         {
             var max_qty = Math.min(3, record.deck_limit);
-            if(record.pack_code === 'Unl')
+            if(record.expansion_code === 'Unl')
                 max_qty = Math.min(max_qty, record.quantity * Config['unl-set']);
             app.data.cards.updateById(record.code, {
                 maxqty: max_qty
@@ -132,34 +132,33 @@
     };
 
     /**
-     * builds the pack selector
+     * builds the expansion selector
      * @memberOf ui
      */
-    ui.build_pack_selector = function build_pack_selector()
+    ui.build_expansion_selector = function build_expansion_selector()
     {
-        $('[data-filter=pack_code]').empty();
-        app.data.packs.find({
+        $('[data-filter=expansion_code]').empty();
+        app.data.expansions.find({
             name: {
                 '$exists': true
             }
         }, {
             $orderBy: {
-                cycle_position: 1,
                 position: 1
             }
         }).forEach(function (record)
         {
             // checked or unchecked ? checked by default
             var checked = true;
-            // if not yet available, uncheck pack
+            // if not yet available, uncheck expansion
             if(record.available === "")
                 checked = false;
-            // if user checked it previously, check pack
+            // if user checked it previously, check expansion
             if(localStorage && localStorage.getItem('set_code_' + record.code) !== null)
                 checked = true;
-            // if pack used by cards in deck, check pack
+            // if expansion used by cards in deck, check expansion
             var cards = app.data.cards.find({
-                pack_code: record.code,
+                expansion_code: record.code,
                 indeck: {
                     '$gt': 0
                 }
@@ -167,7 +166,7 @@
             if(cards.length)
                 checked = true;
 
-            $('<li><a href="#"><label><input type="checkbox" name="' + record.code + '"' + (checked ? ' checked="checked"' : '') + '>' + record.name + '</label></a></li>').appendTo('[data-filter=pack_code]');
+            $('<li><a href="#"><label><input type="checkbox" name="' + record.code + '"' + (checked ? ' checked="checked"' : '') + '>' + record.name + '</label></a></li>').appendTo('[data-filter=expansion_code]');
         });
     };
 
@@ -726,7 +725,7 @@
         ui.update_list_template();
         ui.build_faction_selector();
         ui.build_type_selector();
-        ui.build_pack_selector();
+        ui.build_expansion_selector();
         ui.init_selectors();
         ui.refresh_deck();
         ui.refresh_list();

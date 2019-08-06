@@ -11,19 +11,19 @@
 
         text.match(/[^\r\n]+/g).forEach(function (token)
         {
-            var qty = 1, name = token.trim(), card, packName;
+            var qty = 1, name = token.trim(), card, expansionName;
             if (name.match(/^(\d+)x? ([^(]+) \(([^)]+)\)/)) {
                 qty = parseInt(RegExp.$1, 10);
                 name = RegExp.$2.trim();
-                packName = RegExp.$3.trim();
+                expansionName = RegExp.$3.trim();
             } else if(name.match(/^(\d+)x? (.*)/)) {
                 qty = parseInt(RegExp.$1, 10);
                 name = RegExp.$2.trim();
             }
-            if (packName) {
-                card = app.data.cards.findOne({name: name, pack_name: packName});
+            if (expansionName) {
+                card = app.data.cards.findOne({name: name, expansion_name: expansionName});
                 if (!card) {
-                    card = app.data.cards.findOne({name: name, pack_code: packName});
+                    card = app.data.cards.findOne({name: name, expansion_code: expansionName});
                 }
             } else {
                 card = app.data.cards.findOne({name: name});

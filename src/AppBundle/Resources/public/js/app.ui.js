@@ -7,7 +7,7 @@
 
     function build_plaintext(deck) {
         var lines = [];
-        var included_packs = deck.get_included_packs({ 'cycle_position': 1, 'position': 1 });
+        var included_expansions = deck.get_included_expansions({ 'position': 1 });
 
         var agendas = deck.get_agendas();
         var sortOrder = { "name": 1 };
@@ -26,16 +26,16 @@
             lines.push(agenda.name);
         });
         lines.push("");
-        if (included_packs.length > 1) {
-            lines.push("Packs: From " + included_packs[0].name + ' to ' + included_packs[included_packs.length - 1].name);
+        if (included_expansions.length > 1) {
+            lines.push("Expansions: From " + included_expansions[0].name + ' to ' + included_expansions[included_expansions.length - 1].name);
         } else {
-            lines.push("Packs: From " + included_packs[0].name);
+            lines.push("Expansions: From " + included_expansions[0].name);
         }
         Object.getOwnPropertyNames(sections).forEach(function(section) {
             lines.push("");
             lines.push(section + " (" + deck.get_nb_cards(sections[section]) + "):");
             sections[section].forEach(function(card) {
-                lines.push(card.indeck + "x " + card.name + " (" + card.pack_code + ")");
+                lines.push(card.indeck + "x " + card.name + " (" + card.expansion_code + ")");
             });
         });
         return lines;
@@ -43,7 +43,7 @@
 
     function build_markdown(deck) {
         var lines = [];
-        var included_packs = deck.get_included_packs({ 'cycle_position': 1, 'position': 1 });
+        var included_expansions = deck.get_included_expansions({ 'position': 1 });
 
         var agendas = deck.get_agendas();
         var sortOrder = { "name": 1 };
@@ -62,7 +62,7 @@
             if (show_quantity) {
                 out = out + card.indeck + 'x ';
             }
-            out  = out + '[' + card.name + ' \\('+ card.pack_code +'\\)](https://localhost/card/' + card.code + ')';
+            out  = out + '[' + card.name + ' \\('+ card.expansion_code +'\\)](https://localhost/card/' + card.code + ')';
             return out;
         };
 
@@ -73,10 +73,10 @@
         });
 
         lines.push("");
-        if (included_packs.length > 1) {
-            lines.push("Packs: From " + included_packs[0].name + ' to ' + included_packs[included_packs.length - 1].name);
+        if (included_expansions.length > 1) {
+            lines.push("Expansions: From " + included_expansions[0].name + ' to ' + included_expansions[included_expansions.length - 1].name);
         } else {
-            lines.push("Packs: From " + included_packs[0].name);
+            lines.push("Expansions: From " + included_expansions[0].name);
         }
 
         Object.getOwnPropertyNames(sections).forEach(function(section) {
@@ -93,7 +93,7 @@
 
     function build_dtcards(deck) {
         var lines = [];
-        var included_packs = deck.get_included_packs({ 'cycle_position': 1, 'position': 1 });
+        var included_expansions = deck.get_included_expansions({ 'position': 1 });
 
         var agendas = deck.get_agendas();
         var sortOrder = { "name": 1 };
@@ -112,7 +112,7 @@
             if (show_quantity) {
                 out = out + card.indeck + 'x ';
             }
-            out  = out + '[agot]' + card.name + ' ('+ card.pack_code + ')[/agot]';
+            out  = out + '[agot]' + card.name + ' ('+ card.expansion_code + ')[/agot]';
             return out;
         };
 
@@ -123,10 +123,10 @@
         });
 
         lines.push("");
-        if (included_packs.length > 1) {
-            lines.push("Packs: From " + included_packs[0].name + ' to ' + included_packs[included_packs.length - 1].name);
+        if (included_expansions.length > 1) {
+            lines.push("Expansions: From " + included_expansions[0].name + ' to ' + included_expansions[included_expansions.length - 1].name);
         } else {
-            lines.push("Packs: From " + included_packs[0].name);
+            lines.push("Expansions: From " + included_expansions[0].name);
         }
 
         Object.getOwnPropertyNames(sections).forEach(function(section) {

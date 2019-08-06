@@ -106,7 +106,7 @@ decks:
     meta:
       drawdeck: "{0} <em>Nachziehstapel:</em> %count% Karten | {1} <em>Nachziehstapel:</em> %count% Karte | ]1,Inf] <em>Nachziehstapel:</em> %count% Karten"
       plotdeck: "{0} <em>Strategiestapel:</em> %count% Karten | {1} <em>Strategiestapel:</em> %count% Karte | ]1,Inf] <em>Strategiestapel:</em> %count% Karten"
-      packs: "<em>Packs:</em> %packs%"
+      expansions: "<em>Expansions</em>: %expansions%"
   form:
     build: Neue Deckliste erstellen
     uploadarchive: Archiv hochladen
@@ -190,7 +190,7 @@ decks:
     filters:
       flavor: Atmosphärischer Text
       claim: Schadenswert
-      pack_code: Pack
+      expansion_code: Expansion
       faction_code: Fraktion
       is_intrigue: Intrigenspiel-Symbol
       reserve: Reservewert
@@ -206,7 +206,7 @@ decks:
       is_unique: Einzigartigkeit
       initiative: Initiativewert
       text: Text
-      quantity: Anzahl der Kopien im Pack
+      quantity: Anzahl der Kopien im Expansion
       designer: Designer/in
   charts:
     faction:
@@ -331,7 +331,7 @@ decklist:
         likes: Nach Anzahl der \"Gefällt mir\"
         reputation: Nach Ansehen des Autors / der Autorin
       allowed:
-        label: Zulässige Packs
+        label: Zulässige Expansions
         onoff: "(%on% Ja, %off% Nein)"
         core: "Grundspiel / Erweiterungen"
         all: Alle

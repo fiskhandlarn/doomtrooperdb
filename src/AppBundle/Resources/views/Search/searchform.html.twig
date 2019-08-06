@@ -79,8 +79,8 @@
                                     <div>
                                         <select class="form-control" name="e" id="e">
                                             <option value="">{{ 'search.any' | trans }}</option>
-                                            {% for pack in packs %}
-                                                <option value="{{ pack.code }}">{{ pack.label }}</option>
+                                            {% for expansion in expansions %}
+                                                <option value="{{ expansion.code }}">{{ expansion.label }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>

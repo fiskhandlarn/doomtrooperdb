@@ -6,8 +6,8 @@
 
     ui.handle_checkbox_change = function handle_checkbox_change()
     {
-        $('#packs-on').text($('#allowed_packs').find('input[type="checkbox"]:checked').size());
-        $('#packs-off').text($('#allowed_packs').find('input[type="checkbox"]:not(:checked)').size());
+        $('#expansions-on').text($('#allowed_expansions').find('input[type="checkbox"]:checked').size());
+        $('#expansions-off').text($('#allowed_expansions').find('input[type="checkbox"]:not(:checked)').size());
     };
 
     /**
@@ -61,18 +61,18 @@
     ui.on_dom_loaded = function on_dom_loaded()
     {
         ui.setup_typeahead();
-        $('#allowed_packs').on('change', ui.handle_checkbox_change);
+        $('#allowed_expansions').on('change', ui.handle_checkbox_change);
 
         $('#select_all').on('click', function (event)
         {
-            $('#allowed_packs').find('input[type="checkbox"]:not(:checked)').prop('checked', true);
+            $('#allowed_expansions').find('input[type="checkbox"]:not(:checked)').prop('checked', true);
             ui.handle_checkbox_change();
             return false;
         });
 
         $('#select_none').on('click', function (event)
         {
-            $('#allowed_packs').find('input[type="checkbox"]:checked').prop('checked', false);
+            $('#allowed_expansions').find('input[type="checkbox"]:checked').prop('checked', false);
             ui.handle_checkbox_change();
             return false;
         });

@@ -106,7 +106,7 @@ decks:
     meta:
       drawdeck: "{0} <em>Draw deck:</em> %count% cards | {1} <em>Draw deck</em>: %count% card | ]1,Inf] <em>Draw deck</em>: %count% cards"
       plotdeck: "{0} <em>Plot deck:</em> %count% cards | {1} <em>Plot deck</em>: %count% card | ]1,Inf] <em>Plot deck</em>: %count% cards"
-      packs: "<em>Packs</em>: %packs%"
+      expansions: "<em>Expansions</em>: %expansions%"
   form:
     build: Build New Deck
     uploadarchive: Upload archive
@@ -190,7 +190,7 @@ decks:
     filters:
       flavor: Flavor text
       claim: Claim value
-      pack_code: Pack
+      expansion_code: Expansion
       faction_code: Faction
       is_intrigue: Intrigue icon
       reserve: Reserve value
@@ -206,7 +206,7 @@ decks:
       is_unique: Uniqueness
       initiative: Initiative value
       text: Text
-      quantity: Quantity in pack
+      quantity: Quantity in expansion
       designer: Designer
   charts:
     faction:
@@ -331,7 +331,7 @@ decklist:
         likes: By Number of Likes
         reputation: By Reputation of Author
       allowed:
-        label: Select allowed packs
+        label: Select allowed expansions
         onoff: "(%on% on, %off% off)"
         core: "Core / Deluxe"
         all: all

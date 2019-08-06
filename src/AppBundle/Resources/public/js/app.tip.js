@@ -19,7 +19,7 @@
                     + '<div class="card-info">' + app.format.info(card) + '</div>'
                     + '<div class="card-traits">' + app.format.traits(card) + '</div>'
                     + '<div class="card-text border-' + card.faction_code + '">' + app.format.text(card) + '</div>'
-                    + '<div class="card-pack">' + app.format.pack(card) + '</div>'
+                    + '<div class="card-expansion">' + app.format.expansion(card) + '</div>'
                     ;
 
         } else {

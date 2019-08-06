@@ -6,7 +6,7 @@
     var configuration = {
         a: [add_string_sf, 'flavor', Translator.trans('decks.smartfilter.filters.flavor')],
         b: [add_integer_sf, 'claim', Translator.trans('decks.smartfilter.filters.claim')],
-        e: [add_string_sf, 'pack_code', Translator.trans('decks.smartfilter.filters.pack_code')],
+        e: [add_string_sf, 'expansion_code', Translator.trans('decks.smartfilter.filters.expansion_code')],
         f: [add_string_sf, 'faction_code', Translator.trans('decks.smartfilter.filters.faction_code')],
         g: [add_boolean_sf, 'is_intrigue', Translator.trans('decks.smartfilter.filters.is_intrigue')],
         h: [add_integer_sf, 'reserve', Translator.trans('decks.smartfilter.filters.reserve')],

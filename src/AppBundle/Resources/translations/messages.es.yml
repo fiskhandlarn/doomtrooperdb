@@ -106,7 +106,7 @@ decks:
     meta:
       drawdeck: "{0} <em>Mazo de robo:</em> %count% cartas | {1} <em>Mazo de robo:</em> %count% carta | ]1,Inf] <em>Mazo de robo:</em> %count% cartas"
       plotdeck: "{0} <em>Mazo de tramas:</em> %count% cartas | {1} <em>Mazo de tramas:</em> %count% carta | ]1,Inf] <em>Mazo de tramas:</em> %count% cartas"
-      packs: "<em>Capítulos:</em> %packs%"
+      expansions: "<em>Capítulos:</em> %expansions%"
   form:
     build: Construir nuevo mazo
     uploadarchive: Subir archivo
@@ -190,7 +190,7 @@ decks:
     filters:
       flavor: Texto de ambientación
       claim: Valor de conquista
-      pack_code: Capítulo
+      expansion_code: Expansión
       faction_code: Facción
       is_intrigue: Icono de intriga
       reserve: Valor de reserva
@@ -206,7 +206,7 @@ decks:
       is_unique: Único
       initiative: Valor de iniciativa
       text: Texto
-      quantity: Cantidad en el capítulo
+      quantity: Cantidad en el expansión
   charts:
     faction:
       title: Cartas por Facción
@@ -330,7 +330,7 @@ decklist:
         likes: por Número de \"me gusta\"
         reputation: por Reputación del autor
       allowed:
-        label: Capítulos permitidos
+        label: Expansiones permitidas
         onoff: "(%on% sí, %off% no)"
         core: "Caja básica / Deluxe"
         all: todo

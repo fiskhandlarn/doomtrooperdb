@@ -423,28 +423,28 @@
      * @param {Object} sort
      * @return {Array}
      */
-    deck.get_included_packs = function get_included_packs(sort)
+    deck.get_included_expansions = function get_included_expansions(sort)
     {
         var cards = deck.get_cards();
-        var nb_packs = {};
+        var nb_expansions = {};
         sort = sort || { 'available': 1 };
         cards.forEach(function (card)
         {
-            nb_packs[card.pack_code] = Math.max(nb_packs[card.pack_code] || 0, card.indeck / card.quantity);
+            nb_expansions[card.expansion_code] = Math.max(nb_expansions[card.expansion_code] || 0, card.indeck / card.quantity);
         });
-        var pack_codes = _.uniq(_.pluck(cards, 'pack_code'));
-        var packs = app.data.packs.find({
+        var expansion_codes = _.uniq(_.pluck(cards, 'expansion_code'));
+        var expansions = app.data.expansions.find({
             'code': {
-                '$in': pack_codes
+                '$in': expansion_codes
             }
         }, {
             '$orderBy': sort
         });
-        packs.forEach(function (pack)
+        expansions.forEach(function (expansion)
         {
-            pack.quantity = nb_packs[pack.code] || 0;
+            expansion.quantity = nb_expansions[expansion.code] || 0;
         });
-        return packs;
+        return expansions;
     };
 
     deck.change_sort = function(sort_type) {
@@ -519,10 +519,10 @@
         plotDeckSection.addClass(problem && problem.indexOf('plots') !== -1 ? 'text-danger' : '');
         deck.update_layout_section(data, 'meta', plotDeckSection);
 
-        var packs = _.map(deck.get_included_packs({ 'cycle_position': 1, 'position': 1 }), function (pack) {
-            return pack.name + (pack.quantity > 1 ? ' (' + pack.quantity + ')' : '');
+        var expansions = _.map(deck.get_included_expansions({ 'position': 1 }), function (expansion) {
+            return expansion.name + (expansion.quantity > 1 ? ' (' + expansion.quantity + ')' : '');
         }).join(', ');
-        deck.update_layout_section(data, 'meta', $('<div>' + Translator.trans('decks.edit.meta.packs', {"packs": packs}) + '</div>'));
+        deck.update_layout_section(data, 'meta', $('<div>' + Translator.trans('decks.edit.meta.expansions', {"expansions": expansions}) + '</div>'));
 
         var restrictedListContents = '<em>' + Translator.trans('restrictedlist.title') +':</em> ';
         if (deck.is_joust_restricted_list_compliant()) {
@@ -628,12 +628,12 @@
         var section = $('<div>');
         var context = sortByName ? "" : "number";
         var sort = sortByName ? {"name": 1} : {"code": 1};
-        var packs = deck.get_included_packs({"cycle_position": 1, "position": 1});
-        var cards = deck.get_cards(sort, {}, {"pack_name": 1});
+        var expansions = deck.get_included_expansions({"position": 1});
+        var cards = deck.get_cards(sort, {}, {"expansion_name": 1});
 
-        packs.forEach(function(pack){
-            $(header_tpl({code: pack.code, name: pack.name, quantity: cards[pack.name].reduce(function(a,b){ return a + b.indeck}, 0) })).appendTo(section);
-            deck.create_card_group(cards[pack.name], context).appendTo(section);
+        expansions.forEach(function(expansion){
+            $(header_tpl({code: expansion.code, name: expansion.name, quantity: cards[expansion.name].reduce(function(a,b){ return a + b.indeck}, 0) })).appendTo(section);
+            deck.create_card_group(cards[expansion.name], context).appendTo(section);
         });
         return section;
     };
@@ -646,7 +646,7 @@
             $div.append($(card_line_tpl({card:card})));
             $div.prepend(card.indeck+'x ');
             if (context && context === "number"){
-                $div.append(" | "+card.pack_name+" #"+card.position);
+                $div.append(" | "+card.expansion_name+" #"+card.position);
             }
 
             $div.appendTo(section);

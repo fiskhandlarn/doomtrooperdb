@@ -2,8 +2,8 @@
     {% if value is null %}X{% else %}{{ value }}{% endif %}
 {% endmacro %}
 
-{% macro card_name_with_pack_no_link(card) %}
-    <a class="card-tip" data-code="{{ card.code }}">{{ card.name }} <i>({{ card.pack.name }})</i></a>
+{% macro card_name_with_expansion_no_link(card) %}
+    <a class="card-tip" data-code="{{ card.code }}">{{ card.name }} <i>({{ card.expansion.name }})</i></a>
 {% endmacro %}
 
 {% macro decklist_table_row(decklist) %}
@@ -66,6 +66,6 @@
 {% macro slot_with_icons(slot) %}
     {{ slot.quantity }}x <span class="icon icon-{{ slot.card.type.code }} fg-{{ slot.card.faction.code }}"></span>
     <a href="{{ path('cards_zoom', {card_code: slot.card.code }) }}" class="card card-tip" data-code="{{ slot.card.code }}">
-        {{ slot.card.name }} {% if slot.card.isMultiple %}({{ slot.card.pack.code }}) {% endif %}
+        {{ slot.card.name }} {% if slot.card.isMultiple %}({{ slot.card.expansion.code }}) {% endif %}
     </a>
 {% endmacro %}
