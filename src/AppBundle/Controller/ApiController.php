@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Card;
-//use AppBundle\Entity\Expansion;
+use AppBundle\Entity\Expansion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Decklist;
@@ -119,7 +119,7 @@ class ApiController extends Controller
      */
     public function getCardAction($card_code, Request $request)
     {
-        $version = $request->query->get('v', '1.0');
+        $version = $request->query->get('v', '3.0');
 
         $response = new Response();
         $response->setPublic();
@@ -180,7 +180,7 @@ class ApiController extends Controller
      */
     public function listCardsAction(Request $request)
     {
-        $version = $request->query->get('v', '1.0');
+        $version = $request->query->get('v', '3.0');
 
         $response = new Response();
         $response->setPublic();
@@ -255,7 +255,7 @@ class ApiController extends Controller
      */
     public function listCardsByExpansionAction($expansion_code, Request $request)
     {
-        $version = $request->query->get('v', '1.0');
+        $version = $request->query->get('v', '3.0');
 
         $response = new Response();
         $response->setPublic();
