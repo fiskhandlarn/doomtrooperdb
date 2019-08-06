@@ -200,20 +200,10 @@ class Card implements \Serializable
     private $faction;
 
     /**
-     * @var boolean
-     */
-    private $isMultiple;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->isMilitary = false;
-        $this->isIntrigue = false;
-        $this->isPower = false;
-        $this->isMultiple = false;
-
         $this->reviews = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -225,30 +215,6 @@ class Card implements \Serializable
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set position
-     *
-     * @param integer $position
-     *
-     * @return Card
-     */
-    public function setPosition($position)
-    {
-        $this->position = $position;
-
-        return $this;
-    }
-
-    /**
-     * Get position
-     *
-     * @return integer
-     */
-    public function getPosition()
-    {
-        return $this->position;
     }
 
     /**

@@ -58,28 +58,4 @@ class CardRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
-
-    public function findByRelativePosition(Card $card, int $position)
-    {
-        $qb = $this->createQueryBuilder('c')
-            ->select('c')
-            ->join('c.expansion', 'y')
-            ->andWhere('y.code = ?1')
-            ->andWhere('c.position = ?2');
-
-        $qb->setParameter(1, $card->getExpansion()->getCode());
-        $qb->setParameter(2, $card->getPosition()+$position);
-
-        return $qb->getQuery()->getOneOrNullResult();
-    }
-
-    public function findPreviousCard($card)
-    {
-        return $this->findByRelativePosition($card, -1);
-    }
-
-    public function findNextCard($card)
-    {
-        return $this->findByRelativePosition($card, 1);
-    }
 }

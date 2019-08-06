@@ -38,31 +38,6 @@ class CardsData
     }
 
     /**
-     * Searches for and replaces symbol tokens with markup in a given text.
-     * @param string $text
-     * @return string
-     */
-    public function replaceSymbols($text)
-    {
-        static $displayTextReplacements = [
-            '[baratheon]' => '<span class="icon-baratheon"></span>',
-            '[intrigue]' => '<span class="icon-intrigue"></span>',
-            '[greyjoy]' => '<span class="icon-greyjoy"></span>',
-            '[lannister]' => '<span class="icon-lannister"></span>',
-            '[martell]' => '<span class="icon-martell"></span>',
-            '[military]' => '<span class="icon-military"></span>',
-            '[thenightswatch]' => '<span class="icon-thenightswatch"></span>',
-            '[power]' => '<span class="icon-power"></span>',
-            '[stark]' => '<span class="icon-stark"></span>',
-            '[targaryen]' => '<span class="icon-targaryen"></span>',
-            '[tyrell]' => '<span class="icon-tyrell"></span>',
-            '[unique]' => '<span class="icon-unique"></span>',
-        ];
-
-        return str_replace(array_keys($displayTextReplacements), array_values($displayTextReplacements), $text);
-    }
-
-    /**
      * Searches for single keywords and surround them with <abbr>
      * @param string $text
      * @return string
@@ -176,12 +151,6 @@ class CardsData
         }
 
         return $expansions;
-    }
-
-    public function getPrimaryFactions()
-    {
-        $factions = $this->doctrine->getRepository('AppBundle:Faction')->findPrimaries();
-        return $factions;
     }
 
     public function getSearchRows($conditions, $sortorder, $forceempty = false)
@@ -544,28 +513,21 @@ class CardsData
             UrlGeneratorInterface::ABSOLUTE_URL
         );
 
-        if ($card->getIsMultiple()) {
-            $cardinfo['label'] = $card->getName() . ' (' . $card->getExpansion()->getCode() . ')';
-        } else {
-            $cardinfo['label'] = $card->getName();
-        }
+        $cardinfo['label'] = $card->getName();
 
         if ($api) {
             unset($cardinfo['id']);
-            $cardinfo['ci'] = $card->getCostIncome();
-            $cardinfo['si'] = $card->getStrengthInitiative();
+            // $cardinfo['ci'] = $card->getCostIncome();
+            // $cardinfo['si'] = $card->getStrengthInitiative();
         } else {
-            $cardinfo['text'] = $this->replaceSymbols($cardinfo['text']);
             $cardinfo['text'] = $this->addAbbrTags($cardinfo['text']);
             $cardinfo['text'] = $this->splitInParagraphs($cardinfo['text']);
-
-            $cardinfo['flavor'] = $this->replaceSymbols($cardinfo['flavor']);
         }
 
-        if ($version === '1.0') {
-            $cardinfo['cost'] = is_numeric($cardinfo['cost']) ? intval($cardinfo['cost']) : null;
-            $cardinfo['ci'] = is_numeric($cardinfo['ci']) ? intval($cardinfo['ci']) : null;
-        }
+        // if ($version === '1.0') {
+        //     $cardinfo['cost'] = is_numeric($cardinfo['cost']) ? intval($cardinfo['cost']) : null;
+        //     $cardinfo['ci'] = is_numeric($cardinfo['ci']) ? intval($cardinfo['ci']) : null;
+        // }
 
         return $cardinfo;
     }
