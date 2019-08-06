@@ -718,5 +718,4 @@ class Card implements \Serializable
 
         return $this;
     }
-
 }

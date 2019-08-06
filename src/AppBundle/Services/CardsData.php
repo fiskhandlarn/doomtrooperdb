@@ -454,7 +454,7 @@ class CardsData
         $rows = $qb->getQuery()->getResult();
 
         return $rows;
-        }
+    }
 
     /**
      * @param Card        $card
