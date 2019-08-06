@@ -11,12 +11,14 @@
 /build/
 /node_modules
 /phpunit.xml
-/public/bundles/
 /var/*
 /var/cache/*
 /var/logs/*
 /var/sessions/*
 /vendor/
+public/bundles/
 public/css
+public/fonts
 public/images
 public/js
+public/mix-manifest.json
