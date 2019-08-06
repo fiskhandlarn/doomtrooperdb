@@ -39,3 +39,12 @@
 * remove
   * influence
 * `macros.html.twig`
+* SAFV-order in CardsData:
+```
+            case 'cost':
+                $qb->orderBy('c.type')->addOrderBy('c.cost')->addOrderBy('c.income');
+                break;
+            case 'strength':
+                $qb->orderBy('c.type')->addOrderBy('c.strength')->addOrderBy('c.initiative');
+                break;
+```

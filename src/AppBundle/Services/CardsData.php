@@ -434,19 +434,13 @@ class CardsData
         }
         switch ($sortorder) {
             case 'set':
-                $qb->orderBy('y.position')->addOrderBy('y.position')->addOrderBy('c.position');
+                $qb->orderBy('y.position');
                 break;
             case 'faction':
                 $qb->orderBy('c.faction')->addOrderBy('c.type');
                 break;
             case 'type':
                 $qb->orderBy('c.type')->addOrderBy('c.faction');
-                break;
-            case 'cost':
-                $qb->orderBy('c.type')->addOrderBy('c.cost')->addOrderBy('c.income');
-                break;
-            case 'strength':
-                $qb->orderBy('c.type')->addOrderBy('c.strength')->addOrderBy('c.initiative');
                 break;
         }
         $qb->addOrderBy('c.name');
