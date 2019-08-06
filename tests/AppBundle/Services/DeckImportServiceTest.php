@@ -93,7 +93,9 @@ class DeckImportServiceTest extends TestCase
      * @covers \AppBundle\Services\DeckImportService::parseTextImport
      * @dataProvider testParseTextImportForCardWithExpansionNameProvider
      */
-    public function testParseTextImportForCardWithExpansionName($input, $expectedQuantity, $expectedName, $expectedExpansionName)
+    public function testParseTextImportForCardWithExpansionName(
+        $input, $expectedQuantity, $expectedName, $expectedExpansionName
+    )
     {
         $cardCode = "does-not-matter";
         $card = new Card();
@@ -128,7 +130,9 @@ class DeckImportServiceTest extends TestCase
      * @covers \AppBundle\Services\DeckImportService::parseTextImport
      * @dataProvider testParseTextImportForCardWithExpansionCodeProvider
      */
-    public function testParseTextImportForCardWithExpansionCode($input, $expectedQuantity, $expectedName, $expectedExpansionCode)
+    public function testParseTextImportForCardWithExpansionCode(
+        $input, $expectedQuantity, $expectedName, $expectedExpansionCode
+    )
     {
         $cardCode = "does-not-matter";
         $card = new Card();

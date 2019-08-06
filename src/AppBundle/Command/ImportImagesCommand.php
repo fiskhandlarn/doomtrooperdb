@@ -17,7 +17,9 @@ class ImportImagesCommand extends ContainerAwareCommand
     {
         $this
             ->setName('app:import:images')
-            ->setDescription('Copy card images https://github.com/fiskhandlarn/doomtrooperdb-json-data')
+            ->setDescription(
+                'Copy card images https://github.com/fiskhandlarn/doomtrooperdb-json-data'
+            )
             ->addArgument(
                 'path',
                 InputArgument::REQUIRED,

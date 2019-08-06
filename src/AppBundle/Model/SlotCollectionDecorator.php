@@ -161,7 +161,20 @@ class SlotCollectionDecorator implements SlotCollectionInterface
      */
     public function getSlotsByType()
     {
-        $slotsByType = ['alliance' => [], 'art' => [], 'beast' => [], 'symmetry' => [], 'equipment' => [], 'fortification' => [], 'ki' => [], 'mission' => [], 'relic' => [], 'special' => [], 'warrior' => [], 'warzone' => []];
+        $slotsByType = [
+            'alliance' => [],
+            'art' => [],
+            'beast' => [],
+            'symmetry' => [],
+            'equipment' => [],
+            'fortification' => [],
+            'ki' => [],
+            'mission' => [],
+            'relic' => [],
+            'special' => [],
+            'warrior' => [],
+            'warzone' => [],
+        ];
         foreach ($this->slots as $slot) {
             if (array_key_exists($slot->getCard()->getType()->getCode(), $slotsByType)) {
                 $slotsByType[$slot->getCard()->getType()->getCode()][] = $slot;
@@ -196,7 +209,20 @@ class SlotCollectionDecorator implements SlotCollectionInterface
      */
     public function getCountByType()
     {
-        $countByType = ['alliance' => 0, 'art' => 0, 'beast' => 0, 'symmetry' => 0, 'equipment' => 0, 'fortification' => 0, 'ki' => 0, 'mission' => 0, 'relic' => 0, 'special' => 0, 'warrior' => 0, 'warzone' => 0];
+        $countByType = [
+            'alliance' => 0,
+            'art' => 0,
+            'beast' => 0,
+            'symmetry' => 0,
+            'equipment' => 0,
+            'fortification' => 0,
+            'ki' => 0,
+            'mission' => 0,
+            'relic' => 0,
+            'special' => 0,
+            'warrior' => 0,
+            'warzone' => 0,
+        ];
         foreach ($this->slots as $slot) {
             if (array_key_exists($slot->getCard()->getType()->getCode(), $countByType)) {
                 $countByType[$slot->getCard()->getType()->getCode()] += $slot->getQuantity();

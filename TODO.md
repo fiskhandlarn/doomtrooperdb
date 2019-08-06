@@ -72,3 +72,4 @@
         x: [add_string_sf, 'text', Translator.trans('decks.smartfilter.filters.text')],
         y: [add_integer_sf, 'quantity', Translator.trans('decks.smartfilter.filters.quantity')]
 ```
+* SocialController::searchForm

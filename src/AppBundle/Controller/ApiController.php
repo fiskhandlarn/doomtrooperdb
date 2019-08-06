@@ -270,7 +270,8 @@ class ApiController extends Controller
             return $response;
         }
 
-        $expansion = $this->getDoctrine()->getRepository('AppBundle:Expansion')->findOneBy(array('code' => $expansion_code));
+        $expansion = $this->getDoctrine()->getRepository('AppBundle:Expansion')
+            ->findOneBy(array('code' => $expansion_code));
         if (!$expansion instanceof Expansion) {
             return $this->createNotFoundException();
         }

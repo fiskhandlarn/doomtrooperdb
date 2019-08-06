@@ -376,7 +376,8 @@ class SocialController extends Controller
     //         continue;
     //     }
     //     $first_expansion = $list_expansions[0];
-    //     if ($expansion->getCode() == 'core' || ($size === 1 && $first_expansion->getName() == $expansion->getName())) {
+    //     if ($expansion->getCode() == 'core'
+    // || ($size === 1 && $first_expansion->getName() == $expansion->getName())) {
     //         $checked = count($expansions) ? in_array($first_expansion->getId(), $expansions) : true;
     //         if ($checked) {
     //             $on++;
@@ -1132,14 +1133,18 @@ class SocialController extends Controller
     //     $categories = [];
     //     $on = 0;
     //     $off = 0;
-    //     $categories[] = array("label" => $translator->trans("decklist.list.search.allowed.core"), "expansions" => []);
+    // $categories[] = array(
+    //     "label" => $translator->trans("decklist.list.search.allowed.core"),
+    //     "expansions" => []
+    // );
     //     $list_expansions = $this->getDoctrine()->getRepository('AppBundle:Expansion')->findAll();
     //     $size = count($list_expansions);
     //     if ($expansion->getPosition() == 0 || $size == 0) {
     //         continue;
     //     }
     //     $first_expansion = $list_expansions[0];
-    //     if ($expansion->getCode() === 'core' || ($size === 1 && $first_expansion->getName() == $expansion->getName())) {
+    //     if ($expansion->getCode() === 'core'
+    // || ($size === 1 && $first_expansion->getName() == $expansion->getName())) {
     //         $checked = $first_expansion->getDateRelease() !== null;
     //         if ($checked) {
     //             $on++;
