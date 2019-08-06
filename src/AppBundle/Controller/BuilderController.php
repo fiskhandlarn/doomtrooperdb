@@ -35,7 +35,7 @@ class BuilderController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $factions = $em->getRepository('AppBundle:Faction')->findPrimaries();
+        $factions = $em->getRepository('AppBundle:Faction')->findAllAndOrderByName();
 
         return $this->render(
             'AppBundle:Builder:initbuild.html.twig',
