@@ -132,7 +132,7 @@ decks:
     download:
       octgn: Octgn file
       text: Text file
-      text_cycle: Text file, sorted by Cycle
+      text_expansion: Text file, sorted by Expansion
     export:
       dtcards: DT.cards
       markdown: Markdown

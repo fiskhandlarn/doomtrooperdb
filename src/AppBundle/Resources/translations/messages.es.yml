@@ -132,7 +132,7 @@ decks:
     download:
       octgn: Fichero OCTGN
       text: Fichero de texto
-      text_cycle: Fichero de texto, ordenado por ciclo
+      text_expansion: Fichero de texto, ordenado por expansión
     export:
       dtcards: DT.cards
       markdown: Markdown
