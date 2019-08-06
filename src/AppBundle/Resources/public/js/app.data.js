@@ -10,7 +10,7 @@
 
     data.db = database;
     var masters = {
-        packs: database.collection('master_pack', {primaryKey: 'code'}),
+        expansions: database.collection('master_expansion', {primaryKey: 'code'}),
         cards: database.collection('master_card', {primaryKey: 'code'})
     };
 
@@ -30,9 +30,9 @@
      * @memberOf data
      */
     function load() {
-        masters.packs.load(function (err) {
+        masters.expansions.load(function (err) {
             if (err) {
-                console.log('error when loading packs', err);
+                console.log('error when loading expansions', err);
             }
             masters.cards.load(function (err) {
                 if (err) {
@@ -47,13 +47,13 @@
                  * we set up insert and update listeners now
                  * if we did it before, .load() would have called onInsert
                  */
-                masters.packs.on("insert", onCollectionInsert).on("update", onCollectionUpdate);
+                masters.expansions.on("insert", onCollectionInsert).on("update", onCollectionUpdate);
                 masters.cards.on("insert", onCollectionInsert).on("update", onCollectionUpdate);
 
                 /*
                  * if database is not empty, use it for now
                  */
-                if (masters.packs.count() > 0 && masters.cards.count() > 0) {
+                if (masters.expansions.count() > 0 && masters.cards.count() > 0) {
                     release();
                 }
 
@@ -70,8 +70,8 @@
      * @memberOf data
      */
     function release() {
-        data.packs = database.collection('pack', {primaryKey: 'code', changeTimestamp: false});
-        data.packs.setData(masters.packs.find());
+        data.expansions = database.collection('expansion', {primaryKey: 'code', changeTimestamp: false});
+        data.expansions.setData(masters.expansions.find());
 
         data.cards = database.collection('card', {primaryKey: 'code', changeTimestamp: false});
         data.cards.setData(masters.cards.find());
@@ -87,22 +87,22 @@
      */
     function query() {
         dfd = {
-            packs: new $.Deferred(),
+            expansions: new $.Deferred(),
             cards: new $.Deferred()
         };
-        $.when(dfd.packs, dfd.cards).done(update_done).fail(update_fail);
+        $.when(dfd.expansions, dfd.cards).done(update_done).fail(update_fail);
 
         $.ajax({
-            url: Routing.generate('api_packs'),
-            success: parse_packs,
+            url: Routing.generate('api_expansions'),
+            success: parse_expansions,
             error: function (jqXHR, textStatus, errorThrown) {
-                console.log('error when requesting packs', errorThrown);
-                dfd.packs.reject(false);
+                console.log('error when requesting expansions', errorThrown);
+                dfd.expansions.reject(false);
             }
         });
 
         $.ajax({
-            url: Routing.generate('api_cards', {'v': '2.0'}),
+            url: Routing.generate('api_cards', {'v': '3.0'}),
             success: parse_cards,
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log('error when requesting cards', errorThrown);
@@ -139,8 +139,8 @@
      * deferred returns true if data has been loaded
      * @memberOf data
      */
-    function update_fail(packs_loaded, cards_loaded) {
-        if (packs_loaded === false || cards_loaded === false) {
+    function update_fail(expansions_loaded, cards_loaded) {
+        if (expansions_loaded === false || cards_loaded === false) {
             var message = Translator.trans('data_load_fail');
             app.ui.insert_alert_message('danger', message);
         } else {
@@ -184,12 +184,12 @@
     }
 
     /**
-     * handles the response to the ajax query for packs data
+     * handles the response to the ajax query for expansions data
      * @memberOf data
      */
-    function parse_packs(response, textStatus, jqXHR) {
+    function parse_expansions(response, textStatus, jqXHR) {
         var locale = jqXHR.getResponseHeader('Content-Language');
-        update_collection(response, masters.packs, locale, dfd.packs);
+        update_collection(response, masters.expansions, locale, dfd.expansions);
     }
 
     /**
