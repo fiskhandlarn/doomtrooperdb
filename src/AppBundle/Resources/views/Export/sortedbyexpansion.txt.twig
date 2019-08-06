@@ -10,9 +10,12 @@ From {{ first_expansion.expansion.name }}{% if first_expansion.nb > 1 %} ({{ fir
 {{ first_expansion.expansion.name }}{% if first_expansion.nb > 1 %} ({{ first_expansion.nb }}){% endif %}
 {% endif %}
 
+{% set slotsByExpansion = deck.slots_by_expansion_order %}
+{% for expansion, slots in slotsByExpansion  %}
+
 ---- {{ expansion }} ----
 {% for slot in slots %}
-{{ slot.quantity }}x {{ slot.card.name }} ({{ slot.card.expansion.name }} #{{ slot.card.position }})
+{{ slot.quantity }}x {{ slot.card.name }} ({{ slot.card.pack.name }} #{{ slot.card.position }})
 {% endfor %}
 {% endfor %}
 
