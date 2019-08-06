@@ -69,7 +69,6 @@ class ApiController extends Controller
                 "name" => $expansion->getName(),
                 "code" => $expansion->getCode(),
                 "position" => $expansion->getPosition(),
-                "available" => $expansion->getDateRelease() ? $expansion->getDateRelease()->format('Y-m-d') : '',
                 "known" => intval($real),
                 "total" => $max,
                 "url" => $this->get('router')->generate(
