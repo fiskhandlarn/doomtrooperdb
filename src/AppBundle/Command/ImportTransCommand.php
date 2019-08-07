@@ -120,10 +120,14 @@ class ImportTransCommand extends ContainerAwareCommand
                     'code',
                     'name'
             ], [
-                    'designer',
-                    'flavor',
-                    'traits',
-                    'text'
+                'clarification_text',
+                'code',
+                'flavor',
+                'illustrator',
+                'image_url',
+                'name',
+                'notes',
+                'text',
             ]);
         }
 
@@ -202,8 +206,8 @@ class ImportTransCommand extends ContainerAwareCommand
         if (!$entity) {
             throw new \Exception("Cannot find entity [code]");
         }
-        die('entity are not translatable anymore');
-        $entity->setTranslatableLocale($locale);
+        // die('entity are not translatable anymore');
+        // $entity->setTranslatableLocale($locale); // TODO implement these methods
         $this->em->refresh($entity);
 
         foreach ($mandatoryKeys as $key) {
