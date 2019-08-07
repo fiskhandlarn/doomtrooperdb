@@ -74,4 +74,5 @@
 ```
 * SocialController::searchForm
 * restore translations of cards
+  * https://github.com/ThronesDB/thronesdb/commit/1319dd5989175589ff3689e9891bba477fd5a573#diff-fd9da3c383c79d8ec8de1c215b6bbd41
   * run `php bin/console app:import:trans ../doomtrooperdb-json-data` if you want to import the translations
