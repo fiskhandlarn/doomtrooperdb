@@ -73,3 +73,5 @@
         y: [add_integer_sf, 'quantity', Translator.trans('decks.smartfilter.filters.quantity')]
 ```
 * SocialController::searchForm
+* restore translations of cards
+  * run `php bin/console app:import:trans ../doomtrooperdb-json-data` if you want to import the translations
