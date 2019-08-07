@@ -15,7 +15,8 @@ This guide assumes you know how to use the command-line and that your machine ha
 - run `php bin/console doctrine:migrations:migrate`
 - run `php bin/console doctrine:fixtures:load --env=prod` to load default application data
 - run `php bin/console app:import:std ../doomtrooperdb-json-data` or whatever the path to your DoomtrooperDB JSON data repository is
-
+- run `php bin/console bazinga:js-translation:dump src/AppBundle/Resources/public/js` to generate translation JS
+- run `npm install && npm run dev` to compile CSS and JS
 
 ## Setup an admin account
 

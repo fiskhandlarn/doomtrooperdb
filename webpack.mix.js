@@ -109,7 +109,13 @@ mix.webpackConfig({
 });
 
 // Compile javascript.
-mix.combine(['src/AppBundle/Resources/public/js/*'], 'public/js/app.js');
+mix.combine([
+    'src/AppBundle/Resources/public/js/*.js',
+    // translations
+    'vendor/willdurand/js-translation-bundle/Resources/public/js/translator.min.js',
+    'src/AppBundle/Resources/public/js/translations/*.js',
+    'src/AppBundle/Resources/public/js/translations/*/*.js'
+], 'public/js/app.js');
 
 // Compile styles.
 mix.combine(['src/AppBundle/Resources/public/css/*'], 'public/css/app.css');
