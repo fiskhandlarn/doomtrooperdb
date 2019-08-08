@@ -63,7 +63,13 @@ class ImportImagesCommand extends ContainerAwareCommand
                 continue;
             }
 
-            $output->writeln("Copying image for card <info>" . $card->getName() . "</info>: <info>" . $imageURL . "</info>");
+            $output->writeln(
+                "Copying image for card <info>" .
+                $card->getName() .
+                "</info>: <info>" .
+                $imageURL .
+                "</info>"
+            );
 
             try {
                 $filesystem->copy($path . '/'. $imageURL, $destinationPath . '/' . $imageURL);

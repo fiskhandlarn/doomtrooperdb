@@ -94,7 +94,10 @@ class DeckImportServiceTest extends TestCase
      * @dataProvider testParseTextImportForCardWithExpansionNameProvider
      */
     public function testParseTextImportForCardWithExpansionName(
-        $input, $expectedQuantity, $expectedName, $expectedExpansionName
+        $input,
+        $expectedQuantity,
+        $expectedName,
+        $expectedExpansionName
     )
     {
         $cardCode = "does-not-matter";
@@ -131,7 +134,10 @@ class DeckImportServiceTest extends TestCase
      * @dataProvider testParseTextImportForCardWithExpansionCodeProvider
      */
     public function testParseTextImportForCardWithExpansionCode(
-        $input, $expectedQuantity, $expectedName, $expectedExpansionCode
+        $input,
+        $expectedQuantity,
+        $expectedName,
+        $expectedExpansionCode
     )
     {
         $cardCode = "does-not-matter";
