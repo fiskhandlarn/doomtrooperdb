@@ -39,6 +39,10 @@
 * remove
   * influence
   * trait
+  * plot
+  * joust
+  * melee
+  * agenda
 * `macros.html.twig`
 * SAFV-order in CardsData:
 ```
@@ -76,3 +80,10 @@
 * restore translations of cards
   * https://github.com/ThronesDB/thronesdb/commit/1319dd5989175589ff3689e9891bba477fd5a573#diff-fd9da3c383c79d8ec8de1c215b6bbd41
   * run `php bin/console app:import:trans ../doomtrooperdb-json-data` if you want to import the translations
+* remove unused js
+  * app.deck_browser
+  * app.deck_gallery
+  * levenshtein
+  * string_score.min
+* combine all internal and external js into app.js
+* fix mapping and remove `--skip-mapping` from `doctrine:schema:validate`
