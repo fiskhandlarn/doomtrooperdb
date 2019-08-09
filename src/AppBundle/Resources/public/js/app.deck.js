@@ -902,7 +902,7 @@
     {
         switch(agenda.code) {
             case '01027':
-                if(deck.get_nb_cards(deck.get_cards(null, {type_code: {$in: ['character', 'attachment', 'location', 'event']}, faction_code: 'neutral'})) > 15) {
+                if(deck.get_nb_cards(deck.get_cards(null, {type_code: {$in: ['character', 'attachment', 'location', 'event']}, faction_code: 'general'})) > 15) {
                     return false;
                 }
                 break;
@@ -957,7 +957,7 @@
                 }
                 break;
             case '11079':
-                var nonNeutralCards = deck.get_nb_cards(deck.get_cards(null, {faction_code: { $ne: 'neutral' }}));
+                var nonNeutralCards = deck.get_nb_cards(deck.get_cards(null, {faction_code: { $ne: 'general' }}));
                 if(nonNeutralCards > 0) {
                     return false;
                 }
@@ -1012,8 +1012,8 @@
      */
     deck.can_include_card = function can_include_card(card)
     {
-        // neutral card => yes
-        if(card.faction_code === 'neutral')
+        // general card => yes
+        if(card.faction_code === 'general')
             return true;
 
         // in-house card => yes

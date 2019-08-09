@@ -100,7 +100,7 @@
             $(button).off('click');
         });
 
-        var icons = 'baratheon greyjoy intrigue lannister martell military thenightswatch power stark targaryen tyrell unique plot attachment location character event agenda neutral'.split(' ');
+        var icons = 'baratheon greyjoy intrigue lannister martell military thenightswatch power stark targaryen tyrell unique plot attachment location character event agenda general'.split(' ');
         icons.forEach(function (icon)
         {
             menu.append('<li data-icon="' + icon + '"><a href="#"><span style="display:inline-block;width:2em;text-align:center" class="icon-' + icon + '"></span> ' + Translator.trans('icon.' + icon) + '</a></li>');

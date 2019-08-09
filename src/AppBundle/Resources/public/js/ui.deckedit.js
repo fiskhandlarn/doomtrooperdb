@@ -96,12 +96,12 @@
     {
         $('[data-filter=faction_code]').empty();
         var faction_codes = app.data.cards.distinct('faction_code').sort();
-        var neutral_index = faction_codes.indexOf('neutral');
-        faction_codes.splice(neutral_index, 1);
-        faction_codes.unshift('neutral');
 
-        faction_codes.forEach(function (faction_code)
-        {
+        var general_index = faction_codes.indexOf('general');
+        faction_codes.splice(general_index, 1);
+        faction_codes.unshift('general');
+
+        faction_codes.forEach(function (faction_code) {
             var example = app.data.cards.find({"faction_code": faction_code})[0];
             var label = $('<label class="btn btn-default btn-sm" data-code="'
                     + faction_code + '" title="' + example.faction_name + '"><input type="checkbox" name="' + faction_code
@@ -119,7 +119,20 @@
     ui.build_type_selector = function build_type_selector()
     {
         $('[data-filter=type_code]').empty();
-        ['agenda', 'plot', 'character', 'attachment', 'location', 'event'].forEach(function (type_code)
+        [
+            'alliance',
+            'art',
+            'beast',
+            'equipment',
+            'fortification',
+            'ki',
+            'mission',
+            'relic',
+            'special',
+            'symmetry',
+            'warrior',
+            'warzone',
+        ].forEach(function (type_code)
         {
             var example = app.data.cards.find({"type_code": type_code})[0];
             var label = $('<label class="btn btn-default btn-sm" data-code="'
@@ -175,7 +188,7 @@
      */
     ui.init_selectors = function init_selectors()
     {
-        $('[data-filter=faction_code]').find('input[name=neutral]').prop("checked", true).parent().addClass('active');
+        $('[data-filter=faction_code]').find('input[name=general]').prop("checked", true).parent().addClass('active');
         $('[data-filter=faction_code]').find('input[name=' + app.deck.get_faction_code() + ']').prop("checked", true).parent().addClass('active');
 
         var agendas = app.deck.get_agendas() || [];
@@ -586,8 +599,8 @@
         var cards = app.data.cards.find(query, {'$orderBy': orderBy});
         var divs = CardDivs[ Config['display-column'] - 1 ];
 
-        cards.forEach(function (card)
-        {
+        cards.forEach(function (card) {
+
             if(Config['show-only-deck'] && !card.indeck)
                 return;
             var unusable = !app.deck.can_include_card(card);

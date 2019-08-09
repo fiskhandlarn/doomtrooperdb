@@ -27,7 +27,7 @@
                 martell:
                         '#e89521',
 
-                neutral:
+                general:
                         '#a99560',
             };
 
