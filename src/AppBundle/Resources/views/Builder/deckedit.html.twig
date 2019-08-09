@@ -2,6 +2,8 @@
 {% import "AppBundle::macros.html.twig" as macros %}
 
 {% block javascripts %}
+    <script src="{{ asset_url }}/js/ui.deckedit.js"></script>
+
     <script type="text/javascript">
       app.deck && app.deck.init({{ deck|json_encode|raw }});
       app.deck_history && app.deck_history.init({{ deck.history|json_encode|raw }});

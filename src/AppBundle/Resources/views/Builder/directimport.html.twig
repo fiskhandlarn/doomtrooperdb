@@ -1,6 +1,8 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block javascripts %}
+    <script src="{{ asset_url }}/js/ui.deckimport.js"></script>
+
     <script>
       $(document).on('data.app', function () {
         app.data.factions = app.data.db.collection('faction', {primaryKey: 'code', changeTimestamp: false});

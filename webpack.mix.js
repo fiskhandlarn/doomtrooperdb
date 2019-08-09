@@ -110,12 +110,74 @@ mix.webpackConfig({
 
 // Compile javascript.
 mix.combine([
-    'src/AppBundle/Resources/public/js/*.js',
     // translations
     'vendor/willdurand/js-translation-bundle/Resources/public/js/translator.min.js',
     'src/AppBundle/Resources/public/js/translations/*.js',
-    'src/AppBundle/Resources/public/js/translations/*/*.js'
-], 'public/js/app.js');
+    'src/AppBundle/Resources/public/js/translations/*/*.js',
+
+    // bootstrap
+    'src/AppBundle/Resources/public/js/bootstrap-markdown.de.js',
+    'src/AppBundle/Resources/public/js/bootstrap-markdown.es.js',
+
+    // the rest
+    'src/AppBundle/Resources/public/js/bootstrap.js',
+    'src/AppBundle/Resources/public/js/jquery.toc.min.js',
+    'src/AppBundle/Resources/public/js/app.data.js',
+    'src/AppBundle/Resources/public/js/app.format.js',
+    'src/AppBundle/Resources/public/js/app.tip.js',
+    'src/AppBundle/Resources/public/js/app.card_modal.js',
+    'src/AppBundle/Resources/public/js/app.user.js',
+    'src/AppBundle/Resources/public/js/app.binomial.js',
+    'src/AppBundle/Resources/public/js/app.hypergeometric.js',
+    'src/AppBundle/Resources/public/js/app.draw_simulator.js',
+    'src/AppBundle/Resources/public/js/app.textcomplete.js',
+    'src/AppBundle/Resources/public/js/app.markdown.js',
+    'src/AppBundle/Resources/public/js/app.smart_filter.js',
+    'src/AppBundle/Resources/public/js/app.deck.js',
+    'src/AppBundle/Resources/public/js/app.diff.js',
+    'src/AppBundle/Resources/public/js/app.deck_history.js',
+    'src/AppBundle/Resources/public/js/app.deck_charts.js',
+    'src/AppBundle/Resources/public/js/app.ui.js',
+ ], 'public/js/app.js');
+
+mix.combine([
+    'src/AppBundle/Resources/public/js/ui.card.js',
+], 'public/js/ui.card.js');
+
+mix.combine([
+    'src/AppBundle/Resources/public/js/ui.deckedit.js',
+], 'public/js/ui.deckedit.js');
+
+mix.combine([
+    'src/AppBundle/Resources/public/js/ui.deckimport.js',
+], 'public/js/ui.deckimport.js');
+
+mix.combine([
+    'src/AppBundle/Resources/public/js/ui.decklist.js',
+], 'public/js/ui.decklist.js');
+
+mix.combine([
+    'src/AppBundle/Resources/public/js/ui.decklist_edit.js',
+], 'public/js/ui.decklist_edit.js');
+
+mix.combine([
+    'src/AppBundle/Resources/public/js/ui.decklist_search.js',
+], 'public/js/ui.decklist_search.js');
+
+mix.combine([
+    'src/AppBundle/Resources/public/js/ui.decks.js',
+], 'public/js/ui.decks.js');
+
+mix.combine([
+    'src/AppBundle/Resources/public/js/ui.deckview.js',
+], 'public/js/ui.deckview.js');
+
+/*
+  app.deck_browser
+  app.deck_gallery
+levenshtein
+string_score.min
+*/
 
 // Compile styles.
 mix.combine(['src/AppBundle/Resources/public/css/*'], 'public/css/app.css');
