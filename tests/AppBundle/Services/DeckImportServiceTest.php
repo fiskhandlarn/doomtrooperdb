@@ -98,8 +98,7 @@ class DeckImportServiceTest extends TestCase
         $expectedQuantity,
         $expectedName,
         $expectedExpansionName
-    )
-    {
+    ) {
         $cardCode = "does-not-matter";
         $card = new Card();
         $card->setCode($cardCode);
@@ -138,8 +137,7 @@ class DeckImportServiceTest extends TestCase
         $expectedQuantity,
         $expectedName,
         $expectedExpansionCode
-    )
-    {
+    ) {
         $cardCode = "does-not-matter";
         $card = new Card();
         $card->setCode($cardCode);
