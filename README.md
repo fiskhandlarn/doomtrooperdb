@@ -1,9 +1,7 @@
+# DoomtrooperDB
 [![Build Status](https://api.travis-ci.org/fiskhandlarn/doomtrooperdb.svg?branch=master)](https://travis-ci.org/fiskhandlarn/doomtrooperdb)
 
-DoomtrooperDB
-=======
-
-# Very quick guide on how to install a local copy
+## Very quick guide on how to install a local copy
 
 This guide assumes you know how to use the command-line and that your machine has php and mysql installed.
 
