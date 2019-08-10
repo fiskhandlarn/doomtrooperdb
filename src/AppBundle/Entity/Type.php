@@ -11,7 +11,7 @@ class Type implements \Serializable
                 'name' => $this->name
         ];
     }
-    
+
     public function unserialize($serialized)
     {
         throw new \Exception("unserialize() method unsupported");
@@ -21,7 +21,7 @@ class Type implements \Serializable
     {
         return $this->name;
     }
-    
+
     /**
      * @var integer
      */
