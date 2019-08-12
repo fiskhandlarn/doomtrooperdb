@@ -16,6 +16,7 @@
 /var/logs/*
 /var/sessions/*
 /vendor/
+doomtrooperdb-json-data
 public/bundles/
 public/css
 public/fonts
