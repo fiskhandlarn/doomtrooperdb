@@ -19,7 +19,8 @@
 * TODO's in source code
 * JS
 * CSS
-    * selection.json
+  * selection.json
+  * style.css `.card-thumbnail-1x.card-thumbnail-character` and so on
 * fonts
 * about.*.html.twig
 * footer.*.html.twig
@@ -28,7 +29,7 @@
 * `src/AppBundle/Services/CardsData.php`
 * info@doomtrooperdb.com
 * `google_analytics_tracking_code`
-* sideboard
+* sidebar
 * default.txt.twig
 * card-props.html.twig
 * images from https://raw.githubusercontent.com/ instead?
@@ -37,12 +38,15 @@
 * languages.png
 * CardsData::addAbbrTags()
 * remove
-  * influence
-  * trait
-  * plot
-  * joust
-  * melee
-  * agenda
+  * baratheon
+  * greyjoy
+  * intrigue
+  * lannister
+  * martell
+  * thenightswatch
+  * stark
+  * targaryen
+  * tyrell
 * `macros.html.twig`
 * SAFV-order in CardsData:
 ```
@@ -87,3 +91,28 @@
   * string_score.min
 * combine all internal and external js into app.js
 * fix mapping and remove `--skip-mapping` from `doctrine:schema:validate`
+* disable language menu
+* restore language menu
+* ```        switch (deck.sort_type) {
+            case "type":
+            default:
+                console.log('TODO!');
+```
+* add more fields
+  * `src/AppBundle/Controller/SearchController.php`
+    * update `$searchType`
+  * `src/AppBundle/Resources/public/js/app.smart_filter.js`
+  * messages.en.yml: `smartfilter.filters`
+  * `src/AppBundle/Services/CardsData.php`
+  * `src/AppBundle/Resources/views/Search/searchform.html.twig`
+  * `src/AppBundle/Resources/views/Export/default.txt.twig`
+  * `src/AppBundle/Services/CardsData.php`
+* more fields in `src/AppBundle/Resources/public/js/app.ui.js` x3 (`var sections`)
+* change keywords
+* icons
+  * `src/AppBundle/Resources/public/js/ui.decklist_edit.js`, `src/AppBundle/Resources/public/js/app.textcomplete.js`: `        var icons = 'baratheon greyjoy intrigue lannister martell military thenightswatch power stark targaryen tyrell unique plot attachment location character event agenda general'.split(' ');`
+  * icons.css
+  * messages.*.yml
+* new fields in `src/AppBundle/Resources/views/Search/card-props.html.twig`
+* add graphs for SAFV(?)
+* allow all factions in deckbuilder (`DeckValidationHelper::canIncludeCard`?)
