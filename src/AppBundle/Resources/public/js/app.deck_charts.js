@@ -98,90 +98,9 @@
         });
     }
 
-    deck_charts.chart_icon = function chart_icon()
-    {
-
-        var data = [{
-                name: Translator.trans('challenges.military'),
-                label: '<span class="icon icon-military"></span>',
-                color: '#c8232a',
-                y: 0
-            }, {
-                name: Translator.trans('challenges.intrigue'),
-                label: '<span class="icon icon-intrigue"></span>',
-                color: '#13522f',
-                y: 0
-            }, {
-                name: Translator.trans('challenges.power'),
-                label: '<span class="icon icon-power"></span>',
-                color: '#292e5f',
-                y: 0
-            }];
-
-        var draw_deck = app.deck.get_draw_deck();
-        draw_deck.forEach(function (card)
-        {
-            if(card.is_military)
-                data[0].y += (card.is_unique ? 1 : card.indeck);
-            if(card.is_intrigue)
-                data[1].y += (card.is_unique ? 1 : card.indeck);
-            if(card.is_power)
-                data[2].y += (card.is_unique ? 1 : card.indeck);
-        })
-
-        $("#deck-chart-icon").highcharts({
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: Translator.trans("decks.charts.icon.title")
-            },
-            subtitle: {
-                text: Translator.trans("decks.charts.icon.subtitle")
-            },
-            xAxis: {
-                categories: _.pluck(data, 'label'),
-                labels: {
-                    useHTML: true
-                },
-                title: {
-                    text: null
-                }
-            },
-            yAxis: {
-                min: 0,
-                allowDecimals: false,
-                tickInterval: 2,
-                title: null,
-                labels: {
-                    overflow: 'justify'
-                }
-            },
-            tooltip: {
-                //headerFormat: '<span style="font-size: 10px">{point.key} Icon</span><br/>'
-                headerFormat: '<span style="font-size: 10px">' + Translator.trans('decks.charts.icon.tooltip.header', {type: '{point.key}'}) + '</span><br/>'
-            },
-            series: [{
-                    type: "column",
-                    animation: false,
-                    name: Translator.trans('decks.charts.icon.tooltip.label'),
-                    showInLegend: false,
-                    data: data
-                }],
-            plotOptions: {
-                column: {
-                    borderWidth: 0,
-                    groupPadding: 0,
-                    shadow: false
-                }
-            }
-        });
-    }
-
     deck_charts.setup = function setup(options)
     {
         deck_charts.chart_faction();
-        deck_charts.chart_icon();
     }
 
     $(document).on('shown.bs.tab', 'a[data-toggle=tab]', function (e)
