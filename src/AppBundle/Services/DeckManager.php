@@ -81,15 +81,7 @@ class DeckManager
 
             $cards [$card_code] = $card;
 
-            $expansion = $card->getExpansion();
-            if (!$latestExpansion) {
-                $latestExpansion = $expansion;
-            } elseif (empty($expansion->getDateRelease())) {
-                $latestExpansion = $expansion;
-            } elseif (empty($latestExpansion->getDateRelease())) {
-            } elseif ($latestExpansion->getDateRelease() < $expansion->getDateRelease()) {
-                $latestExpansion = $expansion;
-            }
+            $latestExpansion = $card->getExpansion();;
         }
         $deck->setLastExpansion($latestExpansion);
         if (empty($tags)) {

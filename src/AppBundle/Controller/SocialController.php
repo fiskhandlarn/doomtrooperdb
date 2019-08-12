@@ -69,14 +69,6 @@ class SocialController extends Controller
             return $this->redirect($this->generateUrl('deck_view', ['deck_id' => $deck->getId()]));
         }
 
-        $lastExpansion = $deck->getLastExpansion();
-        if (!$lastExpansion->getDateRelease() || $lastExpansion->getDateRelease() > new \DateTime()) {
-            $this->get('session')
-                ->getFlashBag()
-                ->set('error', $translator->trans('decklist.publish.errors.unreleased'));
-            return $this->redirect($this->generateUrl('deck_view', ['deck_id' => $deck->getId()]));
-        }
-
         $problem = $this->get('deck_validation_helper')->findProblem($deck);
         if ($problem) {
             $this->get('session')->getFlashBag()->set('error', $translator->trans('decklist.publish.errors.invalid'));

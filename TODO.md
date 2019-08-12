@@ -116,3 +116,4 @@
 * new fields in `src/AppBundle/Resources/views/Search/card-props.html.twig`
 * add graphs for SAFV(?)
 * allow all factions in deckbuilder (`DeckValidationHelper::canIncludeCard`?)
+* remove "last expansion"

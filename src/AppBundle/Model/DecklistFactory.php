@@ -20,11 +20,6 @@ class DecklistFactory
 
     public function createDecklistFromDeck(Deck $deck, $name = null, $descriptionMd = null)
     {
-        $lastExpansion = $deck->getLastExpansion();
-        if (!$lastExpansion->getDateRelease() || $lastExpansion->getDateRelease() > new \DateTime()) {
-            throw new \Exception("You cannot publish this deck yet, because it has unreleased cards.");
-        }
-
         $problem = $this->deckValidationHelper->findProblem($deck);
         if ($problem) {
             throw new \Exception(

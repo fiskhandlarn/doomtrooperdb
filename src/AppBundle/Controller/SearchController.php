@@ -122,7 +122,6 @@ class SearchController extends Controller
         $publisher_name = $this->container->getParameter('publisher_name');
 
         $meta = $expansion->getName().", a set of cards for $game_name"
-                .($expansion->getDateRelease() ? " published on ".$expansion->getDateRelease()->format('Y/m/d') : "")
                 ." by $publisher_name.";
 
         $key = array_search('expansion', SearchController::$searchKeys);
@@ -330,10 +329,7 @@ class SearchController extends Controller
                 $expansion = $card->getExpansion();
                 $cardinfo = $this->get('cards_data')->getCardInfo($card, false, null);
                 if (empty($availability[$expansion->getCode()])) {
-                    $availability[$expansion->getCode()] = false;
-                    if ($expansion->getDateRelease() && $expansion->getDateRelease() <= new \DateTime()) {
-                        $availability[$expansion->getCode()] = true;
-                    }
+                    $availability[$expansion->getCode()] = true;
                 }
                 $cardinfo['available'] = $availability[$expansion->getCode()];
                 if ($includeReviews) {
