@@ -1,14 +1,14 @@
 {
-    "$id": "https://localhost/api/public/cards",
+    "$id": "http://localhost/api/public/cards",
     "type": "array",
     "definitions": {},
     "$schema": "http://json-schema.org/draft-07/schema#",
     "items": {
-        "$id": "https://localhost/api/public/cards/items",
+        "$id": "http://localhost/api/public/cards/items",
         "type": "object",
         "properties": {
             "expansion_code": {
-                "$id": "https://localhost/api/public/cards/items/properties/expansion_code",
+                "$id": "http://localhost/api/public/cards/items/properties/expansion_code",
                 "type": "string",
                 "title": "The Expansion_code Schema ",
                 "default": "",
@@ -17,7 +17,7 @@
                 ]
             },
             "expansion_name": {
-                "$id": "https://localhost/api/public/cards/items/properties/expansion_name",
+                "$id": "http://localhost/api/public/cards/items/properties/expansion_name",
                 "type": "string",
                 "title": "The Expansion_name Schema ",
                 "default": "",
@@ -26,7 +26,7 @@
                 ]
             },
             "type_code": {
-                "$id": "https://localhost/api/public/cards/items/properties/type_code",
+                "$id": "http://localhost/api/public/cards/items/properties/type_code",
                 "type": "string",
                 "title": "The Type_code Schema ",
                 "default": "",
@@ -35,7 +35,7 @@
                 ]
             },
             "type_name": {
-                "$id": "https://localhost/api/public/cards/items/properties/type_name",
+                "$id": "http://localhost/api/public/cards/items/properties/type_name",
                 "type": "string",
                 "title": "The Type_name Schema ",
                 "default": "",
@@ -44,7 +44,7 @@
                 ]
             },
             "faction_code": {
-                "$id": "https://localhost/api/public/cards/items/properties/faction_code",
+                "$id": "http://localhost/api/public/cards/items/properties/faction_code",
                 "type": "string",
                 "title": "The Faction_code Schema ",
                 "default": "",
@@ -53,7 +53,7 @@
                 ]
             },
             "faction_name": {
-                "$id": "https://localhost/api/public/cards/items/properties/faction_name",
+                "$id": "http://localhost/api/public/cards/items/properties/faction_name",
                 "type": "string",
                 "title": "The Faction_name Schema ",
                 "default": "",
@@ -62,7 +62,7 @@
                 ]
             },
             "code": {
-                "$id": "https://localhost/api/public/cards/items/properties/code",
+                "$id": "http://localhost/api/public/cards/items/properties/code",
                 "type": "string",
                 "title": "The Code Schema ",
                 "default": "",
@@ -71,7 +71,7 @@
                 ]
             },
             "name": {
-                "$id": "https://localhost/api/public/cards/items/properties/name",
+                "$id": "http://localhost/api/public/cards/items/properties/name",
                 "type": "string",
                 "title": "The Name Schema ",
                 "default": "",
@@ -80,7 +80,7 @@
                 ]
             },
             "text": {
-                "$id": "https://localhost/api/public/cards/items/properties/text",
+                "$id": "http://localhost/api/public/cards/items/properties/text",
                 "type": "string",
                 "title": "The Text Schema ",
                 "default": "",
@@ -89,7 +89,7 @@
                 ]
             },
             "deck_limit": {
-                "$id": "https://localhost/api/public/cards/items/properties/deck_limit",
+                "$id": "http://localhost/api/public/cards/items/properties/deck_limit",
                 "type": "integer",
                 "title": "The Deck_limit Schema ",
                 "default": 0,
@@ -98,7 +98,7 @@
                 ]
             },
             "flavor": {
-                "$id": "https://localhost/api/public/cards/items/properties/flavor",
+                "$id": "http://localhost/api/public/cards/items/properties/flavor",
                 "type": "string",
                 "title": "The Flavor Schema ",
                 "default": "",
@@ -107,7 +107,7 @@
                 ]
             },
             "illustrator": {
-                "$id": "https://localhost/api/public/cards/items/properties/illustrator",
+                "$id": "http://localhost/api/public/cards/items/properties/illustrator",
                 "type": ["string","null"],
                 "title": "The Illustrator Schema ",
                 "default": "",
@@ -116,7 +116,7 @@
                 ]
             },
             "octgn_id": {
-                "$id": "https://localhost/api/public/cards/items/properties/octgn_id",
+                "$id": "http://localhost/api/public/cards/items/properties/octgn_id",
                 "type": "string",
                 "title": "The Octgn_id Schema ",
                 "default": "",
@@ -125,58 +125,58 @@
                 ]
             },
             "image_url": {
-                "$id": "https://localhost/api/public/cards/items/properties/image_url",
+                "$id": "http://localhost/api/public/cards/items/properties/image_url",
                 "type": ["string", "null"],
                 "title": "The Image_url Schema ",
                 "default": "",
                 "examples": [
-                    "https://localhost/images/unl/legionnaireofsemai.jpg"
+                    "http://localhost/images/unl/legionnaireofsemai.jpg"
                 ]
             },
             "armor": {
-                "$id": "https://localhost/api/public/cards/items/properties/armor",
+                "$id": "http://localhost/api/public/cards/items/properties/armor",
                 "type": ["string", "null"],
                 "title": "The Armor Schema ",
                 "default": ""
             },
             "clarification_text": {
-                "$id": "https://localhost/api/public/cards/items/properties/clarification_text",
+                "$id": "http://localhost/api/public/cards/items/properties/clarification_text",
                 "type": ["string", "null"],
                 "title": "The Clarification_text Schema ",
                 "default": ""
             },
             "fight": {
-                "$id": "https://localhost/api/public/cards/items/properties/fight",
+                "$id": "http://localhost/api/public/cards/items/properties/fight",
                 "type": ["string", "null"],
                 "title": "The Fight Schema ",
                 "default": ""
             },
             "notes": {
-                "$id": "https://localhost/api/public/cards/items/properties/notes",
+                "$id": "http://localhost/api/public/cards/items/properties/notes",
                 "type": ["string", "null"],
                 "title": "The Notes Schema ",
                 "default": ""
             },
             "post_play": {
-                "$id": "https://localhost/api/public/cards/items/properties/post_play",
+                "$id": "http://localhost/api/public/cards/items/properties/post_play",
                 "type": ["string", "null"],
                 "title": "The Post_play Schema ",
                 "default": ""
             },
             "rarity": {
-                "$id": "https://localhost/api/public/cards/items/properties/rarity",
+                "$id": "http://localhost/api/public/cards/items/properties/rarity",
                 "type": ["string", "null"],
                 "title": "The Rarity Schema ",
                 "default": ""
             },
             "shoot": {
-                "$id": "https://localhost/api/public/cards/items/properties/shoot",
+                "$id": "http://localhost/api/public/cards/items/properties/shoot",
                 "type": ["string", "null"],
                 "title": "The Shoot Schema ",
                 "default": ""
             },
             "value": {
-                "$id": "https://localhost/api/public/cards/items/properties/value",
+                "$id": "http://localhost/api/public/cards/items/properties/value",
                 "type": ["string", "null"],
                 "title": "The Value Schema ",
                 "default": ""
