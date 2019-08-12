@@ -55,7 +55,6 @@ decks:
   problems:
     too_few_cards: Contiene muy pocas cartas
     too_many_copies: Contiene demasiadas copias de la misma carta (por título)
-    invalid_cards: Contiene cartas prohibidas (cartas no permitidas por la Facción)
   build:
     choose:
       faction: Elige tu Facción

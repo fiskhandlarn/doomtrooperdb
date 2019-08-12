@@ -14,7 +14,7 @@
             unsaved,
             user_id,
             problem_labels = _.reduce(
-                    ['too_few_cards', 'too_many_copies', 'invalid_cards'],
+                    ['too_few_cards', 'too_many_copies'],
                     function (problems, key)
                     {
                         problems[key] = Translator.trans('decks.problems.' + key);
@@ -76,7 +76,7 @@
      * @see get_layout_data_one_section()
      */
     var append_card_line_to_section = function append_card_line_to_section(card, $section) {
-        var $elem = $('<div>').addClass(deck.can_include_card(card) ? '' : 'invalid-card');
+        var $elem = $('<div>');
         $elem.append($(card_line_tpl({card: card})));
         $elem.prepend(card.indeck + 'x ');
         $elem.appendTo($section);
@@ -432,7 +432,7 @@
     deck.create_card_group = function(cards, context){
         var section = $('<div>');
         cards.forEach(function (card) {
-            var $div = $('<div>').addClass(deck.can_include_card(card) ? '' : 'invalid-card');
+            var $div = $('<div>');
 
             $div.append($(card_line_tpl({card:card})));
             $div.prepend(card.indeck+'x ');
@@ -552,11 +552,6 @@
         }))) {
             return 'too_many_copies';
         }
-
-        // no invalid card
-        if(deck.get_invalid_cards().length > 0) {
-            return 'invalid_cards';
-        }
     };
 
     /**
@@ -567,32 +562,6 @@
     deck.get_all_faction_codes = function get_all_faction_codes()
     {
         return _.values(factions);
-    };
-
-    deck.get_invalid_cards = function get_invalid_cards()
-    {
-        return _.filter(deck.get_cards(), function (card)
-        {
-            return !deck.can_include_card(card);
-        });
-    };
-
-    /**
-     * returns true if the deck can include the card as parameter
-     * @memberOf deck
-     */
-    deck.can_include_card = function can_include_card(card)
-    {
-        // general card => yes
-        if(card.faction_code === 'general')
-            return true;
-
-        // in-house card => yes
-        if(card.faction_code === faction_code)
-            return true;
-
-        // if none above => no
-        return false;
     };
 
 })(app.deck = {}, jQuery);

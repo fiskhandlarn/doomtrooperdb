@@ -45,9 +45,6 @@ class DeckValidationHelper
                 return 'too_many_copies';
             }
         }
-        if (!empty($this->getInvalidCards($deck))) {
-            return 'invalid_cards';
-        }
 
         return null;
     }
@@ -63,35 +60,5 @@ class DeckValidationHelper
         }
 
         return $this->translator->trans('decks.problems.'.$problem);
-    }
-
-    /**
-     * @param ExportableDeck $deck
-     * @param Card $card
-     * @return bool
-     */
-    public function canIncludeCard(ExportableDeck $deck, Card $card): bool
-    {
-        if ($card->getFaction()->getCode() === $deck->getFaction()->getCode()) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @param ExportableDeck $deck
-     * @return array
-     */
-    protected function getInvalidCards(ExportableDeck $deck): array
-    {
-        $invalidCards = [];
-        foreach ($deck->getSlots() as $slot) {
-            if (!$this->canIncludeCard($deck, $slot->getCard())) {
-                $invalidCards[] = $slot->getCard();
-            }
-        }
-
-        return $invalidCards;
     }
 }
