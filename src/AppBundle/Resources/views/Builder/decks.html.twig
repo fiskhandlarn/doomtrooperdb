@@ -123,30 +123,7 @@
                                    class="deck-name">{{ deck.name }}</a> {{ deck.version }}
                                 <div class="restricted-list-info">
                                     <em>{{ 'restrictedlist.title' | trans }}:</em>
-                                    {% if deck.isLegalForJoust %}
-                                        <span class="text-success">
-                                            <i class="fas fa-check"></i>
-                                            {{ 'restrictedlist.joust' | trans }}
-                                        </span>
-                                    {% else %}
-                                        <span class="text-danger">
-                                            <i class="fas fa-times"></i>
-                                            {{ 'restrictedlist.joust' | trans }}
-                                        </span>
-                                    {% endif %}
-                                    |
-                                    {% if deck.isLegalForMelee %}
-                                        <span class="text-success">
-                                            <i class="fas fa-check"></i>
-                                            {{ 'restrictedlist.melee' | trans }}
-                                        </span>
-                                    {% else %}
-                                        <span class="text-danger">
-                                            <i class="fas fa-times"></i>
-                                            {{ 'restrictedlist.melee' | trans }}
-                                        </span>
-                                    {% endif %}
-
+                                    TODO no joust or melee anymore ¯\_(ツ)_/¯
                                 </div>
                                 {% if deck.problem is not null %}
                                     <div class="text-danger small">

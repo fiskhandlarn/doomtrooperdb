@@ -61,9 +61,6 @@
             case 'btn-sort-cardnumber':
                 app.deck.change_sort('cardnumber');
                 break;
-            case 'btn-sort-cost':
-                app.deck.change_sort('cost');
-                break;
             case 'btn-export-plaintext':
                 ui.export_plaintext(app.deck);
                 break;

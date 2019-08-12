@@ -147,9 +147,6 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
             'faction_name' => $this->getFaction()->getName(),
             'slots' => $slots->getContent(),
             'version' => $this->getVersion(),
-            'isLegalForJoust' => $this->isLegalForJoust(),
-            'isLegalForMelee' => $this->isLegalForMelee(),
-
         ];
 
         return $array;
@@ -185,23 +182,5 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
             'included_expansions' => $slots->getIncludedExpansions(),
             'slots_by_expansion_order' => $slots->getSlotsByExpansionOrder()
         ];
-    }
-
-    /**
-     * @return boolean
-     * @see SlotCollectionInterface::isLegalForMelee()
-     */
-    public function isLegalForMelee()
-    {
-        return $this->getSlots()->isLegalForMelee();
-    }
-
-    /**
-     * @return boolean
-     * @see SlotCollectionInterface::isLegalForJoust()
-     */
-    public function isLegalForJoust()
-    {
-        return $this->getSlots()->isLegalForJoust();
     }
 }

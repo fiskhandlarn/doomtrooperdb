@@ -76,9 +76,8 @@ class BuilderController extends Controller
         }
         $tags = [$faction_code];
 
-        $agenda = null;
         $name = $translator->trans(
-            "decks.build.newname.noagenda",
+            "decks.build.newname",
             array(
                 "%faction%" => $faction->getName(),
             )

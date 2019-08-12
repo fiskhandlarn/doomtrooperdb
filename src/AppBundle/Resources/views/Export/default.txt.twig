@@ -10,31 +10,31 @@ From {{ first_expansion.expansion.name }}{% if first_expansion.nb > 1 %} ({{ fir
 {{ first_expansion.expansion.name }}{% if first_expansion.nb > 1 %} ({{ first_expansion.nb }}){% endif %}
 {% endif %}
 
-{% set characters = deck.slots_by_type.character %}
-Character{% if characters|length > 1 %}s{% endif %}
+{% set art = deck.slots_by_type.art %}
+Art{% if art|length > 1 %}s{% endif %}
 
-{% for slot in characters %}
+{% for slot in art %}
 {{ slot.quantity }}x {{ slot.card.name }} ({{ slot.card.expansion.name }})
 {% endfor %}
 
-{% set locations = deck.slots_by_type.location %}
-Location{% if locations|length > 1 %}s{% endif %}
+{% set symmetrys = deck.slots_by_type.symmetry %}
+Symmetry{% if symmetrys|length > 1 %}s{% endif %}
 
-{% for slot in locations %}
+{% for slot in symmetrys %}
 {{ slot.quantity }}x {{ slot.card.name }} ({{ slot.card.expansion.name }})
 {% endfor %}
 
-{% set attachments = deck.slots_by_type.attachment %}
-Attachment{% if attachments|length > 1 %}s{% endif %}
+{% set beasts = deck.slots_by_type.beast %}
+Beast{% if beasts|length > 1 %}s{% endif %}
 
-{% for slot in attachments %}
+{% for slot in beasts %}
 {{ slot.quantity }}x {{ slot.card.name }} ({{ slot.card.expansion.name }})
 {% endfor %}
 
-{% set events = deck.slots_by_type.event %}
-Event{% if events|length > 1 %}s{% endif %}
+{% set equipments = deck.slots_by_type.equipment %}
+Equipment{% if equipments|length > 1 %}s{% endif %}
 
-{% for slot in events %}
+{% for slot in equipments %}
 {{ slot.quantity }}x {{ slot.card.name }} ({{ slot.card.expansion.name }})
 {% endfor %}
 

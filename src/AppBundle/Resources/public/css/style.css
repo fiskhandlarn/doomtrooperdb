@@ -21,7 +21,7 @@ body {
 .card-type, .card-designer {
     font-weight: 700;
 }
-.card-traits, .card-text i {
+.card-text i {
     font-weight: 700;
     font-style: italic;
 }

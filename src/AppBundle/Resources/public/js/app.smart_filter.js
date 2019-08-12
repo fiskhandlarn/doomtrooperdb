@@ -5,23 +5,10 @@
 
     var configuration = {
         a: [add_string_sf, 'flavor', Translator.trans('decks.smartfilter.filters.flavor')],
-        b: [add_integer_sf, 'claim', Translator.trans('decks.smartfilter.filters.claim')],
         e: [add_string_sf, 'expansion_code', Translator.trans('decks.smartfilter.filters.expansion_code')],
         f: [add_string_sf, 'faction_code', Translator.trans('decks.smartfilter.filters.faction_code')],
-        g: [add_boolean_sf, 'is_intrigue', Translator.trans('decks.smartfilter.filters.is_intrigue')],
-        h: [add_integer_sf, 'reserve', Translator.trans('decks.smartfilter.filters.reserve')],
         i: [add_string_sf, 'illustrator', Translator.trans('decks.smartfilter.filters.illustrator')],
-        d: [add_string_sf, 'designer', Translator.trans('decks.smartfilter.filters.designer')],
-        k: [add_string_sf, 'traits', Translator.trans('decks.smartfilter.filters.traits')],
-        l: [add_boolean_sf, 'is_loyal', Translator.trans('decks.smartfilter.filters.is_loyal')],
-        m: [add_boolean_sf, 'is_military', Translator.trans('decks.smartfilter.filters.is_military')],
-        n: [add_integer_sf, 'income', Translator.trans('decks.smartfilter.filters.income')],
-        o: [add_integer_sf, 'cost', Translator.trans('decks.smartfilter.filters.cost')],
-        p: [add_boolean_sf, 'is_power', Translator.trans('decks.smartfilter.filters.is_power')],
-        s: [add_integer_sf, 'strength', Translator.trans('decks.smartfilter.filters.strength')],
         t: [add_string_sf, 'type_code', Translator.trans('decks.smartfilter.filters.type_code')],
-        u: [add_boolean_sf, 'is_unique', Translator.trans('decks.smartfilter.filters.is_unique')],
-        v: [add_integer_sf, 'initiative', Translator.trans('decks.smartfilter.filters.initiative')],
         x: [add_string_sf, 'text', Translator.trans('decks.smartfilter.filters.text')],
         y: [add_integer_sf, 'quantity', Translator.trans('decks.smartfilter.filters.quantity')]
     };

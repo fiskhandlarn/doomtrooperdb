@@ -4,14 +4,6 @@
     /**
      * @memberOf format
      */
-    format.traits = function traits(card)
-    {
-        return card.traits || '';
-    };
-
-    /**
-     * @memberOf format
-     */
     format.name = function name(card)
     {
         return (card.is_unique ? '<span class="icon-unique"></span> ' : "") + card.name;
@@ -19,14 +11,7 @@
 
     format.faction = function faction(card)
     {
-        var text = '<span class="fg-' + card.faction_code + ' icon-' + card.faction_code + '"></span> ' + card.faction_name + '. ';
-        if(card.faction_code != 'general') {
-            if(card.is_loyal)
-                text += Translator.trans('card.info.loyal') + '. ';
-            else
-                text += Translator.trans('card.info.nonloyal') + '. ';
-        }
-        return text;
+        return '<span class="fg-' + card.faction_code + ' icon-' + card.faction_code + '"></span> ' + card.faction_name + '. ';
     }
 
     /**
@@ -44,28 +29,10 @@
     format.info = function info(card)
     {
         var text = '<span class="card-type">' + card.type_name + '. </span>';
+        console.log('TODO warriors and warzones');
         switch(card.type_code) {
-            case 'character':
-                text += Translator.trans('card.info.cost') + ': ' + card.cost + '. ';
-                text += Translator.trans('card.info.str') + ': ' + (card.strength != null ? card.strength : 'X') + '. '
-                if(card.is_military)
-                    text += '<span class="color-military icon-military" title="' + Translator.trans('challenges.military') + '"></span> ';
-                if(card.is_intrigue)
-                    text += '<span class="color-intrigue icon-intrigue" title="' + Translator.trans('challenges.intrigue') + '"></span> ';
-                if(card.is_power)
-                    text += '<span class="color-power icon-power" title="' + Translator.trans('challenges.power') + '"></span> ';
-                break;
-            case 'attachment':
-            case 'location':
-            case 'event':
-                text += Translator.trans('card.info.cost') + ': ' + card.cost + '. ';
-                break;
-            case 'plot':
-                text += Translator.trans('card.info.income') + ': ' + card.income + '. ';
-                text += Translator.trans('card.info.initiative') + ': ' + card.initiative + '. ';
-                text += Translator.trans('card.info.claim') + ': ' + card.claim + '. ';
-                text += Translator.trans('card.info.reserve') + ': ' + card.reserve + '. ';
-                text += Translator.trans('card.info.plotlimit') + ': ' + card.deck_limit + '. ';
+            case 'warrior':
+                text += Translator.trans('card.info.shoot') + ': ' + card.shoot + '. ';
                 break;
         }
         return text;

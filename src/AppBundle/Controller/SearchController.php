@@ -11,24 +11,11 @@ class SearchController extends Controller
     public static $searchKeys = array(
             ''  => 'code',
             'a' => 'flavor',
-            'b' => 'claim',
-            'd' => 'designer',
             'e' => 'expansion',
             'f' => 'faction',
-            'g' => 'isIntrigue',
-            'h' => 'reserve',
             'i' => 'illustrator',
-            'k' => 'traits',
-            'l' => 'isLoyal',
-            'm' => 'isMilitary',
-            'n' => 'income',
-            'o' => 'cost',
-            'p' => 'isPower',
             'r' => 'date_release',
-            's' => 'strength',
             't' => 'type',
-            'u' => 'isUnique',
-            'v' => 'initiative',
             'x' => 'text',
             'y' => 'quantity',
     );
@@ -73,16 +60,6 @@ class SearchController extends Controller
         $types = $this->getDoctrine()->getRepository('AppBundle:Type')->findAll();
         $factions = $this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName();
 
-        $list_traits = $this->getDoctrine()->getRepository('AppBundle:Card')->findTraits();
-        $traits = [];
-        foreach ($list_traits as $card) {
-            $subs = explode('.', $card["traits"]);
-            foreach ($subs as $sub) {
-                $traits[trim($sub)] = 1;
-            }
-        }
-        $traits = array_filter(array_keys($traits));
-        sort($traits);
 
         $list_illustrators = $dbh->executeQuery(
             "SELECT DISTINCT c.illustrator FROM card c WHERE c.illustrator != '' ORDER BY c.illustrator"
@@ -97,7 +74,6 @@ class SearchController extends Controller
                 "expansions" => $expansions,
                 "types" => $types,
                 "factions" => $factions,
-                "traits" => $traits,
                 "illustrators" => $illustrators,
         ), $response);
     }
@@ -384,8 +360,6 @@ class SearchController extends Controller
                     'name' => 'name',
                     'faction' => 'faction_name',
                     'type' => 'type_name',
-                    'cost' => 'cost',
-                    'strength' => 'strength',
                 );
 
                 $brokenlist = [];

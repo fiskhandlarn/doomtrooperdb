@@ -9,18 +9,12 @@
         {% autoescape false %}
             {% for card in cards %}
                 <card id="bc0f047c-01b1-427f-a439-d451eda{{ card.code }}" name="{{ card.title|e('html') }}">
-                    <property name="Subtitle" value="{{ card.subtitle|e('html') }}"/>
                     <property name="Type" value="{{ card.type }}"/>
-                    <property name="Traits" value="{{ card.subtype }}"/>
-                    <property name="Cost" value="{{ card.cost }}"/>
                     <property name="Requirement" value="{{ card.memoryunits }}"/>
-                    <property name="Stat" value="{{ card.strength }}"/>
                     <property name="Rules" value="{{ card.text }}"/>
                     <property name="Flavor" value="{{ card.flavor }}"/>
                     <property name="Instructions" value=""/>
                     <property name="Faction" value="{{ card.faction }}"/>
-                    <property name="Influence" value="{{ card.factioncost }}"/>
-                    <property name="Side" value="{{ card.side }}"/>
                     <property name="AutoScript" value=""/>
                     <property name="AutoAction" value=""/>
                 </card>

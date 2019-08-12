@@ -9,22 +9,18 @@
         var lines = [];
         var included_expansions = deck.get_included_expansions({ 'position': 1 });
 
-        var agendas = deck.get_agendas();
         var sortOrder = { "name": 1 };
         var sections = {
-            "Plots": deck.get_plot_deck(sortOrder),
-            "Characters": deck.get_characters(sortOrder),
-            "Attachments": deck.get_attachments(sortOrder),
-            "Locations":  deck.get_locations(sortOrder),
-            'Events': deck.get_events(sortOrder)
+            "Alliance": deck.get_alliance(sortOrder),
+            "Art": deck.get_art(sortOrder),
+            "Beasts": deck.get_beasts(sortOrder),
+            "Symmetrys":  deck.get_symmetrys(sortOrder),
+            'Equipments': deck.get_equipments(sortOrder)
         };
 
         lines.push(deck.get_name());
         lines.push("");
         lines.push(deck.get_faction_name());
-        agendas.forEach(function(agenda) {
-            lines.push(agenda.name);
-        });
         lines.push("");
         if (included_expansions.length > 1) {
             lines.push("Expansions: From " + included_expansions[0].name + ' to ' + included_expansions[included_expansions.length - 1].name);
@@ -45,14 +41,13 @@
         var lines = [];
         var included_expansions = deck.get_included_expansions({ 'position': 1 });
 
-        var agendas = deck.get_agendas();
         var sortOrder = { "name": 1 };
         var sections = {
-            "Plots": deck.get_plot_deck(sortOrder),
-            "Characters": deck.get_characters(sortOrder),
-            "Attachments": deck.get_attachments(sortOrder),
-            "Locations":  deck.get_locations(sortOrder),
-            'Events': deck.get_events(sortOrder)
+            "Alliance": deck.get_alliance(sortOrder),
+            "Art": deck.get_art(sortOrder),
+            "Beasts": deck.get_beasts(sortOrder),
+            "Symmetrys":  deck.get_symmetrys(sortOrder),
+            'Equipments': deck.get_equipments(sortOrder)
         };
 
         var print_card_line = function(card, show_quantity) {
@@ -68,9 +63,6 @@
 
         lines.push("## " + deck.get_faction_name());
         lines.push("");
-        agendas.forEach(function(card) {
-            lines.push(print_card_line(card, false) + "  ");
-        });
 
         lines.push("");
         if (included_expansions.length > 1) {
@@ -95,14 +87,13 @@
         var lines = [];
         var included_expansions = deck.get_included_expansions({ 'position': 1 });
 
-        var agendas = deck.get_agendas();
         var sortOrder = { "name": 1 };
         var sections = {
-            "Plots": deck.get_plot_deck(sortOrder),
-            "Characters": deck.get_characters(sortOrder),
-            "Attachments": deck.get_attachments(sortOrder),
-            "Locations":  deck.get_locations(sortOrder),
-            'Events': deck.get_events(sortOrder)
+            "Alliance": deck.get_alliance(sortOrder),
+            "Art": deck.get_art(sortOrder),
+            "Beasts": deck.get_beasts(sortOrder),
+            "Symmetrys":  deck.get_symmetrys(sortOrder),
+            'Equipments': deck.get_equipments(sortOrder)
         };
 
         var print_card_line = function(card, show_quantity) {
@@ -118,9 +109,6 @@
 
         lines.push(deck.get_faction_name());
         lines.push("");
-        agendas.forEach(function(card) {
-            lines.push(print_card_line(card, false) + "  ");
-        });
 
         lines.push("");
         if (included_expansions.length > 1) {

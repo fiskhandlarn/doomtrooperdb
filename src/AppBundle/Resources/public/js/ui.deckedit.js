@@ -61,17 +61,6 @@
     };
 
     /**
-     * removes titles, which cannot be used in decks
-     * @memberOf ui
-     */
-    ui.remove_melee_titles = function remove_melee_titles()
-    {
-        app.data.cards.remove({
-            'type_code': 'title'
-        });
-    };
-
-    /**
      * sets the maxqty of each card
      * @memberOf ui
      */
@@ -191,15 +180,8 @@
         $('[data-filter=faction_code]').find('input[name=general]').prop("checked", true).parent().addClass('active');
         $('[data-filter=faction_code]').find('input[name=' + app.deck.get_faction_code() + ']').prop("checked", true).parent().addClass('active');
 
-        var agendas = app.deck.get_agendas() || [];
-        var faction_codes = [];
+        var faction_codes = app.deck.get_all_faction_codes();
 
-        // special case - for "The Conclave" and "Kingdom of Shadows" pre-select all factions.
-        if (agendas.length && ("09045" === agendas[0]['code'] || "13079" === agendas[0]['code'])) {
-            faction_codes = app.deck.get_all_faction_codes();
-        } else {
-            faction_codes = app.deck.get_minor_faction_codes();
-        }
         for(var i = 0; i < faction_codes.length; i++) {
             $('[data-filter=faction_code]').find('input[name=' + faction_codes[i] + ']').prop("checked", true).parent().addClass('active');
         }
@@ -463,7 +445,6 @@
         $('#btn-sort-faction').on('click', function() { app.deck.change_sort('faction'); });
         $('#btn-sort-factionnumber').on('click', function() { app.deck.change_sort('factionnumber'); });
         $('#btn-sort-cardnumber').on('click', function() { app.deck.change_sort('cardnumber'); });
-        $('#btn-sort-cost').on('click', function() { app.deck.change_sort('cost'); });
    };
 
     /**
@@ -507,8 +488,6 @@
                         '<tr>'
                         + '<td><div class="btn-group" data-toggle="buttons"><%= radios %></div></td>'
                         + '<td><a class="card card-tip" data-code="<%= card.code %>" href="<%= url %>" data-target="#cardModal" data-remote="false" data-toggle="modal"><%= card.label %></a></td>'
-                        + '<td class="cost"><%= card.cost %><%= card.income %></td>'
-                        + '<td class="cost"><%= card.strength %><%= card.initiative %></td>'
                         + '<td class="type"><span class="icon-<%= card.type_code %>" title="<%= card.type_name %>"></span></td>'
                         + '<td class="faction"><span class="icon-<%= card.faction_code %> fg-<%= card.faction_code %>" title="<%= card.faction_name %>"></span></td>'
                         + '</tr>'
@@ -724,7 +703,6 @@
      */
     ui.on_data_loaded = function on_data_loaded()
     {
-        ui.remove_melee_titles();
         ui.set_max_qty();
         app.draw_simulator && app.draw_simulator.on_data_loaded();
     };

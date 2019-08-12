@@ -53,18 +53,14 @@ decks:
   description: Beschreibung
   defaultemptydesc: "*Keine Beschreibung*"
   problems:
-    too_many_plots: Enthält zu viele Strategiekarten
-    too_few_plots: Enthält zu wenige Strategiekarten
-    too_many_different_plots: Enthält mehr als eine Strategiekarte doppelt
     too_few_cards: Enthält zu wenige Karten
     too_many_copies: Enthält zu viele Kopien einer Karte (nach Titel)
-    invalid_cards: Enthält nicht zulässige Karten (nach Fraktion oder Agenda)
+    invalid_cards: Enthält nicht zulässige Karten (nach Fraktion)
   build:
     choose:
       faction: Wähle eine Fraktion
     start: Die Deckliste erstellen und mit dem Bauen beginnen
-    newname:
-      noagenda: "Neue Deckliste: %faction%"
+    newname: "Neue Deckliste: %faction%"
     errors:
       nofaction: Es muss Fraktion ausgewählt sein.
   edit:
@@ -96,7 +92,7 @@ decks:
     notes:
       tags:
         label: Tags
-        hint: Die Tags dienen zum Filtern deiner Decklisten, z.B., <i>Turnier</i> o <i>Buhurt</i>.
+        hint: Die Tags dienen zum Filtern deiner Decklisten, z.B., <i>Turnier</i> o <i>TODO</i>.
       notes:
         label: Notizen
         hint: "Tippe # um einen Kartennamen oder $ um ein Spielsymbol einzugeben."
@@ -105,7 +101,7 @@ decks:
       cancel: Änderungen verwerfen
     meta:
       drawdeck: "{0} <em>Nachziehstapel:</em> %count% Karten | {1} <em>Nachziehstapel:</em> %count% Karte | ]1,Inf] <em>Nachziehstapel:</em> %count% Karten"
-      plotdeck: "{0} <em>Strategiestapel:</em> %count% Karten | {1} <em>Strategiestapel:</em> %count% Karte | ]1,Inf] <em>Strategiestapel:</em> %count% Karten"
+      sidebar: "{0} <em>Strategiestapel TODO:</em> %count% Karten | {1} <em>Strategiestapel:</em> %count% Karte | ]1,Inf] <em>Strategiestapel:</em> %count% Karten"
       expansions: "<em>Expansions</em>: %expansions%"
   form:
     build: Neue Deckliste erstellen
@@ -139,7 +135,6 @@ decks:
       plaintext: einfacher Text
     sort:
       by_cardnumber: nach Kartennummer
-      by_cost: nach Kosten/Goldwert
       by_faction: nach Fraktion, dann Name
       by_factionnumber: nach Fraktion, dann Kartennummer
       by_name: nach Name
@@ -186,51 +181,20 @@ decks:
     more: Mehr
   smartfilter:
     title: Syntax des intelligenten Filters
-    example: "Beispiel: <tt>m:1 s>3</tt> zeigt alle Charaktere mit einem <span class='icon-military'></span>-Symbol und mehr als 3 Stärke."
+    example: "Beispiel: <tt>b:1 s>3</tt> shows all <span class='icon-bauhaus></span> warriors and a Shoot value greater than 3 TODO"
     filters:
       flavor: Atmosphärischer Text
-      claim: Schadenswert
       expansion_code: Expansion
       faction_code: Fraktion
-      is_intrigue: Intrigenspiel-Symbol
-      reserve: Reservewert
       illustrator: Illustrator/in
-      traits: Merkmale
-      is_loyal: Loyalität
-      is_military: Militäreinsatz-Symbol
-      income: Goldwert
-      cost: Kosten
-      is_power: Machtkampf-Symbol
-      strength: Stärke
       type_code: Typ
-      is_unique: Einzigartigkeit
-      initiative: Initiativewert
       text: Text
       quantity: Anzahl der Kopien im Expansion
-      designer: Designer/in
   charts:
     faction:
       title: Karten pro Fraktion
       subtitle: Nur Nachziehstapel
       label: "# Karten"
-    icon:
-      title: Symbole der Charaktere
-      subtitle: Ausgenommen Duplikate
-      tooltip:
-        header: "Symbol %type%"
-        label: "# Charaktere"
-    strength:
-      title: Stärke der Charaktere
-      subtitle: Ausgenommen Duplikate
-      tooltip:
-        header: "Stärke %str%"
-        label: "# Charaktere"
-    cost:
-      title: Kosten der Karten
-      subtitle: Ausgenommen Karten mit Kosten X
-      tooltip:
-        header: "Kosten %cost%"
-        label: "# Karten"
   history:
     timeremaining: Verbleibende Zeit
     columns:
@@ -243,7 +207,7 @@ decks:
     revert: Verwerfen
   compare:
     decknumber: "Deckliste #%id%"
-    plotdecks: Strategiestapel
+    sidebars: Strategiestapel
     drawdecks: Nachziehstapel
 
 decklist:
@@ -358,8 +322,6 @@ search:
     set: Sortieren nach Pack
     faction: Sortieren nach Fraktion
     type: Sortieren nach Typ
-    costgold: Sortieren nach Kosten/Goldwert
-    strini: Sortieren nach Stärke/Initiativewert
   view:
     list: Ansehen als Liste
     spoiler: Ansehen als Texte
@@ -371,14 +333,6 @@ pag:
   cardscount: "{0} Keine Karten | {1} Eine Karte | ]1,Inf] %count% Karten"
 
 card:
-  keywords:
-    shadow: Schatten
-  traits:
-    summer: Sommer
-    winter: Winter
-    scheme: Komplott
-    banner: Banner
-    maester: Maester
   reviews:
     title: Karten-Rezensionen
     none: Noch keine Rezensionen dieser Karte.
@@ -398,57 +352,27 @@ card:
       minimum: Deine Rezension muss mindestens %min% Zeichen lang sein.
   info:
     name: Name
-    unique: Einzigartig
     text: Text
     flavor: Atmosphärischer Text
     faction: Fraktion
     set: Pack
-    cost: Kosten
-    costgold: Kosten/Goldwert
     type: Typ
-    strength: Stärke
-    str: Stärke
-    strini: Stärke/Initiativewert
-    traits: Merkmale
-    loyal: Loyal
-    nonloyal: Nicht-loyal
-    income: Einkommen
-    initiative: Initiativewert
-    claim: Schadenswert
-    reserve: Reservewert
-    plotlimit: Strategiestapel-Limit
+    sidebarlimit: Strategiestapel-Limit TODO
     quantity: Anzahl
     illustrator: Illustrator/in
     short:
-      costgold: K.
-      strini: S.
       type: T.
       faction: F.
-
-challenges:
-  military: Militäreinsatz
-  intrigue: Intrigenspiel
-  power: Machtkampf
 
 icon:
   baratheon: Haus Baratheon
   greyjoy: Haus Graufreud
-  intrigue: Intrigenspiel
   lannister: Haus Lennister
   martell: Haus Martell
-  military: Militäreinsatz
   thenightswatch: Die Nachtwache
-  power: Machtkampf
   stark: Haus Stark
   targaryen: Haus Targaryen
   tyrell: Haus Tyrell
-  unique: Einzigartig
-  plot: Strategiekarte
-  attachment: Verstärkung
-  location: Ort
-  character: Charakter
-  event: Ereignis
-  neutral: Neutral
 
 keyword:
   renown:
@@ -478,10 +402,5 @@ keyword:
   bestow:
     name: Investition
     title: "Sobald eine Karte mit Investition (X) ins Spiel kommt, darf der Spieler, der diese Karte kontrolliert, bis zu X Gold von seiner Goldreserve auf diese Karte verschieben."
-  shadow:
-    name: Schatten
-    title: "Eine Karte mit Schatten (X) kann man für 2 Gold verdeckt im Schattenbereich ihres kontrollierenden Spielers aufmarschieren lassen. Jene Karte kann später gespielt werden (falls es sich um ein Ereignis handelt) oder offen ins Spiel geholt werden (falls es sich um einen Charakter, Ort oder eine Verstärkung handelt), indem der Spieler X Gold bezahlt."
 restrictedlist:
   title: Liste Eingeschränkter Karten
-  joust: Tjost
-  melee: Buhurt

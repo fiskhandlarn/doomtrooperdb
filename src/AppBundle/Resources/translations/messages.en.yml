@@ -53,18 +53,14 @@ decks:
   description: Description
   defaultemptydesc: "*No description.*"
   problems:
-    too_many_plots: Contains too many Plots
-    too_few_plots: Contains too few Plots
-    too_many_different_plots: Contains more than one duplicated Plot
     too_few_cards: Contains too few cards
     too_many_copies: Contains too many copies of a card (by title)
-    invalid_cards: Contains forbidden cards (cards no permitted by Faction or Agenda)
+    invalid_cards: Contains forbidden cards (cards no permitted by Faction)
   build:
     choose:
       faction: Choose your faction
     start: Create the deck and start building
-    newname:
-      noagenda: "New deck: %faction%"
+    newname: "New deck: %faction%"
     errors:
       nofaction: A faction is required.
   edit:
@@ -96,7 +92,7 @@ decks:
     notes:
       tags:
         label: Tags
-        hint: Tags are for easy filtering in your list of decks, e.g. <i>competitive</i> or <i>melee</i>.
+        hint: Tags are for easy filtering in your list of decks, e.g. <i>competitive</i> or <i>darkened</i>.
       notes:
         label: Notes
         hint: "Type # to enter a card name. Type $ to enter a symbol."
@@ -105,7 +101,7 @@ decks:
       cancel: Cancel edits
     meta:
       drawdeck: "{0} <em>Draw deck:</em> %count% cards | {1} <em>Draw deck</em>: %count% card | ]1,Inf] <em>Draw deck</em>: %count% cards"
-      plotdeck: "{0} <em>Plot deck:</em> %count% cards | {1} <em>Plot deck</em>: %count% card | ]1,Inf] <em>Plot deck</em>: %count% cards"
+      sidebar: "{0} <em>Side bar:</em> %count% cards | {1} <em>Side bar</em>: %count% card | ]1,Inf] <em>Side bar</em>: %count% cards"
       expansions: "<em>Expansions</em>: %expansions%"
   form:
     build: Build New Deck
@@ -139,7 +135,6 @@ decks:
       plaintext: Plain text
     sort:
       by_cardnumber: by Card Number
-      by_cost: by Cost/Gold
       by_faction: by Faction, then Name
       by_factionnumber: by Faction, then Number
       by_name: by Name
@@ -186,51 +181,20 @@ decks:
     more: more
   smartfilter:
     title: Smart filter syntax
-    example: "Example: <tt>m:1 s>3</tt> shows all characters with a <span class='icon-military'></span> icon and a STR greater than 3"
+    example: "Example: <tt>b:1 s>3</tt> shows all <span class='icon-bauhaus></span> warriors and a Shoot value greater than 3"
     filters:
       flavor: Flavor text
-      claim: Claim value
       expansion_code: Expansion
       faction_code: Faction
-      is_intrigue: Intrigue icon
-      reserve: Reserve value
       illustrator: Illustrator
-      traits: Traits
-      is_loyal: Loyalty
-      is_military: Military icon
-      income: Gold value
-      cost: Cost
-      is_power: Power icon
-      strength: Strength
       type_code: Type
-      is_unique: Uniqueness
-      initiative: Initiative value
       text: Text
       quantity: Quantity in expansion
-      designer: Designer
   charts:
     faction:
       title: Card Factions
       subtitle: Draw deck only
       label: "# cards"
-    icon:
-      title: Character Icons
-      subtitle: Duplicates not counted
-      tooltip:
-        header: "%type% Icon"
-        label: "# characters"
-    strength:
-      title: Character Strength
-      subtitle: Duplicates not counted
-      tooltip:
-        header: "STR %str%"
-        label: "# characters"
-    cost:
-      title: Card Cost
-      subtitle: Cost X ignored
-      tooltip:
-        header: "Cost %cost%"
-        label: "# cards"
   history:
     timeremaining: Time Remaining
     columns:
@@ -243,7 +207,7 @@ decks:
     revert: Revert
   compare:
     decknumber: "Deck #%id%"
-    plotdecks: Plot Decks
+    sidebars: Side Bars
     drawdecks: Draw Decks
 
 decklist:
@@ -358,8 +322,6 @@ search:
     set: Sort by Set
     faction: Sort by Faction
     type: Sort by Type
-    costgold: Sort by Cost/Gold
-    strini: Sort by Strength/Initiative
   view:
     list: View as a Checklist
     spoiler: View as a Spoiler
@@ -371,14 +333,6 @@ pag:
   cardscount: "{0} There is no cards | {1} One card | ]1,Inf] %count% cards"
 
 card:
-  keywords:
-    shadow: Shadow
-  traits:
-    summer: Summer
-    winter: Winter
-    scheme: Scheme
-    banner: Banner
-    maester: Maester
   reviews:
     title: Reviews
     none: No review yet for this card.
@@ -398,57 +352,27 @@ card:
       minimum: Your review must at least %min% characters long.
   info:
     name: Name
-    unique: Unique
     text: Text
     flavor: Flavor text
     faction: Faction
     set: Set
-    cost: Cost
-    costgold: Cost/Gold
     type: Type
-    strength: Strength
-    str: STR
-    strini: Strength/Initiative
-    traits: Traits
-    loyal: Loyal
-    nonloyal: Non-Loyal
-    income: Income
-    initiative: Initiative
-    claim: Claim
-    reserve: Reserve
-    plotlimit: Plot deck limit
+    sidebarlimit: side bar limit
     quantity: Quantity
     illustrator: Illustrator
     short:
-      costgold: C.
-      strini: S.
       type: T.
       faction: F.
-
-challenges:
-  military: Military
-  intrigue: Intrigue
-  power: Power
 
 icon:
   baratheon: Baratheon
   greyjoy: Greyjoy
-  intrigue: Intrigue
   lannister: Lannister
   martell: Martell
-  military: Military
   thenightswatch: The Night's Watch
-  power: Power
   stark: Stark
   targaryen: Targaryen
   tyrell: Tyrell
-  unique: Unique
-  plot: Plot
-  attachment: Attachment
-  location: Location
-  character: Character
-  event: Event
-  neutral: Neutral
 
 keyword:
   renown:
@@ -478,10 +402,5 @@ keyword:
   bestow:
     name: Bestow
     title: "When this card enters play, move up to X gold from your gold pool to this card."
-  shadow:
-    name: Shadow
-    title: "A card with shadow (X) can be marshaled facedown into its controller’s shadows area for 2 gold. That card can later be played (if it is an event) or brought into play faceup (if it is a character, location, or attachment) by paying X gold."
 restrictedlist:
   title: Restricted List
-  joust: Joust
-  melee: Melee

@@ -1,4 +1,4 @@
-slogan: Constructor de mazos para Juego de Tronos LCG 2ª Edición
+slogan: Constructor de mazos para Doomtrooper
 
 data_load_fail: "No fue posible cargar los datos. Haga click <a href='javascript:window.location.reload(true)'>aquí</a> para recargar la página."
 login_required: Debes estar identificado para realizar esta operación
@@ -53,18 +53,14 @@ decks:
   description: Descripción
   defaultemptydesc: "*Sin descripción*"
   problems:
-    too_many_plots: Contiene demasiadas Tramas
-    too_few_plots: Contiene muy pocas Tramas
-    too_many_different_plots: Contiene más de una Trama duplicada
     too_few_cards: Contiene muy pocas cartas
     too_many_copies: Contiene demasiadas copias de la misma carta (por título)
-    invalid_cards: Contiene cartas prohibidas (cartas no permitidas por la Facción o la Estrategia)
+    invalid_cards: Contiene cartas prohibidas (cartas no permitidas por la Facción)
   build:
     choose:
       faction: Elige tu Facción
     start: Crear el mazo y empezar a construirlo
-    newname:
-      noagenda: "Nuevo mazo: %faction%"
+    newname: "Nuevo mazo: %faction%"
     errors:
       nofaction: Se requiere una Facción.
   edit:
@@ -96,7 +92,7 @@ decks:
     notes:
       tags:
         label: Etiquetas
-        hint: Las etiquetas son útiles para filtrar tu lista de mazos, p. ej., <i>competitivo</i> o <i>justa</i>.
+        hint: Las etiquetas son útiles para filtrar tu lista de mazos, p. ej., <i>competitivo</i> o <i>TODO</i>.
       notes:
         label: Notas
         hint: "Escribe # para introducir el nombre de una carta. Escribe $ para introducir un símbolo."
@@ -105,7 +101,7 @@ decks:
       cancel: Cancelar cambios
     meta:
       drawdeck: "{0} <em>Mazo de robo:</em> %count% cartas | {1} <em>Mazo de robo:</em> %count% carta | ]1,Inf] <em>Mazo de robo:</em> %count% cartas"
-      plotdeck: "{0} <em>Mazo de tramas:</em> %count% cartas | {1} <em>Mazo de tramas:</em> %count% carta | ]1,Inf] <em>Mazo de tramas:</em> %count% cartas"
+      sidebar: "{0} <em>Mazo de tramas TODO:</em> %count% cartas | {1} <em>Mazo de tramas:</em> %count% carta | ]1,Inf] <em>Mazo de tramas:</em> %count% cartas"
       expansions: "<em>Capítulos:</em> %expansions%"
   form:
     build: Construir nuevo mazo
@@ -139,7 +135,6 @@ decks:
       plaintext: Texto sin formato
     sort:
       by_cardnumber: por número de carta
-      by_cost: por coste/oro
       by_faction: por facción, luego nombre
       by_factionnumber: por facción, luego número
       by_name: por nombre
@@ -186,25 +181,13 @@ decks:
     more: más
   smartfilter:
     title: Sintaxis del filtro inteligente
-    example: "Ejemplo: <tt>m:1 s>3</tt> muestra todos los Personajes con icono <span class='icon-military'></span> y FUE mayor que 3"
+    example: "Example: <tt>b:1 s>3</tt> shows all <span class='icon-bauhaus></span> warriors and a Shoot value greater than 3 TODO"
     filters:
       flavor: Texto de ambientación
-      claim: Valor de conquista
       expansion_code: Expansión
       faction_code: Facción
-      is_intrigue: Icono de intriga
-      reserve: Valor de reserva
       illustrator: Ilustrador
-      traits: Rasgos
-      is_loyal: Lealtad
-      is_military: Icono militar
-      income: Valor de ingresos
-      cost: Coste
-      is_power: Icono de poder
-      strength: Fuerza
       type_code: Tipo
-      is_unique: Único
-      initiative: Valor de iniciativa
       text: Texto
       quantity: Cantidad en el expansión
   charts:
@@ -212,24 +195,6 @@ decks:
       title: Cartas por Facción
       subtitle: Solo mazo de robo
       label: "# cartas"
-    icon:
-      title: Iconos de Personajes
-      subtitle: No se cuentan los duplicados
-      tooltip:
-        header: "Icono %type%"
-        label: "# Personajes"
-    strength:
-      title: Fuerza de Personajes
-      subtitle: No se cuentan los duplicados
-      tooltip:
-        header: "FUE %str%"
-        label: "# Personajes"
-    cost:
-      title: Coste de las cartas
-      subtitle: Se ignoran los costes X
-      tooltip:
-        header: "Coste %cost%"
-        label: "# cartas"
   history:
     timeremaining: Tiempo restante
     columns:
@@ -242,7 +207,7 @@ decks:
     revert: Deshacer
   compare:
     decknumber: "Mazo #%id%"
-    plotdecks: Mazos de trama
+    sidebars: Mazos de trama
     drawdecks: Mazos de robo
 
 decklist:
@@ -357,8 +322,6 @@ search:
     set: Ordenar por capítulo
     faction: Ordenar por facción
     type: Ordenar por tipo
-    costgold: Ordenar por coste/oro
-    strini: Ordenar por fuerza/iniciativa
   view:
     list: Ver como listado
     spoiler: Ver como spoilers
@@ -370,14 +333,6 @@ pag:
   cardscount: "{0} No hay cartas | {1} Una carta | ]1,Inf] %count% cartas"
 
 card:
-  keywords:
-    shadow: Sombra
-  traits:
-    summer: Verano
-    winter: Invierno
-    scheme: Conspiración
-    banner: Estandarte
-    maester: Maestre
   reviews:
     title: Reseñas
     none: Aún no hay reseñas para esta carta.
@@ -397,57 +352,27 @@ card:
       minimum: Tu reseña debe tener al menos %min% caracteres.
   info:
     name: Nombre
-    unique: Único
     text: Texto
     flavor: Texto de ambientación
     faction: Facción
     set: Capítulo
-    cost: Coste
-    costgold: Coste/Oro
     type: Tipo
-    strength: Fuerza
-    str: FUE
-    strini: Fuerza/Iniciativa
-    traits: Rasgos
-    loyal: Leal
-    nonloyal: No Leal
-    income: Ingresos
-    initiative: Iniciativa
-    claim: Conquista
-    reserve: Reserva
-    plotlimit: Límite por mazo
+    sidebarlimit: Límite por mazo TODO
     quantity: Cantidad
     illustrator: Ilustrador
     short:
-      costgold: C.
-      strini: Fu.
       type: T.
       faction: F.
-
-challenges:
-  military: Militar
-  intrigue: Intriga
-  power: Poder
 
 icon:
   baratheon: Baratheon
   greyjoy: Greyjoy
-  intrigue: Intriga
   lannister: Lannister
   martell: Martell
-  military: Militar
   thenightswatch: Guardia de la Noche
-  power: Poder
   stark: Stark
   targaryen: Targaryen
   tyrell: Tyrell
-  unique: Único
-  plot: Trama
-  attachment: Accesorio
-  location: Lugar
-  character: Personaje
-  event: Evento
-  neutral: Neutral
 
 keyword:
   renown:
@@ -477,10 +402,5 @@ keyword:
   bestow:
     name: Encomienda
     title: "Cuando esta carta entre en juego, traslada hasta X de Oro de tu suministro de Oro hasta esta carta."
-  shadow:
-    name: Sombra
-    title: "A card with shadow (X) can be marshaled facedown into its controller’s shadows area for 2 gold. That card can later be played (if it is an event) or brought into play faceup (if it is a character, location, or attachment) by paying X gold."
 restrictedlist:
   title: Lista de cartas restringidas
-  joust: Justa
-  melee: Contienda

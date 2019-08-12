@@ -77,25 +77,6 @@ interface SlotCollectionInterface extends \Countable, \IteratorAggregate, \Array
     public function filterByType($type_code);
 
     /**
-     *
-     * @param string $trait
-     * @return \AppBundle\Model\SlotCollectionDecorator
-     */
-    public function filterByTrait($trait);
-
-    /**
-     * Checks Restricted List compliance for the Melee format.
-     * @return boolean
-     */
-    public function isLegalForMelee();
-
-    /**
-     * Checks Restricted List compliance for the Joust format.
-     * @return boolean
-     */
-    public function isLegalforJoust();
-
-    /**
      * Returns the collection of slots.
      * @return Collection
      */

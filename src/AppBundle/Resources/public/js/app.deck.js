@@ -14,7 +14,7 @@
             unsaved,
             user_id,
             problem_labels = _.reduce(
-                    ['too_many_plots', 'too_few_plots', 'too_many_different_plots', 'too_many_agendas', 'too_few_cards', 'too_many_copies', 'invalid_cards', 'agenda'],
+                    ['too_few_cards', 'too_many_copies', 'invalid_cards'],
                     function (problems, key)
                     {
                         problems[key] = Translator.trans('decks.problems.' + key);
@@ -24,90 +24,22 @@
             header_tpl = _.template('<h5><span class="icon icon-<%= code %>"></span> <%= name %> (<%= quantity %>)</h5>'),
             card_line_tpl = _.template('<span class="icon icon-<%= card.type_code %> fg-<%= card.faction_code %>"></span> <a href="<%= card.url %>" class="card card-tip" data-toggle="modal" data-remote="false" data-target="#cardModal" data-code="<%= card.code %>"><%= card.label %></a>'),
             layouts = {},
-            layout_data = {},
-            // restricted list, see FAQ v2.2
-            joust_restricted_list = [
-                "01109",
-                "02091",
-                "02092",
-                "02102",
-                "03038",
-                "04001",
-                "04017",
-                "05010",
-                "05049",
-                "06004",
-                "06039",
-                "06040",
-                "06098",
-                "06100",
-                "06103",
-                "09001",
-                "09017",
-                "09023",
-                "09051",
-                "10017",
-                "10045",
-                "10050",
-                "11021",
-                "11033",
-                "11034",
-                "11051",
-                "11076",
-                "12045",
-            ],
-            melee_restricted_list = [
-                "01001",
-                "01013",
-                "01043",
-                "01078",
-                "01119",
-                "01162",
-                "02012",
-                "02024",
-                "02060",
-                "03003",
-                "03038",
-                "04003",
-                "04118",
-                "05001",
-                "05010",
-                "05049",
-                "06004",
-                "06039",
-                "06040",
-                "06098",
-                "07036",
-                "08098",
-                "09028",
-                "11054",
-                "11076"
-            ];
+            layout_data = {};
 
+    // TODO remove codes/keys?
     var factions = {
-        '01198': 'baratheon',
-        '01199': 'greyjoy',
-        '01200': 'lannister',
-        '01201': 'martell',
-        '01202': 'thenightswatch',
-        '01203': 'stark',
-        '01204': 'targaryen',
-        '01205': 'tyrell'
-    };
-
-    /*
-     * Checks a given card's text has the "Shadow" keyword.
-     * @param {Object} card
-     * @param {String} shadow The i18n'ed word "Shadow".
-     * @returns {boolean}
-     */
-    var card_has_shadow_keyword = function(card, shadow) {
-        // "Shadow (<cost>).", with <cost> being either digits or the letter "X"
-        var regex = new RegExp(shadow + ' \\(([0-9]+|X)\\)\\.');
-        var text = card.text || '';
-        // check if first line in the card text has that keyword.
-        var textLines = text.split("\n");
-        return regex.test(textLines[0]);
+        'bauhaus': 'bauhaus',
+        'brotherhood': 'brotherhood',
+        'capitol': 'capitol',
+        'crescentia': 'crescentia',
+        'cybertronic': 'cybertronic',
+        'general': 'general',
+        'imperial': 'imperial',
+        'legion': 'legion',
+        'lutheran': 'lutheran',
+        'mishima': 'mishima',
+        'rasputin': 'rasputin',
+        'templars': 'templars'
     };
 
     /*
@@ -154,10 +86,10 @@
     /*
      * Templates for the different deck layouts, see deck.get_layout_data
      */
-    layouts[1] = _.template('<div class="deck-content"><%= meta %><%= plots %><%= characters %><%= attachments %><%= locations %><%= events %></div>');
-    layouts[2] = _.template('<div class="deck-content"><div class="row"><div class="col-sm-6 col-print-6"><%= meta %></div><div class="col-sm-6 col-print-6"><%= plots %></div></div><div class="row"><div class="col-sm-6 col-print-6"><%= characters %></div><div class="col-sm-6 col-print-6"><%= attachments %><%= locations %><%= events %></div></div></div>');
-    layouts[3] = _.template('<div class="deck-content"><div class="row"><div class="col-sm-4"><%= meta %><%= plots %></div><div class="col-sm-4"><%= characters %></div><div class="col-sm-4"><%= attachments %><%= locations %><%= events %></div></div></div>');
-    layouts[4] = _.template('<div class="deck-content"><div class="row"><div class="col-sm-6 col-print-6"><%= meta %></div><div class="col-sm-6 col-print-6"><%= plots %></div></div><div class="row"><div class="col-sm-12 col-print-12"><%= cards %></div></div></div>');
+    layouts[1] = _.template('<div class="deck-content"><%= meta %><%= alliance %><%= art %><%= beasts %><%= symmetrys %><%= equipments %></div>');
+    layouts[2] = _.template('<div class="deck-content"><div class="row"><div class="col-sm-6 col-print-6"><%= meta %></div><div class="col-sm-6 col-print-6"><%= alliance %></div></div><div class="row"><div class="col-sm-6 col-print-6"><%= art %></div><div class="col-sm-6 col-print-6"><%= beasts %><%= symmetrys %><%= equipments %></div></div></div>');
+    layouts[3] = _.template('<div class="deck-content"><div class="row"><div class="col-sm-4"><%= meta %><%= alliance %></div><div class="col-sm-4"><%= art %></div><div class="col-sm-4"><%= beasts %><%= symmetrys %><%= equipments %></div></div></div>');
+    layouts[4] = _.template('<div class="deck-content"><div class="row"><div class="col-sm-6 col-print-6"><%= meta %></div><div class="col-sm-6 col-print-6"><%= alliance %></div></div><div class="row"><div class="col-sm-12 col-print-12"><%= cards %></div></div></div>');
     layouts[5] = _.template('<div class="deck-content"><div class="row"><div class="col-sm-12 col-print-12"><%= meta %></div></div><div class="row"><div class="col-sm-12 col-print-12"><%= cards %></div></div></div>');
 
 
@@ -254,36 +186,6 @@
 
     /**
      * @memberOf deck
-     */
-    deck.get_agendas = function get_agendas()
-    {
-        return deck.get_cards(null, {
-            type_code: 'agenda'
-        });
-    };
-
-    /**
-     * @memberOf deck
-     * @returns boolean
-     */
-    deck.is_alliance = function is_alliance() {
-        return !(_.isUndefined(_.find(deck.get_agendas(), function(card) {
-            return card.code === '06018';
-        })));
-    };
-
-    /**
-     * @memberOf deck
-     * @returns boolean
-     */
-    deck.is_rains_of_castamere = function is_rains_of_castamere() {
-        return !(_.isUndefined(_.find(deck.get_agendas(), function(card) {
-            return card.code === '05045';
-        })));
-    };
-
-    /**
-     * @memberOf deck
      * @param {object} sort
      * @param {object} query
      * @param {object} group
@@ -305,106 +207,6 @@
             options.$groupBy = group;
         }
         return app.data.cards.find(query, options);
-    };
-
-    /**
-     * @memberOf deck
-     * @param {object} sort
-     */
-    deck.get_draw_deck = function get_draw_deck(sort)
-    {
-        return deck.get_cards(sort, {
-            type_code: {
-                '$nin': ['agenda', 'plot']
-            }
-        });
-    };
-
-    /**
-     * @memberOf deck
-     * @param {object} sort
-     */
-    deck.get_draw_deck_size = function get_draw_deck_size(sort)
-    {
-        var draw_deck = deck.get_draw_deck();
-        return deck.get_nb_cards(draw_deck);
-    };
-
-    /**
-     * @memberOf deck
-     * @param {object} sort
-     */
-    deck.get_plot_deck = function get_plot_deck(sort)
-    {
-        return deck.get_cards(sort, {
-            type_code: 'plot'
-        });
-    };
-
-    /**
-     * @memberOf deck
-     * @param {object} sort
-     */
-    deck.get_attachments = function get_plot_deck(sort)
-    {
-        return deck.get_cards(sort, {
-            type_code: 'attachment'
-        });
-    };
-
-    /**
-     * @memberOf deck
-     * @param {object} sort
-     */
-    deck.get_characters = function get_plot_deck(sort)
-    {
-        return deck.get_cards(sort, {
-            type_code: 'character'
-        });
-    };
-
-    /**
-     * @memberOf deck
-     * @param {object} sort
-     */
-    deck.get_events = function get_plot_deck(sort)
-    {
-        return deck.get_cards(sort, {
-            type_code: 'event'
-        });
-    };
-
-    /**
-     * @memberOf deck
-     * @param {object} sort
-     */
-    deck.get_locations = function get_plot_deck(sort)
-    {
-        return deck.get_cards(sort, {
-            type_code: 'location'
-        });
-    };
-
-    /**
-     * @memberOf deck
-     * @returns the number of plot cards
-     * @param {object} sort
-     */
-    deck.get_plot_deck_size = function get_plot_deck_size(sort)
-    {
-        var plot_deck = deck.get_plot_deck();
-        return deck.get_nb_cards(plot_deck);
-    };
-
-    /**
-     * @memberOf deck
-     * @returns the number of different plot cards
-     * @param {object} sort
-     */
-    deck.get_plot_deck_variety = function get_plot_deck_variety(sort)
-    {
-        var plot_deck = deck.get_plot_deck();
-        return plot_deck.length;
     };
 
     deck.get_nb_cards = function get_nb_cards(cards)
@@ -489,35 +291,19 @@
         var data = {
             images: '',
             meta: '',
-            plots: '',
-            characters: '',
-            attachments: '',
-            locations: '',
-            events: '',
+            alliance: '',
+            art: '',
+            beasts: '',
+            symmetrys: '',
+            equipments: '',
             cards: ''
         };
 
         var problem = deck.get_problem();
-        var agendas = deck.get_agendas();
 
         deck.update_layout_section(data, 'images', $('<div style="margin-bottom:10px"><img src="/bundles/app/images/factions/' + deck.get_faction_code() + '.png" class="img-responsive">'));
-        agendas.forEach(function (agenda) {
-            deck.update_layout_section(data, 'images', $('<div><img src="' + agenda.image_url + '" class="img-responsive">'));
-        });
 
         deck.update_layout_section(data, 'meta', $('<h4 style="font-weight:bold">' + faction_name + '</h4>'));
-        agendas.forEach(function (agenda) {
-            var agenda_line = $('<h5>').append($(card_line_tpl({card: agenda})));
-            agenda_line.find('.icon').remove();
-            deck.update_layout_section(data, 'meta', agenda_line);
-        });
-        var drawDeckSection = $('<div>' + Translator.transChoice('decks.edit.meta.drawdeck', deck.get_draw_deck_size(), {count: deck.get_draw_deck_size()}) + '</div>');
-        drawDeckSection.addClass(problem && problem.indexOf('cards') !== -1 ? 'text-danger' : '');
-        deck.update_layout_section(data, 'meta', drawDeckSection);
-
-        var plotDeckSection = $('<div>' + Translator.transChoice('decks.edit.meta.plotdeck', deck.get_plot_deck_size(), {count: deck.get_plot_deck_size()}) + '</div>');
-        plotDeckSection.addClass(problem && problem.indexOf('plots') !== -1 ? 'text-danger' : '');
-        deck.update_layout_section(data, 'meta', plotDeckSection);
 
         var expansions = _.map(deck.get_included_expansions({ 'position': 1 }), function (expansion) {
             return expansion.name + (expansion.quantity > 1 ? ' (' + expansion.quantity + ')' : '');
@@ -525,19 +311,9 @@
         deck.update_layout_section(data, 'meta', $('<div>' + Translator.trans('decks.edit.meta.expansions', {"expansions": expansions}) + '</div>'));
 
         var restrictedListContents = '<em>' + Translator.trans('restrictedlist.title') +':</em> ';
-        if (deck.is_joust_restricted_list_compliant()) {
-            restrictedListContents += '<span class="text-success"><i class="fas fa-check"></i> ';
-        } else {
-            restrictedListContents += '<span class="text-danger"><i class="fas fa-times"></i> ';
-        }
-        restrictedListContents += Translator.trans('restrictedlist.joust') + '</span> | ';
+        restrictedListContents += '<span class="text-danger"><i class="fas fa-times"></i> ';
 
-        if (deck.is_melee_restricted_list_compliant()) {
-            restrictedListContents += '<span class="text-success"><i class="fas fa-check"></i> ';
-        } else {
-            restrictedListContents += '<span class="text-danger"><i class="fas fa-times"></i> ';
-        }
-        restrictedListContents += Translator.trans('restrictedlist.melee') + '</span>';
+        restrictedListContents += '<span class="text-danger"><i class="fas fa-times"></i> ';
 
         var restrictedListSection = $('<div>' + restrictedListContents +'</div>');
         deck.update_layout_section(data, 'meta', restrictedListSection);
@@ -575,18 +351,14 @@
                 deck.update_layout_section(data, "cards", deck.get_layout_section({'code': 1},  null, null, "number"));
                 layout_template = 5;
                 break;
-            case "cost":
-                deck.update_layout_section(data, 'plots', deck.get_layout_data_plot_section(deck.is_rains_of_castamere()));
-                deck.update_layout_section(data, "cards", deck.get_layout_section({'cost': 1, 'name': 1}, {'cost': 1}, { type_code: { '$nin': ['agenda', 'plot'] }}));
-                layout_template = 4;
-                break;
             case "type":
             default:
-                deck.update_layout_section(data, 'plots', deck.get_layout_data_plot_section(deck.is_rains_of_castamere()));
-                deck.update_layout_section(data, 'characters', deck.get_layout_data_one_section('type_code', 'character', 'type_name'));
-                deck.update_layout_section(data, 'attachments', deck.get_layout_data_one_section('type_code', 'attachment', 'type_name'));
-                deck.update_layout_section(data, 'locations', deck.get_layout_data_one_section('type_code', 'location', 'type_name'));
-                deck.update_layout_section(data, 'events', deck.get_layout_data_one_section('type_code', 'event', 'type_name'));
+                deck.update_layout_section(data, 'alliance', deck.get_layout_data_one_section('type_code', 'art', 'type_name'));
+                deck.update_layout_section(data, 'art', deck.get_layout_data_one_section('type_code', 'art', 'type_name'));
+                deck.update_layout_section(data, 'beasts', deck.get_layout_data_one_section('type_code', 'beast', 'type_name'));
+                deck.update_layout_section(data, 'symmetrys', deck.get_layout_data_one_section('type_code', 'symmetry', 'type_name'));
+                deck.update_layout_section(data, 'equipments', deck.get_layout_data_one_section('type_code', 'equipment', 'type_name'));
+                // TODO more types?
         }
 
         if (options && options.layout) {
@@ -670,48 +442,6 @@
     };
 
     /**
-     * @param {boolean} isRains
-     * @return {jQuery}
-     */
-    deck.get_layout_data_plot_section = function get_layout_data_plot_section(isRains) {
-        if (isRains) {
-            return deck.get_layout_data_rains_of_castamere_plot_section();
-        }
-        return deck.get_layout_data_one_section('type_code', 'plot', 'type_name');
-    };
-
-    /**
-     * @return {jQuery}
-     */
-    deck.get_layout_data_rains_of_castamere_plot_section = function get_layout_data_rains_of_castamere_plot_section() {
-        var $section = $('<div>');
-        var cards = deck.get_cards({name: 1}, { 'type_code': 'plot'});
-        var schemePlots = _.filter(cards, function(card) {
-            return card.traits.indexOf(Translator.trans('card.traits.scheme') + '.') !== -1;
-        });
-        var nonSchemePlots = _.filter(cards, function(card) {
-            return card.traits.indexOf(Translator.trans('card.traits.scheme') + '.') === -1;
-        });
-        var $elem;
-
-        if (cards.length) {
-            $(header_tpl({code: 'plot', name: cards[0]['type_name'], quantity: deck.get_nb_cards(cards)})).appendTo($section);
-
-            nonSchemePlots.forEach(function(card) {
-                $section = append_card_line_to_section(card, $section);
-            });
-
-            $elem = $('<br>');
-            $elem.appendTo($section);
-
-            schemePlots.forEach(function(card) {
-                $section = append_card_line_to_section(card, $section);
-            });
-        }
-        return $section;
-    };
-
-    /**
      * @memberOf deck
      * @return boolean true if at least one other card quantity was updated
      */
@@ -722,45 +452,6 @@
             return false;
 
         var updated_other_card = false;
-        if(nb_copies > 0) {
-            // card-specific rules
-            switch(card.type_code) {
-                case 'agenda':
-                    // is deck alliance before the change
-                    var is_alliance = deck.is_alliance();
-                    // is deck alliance with the new card
-                    if(card.traits.indexOf(Translator.trans('card.traits.banner')) === -1) {
-                        is_alliance = false;
-                    } else {
-                        var nb_banners = deck.get_nb_cards(deck.get_cards(null, {type_code: 'agenda', traits: new RegExp(Translator.trans('card.traits.banner') + '\\.')}));
-                        if(nb_banners >= 2)
-                            is_alliance = false;
-                    }
-                    if(card.code === '06018')
-                        is_alliance = true;
-                    if(is_alliance) {
-                        deck.get_agendas().forEach(function (agenda)
-                        {
-                            if(agenda.code !== '06018' && agenda.traits.indexOf(Translator.trans('card.traits.banner')) === -1) {
-                                app.data.cards.update({
-                                    code: agenda.code
-                                }, {
-                                    indeck: 0
-                                });
-                                updated_other_card = true;
-                            }
-                        });
-                    } else {
-                        app.data.cards.update({
-                            type_code: 'agenda'
-                        }, {
-                            indeck: 0
-                        });
-                        updated_other_card = true;
-                    }
-                    break;
-            }
-        }
         app.data.cards.updateById(card_code, {
             indeck: nb_copies
         });
@@ -826,50 +517,9 @@
      */
     deck.get_problem = function get_problem()
     {
-        var agendas = deck.get_agendas();
-        var expectedPlotDeckSize = 7;
-        var expectedMaxDoublePlot = 1;
-        var expectedMaxAgendaCount = 1;
         var expectedMinCardCount = 60;
-        agendas.forEach(function (agenda) {
-            if(agenda && agenda.code === '05045') {
-                expectedPlotDeckSize = 12;
-            } else if(agenda && agenda.code === '10045') {
-                expectedPlotDeckSize = 10;
-                expectedMaxDoublePlot = 2;
-            }
-        });
-        // exactly 7 plots
-        if(deck.get_plot_deck_size() > expectedPlotDeckSize) {
-            return 'too_many_plots';
-        }
-        if(deck.get_plot_deck_size() < expectedPlotDeckSize) {
-            return 'too_few_plots';
-        }
 
-        var expectedPlotDeckSpread = expectedPlotDeckSize - expectedMaxDoublePlot;
-        // at least 6 different plots
-        if(deck.get_plot_deck_variety() < expectedPlotDeckSpread) {
-            return 'too_many_different_plots';
-        }
-
-        // no more than 1 agenda, unless Alliance
-        if(deck.is_alliance()) {
-            expectedMaxAgendaCount = 3;
-            expectedMinCardCount = 75;
-            var unwanted = _.find(deck.get_agendas(), function (agenda)
-            {
-                return agenda.code !== '06018' && agenda.traits.indexOf(Translator.trans('card.traits.banner')) === -1;
-            });
-            if(unwanted) {
-                return 'too_many_agendas';
-            }
-        }
-
-        // no more than 1 agenda
-        if(deck.get_nb_cards(deck.get_agendas()) > expectedMaxAgendaCount) {
-            return 'too_many_agendas';
-        }
+        // TODO validate side board
 
         // at least 60 others cards
         if(deck.get_draw_deck_size() < expectedMinCardCount) {
@@ -888,94 +538,6 @@
         if(deck.get_invalid_cards().length > 0) {
             return 'invalid_cards';
         }
-
-        // the condition(s) of the agendas must be fulfilled
-        var agendas = deck.get_agendas();
-        for(var i=0; i<agendas.length; i++) {
-            if(!deck.validate_agenda(agendas[i])) {
-                return 'agenda';
-            }
-        }
-    };
-
-    deck.validate_agenda = function validate_agenda(agenda)
-    {
-        switch(agenda.code) {
-            case '01027':
-                if(deck.get_nb_cards(deck.get_cards(null, {type_code: {$in: ['character', 'attachment', 'location', 'event']}, faction_code: 'general'})) > 15) {
-                    return false;
-                }
-                break;
-            case '01198':
-            case '01199':
-            case '01200':
-            case '01201':
-            case '01202':
-            case '01203':
-            case '01204':
-            case '01205':
-                var minor_faction_code = deck.get_minor_faction_code(agenda);
-                if(deck.get_nb_cards(deck.get_cards(null, {type_code: {$in: ['character', 'attachment', 'location', 'event']}, faction_code: minor_faction_code})) < 12) {
-                    return false;
-                }
-                break;
-            case '04037':
-                if(deck.get_nb_cards(deck.get_cards(null, {type_code: 'plot', traits: new RegExp(Translator.trans('card.traits.winter') + '\\.')})) > 0) {
-                    return false;
-                }
-                break;
-            case '04038':
-                if(deck.get_nb_cards(deck.get_cards(null, {type_code: 'plot', traits: new RegExp(Translator.trans('card.traits.summer') + '\\.')})) > 0) {
-                    return false;
-                }
-                break;
-            case '05045':
-                var schemeCards = deck.get_cards(null, {type_code: 'plot', traits: new RegExp(Translator.trans('card.traits.scheme') + '\\.')});
-                var totalSchemes = deck.get_nb_cards(schemeCards);
-                var uniqueSchemes = schemeCards.length;
-                if(totalSchemes !== 5 || uniqueSchemes !== 5) {
-                    return false;
-                }
-                break;
-            case '06018':
-                var agendas = deck.get_nb_cards(deck.get_cards(null, {type_code: 'agenda'}));
-                var banners = deck.get_nb_cards(deck.get_cards(null, {type_code: 'agenda', traits: new RegExp(Translator.trans('card.traits.banner') + '\\.')}));
-                if(agendas - banners !== 1) {
-                    return false;
-                }
-                break;
-            case '06119':
-                var loyalCharacters = deck.get_nb_cards(deck.get_cards(null, {type_code: 'character', is_loyal: true}));
-                if(loyalCharacters > 0) {
-                    return false;
-                }
-                break;
-            case '09045':
-                var maesters = deck.get_nb_cards(deck.get_cards(null, {type_code: 'character', traits: new RegExp(Translator.trans('card.traits.maester') + '\\.')}));
-                if(maesters < 12) {
-                    return false;
-                }
-                break;
-            case '11079':
-                var nonNeutralCards = deck.get_nb_cards(deck.get_cards(null, {faction_code: { $ne: 'general' }}));
-                if(nonNeutralCards > 0) {
-                    return false;
-                }
-                break;
-        }
-        return true;
-    };
-
-    /**
-     * @memberOf deck
-     * @returns {array}
-     */
-    deck.get_minor_faction_codes = function get_minor_faction_codes()
-    {
-        return deck.get_agendas().map(function (agenda)
-        {
-            return deck.get_minor_faction_code(agenda);
-        });
     };
 
     /**
@@ -986,16 +548,6 @@
     deck.get_all_faction_codes = function get_all_faction_codes()
     {
         return _.values(factions);
-    };
-
-    /**
-     * @memberOf deck
-     * @param {object} agenda
-     * @returns {string}
-     */
-    deck.get_minor_faction_code = function get_minor_faction_code(agenda)
-    {
-        return factions[agenda.code];
     };
 
     deck.get_invalid_cards = function get_invalid_cards()
@@ -1020,58 +572,8 @@
         if(card.faction_code === faction_code)
             return true;
 
-        // out-of-house and loyal => no
-        if(card.is_loyal)
-            return false;
-
-        // agenda => yes
-        var agendas = deck.get_agendas();
-        for(var i = 0; i < agendas.length; i++) {
-            if(deck.card_allowed_by_agenda(agendas[i], card)) {
-                return true;
-            }
-        }
-
         // if none above => no
         return false;
-    };
-
-    /**
-     * returns true if the agenda for the deck allows the passed card
-     * @memberOfdeck
-     */
-    deck.card_allowed_by_agenda = function card_allowed_by_agenda(agenda, card) {
-        switch(agenda.code) {
-            case '01198':
-            case '01199':
-            case '01200':
-            case '01201':
-            case '01202':
-            case '01203':
-            case '01204':
-            case '01205':
-                return card.faction_code === deck.get_minor_faction_code(agenda);
-            case '09045':
-                return card.type_code === 'character' && card.traits.indexOf(Translator.trans('card.traits.maester')) !== -1;
-            case '13079':
-                return card.type_code === 'character' && card_has_shadow_keyword(card, Translator.trans('card.keywords.shadow'));
-        }
-    };
-
-    /**
-     * Checks if the current deck complies with the restricted list for joust.
-     * @return {boolean}
-     */
-    deck.is_joust_restricted_list_compliant = function is_joust_restricted_list_compliant() {
-        return validate_deck_against_restricted_list(joust_restricted_list);
-    };
-
-    /**
-     * Checks if the current deck complies with the restricted list for melee.
-     * @return {boolean}
-     */
-    deck.is_melee_restricted_list_compliant = function is_melee_restricted_list_compliant() {
-        return validate_deck_against_restricted_list(melee_restricted_list);
     };
 
 })(app.deck = {}, jQuery);

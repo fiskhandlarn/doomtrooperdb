@@ -54,7 +54,6 @@ class CardsData
             'terminal',
             'ambush',
             'bestow',
-            'shadow'
         ];
 
         $locale = $this->request_stack->getCurrentRequest()
@@ -341,40 +340,6 @@ class CardsData
                             }
                             $qb->andWhere(implode($operator == '!' ? " and " : " or ", $or));
                             break;
-                        case 'k': // subtype (traits)
-                            $or = [];
-                            foreach ($condition as $arg) {
-                                switch ($operator) {
-                                    case ':':
-                                        $or[] = "((c.traits = ?$i) or (c.traits like ?"
-                                            . ($i + 1)
-                                            . ") or (c.traits like ?"
-                                            . ($i + 2)
-                                            . ") or (c.traits like ?"
-                                            . ($i + 3)
-                                            . "))";
-                                        $qb->setParameter($i++, "$arg.");
-                                        $qb->setParameter($i++, "$arg. %");
-                                        $qb->setParameter($i++, "%. $arg.");
-                                        $qb->setParameter($i++, "%. $arg. %");
-                                        break;
-                                    case '!':
-                                        $or[] = "(c.traits is null or ((c.traits != ?$i) and (c.traits not like ?"
-                                            . ($i + 1)
-                                            . ") and (c.traits not like ?"
-                                            . ($i + 2)
-                                            . ") and (c.traits not like ?"
-                                            . ($i + 3)
-                                            . ")))";
-                                        $qb->setParameter($i++, "$arg.");
-                                        $qb->setParameter($i++, "$arg. %");
-                                        $qb->setParameter($i++, "%. $arg.");
-                                        $qb->setParameter($i++, "%. $arg. %");
-                                        break;
-                                }
-                            }
-                            $qb->andWhere(implode($operator == '!' ? " and " : " or ", $or));
-                            break;
                         case 'i': // illustrator
                             $or = [];
                             foreach ($condition as $arg) {
@@ -387,21 +352,6 @@ class CardsData
                                         break;
                                 }
                                 $qb->setParameter($i++, $arg);
-                            }
-                            $qb->andWhere(implode($operator == '!' ? " and " : " or ", $or));
-                            break;
-                        case 'd': // designer
-                            $or = [];
-                            foreach ($condition as $arg) {
-                                switch ($operator) {
-                                    case ':':
-                                            $or[] = "(c.designer like ?$i)";
-                                        break;
-                                    case '!':
-                                            $or[] = "(c.designer is null or c.designer not like ?$i)";
-                                        break;
-                                }
-                                $qb->setParameter($i++, "%$arg%");
                             }
                             $qb->andWhere(implode($operator == '!' ? " and " : " or ", $or));
                             break;
@@ -511,17 +461,10 @@ class CardsData
 
         if ($api) {
             unset($cardinfo['id']);
-            // $cardinfo['ci'] = $card->getCostIncome();
-            // $cardinfo['si'] = $card->getStrengthInitiative();
         } else {
             $cardinfo['text'] = $this->addAbbrTags($cardinfo['text']);
             $cardinfo['text'] = $this->splitInParagraphs($cardinfo['text']);
         }
-
-        // if ($version === '1.0') {
-        //     $cardinfo['cost'] = is_numeric($cardinfo['cost']) ? intval($cardinfo['cost']) : null;
-        //     $cardinfo['ci'] = is_numeric($cardinfo['ci']) ? intval($cardinfo['ci']) : null;
-        // }
 
         return $cardinfo;
     }
@@ -643,26 +586,5 @@ class CardsData
         $response = $reviews;
 
         return $response;
-    }
-
-    public function getDistinctTraits()
-    {
-        /**
-         * @var $em \Doctrine\ORM\EntityManager
-         */
-        $em = $this->doctrine->getManager();
-        $qb = $em->createQueryBuilder();
-        $qb->from('AppBundle:Card', 'c');
-        $qb->select('c.traits');
-        $qb->distinct();
-        $result = $qb->getQuery()->getResult();
-
-        $traits = [];
-        foreach ($result as $card) {
-            $subs = explode('.', $card["traits"]);
-            foreach ($subs as $sub) {
-                $traits[trim($sub)] = 1;
-            }
-        }
     }
 }

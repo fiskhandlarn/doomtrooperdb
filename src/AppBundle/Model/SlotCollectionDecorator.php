@@ -287,20 +287,6 @@ class SlotCollectionDecorator implements SlotCollectionInterface
     /**
      * @inheritdoc
      */
-    public function filterByTrait($trait)
-    {
-        $slots = [];
-        foreach ($this->slots as $slot) {
-            if (preg_match("/$trait\\./", $slot->getCard()->getTraits())) {
-                $slots[] = $slot;
-            }
-        }
-        return new SlotCollectionDecorator(new ArrayCollection($slots));
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getCopiesAndDeckLimit()
     {
         $copiesAndDeckLimit = [];
@@ -341,38 +327,6 @@ class SlotCollectionDecorator implements SlotCollectionInterface
         }
         ksort($arr);
         return $arr;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function isLegalForMelee()
-    {
-        $slots = $this->getSlots()->getValues();
-        $cardCodes = [];
-        /**
-         * @var Decklistslot $slot;
-         */
-        foreach ($slots as $slot) {
-            $cardCodes[] = $slot->getCard()->getCode();
-        }
-        return $this->restrictedListChecker->isLegalForMelee($cardCodes);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function isLegalForJoust()
-    {
-        $slots = $this->getSlots()->getValues();
-        $cardCodes = [];
-        /**
-         * @var Decklistslot $slot;
-         */
-        foreach ($slots as $slot) {
-            $cardCodes[] = $slot->getCard()->getCode();
-        }
-        return $this->restrictedListChecker->isLegalForJoust($cardCodes);
     }
 
     /**

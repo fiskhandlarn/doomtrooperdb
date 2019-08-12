@@ -37,9 +37,6 @@ class DeckValidationHelper
         $slots = $deck->getSlots();
 
         $expectedMinCardCount = 60;
-        if ($slots->isAlliance()) {
-            $expectedMinCardCount = 75;
-        }
         if ($slots->getDrawDeck()->countCards() < $expectedMinCardCount) {
             return 'too_few_cards';
         }
@@ -75,14 +72,8 @@ class DeckValidationHelper
      */
     public function canIncludeCard(ExportableDeck $deck, Card $card): bool
     {
-        if ($card->getFaction()->getCode() === 'neutral') {
-            return true;
-        }
         if ($card->getFaction()->getCode() === $deck->getFaction()->getCode()) {
             return true;
-        }
-        if ($card->getIsLoyal()) {
-            return false;
         }
 
         return false;
