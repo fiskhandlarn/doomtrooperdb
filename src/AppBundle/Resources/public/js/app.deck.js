@@ -209,6 +209,25 @@
         return app.data.cards.find(query, options);
     };
 
+    /**
+     * @memberOf deck
+     * @param {object} sort
+     */
+    deck.get_draw_deck = function get_draw_deck(sort)
+    {
+        return deck.get_cards(sort);
+    };
+
+    /**
+     * @memberOf deck
+     * @param {object} sort
+     */
+    deck.get_draw_deck_size = function get_draw_deck_size(sort)
+    {
+        var draw_deck = deck.get_draw_deck();
+        return deck.get_nb_cards(draw_deck);
+    };
+
     deck.get_nb_cards = function get_nb_cards(cards)
     {
         if(!cards)
