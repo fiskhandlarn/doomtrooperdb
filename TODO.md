@@ -120,3 +120,4 @@
 * remove "last expansion"
 * move Makefile contents to README.md?
 * remove public/app_dev.php
+* remove patchwork/jsqueeze
