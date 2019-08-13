@@ -22,7 +22,6 @@
             }
         }
         Config = _.extend({
-            'show-unusable': false,
             'show-only-deck': false,
             'display-column': 1,
             'unl-set': 3,
@@ -53,7 +52,7 @@
             $('input[name=' + radio + '][value=' + Config[radio] + ']').prop('checked', true);
         });
         // checkbox
-        ['show-unusable', 'show-only-deck'].forEach(function (checkbox)
+        ['show-only-deck'].forEach(function (checkbox)
         {
             if(Config[checkbox])
                 $('input[name=' + checkbox + ']').prop('checked', true);
@@ -582,9 +581,6 @@
 
             if(Config['show-only-deck'] && !card.indeck)
                 return;
-            var unusable = !app.deck.can_include_card(card);
-            if(!Config['show-unusable'] && unusable)
-                return;
 
             var row = divs[card.code];
             if(!row)
@@ -602,10 +598,6 @@
                         }
                     }
             );
-
-            if(unusable) {
-                row.find('label').addClass("disabled").find('input[type=radio]').attr("disabled", true);
-            }
 
             if(Config['display-column'] > 1 && (counter % Config['display-column'] === 0)) {
                 container = $('<div class="row"></div>').appendTo($('#collection-grid'));

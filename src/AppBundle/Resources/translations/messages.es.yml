@@ -80,7 +80,6 @@ decks:
       options:
         label: Opciones
         show:
-          unusable: Mostrar cartas que no se pueden usar
           onlyused: Sólo mostrar cartas usadas
         display: "{1} Mostrar en 1 columna | ]1, Inf] Mostrar en %cols% columnas"
         usecore: "{1} Usar 1 Caja básica | ]1, Inf] Usar %core% Cajas básicas"
