@@ -17,6 +17,35 @@ This guide assumes you know how to use the command-line and that your machine ha
 - run `php bin/console bazinga:js-translation:dump src/AppBundle/Resources/public/js` to generate translation JS
 - run `npm install && npm run dev` to compile CSS and JS
 
+## Docker
+
+### Install via Docker
+
+```bash
+docker-compose run php sh -c "cd /home/wwwroot/sf4 && composer install"
+docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console doctrine:database:create"
+docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console doctrine:migrations:migrate"
+docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console doctrine:fixtures:load --env=prod"
+docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console app:import:std doomtrooperdb-json-data"
+docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console app:import:images doomtrooperdb-json-data/images public/images"
+docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console bazinga:js-translation:dump src/AppBundle/Resources/public/js"
+npm install && npm run dev
+```
+
+### Start/stop Docker
+
+Start Docker:
+```bash
+$ docker-compose up -d
+```
+
+Access the site via [http://localhost/](http://localhost/).
+
+Stop Docker:
+```bash
+$ docker-compose down
+```
+
 ## Setup an admin account
 
 - register (or run `php bin/console fos:user:create <username>`)
