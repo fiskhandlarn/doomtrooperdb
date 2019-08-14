@@ -29,7 +29,7 @@
                                 data: [{
                                         name: "cmdSymbol",
                                         title: Translator.trans('decklist.publish.editor.entersymbol'),
-                                        icon: "icon-power",
+                                        icon: "icon-beast",
                                         callback: ui.on_button_symbol
                                     }]
                             }, {
@@ -100,7 +100,7 @@
             $(button).off('click');
         });
 
-        var icons = 'bauhaus capitol intrigue cybertronic imperial military mishima power brotherhood legion crescentia unique plot attachment location character event agenda general'.split(' ');
+        var icons = 'bauhaus capitol alliance cybertronic imperial art mishima beast brotherhood legion crescentia equipment fortification ki mission relic special symmetry general'.split(' ');
         icons.forEach(function (icon)
         {
             menu.append('<li data-icon="' + icon + '"><a href="#"><span style="display:inline-block;width:2em;text-align:center" class="icon-' + icon + '"></span> ' + Translator.trans('icon.' + icon) + '</a></li>');

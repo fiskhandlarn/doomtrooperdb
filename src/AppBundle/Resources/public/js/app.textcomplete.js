@@ -3,7 +3,7 @@
 (function app_textcomplete(textcomplete, $)
 {
 
-    var icons = 'bauhaus capitol intrigue cybertronic imperial military mishima power brotherhood legion crescentia unique plot attachment location character event agenda general'.split(' ');
+    var icons = 'bauhaus capitol alliance cybertronic imperial art mishima beast brotherhood legion crescentia equipment fortification ki mission relic special symmetry general'.split(' ');
 
     /**
      * options: cards, icons, users

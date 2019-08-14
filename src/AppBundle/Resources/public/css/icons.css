@@ -29,7 +29,7 @@
 .icon-capitol:before {
 	content: "\e601";
 }
-.icon-intrigue:before {
+.icon-alliance:before {
 	content: "\e602";
 }
 .icon-cybertronic:before {
@@ -38,13 +38,13 @@
 .icon-imperial:before {
 	content: "\e604";
 }
-.icon-military:before {
+.icon-art:before {
 	content: "\e605";
 }
 .icon-mishima:before {
 	content: "\e606";
 }
-.icon-power:before {
+.icon-beast:before {
 	content: "\e607";
 }
 .icon-brotherhood:before {
@@ -56,25 +56,25 @@
 .icon-crescentia:before {
 	content: "\e60a";
 }
-.icon-unique:before {
+.icon-equipment:before {
 	content: "\e60b";
 }
-.icon-plot:before {
+.icon-fortification:before {
 	content: "\e60c";
 }
-.icon-location:before {
+.icon-mission:before {
 	content: "\e60e";
 }
-.icon-character:before {
+.icon-relic:before {
 	content: "\e60f";
 }
-.icon-event:before {
+.icon-special:before {
 	content: "\e610";
 }
-.icon-agenda:before {
+.icon-symmetry:before {
 	content: "\e611";
 }
-.icon-attachment:before {
+.icon-ki:before {
 	content: "\e60d";
 }
 .icon-neutral:before {

@@ -73,7 +73,7 @@
 				],
 				"isMulticolor": false,
 				"tags": [
-					"intrigue"
+					"alliance"
 				],
 				"grid": 16
 			},
@@ -85,7 +85,7 @@
 				"id": 4,
 				"prevSize": 32,
 				"code": 58882,
-				"name": "intrigue"
+				"name": "alliance"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -173,7 +173,7 @@
 				],
 				"isMulticolor": false,
 				"tags": [
-					"military"
+					"art"
 				],
 				"grid": 16
 			},
@@ -190,7 +190,7 @@
 				"id": 0,
 				"prevSize": 32,
 				"code": 58885,
-				"name": "military"
+				"name": "art"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -236,7 +236,7 @@
 				],
 				"isMulticolor": false,
 				"tags": [
-					"power"
+					"beast"
 				],
 				"grid": 16
 			},
@@ -248,7 +248,7 @@
 				"id": 2,
 				"prevSize": 32,
 				"code": 58887,
-				"name": "power"
+				"name": "beast"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -397,7 +397,7 @@
 				],
 				"isMulticolor": false,
 				"tags": [
-					"unique"
+					"equipment"
 				],
 				"grid": 16
 			},
@@ -409,7 +409,7 @@
 				"id": 1,
 				"prevSize": 32,
 				"code": 58891,
-				"name": "unique"
+				"name": "equipment"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -435,7 +435,7 @@
 				"order": 18,
 				"prevSize": 32,
 				"ligatures": "quill, feather",
-				"name": "plot",
+				"name": "fortification",
 				"code": 58892
 			},
 			"setIdx": 1,
@@ -449,7 +449,7 @@
 				],
 				"attrs": [],
 				"tags": [
-					"location",
+					"mission",
 					"map-marker",
 					"pin"
 				],
@@ -460,8 +460,8 @@
 				"id": 308,
 				"order": 13,
 				"prevSize": 32,
-				"ligatures": "location, map-marker",
-				"name": "location",
+				"ligatures": "mission, map-marker",
+				"name": "mission",
 				"code": 58894
 			},
 			"setIdx": 1,
@@ -489,7 +489,7 @@
 				"id": 1628,
 				"prevSize": 32,
 				"ligatures": "user, profile2",
-				"name": "character",
+				"name": "relic",
 				"code": 58895
 			},
 			"setIdx": 1,
@@ -503,7 +503,7 @@
 				],
 				"attrs": [],
 				"tags": [
-					"power",
+					"beast",
 					"lightning",
 					"bolt",
 					"electricity"
@@ -515,8 +515,8 @@
 				"id": 743,
 				"order": 14,
 				"prevSize": 32,
-				"ligatures": "power, lightning",
-				"name": "event",
+				"ligatures": "beast, lightning",
+				"name": "special",
 				"code": 58896
 			},
 			"setIdx": 1,
@@ -544,7 +544,7 @@
 				"order": 17,
 				"prevSize": 32,
 				"ligatures": "flag, report",
-				"name": "agenda",
+				"name": "symmetry",
 				"code": 58897
 			},
 			"setIdx": 1,
@@ -558,7 +558,7 @@
 				],
 				"attrs": [],
 				"tags": [
-					"attachment",
+					"ki",
 					"paperclip"
 				],
 				"grid": 16
@@ -568,8 +568,8 @@
 				"id": 821,
 				"order": 21,
 				"prevSize": 32,
-				"ligatures": "attachment, paperclip",
-				"name": "attachment",
+				"ligatures": "ki, paperclip",
+				"name": "ki",
 				"code": 58893
 			},
 			"setIdx": 1,
