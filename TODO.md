@@ -123,3 +123,4 @@
 * remove patchwork/jsqueeze
 * http://localhost/card/05008
 * https in js
+* add deck name to `build_markdown` and `build_dtcards`
