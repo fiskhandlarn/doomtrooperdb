@@ -17,7 +17,6 @@ class SearchController extends Controller
             'r' => 'date_release',
             't' => 'type',
             'x' => 'text',
-            'y' => 'quantity',
     );
 
     public static $searchTypes = array(

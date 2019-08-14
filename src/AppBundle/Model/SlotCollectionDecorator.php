@@ -122,13 +122,7 @@ class SlotCollectionDecorator implements SlotCollectionInterface
             if (!isset($expansions[$expansion->getId()])) {
                 $expansions[$expansion->getId()] = [
                     'expansion' => $expansion,
-                    'nb' => 0,
                 ];
-            }
-
-            $nbexpansions = ceil($slot->getQuantity() / $card->getQuantity());
-            if ($expansions[$expansion->getId()]['nb'] < $nbexpansions) {
-                $expansions[$expansion->getId()]['nb'] = $nbexpansions;
             }
         }
 
@@ -138,8 +132,6 @@ class SlotCollectionDecorator implements SlotCollectionInterface
             $expansion1 = $arr1['expansion'];
             /** @var Expansion $expansion2 */
             $expansion2 = $arr2['expansion'];
-            $expansion1 = $expansion1->getExpansion();
-            $expansion2 = $expansion2->getExpansion();
             if ($expansion1->getPosition() > $expansion2->getPosition()) {
                 return 1;
             } elseif ($expansion1->getPosition() < $expansion2->getPosition()) {
