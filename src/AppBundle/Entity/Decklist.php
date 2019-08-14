@@ -444,20 +444,6 @@ class Decklist extends ExportableDeck implements \JsonSerializable
     }
 
     /**
-     * Set faction
-     *
-     * @param Faction $faction
-     *
-     * @return Decklist
-     */
-    public function setFaction(Faction $faction = null)
-    {
-        $this->faction = $faction;
-
-        return $this;
-    }
-
-    /**
      * Set lastExpansion
      *
      * @param Expansion $lastExpansion

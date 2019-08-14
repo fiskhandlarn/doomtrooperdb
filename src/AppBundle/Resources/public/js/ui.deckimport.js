@@ -5,9 +5,7 @@
     ui.on_content_change = function on_content_change(event)
     {
         var text = $(content).val(),
-                slots = {},
-                faction_code,
-                faction_name;
+            slots = {};
 
         text.match(/[^\r\n]+/g).forEach(function (token)
         {
@@ -28,25 +26,18 @@
             } else {
                 card = app.data.cards.findOne({name: name});
             }
-            faction = app.data.factions.findOne({name: name});
             if(card) {
                 slots[card.code] = qty;
-            } else if(faction) {
-                faction_code = faction.code;
-                faction_name = faction.name;
             } else {
                 console.log('rejecting string [' + name + ']');
             }
         });
 
         app.deck.init({
-            faction_code: faction_code,
-            faction_name: faction_name,
             slots: slots
         });
         app.deck.display('#deck');
         $('input[name=content').val(app.deck.get_json());
-        $('input[name=faction_code').val(faction_code);
     };
 
     /**

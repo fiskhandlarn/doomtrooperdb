@@ -2,7 +2,6 @@
 
 namespace AppBundle\Model;
 
-use AppBundle\Entity\Faction;
 use AppBundle\Entity\User;
 use Doctrine\Common\Collections\Collection;
 
@@ -47,11 +46,6 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
     protected $user;
 
     /**
-     * @var Faction
-     */
-    protected $faction;
-
-    /**
      * @var string
      */
     protected $descriptionMd;
@@ -60,16 +54,6 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
      * @return mixed
      */
     abstract public function getVersion();
-
-    /**
-     * Get faction
-     *
-     * @return Faction
-     */
-    public function getFaction()
-    {
-        return $this->faction;
-    }
 
     /**
      * @return integer
@@ -143,8 +127,6 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
             'date_update' => $this->getDateUpdate()->format('c'),
             'description_md' => $this->getDescriptionMd(),
             'user_id' => $this->getUser()->getId(),
-            'faction_code' => $this->getFaction()->getCode(),
-            'faction_name' => $this->getFaction()->getName(),
             'slots' => $slots->getContent(),
             'version' => $this->getVersion(),
         ];
@@ -161,7 +143,6 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
         return [
             'name' => $this->getName(),
             'version' => $this->getVersion(),
-            'faction' => $this->getFaction(),
             'draw_deck_size' => $slots->getDrawDeck()->countCards(),
             'included_expansions' => $slots->getIncludedExpansions(),
             'slots_by_type' => $slots->getSlotsByType()
@@ -177,7 +158,6 @@ abstract class ExportableDeck implements SlotCollectionProviderInterface
         return [
             'name' => $this->getName(),
             'version' => $this->getVersion(),
-            'faction' => $this->getFaction(),
             'draw_deck_size' => $slots->getDrawDeck()->countCards(),
             'included_expansions' => $slots->getIncludedExpansions(),
             'slots_by_expansion_order' => $slots->getSlotsByExpansionOrder()

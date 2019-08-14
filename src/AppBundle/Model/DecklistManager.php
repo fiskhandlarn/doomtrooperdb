@@ -10,7 +10,6 @@ use AppBundle\Entity\User;
 use AppBundle\Entity\Expansion;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use AppBundle\Entity\Faction;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -21,7 +20,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class DecklistManager
 {
-    protected $faction;
     protected $page = 1;
     protected $start = 0;
     protected $limit = 30;
@@ -37,11 +35,6 @@ class DecklistManager
         $this->request_stack = $request_stack;
         $this->router = $router;
         $this->logger = $logger;
-    }
-
-    public function setFaction(Faction $faction = null)
-    {
-        $this->faction = $faction;
     }
 
     public function setLimit($limit)
@@ -68,10 +61,6 @@ class DecklistManager
         $qb = $this->doctrine->createQueryBuilder();
         $qb->select('d');
         $qb->from('AppBundle:Decklist', 'd');
-        if ($this->faction) {
-            $qb->where('d.faction = :faction');
-            $qb->setParameter('faction', $this->faction);
-        }
         $qb->setFirstResult($this->start);
         $qb->setMaxResults($this->limit);
         $qb->distinct();
@@ -168,11 +157,6 @@ class DecklistManager
             $cards_code = [];
         }
 
-        $faction_code = filter_var($request->query->get('faction'), FILTER_SANITIZE_STRING);
-        if ($faction_code) {
-            $faction = $this->doctrine->getRepository('AppBundle:Faction')->findOneBy(['code' => $faction_code]);
-        }
-
         $author_name = filter_var($request->query->get('author'), FILTER_SANITIZE_STRING);
 
         $decklist_name = filter_var($request->query->get('name'), FILTER_SANITIZE_STRING);
@@ -186,10 +170,6 @@ class DecklistManager
         $qb = $this->getQueryBuilder();
         $joinTables = [];
 
-        if (!empty($faction)) {
-            $qb->andWhere('d.faction = :faction');
-            $qb->setParameter('faction', $faction);
-        }
         if (!empty($author_name)) {
             $qb->innerJoin('d.user', 'u');
             $joinTables[] = 'd.user';

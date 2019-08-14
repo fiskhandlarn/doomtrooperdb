@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Decklist;
-use AppBundle\Entity\Faction;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
@@ -35,63 +34,23 @@ class BuilderController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $factions = $em->getRepository('AppBundle:Faction')->findAllAndOrderByName();
+        //$tags = [$faction_code];
 
-        return $this->render(
-            'AppBundle:Builder:initbuild.html.twig',
-            [
-                'pagetitle' => $this->get('translator')->trans('decks.form.new'),
-                'factions' => $factions,
-            ],
-            $response
-        );
-    }
-
-    /**
-     * @param Request $request
-     * @return RedirectResponse
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function initbuildAction(Request $request)
-    {
-        $translator = $this->get('translator');
-
-        /* @var $em EntityManager */
-        $em = $this->getDoctrine()->getManager();
-
-        $faction_code = $request->request->get('faction');
-
-        if (!$faction_code) {
-            $this->get('session')->getFlashBag()->set('error', $translator->trans("decks.build.errors.nofaction"));
-
-            return $this->redirect($this->generateUrl('deck_buildform'));
-        }
-
-        $faction = $em->getRepository('AppBundle:Faction')->findByCode($faction_code);
-        if (!$faction) {
-            $this->get('session')->getFlashBag()->set('error', $translator->trans("decks.build.errors.nofaction"));
-
-            return $this->redirect($this->generateUrl('deck_buildform'));
-        }
-        $tags = [$faction_code];
-
-        $name = $translator->trans(
-            "decks.build.newname",
-            array(
-                "%faction%" => $faction->getName(),
-            )
-        );
+        $name = "kuken TODO";
+        // $name = $translator->trans(
+        //     "decks.build.newname",
+        //     array(
+        //         "%faction%" => $faction->getName(),
+        //     )
+        // );
         $expansion = $em->getRepository('AppBundle:Expansion')->findOneBy(array("code" => "unl"));
 
 
         $deck = new Deck();
         $deck->setDescriptionMd("");
-        $deck->setFaction($faction);
         $deck->setLastExpansion($expansion);
         $deck->setName($name);
         $deck->setProblem('too_few_cards');
-        $deck->setTags(join(' ', array_unique($tags)));
         $deck->setUser($this->getUser());
 
         $em->persist($deck);
@@ -106,18 +65,10 @@ class BuilderController extends Controller
         $response->setPublic();
         $response->setMaxAge($this->container->getParameter('cache_expiration'));
 
-        $factions = $this->getDoctrine()->getRepository('AppBundle:Faction')->findAll();
-
         return $this->render(
             'AppBundle:Builder:directimport.html.twig',
             array(
                 'pagetitle' => "Import a deck",
-                'factions' => array_map(
-                    function (Faction $faction) {
-                        return ['code' => $faction->getCode(), 'name' => $faction->getName()];
-                    },
-                    $factions
-                ),
             ),
             $response
         );
@@ -161,21 +112,11 @@ class BuilderController extends Controller
             $data = $service->parseTextImport(file_get_contents($filename));
         }
 
-        if (empty($data['faction'])) {
-            return $this->render(
-                'AppBundle:Default:error.html.twig',
-                [
-                    'error' => "Unable to recognize the Faction of the deck.",
-                ]
-            );
-        }
-
         $this->get('deck_manager')->save(
             $this->getUser(),
             new Deck(),
             null,
             $name,
-            $data['faction'],
             $data['description'],
             null,
             $data['content'],
@@ -325,7 +266,6 @@ class BuilderController extends Controller
             'AppBundle:Builder:save',
             array(
                 'name' => $deck->getName().' (clone)',
-                'faction_code' => $deck->getFaction()->getCode(),
                 'content' => json_encode($content),
                 'deck_id' => $deck->getParent() ? $deck->getParent()->getId() : null,
             )
@@ -363,15 +303,6 @@ class BuilderController extends Controller
             $source_deck = $deck;
         }
 
-        $faction_code = filter_var($request->get('faction_code'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-        if (!$faction_code) {
-            return new Response('Cannot import deck without faction');
-        }
-        $faction = $em->getRepository('AppBundle:Faction')->findOneBy(['code' => $faction_code]);
-        if (!$faction) {
-            return new Response('Cannot import deck with unknown faction '.$faction_code);
-        }
-
         $cancel_edits = (boolean)filter_var($request->get('cancel_edits'), FILTER_SANITIZE_NUMBER_INT);
         if ($cancel_edits) {
             if ($deck) {
@@ -401,7 +332,6 @@ class BuilderController extends Controller
             $deck,
             $decklist_id,
             $name,
-            $faction,
             $description,
             $tags,
             $content,
@@ -682,7 +612,6 @@ class BuilderController extends Controller
             'AppBundle:Builder:save',
             array(
                 'name' => $decklist->getName(),
-                'faction_code' => $decklist->getFaction()->getCode(),
                 'content' => json_encode($content),
                 'decklist_id' => $decklist_id,
             )

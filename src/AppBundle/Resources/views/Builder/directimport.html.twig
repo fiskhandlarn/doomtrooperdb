@@ -2,13 +2,6 @@
 
 {% block javascripts %}
     <script src="{{ asset_url }}/js/ui.deckimport.js"></script>
-
-    <script>
-      $(document).on('data.app', function () {
-        app.data.factions = app.data.db.collection('faction', {primaryKey: 'code', changeTimestamp: false});
-        app.data.factions.setData({{ factions|json_encode|raw }});
-      });
-    </script>
 {% endblock %}
 
 {% block body %}
@@ -37,7 +30,6 @@
                         <ul class="list-group" id="deck">
                         </ul>
                     </div>
-                    <input type="hidden" name="faction_code">
                     <input type="hidden" name="content">
                     <button id="btn-save" type="submit" class="btn btn-success">Save the deck</button>
                 </form>

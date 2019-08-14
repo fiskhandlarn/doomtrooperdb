@@ -2,7 +2,6 @@
 
 namespace AppBundle\Services;
 
-use AppBundle\Entity\Faction;
 use AppBundle\Entity\User;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManager;
@@ -43,7 +42,6 @@ class DeckManager
      * @param Deck $deck
      * @param int $decklist_id
      * @param string $name
-     * @param Faction $faction
      * @param string $description
      * @param string|array $tags
      * @param array $content
@@ -52,7 +50,7 @@ class DeckManager
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function save($user, $deck, $decklist_id, $name, $faction, $description, $tags, $content, $source_deck)
+    public function save($user, $deck, $decklist_id, $name, $description, $tags, $content, $source_deck)
     {
         $deck_content = [];
 
@@ -64,7 +62,6 @@ class DeckManager
         }
 
         $deck->setName($name);
-        $deck->setFaction($faction);
         $deck->setDescriptionMd($description);
         $deck->setUser($user);
         $deck->setMinorVersion($deck->getMinorVersion() + 1);
@@ -84,10 +81,7 @@ class DeckManager
             $latestExpansion = $card->getExpansion();
         }
         $deck->setLastExpansion($latestExpansion);
-        if (empty($tags)) {
-            // tags can never be empty. if it is we put faction in
-            $tags = [$faction->getCode()];
-        }
+
         if (is_string($tags)) {
             $tags = preg_split('/\s+/', $tags);
         }
@@ -152,7 +146,9 @@ class DeckManager
         foreach ($changes as $change) {
             $this->doctrine->remove($change);
         }
-        $this->doctrine->remove($deck);
+        if ($deck->getSlots() === 0) {
+            $this->doctrine->remove($deck);
+        }
         $this->doctrine->flush();
     }
 
