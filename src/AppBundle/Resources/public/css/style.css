@@ -369,7 +369,7 @@ div.site-slogan {
 .bg-imperial {
     background-color: #e89521 !important;
 }
-.bg-neutral {
+.bg-general {
     background-color: #a99560 !important;
 }
 
@@ -397,7 +397,7 @@ div.site-slogan {
 .fg-imperial {
     color: #e89521 !important;
 }
-.fg-neutral {
+.fg-general {
     color: #a99560 !important;
 }
 
@@ -425,7 +425,7 @@ div.site-slogan {
 .border-imperial {
     border-color: #e89521 !important;
 }
-.border-neutral {
+.border-general {
     border-color: #a99560 !important;
 }
 
