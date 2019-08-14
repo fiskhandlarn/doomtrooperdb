@@ -184,28 +184,6 @@ class Oauth2Controller extends Controller
             }
         }
 
-        $faction_code = filter_var(
-            $request->get('faction_code'),
-            FILTER_SANITIZE_STRING,
-            FILTER_FLAG_NO_ENCODE_QUOTES
-        );
-        if (!$faction_code) {
-            return new JsonResponse([
-                'success' => false,
-                'msg'     => "Faction code missing",
-            ]);
-        }
-        $faction = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Faction')
-            ->findOneBy(['code' => $faction_code]);
-        if (!$faction) {
-            return new JsonResponse([
-                'success' => false,
-                'msg'     => "Faction code invalid",
-            ]);
-        }
-
         $slots = (array) json_decode($request->get('slots'));
         if (!count($slots)) {
             return new JsonResponse([
@@ -243,7 +221,6 @@ class Oauth2Controller extends Controller
             $deck,
             $decklist_id,
             $name,
-            $faction,
             $description,
             $tags,
             $slots,
