@@ -6,7 +6,7 @@
      */
     format.name = function name(card)
     {
-        return (card.is_unique ? '<span class="icon-unique"></span> ' : "") + card.name;
+        return card.name;
     }
 
     format.faction = function faction(card)
