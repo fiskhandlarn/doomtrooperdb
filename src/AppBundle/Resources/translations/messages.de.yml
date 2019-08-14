@@ -59,7 +59,7 @@ decks:
     choose:
       faction: Wähle eine Fraktion
     start: Die Deckliste erstellen und mit dem Bauen beginnen
-    newname: "Neue Deckliste: %faction%"
+    newname: "Neue Deckliste (%time%)"
     errors:
       nofaction: Es muss Fraktion ausgewählt sein.
   edit:

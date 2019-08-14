@@ -59,7 +59,7 @@ decks:
     choose:
       faction: Elige tu Facción
     start: Crear el mazo y empezar a construirlo
-    newname: "Nuevo mazo: %faction%"
+    newname: "Nuevo mazo (%time%)"
     errors:
       nofaction: Se requiere una Facción.
   edit:

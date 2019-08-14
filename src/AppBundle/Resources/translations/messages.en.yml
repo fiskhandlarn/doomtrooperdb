@@ -59,7 +59,7 @@ decks:
     choose:
       faction: Choose your faction
     start: Create the deck and start building
-    newname: "New deck: %faction%"
+    newname: "New deck (%time%)"
     errors:
       nofaction: A faction is required.
   edit:

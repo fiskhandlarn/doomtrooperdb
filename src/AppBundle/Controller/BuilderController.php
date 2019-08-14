@@ -31,25 +31,18 @@ class BuilderController extends Controller
         $response->setPublic();
         $response->setMaxAge($this->container->getParameter('cache_expiration'));
 
+        $translator = $this->get('translator');
 
         $em = $this->getDoctrine()->getManager();
 
-        //$tags = [$faction_code];
-
-        $name = "kuken TODO";
-        // $name = $translator->trans(
-        //     "decks.build.newname",
-        //     array(
-        //         "%faction%" => $faction->getName(),
-        //     )
-        // );
         $expansion = $em->getRepository('AppBundle:Expansion')->findOneBy(array("code" => "unl"));
-
 
         $deck = new Deck();
         $deck->setDescriptionMd("");
         $deck->setLastExpansion($expansion);
-        $deck->setName($name);
+        $deck->setName($translator->trans("decks.build.newname", [
+            "%time%" => date("Y-m-d H:i:s")
+        ]));
         $deck->setProblem('too_few_cards');
         $deck->setUser($this->getUser());
 
