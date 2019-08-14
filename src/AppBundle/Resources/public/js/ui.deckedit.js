@@ -177,7 +177,6 @@
     ui.init_selectors = function init_selectors()
     {
         $('[data-filter=faction_code]').find('input[name=general]').prop("checked", true).parent().addClass('active');
-        $('[data-filter=faction_code]').find('input[name=' + app.deck.get_faction_code() + ']').prop("checked", true).parent().addClass('active');
 
         var faction_codes = app.deck.get_all_faction_codes();
 

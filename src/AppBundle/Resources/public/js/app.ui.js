@@ -14,8 +14,6 @@
 
         lines.push(deck.get_name());
         lines.push("");
-        lines.push(deck.get_faction_name());
-        lines.push("");
         if (included_expansions.length > 1) {
             lines.push("Expansions: From " + included_expansions[0].name + ' to ' + included_expansions[included_expansions.length - 1].name);
         } else {
@@ -49,10 +47,6 @@
             return out;
         };
 
-        lines.push("## " + deck.get_faction_name());
-        lines.push("");
-
-        lines.push("");
         if (included_expansions.length > 1) {
             lines.push("Expansions: From " + included_expansions[0].name + ' to ' + included_expansions[included_expansions.length - 1].name);
         } else {
@@ -89,10 +83,6 @@
             return out;
         };
 
-        lines.push(deck.get_faction_name());
-        lines.push("");
-
-        lines.push("");
         if (included_expansions.length > 1) {
             lines.push("Expansions: From " + included_expansions[0].name + ' to ' + included_expansions[included_expansions.length - 1].name);
         } else {

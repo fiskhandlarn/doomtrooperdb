@@ -9,8 +9,6 @@
             id,
             name,
             tags,
-            faction_code,
-            faction_name,
             unsaved,
             user_id,
             problem_labels = _.reduce(
@@ -22,7 +20,7 @@
                     },
                     {}),
             header_tpl = _.template('<h5><span class="icon icon-<%= code %>"></span> <%= name %> (<%= quantity %>)</h5>'),
-            card_line_tpl = _.template('<span class="icon icon-<%= card.type_code %> fg-<%= card.faction_code %>"></span> <a href="<%= card.url %>" class="card card-tip" data-toggle="modal" data-remote="false" data-target="#cardModal" data-code="<%= card.code %>"><%= card.label %></a>'),
+            card_line_tpl = _.template('<span class="icon icon-<%= card.type_code %>"></span> <a href="<%= card.url %>" class="card card-tip" data-toggle="modal" data-remote="false" data-target="#cardModal" data-code="<%= card.code %>"><%= card.label %></a>'),
             layouts = {},
             layout_data = {};
 
@@ -106,8 +104,6 @@
         id = data.id;
         name = data.name;
         tags = data.tags;
-        faction_code = data.faction_code;
-        faction_name = data.faction_name;
         unsaved = data.unsaved;
         user_id = data.user_id;
 
@@ -156,23 +152,6 @@
     deck.get_name = function get_name()
     {
         return name;
-    };
-
-    /**
-     * @memberOf deck
-     * @returns string
-     */
-    deck.get_faction_code = function get_faction_code()
-    {
-        return faction_code;
-    };
-
-    /**
-     * @returns {String}
-     */
-    deck.get_faction_name = function get_faction_name()
-    {
-        return faction_name;
     };
 
     /**
@@ -320,10 +299,6 @@
 
         var problem = deck.get_problem();
 
-        deck.update_layout_section(data, 'images', $('<div style="margin-bottom:10px"><img src="/bundles/app/images/factions/' + deck.get_faction_code() + '.png" class="img-responsive">'));
-
-        deck.update_layout_section(data, 'meta', $('<h4 style="font-weight:bold">' + faction_name + '</h4>'));
-
         var expansions = _.map(deck.get_included_expansions({ 'position': 1 }), function (expansion) {
             return expansion.name + (expansion.quantity > 1 ? ' (' + expansion.quantity + ')' : '');
         }).join(', ');
@@ -344,14 +319,6 @@
         var layout_template = 2;
 
         switch (deck.sort_type) {
-            case "faction":
-                deck.update_layout_section(data, "cards", deck.get_layout_section({'faction_name': 1, 'name': 1}, {'faction_name': 1}, null));
-                layout_template = 5;
-                break;
-            case "factionnumber":
-                deck.update_layout_section(data, "cards", deck.get_layout_section({'faction_name': 1, 'code': 1}, {'faction_name': 1}, null, "number"));
-                layout_template = 5;
-                break;
             case "name":
                 deck.update_layout_section(data, "cards", $('<br>'));
                 deck.update_layout_section(data, "cards", deck.get_layout_section({'name': 1},  null, null, "number"));
