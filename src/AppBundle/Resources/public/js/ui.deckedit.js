@@ -176,27 +176,19 @@
      */
     ui.init_selectors = function init_selectors()
     {
-        $('[data-filter=faction_code]').find('input[name=general]').prop("checked", true).parent().addClass('active');
-
-        var faction_codes = app.deck.get_all_faction_codes();
-
-        for(var i = 0; i < faction_codes.length; i++) {
-            $('[data-filter=faction_code]').find('input[name=' + faction_codes[i] + ']').prop("checked", true).parent().addClass('active');
-        }
-
-        $('[data-filter=type_code]').find('input[name=character]').prop("checked", true).parent().addClass('active');
+        $('[data-filter=faction_code]').find('input[name=general]').prop('checked', true).parent().addClass('active');
     };
 
     function uncheck_all_others()
     {
-        $(this).closest('[data-filter]').find("input[type=checkbox]").prop("checked", false);
-        $(this).children('input[type=checkbox]').prop("checked", true).trigger('change');
+        $(this).closest('[data-filter]').find("input[type=checkbox]").prop('checked', false);
+        $(this).children('input[type=checkbox]').prop('checked', true).trigger('change');
     }
 
     function check_all_others()
     {
-        $(this).closest('[data-filter]').find("input[type=checkbox]").prop("checked", true);
-        $(this).children('input[type=checkbox]').prop("checked", false);
+        $(this).closest('[data-filter]').find("input[type=checkbox]").prop('checked', true);
+        $(this).children('input[type=checkbox]').prop('checked', false);
     }
 
     function uncheck_all_active()
