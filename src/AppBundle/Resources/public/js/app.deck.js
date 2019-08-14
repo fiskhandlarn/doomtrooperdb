@@ -564,4 +564,16 @@
         return _.values(factions);
     };
 
+    /**
+     * @memberOf deck
+     * @param {string} type_code
+     * @param {object} sort
+     */
+    deck.get_cards_of_type = function get_cards_of_type(type_code, sort)
+    {
+        return deck.get_cards(sort, {
+            type_code: type_code
+        });
+    };
+
 })(app.deck = {}, jQuery);

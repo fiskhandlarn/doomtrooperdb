@@ -10,13 +10,7 @@
         var included_expansions = deck.get_included_expansions({ 'position': 1 });
 
         var sortOrder = { "name": 1 };
-        var sections = {
-            "Alliance": deck.get_alliance(sortOrder),
-            "Art": deck.get_art(sortOrder),
-            "Beasts": deck.get_beasts(sortOrder),
-            "Symmetrys":  deck.get_symmetrys(sortOrder),
-            'Equipments': deck.get_equipments(sortOrder)
-        };
+        var sections = get_sections(deck, sortOrder);
 
         lines.push(deck.get_name());
         lines.push("");
@@ -42,13 +36,7 @@
         var included_expansions = deck.get_included_expansions({ 'position': 1 });
 
         var sortOrder = { "name": 1 };
-        var sections = {
-            "Alliance": deck.get_alliance(sortOrder),
-            "Art": deck.get_art(sortOrder),
-            "Beasts": deck.get_beasts(sortOrder),
-            "Symmetrys":  deck.get_symmetrys(sortOrder),
-            'Equipments': deck.get_equipments(sortOrder)
-        };
+        var sections = get_sections(deck, sortOrder);
 
         var print_card_line = function(card, show_quantity) {
             var out = "";
@@ -88,13 +76,7 @@
         var included_expansions = deck.get_included_expansions({ 'position': 1 });
 
         var sortOrder = { "name": 1 };
-        var sections = {
-            "Alliance": deck.get_alliance(sortOrder),
-            "Art": deck.get_art(sortOrder),
-            "Beasts": deck.get_beasts(sortOrder),
-            "Symmetrys":  deck.get_symmetrys(sortOrder),
-            'Equipments': deck.get_equipments(sortOrder)
-        };
+        var sections = get_sections(deck, sortOrder);
 
         var print_card_line = function(card, show_quantity) {
             var out = "";
@@ -103,7 +85,7 @@
             if (show_quantity) {
                 out = out + card.indeck + 'x ';
             }
-            out  = out + '[agot]' + card.name + ' ('+ card.expansion_code + ')[/agot]';
+            out  = out + '[dt]' + card.name + ' ('+ card.expansion_code + ')[/dt]';
             return out;
         };
 
@@ -128,6 +110,23 @@
 
         return lines;
     }
+
+    var get_sections = function get_sections(deck, sortOrder) {
+        return {
+            'Alliances': deck.get_cards_of_type('alliance', sortOrder),
+            'Art': deck.get_cards_of_type('art', sortOrder),
+            'Beasts': deck.get_cards_of_type('beast', sortOrder),
+            'Dark Symmetry': deck.get_cards_of_type('symmetry', sortOrder),
+            'Equipment': deck.get_cards_of_type('equipment', sortOrder),
+            'Fortifications': deck.get_cards_of_type('fortification', sortOrder),
+            'Ki Powers': deck.get_cards_of_type('ki', sortOrder),
+            'Missions': deck.get_cards_of_type('mission', sortOrder),
+            'Relics': deck.get_cards_of_type('relic', sortOrder),
+            'Specials': deck.get_cards_of_type('special', sortOrder),
+            'Warriors': deck.get_cards_of_type('warrior', sortOrder),
+            'Warzones': deck.get_cards_of_type('warzone', sortOrder),
+        };
+    };
 
     /**
      * called when the DOM is loaded
