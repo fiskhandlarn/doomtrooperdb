@@ -22,6 +22,7 @@
   * selection.json
   * style.css `.card-thumbnail-1x.card-thumbnail-character` and so on
 * fonts
+  * convert svg to other format(s?)
 * about.*.html.twig
 * footer.*.html.twig
 * faq, tournamentregulations, rulesreference
@@ -37,16 +38,6 @@
 * document npm run *
 * languages.png
 * CardsData::addAbbrTags()
-* remove
-  * baratheon
-  * greyjoy
-  * intrigue
-  * lannister
-  * martell
-  * thenightswatch
-  * stark
-  * targaryen
-  * tyrell
 * `macros.html.twig`
 * SAFV-order in CardsData:
 ```
@@ -110,10 +101,20 @@
 * more fields in `src/AppBundle/Resources/public/js/app.ui.js` x3 (`var sections`)
 * change keywords
 * icons
-  * `src/AppBundle/Resources/public/js/ui.decklist_edit.js`, `src/AppBundle/Resources/public/js/app.textcomplete.js`: `        var icons = 'baratheon greyjoy intrigue lannister martell military thenightswatch power stark targaryen tyrell unique plot attachment location character event agenda general'.split(' ');`
   * icons.css
   * messages.*.yml
-* new fields in `src/AppBundle/Resources/views/Search/card-props.html.twig`
+  * replace all icons
+  * add icons for
+    * lutheran
+    * rasputin
+    * templars
+    * warrior
+    * warzone
+* `src/AppBundle/Resources/views/Search/card-props.html.twig`
+  * additional fields
+    * warrior
+    * warzone
+  * remove GoT terms
 * add graphs for SAFV(?)
 * allow all factions in deckbuilder (`DeckValidationHelper::canIncludeCard`?)
   * Deck.orm.yml
@@ -124,3 +125,8 @@
 * http://localhost/card/05008
 * https in js
 * add deck name to `build_markdown` and `build_dtcards`
+* remove items in Options js dropdown
+* deck settings for tournament/classic, restricted/banned
+* don't sort factions in deckbuilder
+* `app_deck_charts.charts.faction_colors`
+* global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`
