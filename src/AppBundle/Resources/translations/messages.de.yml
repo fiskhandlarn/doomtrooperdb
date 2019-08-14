@@ -363,14 +363,18 @@ card:
       faction: F.
 
 icon:
-  baratheon: Haus Baratheon
-  greyjoy: Haus Graufreud
-  lannister: Haus Lennister
-  martell: Haus Martell
-  thenightswatch: Die Nachtwache
-  stark: Haus Stark
-  targaryen: Haus Targaryen
-  tyrell: Haus Tyrell
+  general: General
+  bauhaus: Bauhaus
+  capitol: Capitol
+  cybertronic: Cybertronic
+  imperial: Imperial
+  mishima: Mishima
+  brotherhood: Brotherhood
+  legion: Dark Legion
+  crescentia: Crescentia
+  lutheran: The Lutheran Triad
+  rasputin: The Sons of Rasputin
+  templars: The Templars
 
 keyword:
   renown:

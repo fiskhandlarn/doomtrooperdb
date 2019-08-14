@@ -14,7 +14,7 @@
 				],
 				"isMulticolor": false,
 				"tags": [
-					"baratheon"
+					"bauhaus"
 				],
 				"grid": 16
 			},
@@ -27,7 +27,7 @@
 				"id": 10,
 				"prevSize": 32,
 				"code": 58880,
-				"name": "baratheon"
+				"name": "bauhaus"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -44,7 +44,7 @@
 				],
 				"isMulticolor": false,
 				"tags": [
-					"greyjoy"
+					"capitol"
 				],
 				"grid": 16
 			},
@@ -56,7 +56,7 @@
 				"id": 7,
 				"prevSize": 32,
 				"code": 58881,
-				"name": "greyjoy"
+				"name": "capitol"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -104,7 +104,7 @@
 				],
 				"isMulticolor": false,
 				"tags": [
-					"lannister"
+					"cybertronic"
 				],
 				"grid": 16
 			},
@@ -117,7 +117,7 @@
 				"id": 6,
 				"prevSize": 32,
 				"code": 58883,
-				"name": "lannister"
+				"name": "cybertronic"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -134,7 +134,7 @@
 				],
 				"isMulticolor": false,
 				"tags": [
-					"martell"
+					"imperial"
 				],
 				"grid": 16
 			},
@@ -146,7 +146,7 @@
 				"id": 3,
 				"prevSize": 32,
 				"code": 58884,
-				"name": "martell"
+				"name": "imperial"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -269,7 +269,7 @@
 				],
 				"isMulticolor": false,
 				"tags": [
-					"stark"
+					"brotherhood"
 				],
 				"grid": 16
 			},
@@ -283,7 +283,7 @@
 				"id": 9,
 				"prevSize": 32,
 				"code": 58888,
-				"name": "stark"
+				"name": "brotherhood"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -306,7 +306,7 @@
 				],
 				"isMulticolor": false,
 				"tags": [
-					"targaryen"
+					"legion"
 				],
 				"grid": 16
 			},
@@ -321,7 +321,7 @@
 				"id": 11,
 				"prevSize": 32,
 				"code": 58889,
-				"name": "targaryen"
+				"name": "legion"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -358,7 +358,7 @@
 				],
 				"isMulticolor": false,
 				"tags": [
-					"tyrell"
+					"crescentia"
 				],
 				"grid": 16
 			},
@@ -380,7 +380,7 @@
 				"id": 8,
 				"prevSize": 32,
 				"code": 58890,
-				"name": "tyrell"
+				"name": "crescentia"
 			},
 			"setIdx": 0,
 			"setId": 2,

@@ -23,37 +23,37 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.icon-baratheon:before {
+.icon-bauhaus:before {
 	content: "\e600";
 }
-.icon-greyjoy:before {
+.icon-capitol:before {
 	content: "\e601";
 }
 .icon-intrigue:before {
 	content: "\e602";
 }
-.icon-lannister:before {
+.icon-cybertronic:before {
 	content: "\e603";
 }
-.icon-martell:before {
+.icon-imperial:before {
 	content: "\e604";
 }
 .icon-military:before {
 	content: "\e605";
 }
-.icon-thenightswatch:before {
+.icon-mishima:before {
 	content: "\e606";
 }
 .icon-power:before {
 	content: "\e607";
 }
-.icon-stark:before {
+.icon-brotherhood:before {
 	content: "\e608";
 }
-.icon-targaryen:before {
+.icon-legion:before {
 	content: "\e609";
 }
-.icon-tyrell:before {
+.icon-crescentia:before {
 	content: "\e60a";
 }
 .icon-unique:before {

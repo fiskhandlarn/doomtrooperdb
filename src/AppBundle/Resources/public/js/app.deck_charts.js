@@ -3,28 +3,28 @@
 
     var charts = [],
             faction_colors = {
-                targaryen:
+                legion:
                         '#1c1c1c',
 
-                baratheon:
+                bauhaus:
                         '#e3d852',
 
-                stark:
+                brotherhood:
                         '#cfcfcf',
 
-                greyjoy:
+                capitol:
                         '#1d7a99',
 
-                lannister:
+                cybertronic:
                         '#c00106',
 
-                tyrell:
+                crescentia:
                         '#509f16',
 
-                thenightswatch:
+                mishima:
                         '#6e6e6e',
 
-                martell:
+                imperial:
                         '#e89521',
 
                 general:

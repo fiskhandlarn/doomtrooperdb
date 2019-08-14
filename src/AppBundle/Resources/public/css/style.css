@@ -341,88 +341,88 @@ div.site-slogan {
 .bg-faction a, .bg-faction span {
     color: inherit;
 }
-.bg-targaryen {
+.bg-legion {
     background-color: #1c1c1c !important;
     color: white !important;
 }
-.bg-baratheon {
+.bg-bauhaus {
     background-color: #e3d852 !important;
 }
-.bg-stark {
+.bg-brotherhood {
     background-color: #cfcfcf !important;
 }
-.bg-greyjoy {
+.bg-capitol {
     background-color: #1d7a99 !important;
     color: white !important;
 }
-.bg-lannister {
+.bg-cybertronic {
     background-color: #c00106 !important;
     color: white !important;
 }
-.bg-tyrell {
+.bg-crescentia {
     background-color: #509f16 !important;
     color: white !important;
 }
-.bg-thenightswatch {
+.bg-mishima {
     background-color: #7a7a7a !important;
 }
-.bg-martell {
+.bg-imperial {
     background-color: #e89521 !important;
 }
 .bg-neutral {
     background-color: #a99560 !important;
 }
 
-.fg-targaryen {
+.fg-legion {
     color: #1c1c1c !important;
 }
-.fg-baratheon {
+.fg-bauhaus {
     color: #e3d852 !important;
 }
-.fg-stark {
+.fg-brotherhood {
     color: #cfcfcf !important;
 }
-.fg-greyjoy {
+.fg-capitol {
     color: #1d7a99 !important;
 }
-.fg-lannister {
+.fg-cybertronic {
     color: #c00106 !important;
 }
-.fg-tyrell {
+.fg-crescentia {
     color: #509f16 !important;
 }
-.fg-thenightswatch {
+.fg-mishima {
     color: #7a7a7a !important;
 }
-.fg-martell {
+.fg-imperial {
     color: #e89521 !important;
 }
 .fg-neutral {
     color: #a99560 !important;
 }
 
-.border-targaryen {
+.border-legion {
     border-color: #1c1c1c !important;
 }
-.border-baratheon {
+.border-bauhaus {
     border-color: #e3d852 !important;
 }
-.border-stark {
+.border-brotherhood {
     border-color: #cfcfcf !important;
 }
-.border-greyjoy {
+.border-capitol {
     border-color: #1d7a99 !important;
 }
-.border-lannister {
+.border-cybertronic {
     border-color: #c00106 !important;
 }
-.border-tyrell {
+.border-crescentia {
     border-color: #509f16 !important;
 }
-.border-thenightswatch {
+.border-mishima {
     border-color: #7a7a7a !important;
 }
-.border-martell {
+.border-imperial {
     border-color: #e89521 !important;
 }
 .border-neutral {
