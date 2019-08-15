@@ -5,7 +5,6 @@ AppBundle\Entity\Expansion:
     oneToMany:
         cards:
             targetEntity: Card
-            orderBy: {'position':'ASC'}
             mappedBy: expansion
     fields:
         id:
