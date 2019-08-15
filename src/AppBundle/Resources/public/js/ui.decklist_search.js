@@ -45,7 +45,6 @@
             that.attr('title', that.data('original-tooltip'));
             $(that).removeClass('processing');
         });
-        ui.send_like.call($('.social .social-icon-like'), event);
     };
 
     /**
