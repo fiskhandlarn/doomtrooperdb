@@ -7,6 +7,7 @@
 * remove
   * Reviews
   * Rules
+    * `src/AppBundle/Resources/public/images/rulesreference`
   * F.A.Q.
   * Tournament Regulations
 * factions as array
@@ -28,7 +29,6 @@
 * sidebar
 * images from https://raw.githubusercontent.com/ instead?
 * stylelint
-* languages.png
 * CardsData::addAbbrTags()
 * `macros.html.twig`
 * SAFV-order in CardsData:
@@ -71,7 +71,6 @@
   * string_score.min
 * combine all internal and external js into app.js
 * fix mapping and remove `--skip-mapping` from `doctrine:schema:validate`
-* disable language menu
 * ```        switch (deck.sort_type) {
             case "type":
             default:
@@ -119,6 +118,7 @@
 * `app_deck_charts.charts.faction_colors`
 * global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`
 * restore `SocialController::searchForm`
+* replace `src/AppBundle/Resources/public/images/factions`
 
 ## Restore
 * Reviews
@@ -130,4 +130,3 @@
   * https://github.com/ThronesDB/thronesdb/commit/1319dd5989175589ff3689e9891bba477fd5a573#diff-fd9da3c383c79d8ec8de1c215b6bbd41
   * run `php bin/console app:import:trans ../doomtrooperdb-json-data` if you want to import the translations
 * language menu
-*
