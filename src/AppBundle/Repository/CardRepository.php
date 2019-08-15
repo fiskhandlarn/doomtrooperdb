@@ -81,4 +81,5 @@ class CardRepository extends EntityRepository
     public function findNextCard($card)
     {
         return $this->findByRelativePosition($card, 1);
-    }}
+    }
+}
