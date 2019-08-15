@@ -17,6 +17,7 @@
 * JS
 * CSS
   * selection.json
+  * tighten card page text and image
 * fonts
   * convert svg to other format(s?)
 * about.*.html.twig
@@ -29,7 +30,6 @@
 * sidebar
 * images from https://raw.githubusercontent.com/ instead?
 * stylelint
-* `macros.html.twig`
 * SAFV-order in CardsData:
 ```
             case 'cost':
@@ -40,6 +40,7 @@
                 break;
 ```
 * INSERT decklist 1 to pass ApiControllerTest::testGetDecklist?
+* add new search terms for SAFV
 * ```
         a: [add_string_sf, 'flavor', Translator.trans('decks.smartfilter.filters.flavor')],
         b: [add_integer_sf, 'claim', Translator.trans('decks.smartfilter.filters.claim')],
@@ -96,11 +97,6 @@
     * templars
     * warrior
     * warzone
-* `src/AppBundle/Resources/views/Search/card-props.html.twig`
-  * additional fields
-    * warrior
-    * warzone
-  * remove GoT terms
 * add graphs for SAFV(?)
 * allow all factions in deckbuilder (`DeckValidationHelper::canIncludeCard`?)
   * Deck.orm.yml
@@ -116,8 +112,9 @@
 * global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`
 * restore `SocialController::searchForm`
 * replace `src/AppBundle/Resources/public/images/factions`
-* Restricted List: X X
 * remove link for comment on decklists https://github.com/ThronesDB/thronesdb/issues/352
+* remove available for cards and expansions
+* add icons for expansions?
 
 ## Restore
 * Reviews
@@ -130,3 +127,6 @@
   * run `php bin/console app:import:trans ../doomtrooperdb-json-data` if you want to import the translations
 * language menu
 * decklist-faction-image (from used factions in deck)
+
+## Prio 2
+* remove black corners on card images
