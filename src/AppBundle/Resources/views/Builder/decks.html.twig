@@ -115,10 +115,6 @@
                             <td>
                                 <a href="{{ path('deck_view',{deck_id:deck.id}) }}"
                                    class="deck-name">{{ deck.name }}</a> {{ deck.version }}
-                                <div class="restricted-list-info">
-                                    <em>{{ 'restrictedlist.title' | trans }}:</em>
-                                    TODO no joust or melee anymore ¯\_(?)_/¯
-                                </div>
                                 {% if deck.problem is not null %}
                                     <div class="text-danger small">
                                         <span class="fas fa-exclamation-triangle"></span>

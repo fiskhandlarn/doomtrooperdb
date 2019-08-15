@@ -2,7 +2,6 @@
 
 namespace AppBundle\Model;
 
-use AppBundle\Classes\RestrictedListChecker;
 use AppBundle\Entity\Decklistslot;
 use AppBundle\Entity\Expansion;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -19,18 +18,12 @@ class SlotCollectionDecorator implements SlotCollectionInterface
     protected $slots;
 
     /**
-     * @var RestrictedListChecker
-     */
-    protected $restrictedListChecker;
-
-    /**
      * SlotCollectionDecorator constructor.
      * @param Collection $slots
      */
     public function __construct(Collection $slots)
     {
         $this->slots = $slots;
-        $this->restrictedListChecker = new RestrictedListChecker();
     }
 
     /**

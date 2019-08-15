@@ -40,32 +40,6 @@
         'templars': 'templars'
     };
 
-    /*
-     * Validates the current deck against a given list of restricted cards.
-     * @param {Array} restricted_list
-     * @return {boolean}
-     */
-    var validate_deck_against_restricted_list = function(restricted_list) {
-        var is_valid = true;
-        var cards = app.deck.get_cards();
-        var i, n;
-        var counter = 0;
-
-        restricted_list = restricted_list || [];
-
-        for (i = 0, n = cards.length; i < n; i++) {
-            if (-1 !== restricted_list.indexOf(cards[i].code)) {
-                counter++;
-            }
-            if (1 < counter) {
-                is_valid = false;
-                break;
-            }
-        }
-
-        return is_valid;
-    };
-
     /**
      * Creates a new line-item for a given card to a given DOM element.
      * @param {Object} card The card object
@@ -303,14 +277,6 @@
             return expansion.name + (expansion.quantity > 1 ? ' (' + expansion.quantity + ')' : '');
         }).join(', ');
         deck.update_layout_section(data, 'meta', $('<div>' + Translator.trans('decks.edit.meta.expansions', {"expansions": expansions}) + '</div>'));
-
-        var restrictedListContents = '<em>' + Translator.trans('restrictedlist.title') +':</em> ';
-        restrictedListContents += '<span class="text-danger"><i class="fas fa-times"></i> ';
-
-        restrictedListContents += '<span class="text-danger"><i class="fas fa-times"></i> ';
-
-        var restrictedListSection = $('<div>' + restrictedListContents +'</div>');
-        deck.update_layout_section(data, 'meta', restrictedListSection);
 
         if(problem) {
             deck.update_layout_section(data, 'meta', $('<div class="text-danger small"><span class="fas fa-exclamation-triangle"></span> ' + problem_labels[problem] + '</div>'));
