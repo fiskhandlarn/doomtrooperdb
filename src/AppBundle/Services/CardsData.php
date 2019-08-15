@@ -37,42 +37,6 @@ class CardsData
         $this->rootDir = $rootDir;
     }
 
-    /**
-     * Searches for single keywords and surround them with <abbr>
-     * @param string $text
-     * @return string
-     */
-    public function addAbbrTags($text)
-    {
-        static $keywords = [
-            'renown',
-            'intimidate',
-            'stealth',
-            'insight',
-            'limited',
-            'pillage',
-            'terminal',
-            'ambush',
-            'bestow',
-        ];
-
-        $locale = $this->request_stack->getCurrentRequest()
-            ? $this->request_stack->getCurrentRequest()->getLocale()
-            : 'en';
-
-        foreach ($keywords as $keyword) {
-            $translated = $this->translator->trans('keyword.' . $keyword . ".name", array(), "messages", $locale);
-
-            $text = preg_replace_callback("/\b($translated)\b/i", function ($matches) use ($keyword) {
-                return "<abbr data-keyword=\"$keyword\">" . $matches[1] . "</abbr>";
-            }, $text);
-        }
-
-
-
-        return $text;
-    }
-
     public function splitInParagraphs($text)
     {
         if (empty($text)) {
@@ -462,7 +426,6 @@ class CardsData
         if ($api) {
             unset($cardinfo['id']);
         } else {
-            $cardinfo['text'] = $this->addAbbrTags($cardinfo['text']);
             $cardinfo['text'] = $this->splitInParagraphs($cardinfo['text']);
         }
 
