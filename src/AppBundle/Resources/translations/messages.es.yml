@@ -357,8 +357,8 @@ card:
     sidebarlimit: Límite por mazo TODO
     quantity: Cantidad
     illustrator: Ilustrador
-    shoot: Shoot
     fight: Fight
+    shoot: Shoot
     armor: Armor
     value: Value
     short:

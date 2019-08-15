@@ -357,8 +357,8 @@ card:
     sidebarlimit: side bar limit
     quantity: Quantity
     illustrator: Illustrator
-    shoot: Shoot
     fight: Fight
+    shoot: Shoot
     armor: Armor
     value: Value
     short:

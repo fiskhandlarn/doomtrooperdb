@@ -2,8 +2,8 @@
 
 {% if card.type_code == 'warrior' or card.type_code == 'warzone' %}
   <span class="card-props">
-    {{ 'card.info.shoot' | trans }}: {{ macros.integer_or_x(card.shoot) }}.
     {{ 'card.info.fight' | trans }}: {{ macros.integer_or_x(card.fight) }}.
+    {{ 'card.info.shoot' | trans }}: {{ macros.integer_or_x(card.shoot) }}.
     {{ 'card.info.armor' | trans }}: {{ macros.integer_or_x(card.armor) }}.
     {{ 'card.info.value' | trans }}: {{ macros.integer_or_x(card.value) }}.
   </span>

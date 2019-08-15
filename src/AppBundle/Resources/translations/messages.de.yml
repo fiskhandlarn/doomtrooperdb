@@ -357,8 +357,8 @@ card:
     sidebarlimit: Strategiestapel-Limit TODO
     quantity: Anzahl
     illustrator: Illustrator/in
-    shoot: Shoot
     fight: Fight
+    shoot: Shoot
     armor: Armor
     value: Value
     short:

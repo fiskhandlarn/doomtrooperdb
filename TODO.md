@@ -30,7 +30,7 @@
 * sidebar
 * images from https://raw.githubusercontent.com/ instead?
 * stylelint
-* SAFV-order in CardsData:
+* FSAV-order in CardsData:
 ```
             case 'cost':
                 $qb->orderBy('c.type')->addOrderBy('c.cost')->addOrderBy('c.income');
@@ -40,7 +40,7 @@
                 break;
 ```
 * INSERT decklist 1 to pass ApiControllerTest::testGetDecklist?
-* add new search terms for SAFV
+* add new search terms for FSAV
 * ```
         a: [add_string_sf, 'flavor', Translator.trans('decks.smartfilter.filters.flavor')],
         b: [add_integer_sf, 'claim', Translator.trans('decks.smartfilter.filters.claim')],
@@ -97,7 +97,7 @@
     * templars
     * warrior
     * warzone
-* add graphs for SAFV(?)
+* add graphs for FSAV(?)
 * allow all factions in deckbuilder (`DeckValidationHelper::canIncludeCard`?)
   * Deck.orm.yml
 * remove "last expansion"
@@ -115,6 +115,7 @@
 * remove link for comment on decklists https://github.com/ThronesDB/thronesdb/issues/352
 * remove available for cards and expansions
 * add icons for expansions? `src/AppBundle/Resources/public/images/factions`
+* add flavor text to all card info
 
 ## Restore
 * Reviews
