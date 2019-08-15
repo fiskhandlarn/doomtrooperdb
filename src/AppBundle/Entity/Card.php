@@ -544,7 +544,7 @@ class Card implements \Serializable
      */
     public function getImageUrl()
     {
-        return $this->imageUrl;
+        return "/images/" . $this->imageUrl;
     }
 
     /**
