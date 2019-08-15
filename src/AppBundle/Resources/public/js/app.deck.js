@@ -404,7 +404,7 @@
             $div.append($(card_line_tpl({card:card})));
             $div.prepend(card.indeck+'x ');
             if (context && context === "number"){
-                $div.append(" | "+card.expansion_name+" #"+card.position);
+                $div.append(" | "+card.expansion_name);
             }
 
             $div.appendTo(section);

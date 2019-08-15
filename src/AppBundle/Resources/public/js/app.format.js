@@ -19,7 +19,7 @@
      */
     format.expansion = function expansion(card)
     {
-        var text = card.expansion_name + ' #' + card.position + '. ';
+        var text = card.expansion_name + '. ';
         return text;
     }
 

@@ -15,7 +15,7 @@ From {{ first_expansion.expansion.name }}{% if first_expansion.nb > 1 %} ({{ fir
 
 ---- {{ expansion }} ----
 {% for slot in slots %}
-{{ slot.quantity }}x {{ slot.card.name }} ({{ slot.card.pack.name }} #{{ slot.card.position }})
+{{ slot.quantity }}x {{ slot.card.name }} ({{ slot.card.expansion.name }}
 {% endfor %}
 {% endfor %}
 
