@@ -4,10 +4,11 @@
 * thronesdb issues
   * https://github.com/ThronesDB/thronesdb/labels/bug
   * https://github.com/ThronesDB/thronesdb/labels/code%20quality
-* remove Reviews
-* restore Reviews
-* remove Rules
-* restore Rules
+* remove
+  * Reviews
+  * Rules
+  * F.A.Q.
+  * Tournament Regulations
 * factions as array
 * DeckValidationHelper.php
   * validate side board
@@ -25,8 +26,6 @@
 * info@doomtrooperdb.com
 * `google_analytics_tracking_code`
 * sidebar
-* default.txt.twig
-* card-props.html.twig
 * images from https://raw.githubusercontent.com/ instead?
 * stylelint
 * languages.png
@@ -65,9 +64,6 @@
         y: [add_integer_sf, 'quantity', Translator.trans('decks.smartfilter.filters.quantity')]
 ```
 * SocialController::searchForm
-* restore translations of cards
-  * https://github.com/ThronesDB/thronesdb/commit/1319dd5989175589ff3689e9891bba477fd5a573#diff-fd9da3c383c79d8ec8de1c215b6bbd41
-  * run `php bin/console app:import:trans ../doomtrooperdb-json-data` if you want to import the translations
 * remove unused js
   * app.deck_browser
   * app.deck_gallery
@@ -76,7 +72,6 @@
 * combine all internal and external js into app.js
 * fix mapping and remove `--skip-mapping` from `doctrine:schema:validate`
 * disable language menu
-* restore language menu
 * ```        switch (deck.sort_type) {
             case "type":
             default:
@@ -124,3 +119,15 @@
 * `app_deck_charts.charts.faction_colors`
 * global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`
 * restore `SocialController::searchForm`
+
+## Restore
+* Reviews
+* Rules
+* F.A.Q.
+* Tournament Regulations
+* Donators
+* translations of cards
+  * https://github.com/ThronesDB/thronesdb/commit/1319dd5989175589ff3689e9891bba477fd5a573#diff-fd9da3c383c79d8ec8de1c215b6bbd41
+  * run `php bin/console app:import:trans ../doomtrooperdb-json-data` if you want to import the translations
+* language menu
+*
