@@ -75,14 +75,13 @@ decks:
       sort: Ordenar mazo
       help: Ayuda de filtros
       sets:
-        label: Capítulos
+        label: Expansiones
         hint: Mayús+Click para seleccionar solo uno; Alt+Mayús+Click para seleccionar todas las otras opciones
       options:
         label: Opciones
         show:
           onlyused: Sólo mostrar cartas usadas
         display: "{1} Mostrar en 1 columna | ]1, Inf] Mostrar en %cols% columnas"
-        usecore: "{1} Usar 1 Caja básica | ]1, Inf] Usar %core% Cajas básicas"
         factype:
           cumulative: Facción/Tipo acumulativo
           exclusive: Facción/Tipo exclusivo
@@ -100,7 +99,7 @@ decks:
     meta:
       drawdeck: "{0} <em>Mazo de robo:</em> %count% cartas | {1} <em>Mazo de robo:</em> %count% carta | ]1,Inf] <em>Mazo de robo:</em> %count% cartas"
       sidebar: "{0} <em>Mazo de tramas TODO:</em> %count% cartas | {1} <em>Mazo de tramas:</em> %count% carta | ]1,Inf] <em>Mazo de tramas:</em> %count% cartas"
-      expansions: "<em>Capítulos:</em> %expansions%"
+      expansions: "<em>Expansiones:</em> %expansions%"
   form:
     build: Construir nuevo mazo
     uploadarchive: Subir archivo
@@ -136,8 +135,8 @@ decks:
       by_faction: por facción, luego nombre
       by_factionnumber: por facción, luego número
       by_name: por nombre
-      by_set: por capítulo, luego nombre
-      by_setnumber: por capítulo, luego número
+      by_set: por expansión, luego nombre
+      by_setnumber: por expansión, luego número
       by_type: por tipo
   modals:
     card:
@@ -303,7 +302,7 @@ decklist:
         label: Categoría de torneo
 search:
   label: Buscar
-  setbrowse: Explorar capítulos
+  setbrowse: Explorar expansiones
   title: Búsqueda de cartas
   nametexts: Nombre y textos
   attributes: Atributos
@@ -317,7 +316,7 @@ search:
   only: Sólo
   sort:
     name: Ordenar por nombre
-    set: Ordenar por capítulo
+    set: Ordenar por expansión
     faction: Ordenar por facción
     type: Ordenar por tipo
   view:
@@ -353,7 +352,7 @@ card:
     text: Texto
     flavor: Texto de ambientación
     faction: Facción
-    set: Capítulo
+    set: Expansión
     type: Tipo
     sidebarlimit: Límite por mazo TODO
     quantity: Cantidad

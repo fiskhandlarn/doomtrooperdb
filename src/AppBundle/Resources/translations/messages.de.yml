@@ -75,14 +75,13 @@ decks:
       sort: Deckliste sortieren
       help: Hilfe zu Filtern
       sets:
-        label: Packs
+        label: Expansions
         hint: Umschalt+Klicken um nur eine Option auszuwählen; Alt+Umschalt+Klicken um alle anderen Optionen auszuwählen.
       options:
         label: Optionen
         show:
           onlyused: Zeige nur verwendete Karten
         display: "{1} Zeige in 1 Spalte | ]1, Inf] Zeige in %cols% Spalten"
-        usecore: "{1} Verwende 1 Grundspiel | ]1, Inf] Verwende %core% Grundspiele"
         factype:
           cumulative: Fraktion/Typ kumulativ
           exclusive: Fraktion/Typ exklusiv
@@ -136,8 +135,8 @@ decks:
       by_faction: nach Fraktion, dann Name
       by_factionnumber: nach Fraktion, dann Kartennummer
       by_name: nach Name
-      by_set: nach Pack, dann Name
-      by_setnumber: nach Pack, dann Kartennummer
+      by_set: nach Expansion, dann Name
+      by_setnumber: nach Expansion, dann Kartennummer
       by_type: nach Typ
   modals:
     card:
@@ -303,7 +302,7 @@ decklist:
         label: Turnierstufen
 search:
   label: Suche
-  setbrowse: Packs durchsuchen
+  setbrowse: Expansions durchsuchen
   title: Kartensuche
   nametexts: Name und Texte
   attributes: Attribute
@@ -317,7 +316,7 @@ search:
   only: Nur
   sort:
     name: Sortieren nach Name
-    set: Sortieren nach Pack
+    set: Sortieren nach Expansion
     faction: Sortieren nach Fraktion
     type: Sortieren nach Typ
   view:
@@ -353,7 +352,7 @@ card:
     text: Text
     flavor: Atmosphärischer Text
     faction: Fraktion
-    set: Pack
+    set: Expansion
     type: Typ
     sidebarlimit: Strategiestapel-Limit TODO
     quantity: Anzahl

@@ -8,10 +8,6 @@
 * restore Reviews
 * remove Rules
 * restore Rules
-* rename 'core' to 'unl'
-  * `core: "Core / Deluxe"`
-  * `usecore: "{1} Use 1 Core Set | ]1, Inf] Use %core% Core Sets"`
-  * set -> expansion ? (`set: Ordenar por capítulo`, "capítulo" is used for "packs"; `sets: label: Packs`)
 * update tests/
 * factions as array
 * fix API 500 error
@@ -130,3 +126,4 @@
 * don't sort factions in deckbuilder
 * `app_deck_charts.charts.faction_colors`
 * global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`
+* restore `SocialController::searchForm`
