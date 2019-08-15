@@ -64,9 +64,9 @@
      */
     ui.set_max_qty = function set_max_qty()
     {
-        app.data.cards.find().forEach(function (record)
-        {
-            var max_qty = Math.min(3, record.deck_limit);
+        app.data.cards.find().forEach(function (record) {
+            // TODO dynamic max value (tournament rules, 3/6)
+            var max_qty = Math.min(5, record.deck_limit);
 ;
             app.data.cards.updateById(record.code, {
                 maxqty: max_qty
