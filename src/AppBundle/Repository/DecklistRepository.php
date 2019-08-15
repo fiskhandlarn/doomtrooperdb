@@ -10,8 +10,7 @@ class DecklistRepository extends EntityRepository
     public function findDuplicate(Decklist $decklist)
     {
         $qb = $this->createQueryBuilder('d')
-            ->select('d, f')
-            ->join('d.faction', 'f')
+            ->select('d')
             ->andWhere('d.signature = ?1');
 
         $qb->setParameter(1, $decklist->getSignature());
@@ -25,8 +24,7 @@ class DecklistRepository extends EntityRepository
     public function findVersions(Decklist $decklist)
     {
         $qb = $this->createQueryBuilder('d')
-            ->select('d, f, ds, c')
-            ->join('d.faction', 'f')
+            ->select('d, ds, c')
             ->join('d.slots', 'ds')
             ->join('ds.card', 'c')
             ->andWhere('d.parent = ?1');
