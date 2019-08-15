@@ -8,22 +8,20 @@
 * restore Reviews
 * remove Rules
 * restore Rules
-* update tests/
 * factions as array
-* fix API 500 error
 * DeckValidationHelper.php
+  * validate side board
 * TODO's in source code
 * JS
 * CSS
   * selection.json
-  * style.css `.card-thumbnail-1x.card-thumbnail-character` and so on
 * fonts
   * convert svg to other format(s?)
 * about.*.html.twig
 * footer.*.html.twig
 * faq, tournamentregulations, rulesreference
 * `<span class="fas fa-gift donator" title="DoomtrooperDB Gracious Donator"></span>`
-* `src/AppBundle/Services/CardsData.php`
+  * remove /donators
 * info@doomtrooperdb.com
 * `google_analytics_tracking_code`
 * sidebar
@@ -31,7 +29,6 @@
 * card-props.html.twig
 * images from https://raw.githubusercontent.com/ instead?
 * stylelint
-* document npm run *
 * languages.png
 * CardsData::addAbbrTags()
 * `macros.html.twig`
