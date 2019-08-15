@@ -112,18 +112,12 @@
                     {% for deck in decks %}
                         <tr data-id="{{ deck.id }}">
                             <td><input type="checkbox"></td>
-                            <td class="hidden-xs">
-                                <img
-                                    src="/bundles/app/images/factions/{{ deck.faction.code }}.png"
-                                    title="{{ deck.faction.name }}"
-                                >
-                            </td>
                             <td>
                                 <a href="{{ path('deck_view',{deck_id:deck.id}) }}"
                                    class="deck-name">{{ deck.name }}</a> {{ deck.version }}
                                 <div class="restricted-list-info">
                                     <em>{{ 'restrictedlist.title' | trans }}:</em>
-                                    TODO no joust or melee anymore Â¯\_(ãƒ„)_/Â¯
+                                    TODO no joust or melee anymore ¯\_(?)_/¯
                                 </div>
                                 {% if deck.problem is not null %}
                                     <div class="text-danger small">
