@@ -95,20 +95,6 @@ class CardsData
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
             ];
-
-            if ($expansion->getSize() === 1) {
-                $expansions[] = $expansions[0];
-            } else {
-                $expansions[] = [
-                    "code" => $expansion->getCode(),
-                    "label" => $expansion->getName(),
-                    "url" => $this->router->generate(
-                        'cards_expansion',
-                        array('expansion_code' => $expansion->getCode()),
-                        UrlGeneratorInterface::ABSOLUTE_URL
-                    ),
-                ];
-            }
         }
 
         return $expansions;
