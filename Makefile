@@ -37,4 +37,17 @@ down:
 	docker-compose down --remove-orphans
 
 test:
+	vendor/bin/phpcs --ignore=src/migrations src tests app
+	php bin/console lint:yaml app/config
+	php bin/console lint:twig src
+	php bin/console security:check
+	php bin/console doctrine:schema:validate --skip-sync --skip-mapping -vvv --no-interaction
 	vendor/bin/phpunit
+
+docker_test:
+	docker-compose run php sh -c "cd /home/wwwroot/sf4 && vendor/bin/phpcs --ignore=src/migrations src tests app"
+	docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console lint:yaml app/config"
+	docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console lint:twig src"
+	docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console security:check"
+	docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console doctrine:schema:validate --skip-sync --skip-mapping -vvv --no-interaction"
+	docker-compose run php sh -c "cd /home/wwwroot/sf4 && vendor/bin/phpunit"
