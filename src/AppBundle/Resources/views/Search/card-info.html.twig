@@ -1,4 +1,5 @@
 <div class="card-info">
-    <span class="card-type">{{ card.type_name }}.</span>
-    <span class="card-props">{% include 'AppBundle:Search:card-props.html.twig' %}</span>
+    <span class="color-{{ card.type_code }} icon-{{ card.type_code }}"></span>
+    <span class="card-type">{{ card.type_name }}</span>
+    {% include 'AppBundle:Search:card-props.html.twig' %}
 </div>

@@ -1,22 +1,10 @@
 {% import "AppBundle::macros.html.twig" as macros %}
 
-<span class="card-props">
-{% if card.type_code == 'relic' or card.type_code == 'ki' or card.type_code == 'special' or card.type_code == 'mission' %}
-    {{ 'card.info.cost' | trans }}: {{ macros.integer_or_x(card.cost) }}.
+{% if card.type_code == 'warrior' or card.type_code == 'warzone' %}
+  <span class="card-props">
+    {{ 'card.info.shoot' | trans }}: {{ macros.integer_or_x(card.shoot) }}.
+    {{ 'card.info.fight' | trans }}: {{ macros.integer_or_x(card.fight) }}.
+    {{ 'card.info.armor' | trans }}: {{ macros.integer_or_x(card.armor) }}.
+    {{ 'card.info.value' | trans }}: {{ macros.integer_or_x(card.value) }}.
+  </span>
 {% endif %}
-    {% if card.type_code == 'relic' %}
-        {{ 'card.info.str' | trans }}: {{ macros.integer_or_x(card.strength) }}.
-        {% if card.is_art %}<span class="color-art icon-art"
-                                       title="{{ 'icon.art' | trans }}"></span>{% endif %}
-	{% if card.is_alliance %}<span class="color-alliance icon-alliance"
-                                   title="{{ 'icon.alliance' | trans }}"></span>{% endif %}
-	{% if card.is_beast %}<span class="color-beast icon-beast" title="{{ 'icon.beast' | trans }}"></span>{% endif %}
-    {% endif %}
-    {% if card.type_code == 'fortification' %}
-        {{ 'card.info.income' | trans }}: {{ macros.integer_or_x(card.income) }}.
-        {{ 'card.info.initiative' | trans }}: {{ macros.integer_or_x(card.initiative) }}.
-        {{ 'card.info.claim' | trans }}: {{ macros.integer_or_x(card.claim) }}.
-        {{ 'card.info.reserve' | trans }}: {{ macros.integer_or_x(card.reserve) }}.
-        {{ 'card.info.sidebarlimit' | trans }}: {{ macros.integer_or_x(card.deck_limit) }}.
-    {% endif %}
-</span>

@@ -357,6 +357,10 @@ card:
     sidebarlimit: side bar limit
     quantity: Quantity
     illustrator: Illustrator
+    shoot: Shoot
+    fight: Fight
+    armor: Armor
+    value: Value
     short:
       type: T.
       faction: F.
@@ -374,3 +378,15 @@ icon:
   lutheran: The Lutheran Triad
   rasputin: The Sons of Rasputin
   templars: The Templars
+  alliance: Alliance
+  art: Art
+  beast: Beast
+  symmetry: Dark Symmetry
+  equipment: Equipment
+  fortification: Fortification
+  ki: Ki Power
+  mission: Mission
+  relic: Relic
+  special: Special
+  warrior: Warrior
+  warzone: Warzone
