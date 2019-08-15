@@ -29,7 +29,6 @@
 * sidebar
 * images from https://raw.githubusercontent.com/ instead?
 * stylelint
-* CardsData::addAbbrTags()
 * `macros.html.twig`
 * SAFV-order in CardsData:
 ```
@@ -118,6 +117,8 @@
 * global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`
 * restore `SocialController::searchForm`
 * replace `src/AppBundle/Resources/public/images/factions`
+* Restricted List: X X
+* remove link for comment on decklists https://github.com/ThronesDB/thronesdb/issues/352
 
 ## Restore
 * Reviews
@@ -129,3 +130,4 @@
   * https://github.com/ThronesDB/thronesdb/commit/1319dd5989175589ff3689e9891bba477fd5a573#diff-fd9da3c383c79d8ec8de1c215b6bbd41
   * run `php bin/console app:import:trans ../doomtrooperdb-json-data` if you want to import the translations
 * language menu
+* decklist-faction-image
