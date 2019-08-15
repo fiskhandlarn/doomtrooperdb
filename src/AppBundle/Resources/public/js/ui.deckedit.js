@@ -24,7 +24,6 @@
         Config = _.extend({
             'show-only-deck': false,
             'display-column': 1,
-            'unl-set': 3,
             'buttons-behavior': 'cumulative'
         }, Config || {});
     };
@@ -47,7 +46,7 @@
     ui.init_config_buttons = function init_config_buttons()
     {
         // radio
-        ['display-column', 'unl-set', 'buttons-behavior'].forEach(function (radio)
+        ['display-column', 'buttons-behavior'].forEach(function (radio)
         {
             $('input[name=' + radio + '][value=' + Config[radio] + ']').prop('checked', true);
         });
@@ -68,8 +67,7 @@
         app.data.cards.find().forEach(function (record)
         {
             var max_qty = Math.min(3, record.deck_limit);
-            if(record.expansion_code === 'Unl')
-                max_qty = Math.min(max_qty, record.quantity * Config['unl-set']);
+;
             app.data.cards.updateById(record.code, {
                 maxqty: max_qty
             });
@@ -276,10 +274,6 @@
         ui.write_config_to_storage();
         switch(name) {
             case 'buttons-behavior':
-                break;
-            case 'unl-set':
-                ui.set_max_qty();
-                ui.reset_list();
                 break;
             case 'display-column':
                 ui.update_list_template();
