@@ -38,7 +38,7 @@
                 '<div class="card-faction">' + app.format.faction(card) + '</div>'
                 + '<div class="card-info">' + app.format.info(card) + '</div>'
                 + '<div class="card-text border-' + card.faction_code + '">' + app.format.text(card) + '</div>'
-                + '<div class="card-expansion">' + app.format.expansion(card) + '</div>'
+                + '<div class="card-expansion">Expansion: ' + app.format.expansion(card) + '</div>'
                 );
 
         var qtyelt = modal.find('.modal-qty');
