@@ -105,7 +105,6 @@
 * allow all factions in deckbuilder (`DeckValidationHelper::canIncludeCard`?)
   * Deck.orm.yml
 * remove "last expansion"
-* move Makefile contents to README.md?
 * remove public/app_dev.php
 * remove patchwork/jsqueeze
 * https in js

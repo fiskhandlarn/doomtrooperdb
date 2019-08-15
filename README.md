@@ -3,7 +3,7 @@
 
 ## Very quick guide on how to install a local copy
 
-This guide assumes you know how to use the command-line and that your machine has php and mysql installed.
+This guide assumes you know how to use the command-line and that your machine has PHP and MySQL installed.
 
 - install composer: https://getcomposer.org/download/
 - clone the repo somewhere
@@ -13,9 +13,17 @@ This guide assumes you know how to use the command-line and that your machine ha
 - run `php bin/console doctrine:migrations:migrate`
 - run `php bin/console doctrine:fixtures:load --env=prod` to load default application data
 - run `php bin/console app:import:std ../doomtrooperdb-json-data` or whatever the path to your DoomtrooperDB JSON data repository is
-- run `php bin/console app:import:images ../doomtrooperdb-json-data/images public/images`
+- run `php bin/console app:import:images ../doomtrooperdb-json-data public/images`
 - run `php bin/console bazinga:js-translation:dump src/AppBundle/Resources/public/js` to generate translation JS
 - run `npm install && npm run dev` to compile CSS and JS
+
+
+Or use `make`:
+```bash
+make install
+make import
+make build
+```
 
 ## Docker
 
@@ -27,19 +35,39 @@ docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console doctrine:d
 docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console doctrine:migrations:migrate"
 docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console doctrine:fixtures:load --env=prod"
 docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console app:import:std doomtrooperdb-json-data"
-docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console app:import:images doomtrooperdb-json-data/images public/images"
+docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console app:import:images doomtrooperdb-json-data public/images"
 docker-compose run php sh -c "cd /home/wwwroot/sf4 && php bin/console bazinga:js-translation:dump src/AppBundle/Resources/public/js"
 npm install && npm run dev
+```
+
+Or use `make`:
+```bash
+make docker_install
+make docker_import
+make docker_build
 ```
 
 ### Start/stop Docker
 
 Start Docker:
 ```bash
+$ make up
+```
+
+or
+
+```bash
 $ docker-compose up -d
 ```
 
 Access the site via [http://localhost/](http://localhost/).
+
+Stop Docker:
+```bash
+$ make down
+```
+
+or
 
 Stop Docker:
 ```bash
