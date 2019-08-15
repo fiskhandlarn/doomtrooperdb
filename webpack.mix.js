@@ -110,6 +110,10 @@ mix.webpackConfig({
 
 // Compile javascript.
 mix.combine([
+    'vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.js',
+], 'public/js/router.js');
+
+mix.combine([
     // translations
     'vendor/willdurand/js-translation-bundle/Resources/public/js/translator.min.js',
     'src/AppBundle/Resources/public/js/translations/*.js',
