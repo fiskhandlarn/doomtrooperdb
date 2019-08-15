@@ -100,26 +100,6 @@
                         <li id="login">
                             <a href="#" class="disabled"><span class="fas fa-user"></span></a>
                         </li>
-                        <!-- locale selection -->
-                        {% if _route is not empty %}
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown">
-                                    <span class="lang-sm"
-                                          lang="{{ app.request.locale | default(default_locale) }}"></span>
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    {% for supported_locale in supported_locales %}
-                                        <li>
-                                            <a href="{{ path(_route, _route_params|merge(_get_params)|merge({'_locale': supported_locale})) }}">
-                                                <span lang="{{ supported_locale }}"
-                                                      class="lang-sm lang-lbl lang-lbl-full"></span>
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </li>
-                        {% endif %}
                     </ul>
                     <form class="navbar-form navbar-right visible-lg-block visible-xs-block external"
                           action="{{ path('cards_find') }}">

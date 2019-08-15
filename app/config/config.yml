@@ -19,7 +19,7 @@ parameters:
         zh: 中文
     supported_locales:
         - en
-        - es
+#        - es
 #        - de
 
 framework:
@@ -88,7 +88,7 @@ jms_i18n_routing:
     strategy: custom
     hosts:
         en: "%website_url%"
-        es: "es.%website_url%"
+#        es: "es.%website_url%"
 #        de: "de.%website_url%"
     redirect_to_host: true
 
