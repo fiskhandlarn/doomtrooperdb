@@ -114,7 +114,7 @@
 * replace `src/AppBundle/Resources/public/images/factions`
 * remove link for comment on decklists https://github.com/ThronesDB/thronesdb/issues/352
 * remove available for cards and expansions
-* add icons for expansions?
+* add icons for expansions? `src/AppBundle/Resources/public/images/factions`
 
 ## Restore
 * Reviews
