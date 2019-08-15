@@ -54,8 +54,6 @@ class CardsData
         $lines = [];
 
         foreach ($list_expansions as $expansion) {
-            $expansions = $expansion->getExpansions();
-
             if ($expansion->getSize() === 1) {
                 $label = $expansion->getName();
             } else {
