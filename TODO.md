@@ -14,8 +14,6 @@
   * tighten card page text and image
 * fonts
   * convert svg to other format(s?)
-* about.*.html.twig
-* footer.*.html.twig
 * info@doomtrooperdb.com
 * `google_analytics_tracking_code`
 * sidebar
@@ -110,6 +108,7 @@
 * move "Member since" to messages.*.yml
 
 ## Restore
+* about credits
 * Rules
 * F.A.Q.
 * Tournament Regulations
