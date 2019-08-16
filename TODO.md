@@ -14,7 +14,6 @@
   * tighten card page text and image
 * fonts
   * convert svg to other format(s?)
-* info@doomtrooperdb.com
 * `google_analytics_tracking_code`
 * sidebar
 * images from https://raw.githubusercontent.com/ instead?
