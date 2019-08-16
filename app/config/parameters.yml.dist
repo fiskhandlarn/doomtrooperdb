@@ -26,10 +26,10 @@ parameters:
     email_sender_name: ~
 
     # Branding
-    website_name: doomtrooperdb
+    website_name: DoomtrooperDB
     website_url: doomtrooperdb.com
     game_name: Doomtrooper
-    publisher_name: Target Games
+  publisher_name: 'Target Games'
 
     # Analytics & AdSense
     google_analytics_tracking_code: UA-00000000-1
