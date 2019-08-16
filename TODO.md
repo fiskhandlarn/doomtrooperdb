@@ -18,15 +18,6 @@
 * sidebar
 * images from https://raw.githubusercontent.com/ instead?
 * stylelint
-* FSAV-order in CardsData:
-```
-            case 'cost':
-                $qb->orderBy('c.type')->addOrderBy('c.cost')->addOrderBy('c.income');
-                break;
-            case 'strength':
-                $qb->orderBy('c.type')->addOrderBy('c.strength')->addOrderBy('c.initiative');
-                break;
-```
 * INSERT decklist 1 to pass ApiControllerTest::testGetDecklist?
 * add new search terms for FSAV
 * ```
