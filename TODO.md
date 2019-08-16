@@ -119,6 +119,3 @@
   * run `php bin/console app:import:trans ../doomtrooperdb-json-data` if you want to import the translations
 * language menu
 * decklist-faction-image (from used factions in deck)
-
-## Prio 2
-* remove black corners on card images
