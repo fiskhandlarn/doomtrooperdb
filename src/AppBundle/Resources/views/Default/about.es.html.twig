@@ -1,6 +1,6 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Sobre este sitio{% endblock %}
+{% block title %}Sobre {{ website_name}}{% endblock %}
 
 {% block body %}
     <div class="main white container">
@@ -9,8 +9,8 @@
 
         <p>Este sitio web está dedicado a proporcionar un constructor de mazos y motor de búsqueda rápido, potente y
             exhaustivo para {{ game_name }} cartas, junto con descripciones de cartas e imágenes de cartas.</p>
-        <p>Este sitio web está optimizado para la navegación móvil (WebKit).</p>
 
+        {#
         <h3>créditos</h3>
 
         <p>Me gustaría agradecer especialmente:</p>
@@ -21,6 +21,7 @@
                 colores
             </li>
         </ul>
+        #}
 
     </div>
 {% endblock %}

@@ -83,6 +83,7 @@ class DefaultController extends Controller
 
         return $this->render($this->getLocaleSpecificViewPath('about', $request->getLocale()), array(
                 "pagetitle" => "About",
+                "website_name" => $this->container->getParameter('website_name'),
                 "game_name" => $this->container->getParameter('game_name'),
         ), $response);
     }
