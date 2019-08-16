@@ -5,11 +5,8 @@
   * https://github.com/ThronesDB/thronesdb/labels/bug
   * https://github.com/ThronesDB/thronesdb/labels/code%20quality
 * remove
-  * Reviews
-  * Rules
-    * `src/AppBundle/Resources/public/images/rulesreference`
-  * F.A.Q.
-  * Tournament Regulations
+  * Donators
+    * `<span class="fas fa-gift donator" title="DoomtrooperDB Gracious Donator"></span>`
 * factions as array
 * DeckValidationHelper.php
   * validate side board
@@ -22,9 +19,6 @@
   * convert svg to other format(s?)
 * about.*.html.twig
 * footer.*.html.twig
-* faq, tournamentregulations, rulesreference
-* `<span class="fas fa-gift donator" title="DoomtrooperDB Gracious Donator"></span>`
-  * remove /donators
 * info@doomtrooperdb.com
 * `google_analytics_tracking_code`
 * sidebar
@@ -65,8 +59,6 @@
 ```
 * SocialController::searchForm
 * remove unused js
-  * app.deck_browser
-  * app.deck_gallery
   * levenshtein
   * string_score.min
 * combine all internal and external js into app.js
@@ -116,9 +108,10 @@
 * remove available for cards and expansions
 * add icons for expansions? `src/AppBundle/Resources/public/images/factions`
 * add flavor text to all card info
+* http://localhost/tag/bauhaus ?
+* add tags to deck?
 
 ## Restore
-* Reviews
 * Rules
 * F.A.Q.
 * Tournament Regulations
