@@ -40,11 +40,6 @@ class User extends BaseUser
     private $color;
 
     /**
-     * @var integer
-     */
-    private $donation;
-
-    /**
      * @var boolean
      */
     private $isNotifAuthor = true;
@@ -114,7 +109,6 @@ class User extends BaseUser
         parent::__construct();
 
         $this->reputation = 1;
-        $this->donation = 0;
     }
 
     /**
@@ -235,30 +229,6 @@ class User extends BaseUser
     public function getColor()
     {
         return $this->color;
-    }
-
-    /**
-     * Set donation
-     *
-     * @param integer $donation
-     *
-     * @return User
-     */
-    public function setDonation($donation)
-    {
-        $this->donation = $donation;
-
-        return $this;
-    }
-
-    /**
-     * Get donation
-     *
-     * @return integer
-     */
-    public function getDonation()
-    {
-        return $this->donation;
     }
 
     /**

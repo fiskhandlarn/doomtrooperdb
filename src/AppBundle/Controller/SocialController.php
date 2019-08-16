@@ -1203,28 +1203,4 @@ class SocialController extends Controller
     //                     ), $response);
     // }
 
-    public function donatorsAction(Request $request)
-    {
-        $response = new Response();
-        $response->setPublic();
-        $response->setMaxAge($this->container->getParameter('cache_expiration'));
-
-        /* @var $dbh \Doctrine\DBAL\Driver\PDOConnection */
-        $dbh = $this->getDoctrine()->getConnection();
-
-        $users = $dbh->executeQuery("SELECT * FROM user WHERE donation>0 ORDER BY donation DESC, username", [])
-            ->fetchAll(\PDO::FETCH_ASSOC);
-
-        return $this->render(
-            $this->getLocaleSpecificViewPath(
-                'donators',
-                $request->getLocale()
-            ),
-            array(
-                'pagetitle' => 'The Gracious Donators',
-                'donators' => $users
-            ),
-            $response
-        );
-    }
 }

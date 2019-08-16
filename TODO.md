@@ -4,9 +4,6 @@
 * thronesdb issues
   * https://github.com/ThronesDB/thronesdb/labels/bug
   * https://github.com/ThronesDB/thronesdb/labels/code%20quality
-* remove
-  * Donators
-    * `<span class="fas fa-gift donator" title="DoomtrooperDB Gracious Donator"></span>`
 * factions as array
 * DeckValidationHelper.php
   * validate side board
@@ -110,6 +107,7 @@
 * add flavor text to all card info
 * http://localhost/tag/bauhaus ?
 * add tags to deck?
+* move "Member since" to messages.*.yml
 
 ## Restore
 * Rules

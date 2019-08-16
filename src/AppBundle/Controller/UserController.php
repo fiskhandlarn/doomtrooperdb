@@ -117,7 +117,6 @@ class UserController extends Controller
                     'id' => $user_id,
                     'name' => $user->getUsername(),
                     'faction' => $user->getColor(),
-                    'donation' => $user->getDonation(),
             );
 
             if (isset($decklist_id)) {

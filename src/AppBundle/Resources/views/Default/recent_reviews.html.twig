@@ -13,8 +13,6 @@
                     by
                     <a href="{{ path('user_profile_public', {user_id:review.user_id,user_name:review.username|e('url')}) }}"
                        class="{{ review.usercolor }}">{{ review.username }}</a>
-                    {% if review.donation > 0 %}<span class="fas fa-gift donator"
-                                                      title="DoomtrooperDB Gracious Donator"></span>{% endif %}
                     <small class="reputation">{{ review.reputation }}</small>
                 </div>
                 <p>

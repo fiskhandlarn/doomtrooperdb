@@ -75,9 +75,6 @@ AppBundle\Entity\User:
             type: string
             length: 255
             nullable: true
-        donation:
-            type: integer
-            nullable: false
         isNotifAuthor:
             type: boolean
             nullable: false

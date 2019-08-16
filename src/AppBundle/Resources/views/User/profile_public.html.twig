@@ -10,9 +10,6 @@
                 {% if user.role('ROLE_ADMIN') %}
                     <span class="fas fa-user-tie admin" title="Administrator"></span>
                 {% endif %}
-                {% if user.donation > 0 %}
-                    <span class="fas fa-gift donator" title="DoomtrooperDB Gracious Donator"></span>
-                {% endif %}
                 <small>{{ user.reputation }}</small>
             </h1>
             <p>

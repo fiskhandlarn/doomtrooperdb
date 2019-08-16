@@ -24,9 +24,6 @@
     {% if user.role('ROLE_ADMIN') %}
         <span class="fas fa-user-tie admin" title="Administrator"></span>
     {% endif %}
-    {% if user.donation > 0 %}
-        <span class="fas fa-gift donator" title="DoomtrooperDB Gracious Donator"></span>
-    {% endif %}
     <small title="User Reputation">{{ user.reputation }}</small>
 {% endmacro %}
 
@@ -35,9 +32,6 @@
        class="username">{{ user.username }}</a>
     {% if user.role('ROLE_ADMIN') %}
         <span class="fas fa-user-tie admin" title="Administrator"></span>
-    {% endif %}
-    {% if user.donation > 0 %}
-        <span class="fas fa-gift donator" title="DoomtrooperDB Gracious Donator"></span>
     {% endif %}
     <small title="User Reputation">{{ user.reputation }}</small>
 {% endmacro %}
