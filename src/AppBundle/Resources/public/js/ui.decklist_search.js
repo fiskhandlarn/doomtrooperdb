@@ -10,58 +10,12 @@
         $('#expansions-off').text($('#allowed_expansions').find('input[type="checkbox"]:not(:checked)').size());
     };
 
-    ui.send_like = function send_like(event)
-    {
-        event.preventDefault();
-        var that = $(this);
-        if($(that).hasClass('processing'))
-            return;
-        $(that).addClass('processing');
-        $.post(Routing.generate('decklist_like'), {
-            id: $(that).closest('.social').data('decklist-id')
-        }, function (data, textStatus, jqXHR)
-        {
-            $(that).find('.num').text(data);
-            $(that).removeClass('processing');
-        });
-    };
-
-    ui.send_favorite = function send_favorite(event)
-    {
-        event.preventDefault();
-        var that = $(this);
-        if($(that).hasClass('processing'))
-            return;
-        $(that).addClass('processing');
-        $.post(Routing.generate('decklist_favorite'), {
-            id: $(that).closest('.social').data('decklist-id')
-        }, function (data, textStatus, jqXHR)
-        {
-            that.find('.num').text(data);
-            var title = that.data('original-tooltip');
-            that.data('original-tooltip',
-                    title === "Add to favorites" ? "Remove from favorites"
-                    : "Add to favorites");
-            that.attr('title', that.data('original-tooltip'));
-            $(that).removeClass('processing');
-        });
-    };
-
-    /**
-     * sets up event handlers ; dataloaded not fired yet
-     * @memberOf ui
-     */
-    ui.setup_event_handlers = function setup_event_handlers()
-    {
-        $('.social .social-icon-like').on('click', ui.send_like);
-        $('.social .social-icon-favorite').on('click', ui.send_favorite);
-    };
-
     /**
      * @memberOf ui
      */
     ui.setup_typeahead = function setup_typeahead()
     {
+
         function findMatches(q, cb)
         {
             if(q.match(/^\w:/))
@@ -106,7 +60,6 @@
      */
     ui.on_dom_loaded = function on_dom_loaded()
     {
-        ui.setup_event_handlers();
         ui.setup_typeahead();
         $('#allowed_expansions').on('change', ui.handle_checkbox_change);
 
