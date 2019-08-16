@@ -43,7 +43,7 @@
                         <span class="hidden-xs">{{ 'decklist.view.published' | trans }}: </span>
                         <time datetime="{{ decklist.dateCreation|date('c') }}">{{ decklist.dateCreation|date('M d, Y') }}</time>
                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                            <span class="social-icons">
+                        <span class="social-icons">
                                 <a id="social-icon-like" href="#" class="social-icon-like" data-toggle="tooltip" data-placement="bottom"
                                    title="{{ 'decklist.view.social.like' | trans }}">
                                     <span class="fas fa-heart"></span> <span class="num">{{ decklist.nbVotes }}</span>

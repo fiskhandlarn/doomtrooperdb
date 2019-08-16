@@ -105,6 +105,7 @@
 * http://localhost/tag/bauhaus ?
 * add tags to deck?
 * move "Member since" to messages.*.yml
+* deployer
 
 ## Restore
 * about credits
