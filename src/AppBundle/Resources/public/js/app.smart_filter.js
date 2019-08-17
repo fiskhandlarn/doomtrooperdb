@@ -4,7 +4,7 @@
    var SmartFilterQuery = [];
 
    var configuration = {
-     a: [add_string_sf, 'flavor', Translator.trans('decks.smartfilter.filters.flavor')],
+     l: [add_string_sf, 'flavor', Translator.trans('decks.smartfilter.filters.flavor')],
      e: [add_string_sf, 'expansion_code', Translator.trans('decks.smartfilter.filters.expansion_code')],
      f: [add_string_sf, 'faction_code', Translator.trans('decks.smartfilter.filters.faction_code')],
      i: [add_string_sf, 'illustrator', Translator.trans('decks.smartfilter.filters.illustrator')],

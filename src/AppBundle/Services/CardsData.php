@@ -121,58 +121,6 @@ class CardsData
             $operator = array_shift($condition);
 
             switch ($searchType) {
-                case 'boolean':
-                    switch ($searchCode) {
-                        default:
-                            if (($operator == ':' && $condition[0]) || ($operator == '!' && !$condition[0])) {
-                                $qb->andWhere("(c.$searchName = 1)");
-                            } else {
-                                $qb->andWhere("(c.$searchName = 0)");
-                            }
-                            $i++;
-                            break;
-                    }
-                    break;
-                case 'integer':
-                    switch ($searchCode) {
-                        case 'e': // expansion
-                            $or = [];
-                            foreach ($condition as $arg) {
-                                switch ($operator) {
-                                    case ':':
-                                            $or[] = "(y.position = ?$i)";
-                                        break;
-                                    case '!':
-                                            $or[] = "(y.position != ?$i)";
-                                        break;
-                                }
-                                $qb->setParameter($i++, $arg);
-                            }
-                            $qb->andWhere(implode($operator == '!' ? " and " : " or ", $or));
-                            break;
-                        default:
-                            $or = [];
-                            foreach ($condition as $arg) {
-                                switch ($operator) {
-                                    case ':':
-                                            $or[] = "(c.$searchName = ?$i)";
-                                        break;
-                                    case '!':
-                                            $or[] = "(c.$searchName != ?$i)";
-                                        break;
-                                    case '<':
-                                            $or[] = "(c.$searchName < ?$i)";
-                                        break;
-                                    case '>':
-                                            $or[] = "(c.$searchName > ?$i)";
-                                        break;
-                                }
-                                $qb->setParameter($i++, $arg);
-                            }
-                            $qb->andWhere(implode($operator == '!' ? " and " : " or ", $or));
-                            break;
-                    }
-                    break;
                 case 'code':
                     switch ($searchCode) {
                         case 'e':
@@ -273,7 +221,7 @@ class CardsData
                             }
                             $qb->andWhere(implode($operator == '!' ? " and " : " or ", $or));
                             break;
-                        case 'a': // flavor
+                        case 'l': // flavor
                             $or = [];
                             foreach ($condition as $arg) {
                                 switch ($operator) {
@@ -293,10 +241,33 @@ class CardsData
                             foreach ($condition as $arg) {
                                 switch ($operator) {
                                     case ':':
-                                            $or[] = "(c.illustrator = ?$i)";
+                                            $or[] = "(c.illustrator like ?$i)";
                                         break;
                                     case '!':
-                                            $or[] = "(c.illustrator != ?$i)";
+                                            $or[] = "(c.illustrator is null or c.illustrator not like ?$i)";
+                                        break;
+                                }
+                                $qb->setParameter($i++, "%$arg%");
+                            }
+                            $qb->andWhere(implode($operator == '!' ? " and " : " or ", $or));
+                            break;
+                        case 's': // shoot
+                            $property = 'shoot';
+                        case 'g': // fight
+                            $property = 'fight';
+                        case 'a': // armor
+                            $property = 'armor';
+                        case 'v': // value
+                            $property = 'value';
+
+                            $or = [];
+                            foreach ($condition as $arg) {
+                                switch ($operator) {
+                                    case ':':
+                                            $or[] = "(c.$property = ?$i)";
+                                        break;
+                                    case '!':
+                                            $or[] = "(c.$property != ?$i)";
                                         break;
                                 }
                                 $qb->setParameter($i++, $arg);
