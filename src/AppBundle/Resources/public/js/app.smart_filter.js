@@ -4,11 +4,15 @@
    var SmartFilterQuery = [];
 
    var configuration = {
-     l: [add_string_sf, 'flavor', Translator.trans('decks.smartfilter.filters.flavor')],
+     a: [add_string_sf, 'armor', Translator.trans('decks.smartfilter.filters.armor')],
      e: [add_string_sf, 'expansion_code', Translator.trans('decks.smartfilter.filters.expansion_code')],
      f: [add_string_sf, 'faction_code', Translator.trans('decks.smartfilter.filters.faction_code')],
+     g: [add_string_sf, 'fight', Translator.trans('decks.smartfilter.filters.fight')],
      i: [add_string_sf, 'illustrator', Translator.trans('decks.smartfilter.filters.illustrator')],
+     l: [add_string_sf, 'flavor', Translator.trans('decks.smartfilter.filters.flavor')],
+     s: [add_string_sf, 'shoot', Translator.trans('decks.smartfilter.filters.shoot')],
      t: [add_string_sf, 'type_code', Translator.trans('decks.smartfilter.filters.type_code')],
+     v: [add_string_sf, 'value', Translator.trans('decks.smartfilter.filters.value')],
      x: [add_string_sf, 'text', Translator.trans('decks.smartfilter.filters.text')],
    };
 
@@ -45,41 +49,15 @@
 
    smart_filter.get_help = function get_help()
    {
+     console.log(Translator.trans('decks.smartfilter.example'));
      var items = _.map(configuration, function (value, key)
                        {
                          return '<li><tt>' + key + '</tt> &ndash; ' + value[2] + '</li>';
                        });
      return '<ul>' + items.join('') + '</ul><p>' + Translator.trans('decks.smartfilter.example') + '</p>';
+
    }
 
-   function add_integer_sf(key, operator, values)
-   {
-     for(var j = 0; j < values.length; j++) {
-       values[j] = parseInt(values[j], 10);
-     }
-     switch(operator) {
-         case ":":
-           SmartFilterQuery[key] = {
-             '$in': values
-           };
-           break;
-         case "<":
-           SmartFilterQuery[key] = {
-             '$lt': values[0]
-           };
-           break;
-         case ">":
-           SmartFilterQuery[key] = {
-             '$gt': values[0]
-           };
-           break;
-         case "!":
-           SmartFilterQuery[key] = {
-             '$nin': values
-           };
-           break;
-     }
-   }
    function add_string_sf(key, operator, values)
    {
      for(var j = 0; j < values.length; j++) {
@@ -98,20 +76,7 @@
            break;
      }
    }
-   function add_boolean_sf(key, operator, values)
-   {
-     var value = parseInt(values.shift()), target = !!value;
-     switch(operator) {
-         case ":":
-           SmartFilterQuery[key] = target;
-           break;
-         case "!":
-           SmartFilterQuery[key] = {
-             '$ne': target
-           };
-           break;
-     }
-   }
+
    function filterSyntax(query)
    {
      // return a list of conditions (array)

@@ -174,7 +174,7 @@ decks:
     more: Mehr
   smartfilter:
     title: Syntax des intelligenten Filters
-    example: "Beispiel: <tt>b:1 s>3</tt> shows all <span class='icon-bauhaus></span> warriors and a Shoot value greater than 3 TODO"
+    example: "Beispiel: <tt>b:1 s:3</tt> shows all <span class='icon-bauhaus'></span> warriors with 3 in Shoot"
     filters:
       flavor: Atmosphärischer Text
       expansion_code: Expansion
@@ -182,6 +182,10 @@ decks:
       illustrator: Illustrator/in
       type_code: Typ
       text: Text
+      fight: Fight
+      shoot: Shoot
+      armor: Armor
+      value: Value
   charts:
     faction:
       title: Karten pro Fraktion

@@ -174,7 +174,7 @@ decks:
     more: more
   smartfilter:
     title: Smart filter syntax
-    example: "Example: <tt>b:1 s>3</tt> shows all <span class='icon-bauhaus></span> warriors and a Shoot value greater than 3"
+    example: "Example: <tt>b:1 s:3</tt> shows all <span class='icon-bauhaus'></span> warriors with 3 in Shoot"
     filters:
       flavor: Flavor text
       expansion_code: Expansion
@@ -182,6 +182,10 @@ decks:
       illustrator: Illustrator
       type_code: Type
       text: Text
+      fight: Fight
+      shoot: Shoot
+      armor: Armor
+      value: Value
   charts:
     faction:
       title: Card Factions
