@@ -12,6 +12,7 @@
 * CSS
   * selection.json
   * tighten card page text and image
+  * nicer looking bullet list in "Smart filter syntax"? (at least remove margin-left)
 * fonts
   * convert svg to other format(s?)
 * `google_analytics_tracking_code`
@@ -19,29 +20,6 @@
 * images from https://raw.githubusercontent.com/ instead?
 * stylelint
 * INSERT decklist 1 to pass ApiControllerTest::testGetDecklist?
-* add new search terms for FSAV
-* ```
-        a: [add_string_sf, 'flavor', Translator.trans('decks.smartfilter.filters.flavor')],
-        b: [add_integer_sf, 'claim', Translator.trans('decks.smartfilter.filters.claim')],
-        e: [add_string_sf, 'expansion_code', Translator.trans('decks.smartfilter.filters.expansion_code')],
-        f: [add_string_sf, 'faction_code', Translator.trans('decks.smartfilter.filters.faction_code')],
-        g: [add_boolean_sf, 'is_intrigue', Translator.trans('decks.smartfilter.filters.is_intrigue')],
-        h: [add_integer_sf, 'reserve', Translator.trans('decks.smartfilter.filters.reserve')],
-        i: [add_string_sf, 'illustrator', Translator.trans('decks.smartfilter.filters.illustrator')],
-        d: [add_string_sf, 'designer', Translator.trans('decks.smartfilter.filters.designer')],
-        k: [add_string_sf, 'traits', Translator.trans('decks.smartfilter.filters.traits')],
-        l: [add_boolean_sf, 'is_loyal', Translator.trans('decks.smartfilter.filters.is_loyal')],
-        m: [add_boolean_sf, 'is_military', Translator.trans('decks.smartfilter.filters.is_military')],
-        n: [add_integer_sf, 'income', Translator.trans('decks.smartfilter.filters.income')],
-        o: [add_integer_sf, 'cost', Translator.trans('decks.smartfilter.filters.cost')],
-        p: [add_boolean_sf, 'is_power', Translator.trans('decks.smartfilter.filters.is_power')],
-        s: [add_integer_sf, 'strength', Translator.trans('decks.smartfilter.filters.strength')],
-        t: [add_string_sf, 'type_code', Translator.trans('decks.smartfilter.filters.type_code')],
-        u: [add_boolean_sf, 'is_unique', Translator.trans('decks.smartfilter.filters.is_unique')],
-        v: [add_integer_sf, 'initiative', Translator.trans('decks.smartfilter.filters.initiative')],
-        x: [add_string_sf, 'text', Translator.trans('decks.smartfilter.filters.text')],
-        y: [add_integer_sf, 'quantity', Translator.trans('decks.smartfilter.filters.quantity')]
-```
 * SocialController::searchForm
 * remove unused js
   * levenshtein
@@ -75,6 +53,11 @@
     * warrior
     * warzone
 * add graphs for FSAV(?)
+* add FSAV
+  * columns in global search
+  * columns in deckbuilder list?
+  * icons on cards
+  * values/icons on all cards that have those properties
 * allow all factions in deckbuilder (`DeckValidationHelper::canIncludeCard`?)
   * Deck.orm.yml
 * remove "last expansion"
@@ -92,10 +75,15 @@
 * remove link for comment on decklists https://github.com/ThronesDB/thronesdb/issues/352
 * remove available for cards and expansions
 * add icons for expansions? `src/AppBundle/Resources/public/images/factions`
-* add flavor text to all card info
+* add to card info and card searches (inline in builder and on global search)
+  * flavor
+    * fix `app.smart_filter.js`'s `a: [add_string_sf, 'flavor', Translator.trans('decks.smartfilter.filters.flavor')],`(search for `a:airborne` returns all cards, http://localhost/find?q=a%3AAirborne&sort=set&view=list yields MARTIAN BANSHEE)
+  * clarification_text
 * http://localhost/tag/bauhaus ?
 * add tags to deck?
 * move "Member since" to messages.*.yml
+* "Quantity in expansion"? http://localhost/deck/edit/14
+
 * deployer
 
 ## Restore
