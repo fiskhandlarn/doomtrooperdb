@@ -287,7 +287,6 @@ class SearchController extends Controller
         $q = $this->get('cards_data')->buildQueryFromConditions($conditions);
         if ($q && $rows = $this->get('cards_data')->getSearchRows($conditions, $sort)) {
             if (count($rows) == 1) {
-                $view = 'card';
                 $includeReviews = true;
             }
 
