@@ -14,7 +14,6 @@ class SearchController extends Controller
             'e' => 'expansion',
             'f' => 'faction',
             'i' => 'illustrator',
-            'r' => 'date_release',
             't' => 'type',
             'x' => 'text',
     );

@@ -303,25 +303,6 @@ class CardsData
                             }
                             $qb->andWhere(implode($operator == '!' ? " and " : " or ", $or));
                             break;
-                        case 'r': // release
-                            $or = [];
-                            foreach ($condition as $arg) {
-                                switch ($operator) {
-                                    case '<':
-                                            $or[] = "(y.dateRelease <= ?$i)";
-                                        break;
-                                    case '>':
-                                            $or[] = "(y.dateRelease > ?$i or y.dateRelease IS NULL)";
-                                        break;
-                                }
-                                if ($arg == "now") {
-                                    $qb->setParameter($i++, new \DateTime());
-                                } else {
-                                    $qb->setParameter($i++, new \DateTime($arg));
-                                }
-                            }
-                                $qb->andWhere(implode(" or ", $or));
-                            break;
                         break;
                     }
             }
