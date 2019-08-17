@@ -20,7 +20,6 @@
 * images from https://raw.githubusercontent.com/ instead?
 * stylelint
 * INSERT decklist 1 to pass ApiControllerTest::testGetDecklist?
-* SocialController::searchForm
 * remove unused js
   * levenshtein
   * string_score.min
@@ -70,7 +69,6 @@
 * don't sort factions in deckbuilder
 * `app_deck_charts.charts.faction_colors`
 * global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`
-* restore `SocialController::searchForm`
 * replace `src/AppBundle/Resources/public/images/factions`
 * remove link for comment on decklists https://github.com/ThronesDB/thronesdb/issues/352
 * remove available for cards and expansions
@@ -83,6 +81,7 @@
 * add tags to deck?
 * move "Member since" to messages.*.yml
 * "Quantity in expansion"? http://localhost/deck/edit/14
+* remove on/off
 
 * deployer
 

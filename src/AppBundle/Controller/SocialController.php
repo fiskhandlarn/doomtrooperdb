@@ -100,10 +100,10 @@ class SocialController extends Controller
         $tournaments = $this->getDoctrine()->getManager()->getRepository('AppBundle:Tournament')->findAll();
 
         return $this->render('AppBundle:Decklist:decklist_edit.html.twig', [
-                    'url' => $this->generateUrl('decklist_create'),
-                    'deck' => $deck,
-                    'decklist' => $decklist,
-                    'tournaments' => $tournaments,
+            'url' => $this->generateUrl('decklist_create'),
+            'deck' => $deck,
+            'decklist' => $decklist,
+            'tournaments' => $tournaments,
         ]);
     }
 
@@ -122,8 +122,8 @@ class SocialController extends Controller
         $yesterday = (new \DateTime())->modify('-24 hours');
         if (false && $user->getDateCreation() > $yesterday) {
             return $this->render('AppBundle:Default:error.html.twig', [
-                        'pagetitle' => $translator->trans('decklist.publish.errors.pagetitle.spam'),
-                        'error' => $translator->trans('decklist.publish.errors.antispam.newbie'),
+                'pagetitle' => $translator->trans('decklist.publish.errors.pagetitle.spam'),
+                'error' => $translator->trans('decklist.publish.errors.antispam.newbie'),
             ]);
         }
 
@@ -136,8 +136,8 @@ class SocialController extends Controller
 
         if (false && $decklistsSinceYesterday > $user->getReputation()) {
             return $this->render('AppBundle:Default:error.html.twig', [
-                        'pagetitle' => $translator->trans('decklist.publish.errors.pagetitle.spam'),
-                        'error' => $translator->trans('decklist.publish.errors.antispam.limit'),
+                'pagetitle' => $translator->trans('decklist.publish.errors.pagetitle.spam'),
+                'error' => $translator->trans('decklist.publish.errors.antispam.limit'),
             ]);
         }
 
@@ -174,8 +174,8 @@ class SocialController extends Controller
             $decklist = $this->get('decklist_factory')->createDecklistFromDeck($deck, $name, $descriptionMd);
         } catch (\Exception $e) {
             return $this->render('AppBundle:Default:error.html.twig', [
-                        'pagetitle' => "Error",
-                        'error' => $e
+                'pagetitle' => "Error",
+                'error' => $e
             ]);
         }
 
@@ -185,8 +185,8 @@ class SocialController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('decklist_detail', array(
-                            'decklist_id' => $decklist->getId(),
-                            'decklist_name' => $decklist->getNameCanonical()
+            'decklist_id' => $decklist->getId(),
+            'decklist_name' => $decklist->getNameCanonical()
         )));
     }
 
@@ -217,10 +217,10 @@ class SocialController extends Controller
         $tournaments = $this->getDoctrine()->getManager()->getRepository('AppBundle:Tournament')->findAll();
 
         return $this->render('AppBundle:Decklist:decklist_edit.html.twig', [
-                    'url' => $this->generateUrl('decklist_save', ['decklist_id' => $decklist->getId()]),
-                    'deck' => null,
-                    'decklist' => $decklist,
-                    'tournaments' => $tournaments,
+            'url' => $this->generateUrl('decklist_save', ['decklist_id' => $decklist->getId()]),
+            'deck' => null,
+            'decklist' => $decklist,
+            'tournaments' => $tournaments,
         ]);
     }
 
@@ -288,8 +288,8 @@ class SocialController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('decklist_detail', array(
-                            'decklist_id' => $decklist_id,
-                            'decklist_name' => $decklist->getNameCanonical()
+            'decklist_id' => $decklist_id,
+            'decklist_name' => $decklist->getNameCanonical()
         )));
     }
 
@@ -333,108 +333,93 @@ class SocialController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('decklists_list', array(
-                            'type' => 'mine'
+            'type' => 'mine'
         )));
     }
 
-    // private function searchForm(Request $request)
-    // {
-    //     $doctrine = $this->getDoctrine();
-    //     $dbh = $doctrine->getConnection();
-    //     $em = $doctrine->getEntityManager();
+    private function searchForm(Request $request)
+    {
+        $doctrine = $this->getDoctrine();
+        $dbh = $doctrine->getConnection();
+        $em = $doctrine->getEntityManager();
 
-    //     $cards_code = $request->query->get('cards');
-    //     $faction_code = filter_var($request->query->get('faction'), FILTER_SANITIZE_STRING);
-    //     $tournament = filter_var($request->query->get('tournament'), FILTER_SANITIZE_NUMBER_INT);
-    //     $author_name = filter_var($request->query->get('author'), FILTER_SANITIZE_STRING);
-    //     $decklist_name = filter_var($request->query->get('name'), FILTER_SANITIZE_STRING);
-    //     $sort = $request->query->get('sort');
-    //     $expansions = $request->query->get('expansions');
+        $cards_code = $request->query->get('cards');
+        $faction_code = filter_var($request->query->get('faction'), FILTER_SANITIZE_STRING);
+        $tournament = filter_var($request->query->get('tournament'), FILTER_SANITIZE_NUMBER_INT);
+        $author_name = filter_var($request->query->get('author'), FILTER_SANITIZE_STRING);
+        $decklist_name = filter_var($request->query->get('name'), FILTER_SANITIZE_STRING);
+        $sort = $request->query->get('sort');
+        $expansions = $request->query->get('expansions');
 
-    //     if (!is_array($expansions)) {
-    //         $expansions = $dbh->executeQuery("select id from expansion")->fetchAll(\PDO::FETCH_COLUMN);
-    //     }
+        if (!is_array($expansions)) {
+            $expansions = $dbh->executeQuery("select id from expansion")->fetchAll(\PDO::FETCH_COLUMN);
+        }
 
-    //     $categories = [];
-    //     $on = 0;
-    //     $off = 0;
-    //     $categories[] = array(
-    //         "label" => $this->get("translator")->trans('decklist.list.search.allowed.core'),
-    //         "expansions" => []
-    //     );
-    //     $list_expansions = $this->getDoctrine()->getRepository('AppBundle:Expansion')->findAll();
-    //     $size = count($list_expansion);
-    //     if ($expansion->getPosition() == 0 || $size == 0) {
-    //         continue;
-    //     }
-    //     $first_expansion = $list_expansions[0];
-    //     if ($expansion->getCode() == 'core'
-    // || ($size === 1 && $first_expansion->getName() == $expansion->getName())) {
-    //         $checked = count($expansions) ? in_array($first_expansion->getId(), $expansions) : true;
-    //         if ($checked) {
-    //             $on++;
-    //         } else {
-    //             $off++;
-    //         }
-    //         $categories[0]["expansions"][] = array(
-    //             "id" => $first_expansion->getId(),
-    //             "label" => $first_expansion->getName(),
-    //             "checked" => $checked,
-    //             "future" => $first_expansion->getDateRelease() === null
-    //         );
-    //     } else {
-    //         $category = array("label" => $expansion->getName(), "expansions" => []);
-    //         foreach ($list_expansions as $expansion) {
-    //             $checked = count($expansions) ? in_array($expansion->getId(), $expansions) : true;
-    //             if ($checked) {
-    //                 $on++;
-    //             } else {
-    //                 $off++;
-    //             }
-    //             $category['expansions'][] = array(
-    //                 "id" => $expansion->getId(),
-    //                 "label" => $expansion->getName(),
-    //                 "checked" => $checked,
-    //                 "future" => $expansion->getDateRelease() === null
-    //             );
-    //         }
-    //         $categories[] = $category;
-    //     }
+        $categories = [];
+        $on = 0;
+        $off = 0;
+        $categories[] = array(
+            "label" => $this->get("translator")->trans('decklist.list.search.allowed.core'),
+            "expansions" => []
+        );
+        $list_expansions = $this->getDoctrine()->getRepository('AppBundle:Expansion')->findAll();
 
-    //     $activeTournamentTiers = $this->getDoctrine()
-    //         ->getRepository(Tournament::class)
-    //         ->findBy(['active'=> true]);
+        foreach ($list_expansions as $expansion) {
+//$size = count($expansion->getExpansions());
+            $size = $expansion->getSize();
+            if ($expansion->getPosition() == 0 || $size == 0) {
+                continue;
+            }
 
-    //     $inactiveTournamentTiers = $this->getDoctrine()
-    //         ->getRepository(Tournament::class)
-    //         ->findBy(['active'=> false]);
+            $category = array("label" => $expansion->getName(), "expansions" => []);
+            $checked = count($expansions) ? in_array($expansion->getId(), $expansions) : true;
+            if ($checked) {
+                $on++;
+            } else {
+                $off++;
+            }
+            $category['expansions'][] = array(
+                "id" => $expansion->getId(),
+                "label" => $expansion->getName(),
+                "checked" => $checked,
+            );
+            $categories[] = $category;
+        }
 
-    //     $params = array(
-    //         'allowed' => $categories,
-    //         'on' => $on,
-    //         'off' => $off,
-    //         'author' => $author_name,
-    //         'name' => $decklist_name,
-    //         'activeTournamentTiers' => $activeTournamentTiers,
-    //         'inactiveTournamentTiers' => $inactiveTournamentTiers,
-    //     );
-    //     $params['sort_' . $sort] = ' selected="selected"';
-    //     $params['factions'] = $this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName();
-    //     $params['faction_selected'] = $faction_code;
-    //     $params['selectedTournament'] = $tournament;
+        $activeTournamentTiers = $this->getDoctrine()
+            ->getRepository(Tournament::class)
+            ->findBy(['active'=> true]);
 
-    //     if (!empty($cards_code) && is_array($cards_code)) {
-    //         $cards = $this->getDoctrine()->getRepository('AppBundle:Card')->findAllByCodes($cards_code);
+        $inactiveTournamentTiers = $this->getDoctrine()
+            ->getRepository(Tournament::class)
+            ->findBy(['active'=> false]);
 
-    //         $params['cards'] = '';
-    //         foreach ($cards as $card) {
-    //             $cardinfo = $this->get('cards_data')->getCardInfo($card, false, null);
-    //             $params['cards'] .= $this->renderView('AppBundle:Search:card.html.twig', $cardinfo);
-    //         }
-    //     }
+        $params = array(
+            'allowed' => $categories,
+            'on' => $on,
+            'off' => $off,
+            'author' => $author_name,
+            'name' => $decklist_name,
+            'activeTournamentTiers' => $activeTournamentTiers,
+            'inactiveTournamentTiers' => $inactiveTournamentTiers,
+        );
+        $params['sort_' . $sort] = ' selected="selected"';
+        $params['factions'] = $this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName();
+        $params['faction_selected'] = $faction_code;
+        $params['selectedTournament'] = $tournament;
 
-    //     return $this->renderView('AppBundle:Search:form.html.twig', $params);
-    // }
+        if (!empty($cards_code) && is_array($cards_code)) {
+            $cards = $this->getDoctrine()->getRepository('AppBundle:Card')->findAllByCodes($cards_code);
+
+            $params['cards'] = '';
+            foreach ($cards as $card) {
+                $cardinfo = $this->get('cards_data')->getCardInfo($card, false, null);
+                $params['cards'] .= $this->renderView('AppBundle:Search:card.html.twig', $cardinfo);
+            }
+        }
+
+        return $this->renderView('AppBundle:Search:form.html.twig', $params);
+    }
 
     /*
      * displays the lists of decklists
@@ -504,16 +489,16 @@ class SocialController extends Controller
         $pagetitle = $translator->trans('decklist.list.titles.' . $type);
 
         return $this->render('AppBundle:Decklist:decklists.html.twig', array(
-                    'pagetitle' => $pagetitle,
-                    'pagedescription' => "Browse the collection of thousands of premade decks.",
-                    'decklists' => $paginator,
-                    'url' => $request->getRequestUri(),
-                    'header' => $header,
-                    'type' => $type,
-                    'pages' => $decklist_manager->getClosePages(),
-                    'prevurl' => $decklist_manager->getPreviousUrl(),
-                    'nexturl' => $decklist_manager->getNextUrl(),
-                        ), $response);
+            'pagetitle' => $pagetitle,
+            'pagedescription' => "Browse the collection of thousands of premade decks.",
+            'decklists' => $paginator,
+            'url' => $request->getRequestUri(),
+            'header' => $header,
+            'type' => $type,
+            'pages' => $decklist_manager->getClosePages(),
+            'prevurl' => $decklist_manager->getPreviousUrl(),
+            'nexturl' => $decklist_manager->getNextUrl(),
+        ), $response);
     }
 
     /*
@@ -546,12 +531,12 @@ class SocialController extends Controller
         $versions = $decklistRepo->findVersions($decklist);
 
         return $this->render('AppBundle:Decklist:decklist.html.twig', array(
-                    'pagetitle' => $decklist->getName(),
-                    'decklist' => $decklist,
-                    'duplicate' => $duplicate,
-                    'commenters' => $commenters,
-                    'versions' => $versions,
-                        ), $response);
+            'pagetitle' => $decklist->getName(),
+            'decklist' => $decklist,
+            'duplicate' => $duplicate,
+            'commenters' => $commenters,
+            'versions' => $versions,
+        ), $response);
     }
 
     /*
@@ -585,10 +570,10 @@ class SocialController extends Controller
 				join favorite f on f.decklist_id=d.id
 				where f.user_id=?
 				and d.id=?", array(
-                            $user->getId(),
-                            $decklist_id
-                        ))
-                        ->fetch(\PDO::FETCH_NUM)[0];
+                    $user->getId(),
+                    $decklist_id
+                ))
+            ->fetch(\PDO::FETCH_NUM)[0];
 
         if ($is_favorite) {
             $decklist->setNbfavorites($decklist->getNbFavorites() - 1);
@@ -623,8 +608,8 @@ class SocialController extends Controller
 
         $decklist_id = filter_var($request->get('id'), FILTER_SANITIZE_NUMBER_INT);
         $decklist = $this->getDoctrine()
-                ->getRepository('AppBundle:Decklist')
-                ->find($decklist_id);
+            ->getRepository('AppBundle:Decklist')
+            ->find($decklist_id);
 
         $comment_text = trim($request->get('comment'));
         if ($decklist && !empty($comment_text)) {
@@ -656,14 +641,14 @@ class SocialController extends Controller
             $comment->setIsHidden(false);
 
             $this->getDoctrine()
-                    ->getManager()
-                    ->persist($comment);
+                ->getManager()
+                ->persist($comment);
             $decklist->setDateUpdate($now);
             $decklist->setNbcomments($decklist->getNbcomments() + 1);
 
             $this->getDoctrine()
-                    ->getManager()
-                    ->flush();
+                ->getManager()
+                ->flush();
 
             // send emails
             $spool = [];
@@ -710,17 +695,17 @@ class SocialController extends Controller
             );
             foreach ($spool as $email => $view) {
                 $message = \Swift_Message::newInstance()
-                        ->setSubject("[doomtrooperdb] New comment")
-                        ->setFrom(array($fromEmail => $user->getUsername()))
-                        ->setTo($email)
-                        ->setBody($this->renderView($view, $email_data), 'text/html');
+                    ->setSubject("[doomtrooperdb] New comment")
+                    ->setFrom(array($fromEmail => $user->getUsername()))
+                    ->setTo($email)
+                    ->setBody($this->renderView($view, $email_data), 'text/html');
                 $this->get('mailer')->send($message);
             }
         }
 
         return $this->redirect($this->generateUrl('decklist_detail', array(
-                            'decklist_id' => $decklist_id,
-                            'decklist_name' => $decklist->getNameCanonical()
+            'decklist_id' => $decklist_id,
+            'decklist_name' => $decklist->getNameCanonical()
         )));
     }
 
@@ -774,13 +759,13 @@ class SocialController extends Controller
 
         if ($decklist->getUser()->getId() != $user->getId()) {
             $query = $em->getRepository('AppBundle:Decklist')
-                    ->createQueryBuilder('d')
-                    ->innerJoin('d.votes', 'u')
-                    ->where('d.id = :decklist_id')
-                    ->andWhere('u.id = :user_id')
-                    ->setParameter('decklist_id', $decklist_id)
-                    ->setParameter('user_id', $user->getId())
-                    ->getQuery();
+                ->createQueryBuilder('d')
+                ->innerJoin('d.votes', 'u')
+                ->where('d.id = :decklist_id')
+                ->andWhere('u.id = :user_id')
+                ->setParameter('decklist_id', $decklist_id)
+                ->setParameter('user_id', $user->getId())
+                ->getQuery();
 
             $result = $query->getResult();
             if (empty($result)) {
@@ -832,10 +817,10 @@ class SocialController extends Controller
     			ORDER BY difference ASC
     			LIMIT 0,$number",
             array(
-                    $decklist_id,
-                    $decklist_id,
-                    $decklist_id
-                )
+                $decklist_id,
+                $decklist_id,
+                $decklist_id
+            )
         )->fetchAll();
 
         $arr = [];
@@ -997,10 +982,10 @@ class SocialController extends Controller
 				order by date_creation desc
 				limit $start, $limit",
             array(
-                    $user->getId()
-                )
+                $user->getId()
+            )
         )
-                ->fetchAll(\PDO::FETCH_ASSOC);
+            ->fetchAll(\PDO::FETCH_ASSOC);
 
         $maxcount = $dbh->executeQuery("SELECT FOUND_ROWS()")->fetch(\PDO::FETCH_NUM)[0];
 
@@ -1026,19 +1011,19 @@ class SocialController extends Controller
         }
 
         return $this->render('AppBundle:Default:usercomments.html.twig', array(
-                    'user' => $user,
-                    'comments' => $comments,
-                    'url' => $request
-                            ->getRequestUri(),
-                    'route' => $route,
-                    'pages' => $pages,
-                    'prevurl' => $currpage == 1 ? null : $this->generateUrl($route, array(
-                        "page" => $prevpage
-                    )),
-                    'nexturl' => $currpage == $nbpages ? null : $this->generateUrl($route, array(
-                        "page" => $nextpage
-                    ))
-                        ), $response);
+            'user' => $user,
+            'comments' => $comments,
+            'url' => $request
+            ->getRequestUri(),
+            'route' => $route,
+            'pages' => $pages,
+            'prevurl' => $currpage == 1 ? null : $this->generateUrl($route, array(
+                "page" => $prevpage
+            )),
+            'nexturl' => $currpage == $nbpages ? null : $this->generateUrl($route, array(
+                "page" => $nextpage
+            ))
+        ), $response);
     }
 
     public function commentsAction($page, Request $request)
@@ -1098,109 +1083,82 @@ class SocialController extends Controller
         }
 
         return $this->render('AppBundle:Default:allcomments.html.twig', array(
-                    'comments' => $comments,
-                    'url' => $request
-                            ->getRequestUri(),
-                    'route' => $route,
-                    'pages' => $pages,
-                    'prevurl' => $currpage == 1 ? null : $this->generateUrl($route, array(
-                        "page" => $prevpage
-                    )),
-                    'nexturl' => $currpage == $nbpages ? null : $this->generateUrl($route, array(
-                        "page" => $nextpage
-                    ))
-                        ), $response);
+            'comments' => $comments,
+            'url' => $request
+            ->getRequestUri(),
+            'route' => $route,
+            'pages' => $pages,
+            'prevurl' => $currpage == 1 ? null : $this->generateUrl($route, array(
+                "page" => $prevpage
+            )),
+            'nexturl' => $currpage == $nbpages ? null : $this->generateUrl($route, array(
+                "page" => $nextpage
+            ))
+        ), $response);
     }
 
-    // public function searchAction(Request $request)
-    // {
-    //     $translator = $this->get("translator");
+    public function searchAction(Request $request)
+    {
+        $translator = $this->get("translator");
 
-    //     $response = new Response();
-    //     $response->setPublic();
-    //     $response->setMaxAge($this->container->getParameter('cache_expiration'));
+        $response = new Response();
+        $response->setPublic();
+        $response->setMaxAge($this->container->getParameter('cache_expiration'));
 
-    //     $factions = $this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName();
+        $factions = $this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName();
 
-    //     $categories = [];
-    //     $on = 0;
-    //     $off = 0;
-    // $categories[] = array(
-    //     "label" => $translator->trans("decklist.list.search.allowed.core"),
-    //     "expansions" => []
-    // );
-    //     $list_expansions = $this->getDoctrine()->getRepository('AppBundle:Expansion')->findAll();
-    //     $size = count($list_expansions);
-    //     if ($expansion->getPosition() == 0 || $size == 0) {
-    //         continue;
-    //     }
-    //     $first_expansion = $list_expansions[0];
-    //     if ($expansion->getCode() === 'core'
-    // || ($size === 1 && $first_expansion->getName() == $expansion->getName())) {
-    //         $checked = $first_expansion->getDateRelease() !== null;
-    //         if ($checked) {
-    //             $on++;
-    //         } else {
-    //             $off++;
-    //         }
-    //         $categories[0]["expansions"][] = array(
-    //             "id" => $first_expansion->getId(),
-    //             "label" => $first_expansion->getName(),
-    //             "checked" => $checked,
-    //             "future" => $first_expansion->getDateRelease() === null
-    //         );
-    //     } else {
-    //         $category = array("label" => $expansion->getName(), "expansions" => []);
-    //         foreach ($expansion->getExpansions() as $expansion) {
-    //             $checked = $expansion->getDateRelease() !== null;
-    //             if ($checked) {
-    //                 $on++;
-    //             } else {
-    //                 $off++;
-    //             }
-    //             $category['expansions'][] = array(
-    //                 "id" => $expansion->getId(),
-    //                 "label" => $expansion->getName(),
-    //                 "checked" => $checked,
-    //                 "future" => $expansion->getDateRelease() === null
-    //             );
-    //         }
-    //         $categories[] = $category;
-    //     }
+        $categories = [];
+        $on = 0;
+        $off = 0;
+        $categories[] = array("label" => $translator->trans("decklist.list.search.allowed.core"), "expansions" => []);
+        $list_expansions = $this->getDoctrine()->getRepository('AppBundle:Expansion')->findAll();
+        foreach ($list_expansions as $expansion) {
+            $size = $expansion->getSize();
+            if ($expansion->getPosition() == 0 || $size == 0) {
+                continue;
+            }
 
-    //     $activeTournamentTiers = $this->getDoctrine()
-    //         ->getRepository(Tournament::class)
-    //         ->findBy(['active'=> true]);
+            $category = array("label" => $expansion->getName(), "expansions" => []);
+            $on++;
 
-    //     $inactiveTournamentTiers = $this->getDoctrine()
-    //         ->getRepository(Tournament::class)
-    //         ->findBy(['active'=> false]);
+            $category['expansions'][] = array(
+                "id" => $expansion->getId(),
+                "label" => $expansion->getName(),
+            );
+        }
 
-    //     $searchForm = $this->renderView(
-    //         'AppBundle:Search:form.html.twig',
-    //         array(
-    //             'factions' => $factions,
-    //             'allowed' => $categories,
-    //             'on' => $on,
-    //             'off' => $off,
-    //             'author' => '',
-    //             'name' => '',
-    //             'activeTournamentTiers' => $activeTournamentTiers,
-    //             'inactiveTournamentTiers' => $inactiveTournamentTiers,
-    //             'selectedTournament' => 0
-    //         )
-    //     );
+        $activeTournamentTiers = $this->getDoctrine()
+            ->getRepository(Tournament::class)
+            ->findBy(['active'=> true]);
 
-    //     return $this->render('AppBundle:Decklist:decklists.html.twig', array(
-    //                 'pagetitle' => $translator->trans('decklist.list.titles.search'),
-    //                 'decklists' => null,
-    //                 'url' => $request->getRequestUri(),
-    //                 'header' => $searchForm,
-    //                 'type' => 'find',
-    //                 'pages' => null,
-    //                 'prevurl' => null,
-    //                 'nexturl' => null,
-    //                     ), $response);
-    // }
+        $inactiveTournamentTiers = $this->getDoctrine()
+            ->getRepository(Tournament::class)
+            ->findBy(['active'=> false]);
 
+        $searchForm = $this->renderView(
+            'AppBundle:Search:form.html.twig',
+            array(
+                'factions' => $factions,
+                'allowed' => $categories,
+                'on' => $on,
+                'off' => $off,
+                'author' => '',
+                'name' => '',
+                'activeTournamentTiers' => $activeTournamentTiers,
+                'inactiveTournamentTiers' => $inactiveTournamentTiers,
+                'selectedTournament' => 0
+            )
+        );
+
+        return $this->render('AppBundle:Decklist:decklists.html.twig', array(
+                    'pagetitle' => $translator->trans('decklist.list.titles.search'),
+                    'decklists' => null,
+                    'url' => $request->getRequestUri(),
+                    'header' => $searchForm,
+                    'type' => 'find',
+                    'pages' => null,
+                    'prevurl' => null,
+                    'nexturl' => null,
+                        ), $response);
+    }
 }
