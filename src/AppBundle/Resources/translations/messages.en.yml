@@ -182,7 +182,6 @@ decks:
       illustrator: Illustrator
       type_code: Type
       text: Text
-      quantity: Quantity in expansion
   charts:
     faction:
       title: Card Factions

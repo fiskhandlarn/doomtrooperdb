@@ -182,7 +182,6 @@ decks:
       illustrator: Ilustrador
       type_code: Tipo
       text: Texto
-      quantity: Cantidad en el expansión
   charts:
     faction:
       title: Cartas por Facción

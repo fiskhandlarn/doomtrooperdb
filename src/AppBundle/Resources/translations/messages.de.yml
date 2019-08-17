@@ -182,7 +182,6 @@ decks:
       illustrator: Illustrator/in
       type_code: Typ
       text: Text
-      quantity: Anzahl der Kopien im Expansion
   charts:
     faction:
       title: Karten pro Fraktion
