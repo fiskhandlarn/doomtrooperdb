@@ -20,10 +20,6 @@
 * images from https://raw.githubusercontent.com/ instead?
 * stylelint
 * INSERT decklist 1 to pass ApiControllerTest::testGetDecklist?
-* remove unused js
-  * levenshtein
-  * string_score.min
-* combine all internal and external js into app.js
 * fix mapping and remove `--skip-mapping` from `doctrine:schema:validate`
 * ```        switch (deck.sort_type) {
             case "type":
