@@ -2,15 +2,18 @@
  {
    var charts = [],
        faction_colors = {
-         legion:'#1c1c1c',
          bauhaus:'#e3d852',
          brotherhood:'#cfcfcf',
          capitol:'#1d7a99',
-         cybertronic:'#c00106',
          crescentia:'#509f16',
-         mishima:'#6e6e6e',
-         imperial:'#e89521',
+         cybertronic:'#c00106',
          general:'#a99560',
+         imperial:'#e89521',
+         legion:'#1c1c1c',
+         lutheran: '#ff0000',
+         mishima:'#7a7a7a',
+         rasputin: '#00ff00',
+         templars: '#0000ff',
        };
 
    deck_charts.chart_faction = function chart_faction()
