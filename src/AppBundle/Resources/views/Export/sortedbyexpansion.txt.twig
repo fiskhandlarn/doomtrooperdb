@@ -1,7 +1,5 @@
 {{ deck.name }} {{ deck.version }}
 
-{{ deck.faction.name }}
-
 {% set first_expansion = deck.included_expansions|first %}
 {% set last_expansion = deck.included_expansions|last %}
 Expansions: {% if deck.included_expansions|length > 1 %}
@@ -18,5 +16,3 @@ From {{ first_expansion.expansion.name }}{% if first_expansion.nb > 1 %} ({{ fir
 {{ slot.quantity }}x {{ slot.card.name }} ({{ slot.card.expansion.name }}
 {% endfor %}
 {% endfor %}
-
-{{ footer|default('') }}
