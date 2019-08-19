@@ -49,13 +49,11 @@
 
    smart_filter.get_help = function get_help()
    {
-     var items = _.map(configuration, function (value, key)
-                       {
-                         return '<li><tt>' + key + '</tt> &ndash; ' + value[2] + '</li>';
-                       });
+     var items = _.map(configuration, function (value, key) {
+       return '<li><tt>' + key + '</tt> &ndash; ' + value[2] + '</li>';
+     });
      return '<ul>' + items.join('') + '</ul><p>' + Translator.trans('decks.smartfilter.example') + '</p>';
-
-   }
+   };
 
    function add_string_sf(key, operator, values)
    {
@@ -63,16 +61,16 @@
        values[j] = new RegExp(values[j], 'i');
      }
      switch(operator) {
-         case ":":
-           SmartFilterQuery[key] = {
-             '$in': values
-           };
-           break;
-         case "!":
-           SmartFilterQuery[key] = {
-             '$nin': values
-           };
-           break;
+       case ":":
+         SmartFilterQuery[key] = {
+           '$in': values
+         };
+         break;
+       case "!":
+         SmartFilterQuery[key] = {
+           '$nin': values
+         };
+         break;
      }
    }
 
@@ -147,16 +145,15 @@
      return list;
    }
 
-   $(function ()
-     {
-       $('.smart-filter-help').tooltip({
-         container: 'body',
-         delay: 1000,
-         html: true,
-         placement: 'bottom',
-         title: smart_filter.get_help(),
-         trigger: 'hover'
-       });
-     })
+   $(function () {
+     $('.smart-filter-help').tooltip({
+       container: 'body',
+       delay: 1000,
+       html: true,
+       placement: 'bottom',
+       title: smart_filter.get_help(),
+       trigger: 'hover'
+     });
+   });
 
  })(app.smart_filter = {}, jQuery);

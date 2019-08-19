@@ -13,8 +13,7 @@
        user_id,
        problem_labels = _.reduce(
          ['too_few_cards', 'too_many_copies'],
-         function (problems, key)
-         {
+         function (problems, key) {
            problems[key] = Translator.trans('decks.problems.' + key);
            return problems;
          },
@@ -80,10 +79,9 @@
        deck.set_slots(data.slots);
      } else {
        console.log("deck.set_slots put on hold until data.app");
-       $(document).on('data.app', function ()
-                      {
-                        deck.set_slots(data.slots);
-                      });
+       $(document).on('data.app', function () {
+         deck.set_slots(data.slots);
+       });
      }
    };
 
@@ -181,10 +179,9 @@
      if(!cards)
        cards = deck.get_cards();
      var quantities = _.pluck(cards, 'indeck');
-     return _.reduce(quantities, function (memo, num)
-                     {
-                       return memo + num;
-                     }, 0);
+     return _.reduce(quantities, function (memo, num) {
+       return memo + num;
+     }, 0);
    };
 
    /**
@@ -197,10 +194,9 @@
      var cards = deck.get_cards();
      var nb_expansions = {};
      sort = sort || { 'available': 1 };
-     cards.forEach(function (card)
-                   {
-                     nb_expansions[card.expansion_code] = Math.max(nb_expansions[card.expansion_code] || 0, card.indeck / card.quantity);
-                   });
+     cards.forEach(function (card) {
+       nb_expansions[card.expansion_code] = Math.max(nb_expansions[card.expansion_code] || 0, card.indeck / card.quantity);
+     });
      var expansion_codes = _.uniq(_.pluck(cards, 'expansion_code'));
      var expansions = app.data.expansions.find({
        'code': {
@@ -209,10 +205,9 @@
      }, {
        '$orderBy': sort
      });
-     expansions.forEach(function (expansion)
-                        {
-                          expansion.quantity = nb_expansions[expansion.code] || 0;
-                        });
+     expansions.forEach(function (expansion) {
+       expansion.quantity = nb_expansions[expansion.code] || 0;
+     });
      return expansions;
    };
 
@@ -286,40 +281,40 @@
      var layout_template;
 
      switch (deck.sort_type) {
-         case "name":
-           deck.update_layout_section(data, "cards", $('<br>'));
-           deck.update_layout_section(data, "cards", deck.get_layout_section({'name': 1},  null, null, "number"));
-           layout_template = 'cards';
-           break;
-         case "set":
-           deck.update_layout_section(data, "cards", deck.get_layout_section_for_cards_sorted_by_set(true));
-           layout_template = 'cards';
-           break;
-         case "setnumber":
-           deck.update_layout_section(data, "cards", deck.get_layout_section_for_cards_sorted_by_set(false));
-           layout_template = 'cards';
-           break;
-         case "cardnumber":
-           deck.update_layout_section(data, "cards", $('<br>'));
-           deck.update_layout_section(data, "cards", deck.get_layout_section({'code': 1},  null, null, "number"));
-           layout_template = 'cards';
-           break;
-         case "type":
-         default:
-           deck.update_layout_section(data, 'art', deck.get_layout_data_one_section('type_code', 'art', 'type_name'));
-           deck.update_layout_section(data, 'beast', deck.get_layout_data_one_section('type_code', 'beast', 'type_name'));
-           deck.update_layout_section(data, 'equipment', deck.get_layout_data_one_section('type_code', 'equipment', 'type_name'));
-           deck.update_layout_section(data, 'fortification', deck.get_layout_data_one_section('type_code', 'fortification', 'type_name'));
-           deck.update_layout_section(data, 'ki', deck.get_layout_data_one_section('type_code', 'ki', 'type_name'));
-           deck.update_layout_section(data, 'mission', deck.get_layout_data_one_section('type_code', 'mission', 'type_name'));
-           deck.update_layout_section(data, 'relic', deck.get_layout_data_one_section('type_code', 'relic', 'type_name'));
-           deck.update_layout_section(data, 'special', deck.get_layout_data_one_section('type_code', 'special', 'type_name'));
-           deck.update_layout_section(data, 'symmetry', deck.get_layout_data_one_section('type_code', 'symmetry', 'type_name'));
-           deck.update_layout_section(data, 'warrior', deck.get_layout_data_one_section('type_code', 'warrior', 'type_name'));
-           deck.update_layout_section(data, 'warzone', deck.get_layout_data_one_section('type_code', 'warzone', 'type_name'));
-           deck.update_layout_section(data, 'alliance', deck.get_layout_data_one_section('type_code', 'alliance', 'type_name'));
-           layout_template = 'types';
-           break;
+       case "name":
+         deck.update_layout_section(data, "cards", $('<br>'));
+         deck.update_layout_section(data, "cards", deck.get_layout_section({'name': 1},  null, null, "number"));
+         layout_template = 'cards';
+         break;
+       case "set":
+         deck.update_layout_section(data, "cards", deck.get_layout_section_for_cards_sorted_by_set(true));
+         layout_template = 'cards';
+         break;
+       case "setnumber":
+         deck.update_layout_section(data, "cards", deck.get_layout_section_for_cards_sorted_by_set(false));
+         layout_template = 'cards';
+         break;
+       case "cardnumber":
+         deck.update_layout_section(data, "cards", $('<br>'));
+         deck.update_layout_section(data, "cards", deck.get_layout_section({'code': 1},  null, null, "number"));
+         layout_template = 'cards';
+         break;
+       case "type":
+       default:
+         deck.update_layout_section(data, 'art', deck.get_layout_data_one_section('type_code', 'art', 'type_name'));
+         deck.update_layout_section(data, 'beast', deck.get_layout_data_one_section('type_code', 'beast', 'type_name'));
+         deck.update_layout_section(data, 'equipment', deck.get_layout_data_one_section('type_code', 'equipment', 'type_name'));
+         deck.update_layout_section(data, 'fortification', deck.get_layout_data_one_section('type_code', 'fortification', 'type_name'));
+         deck.update_layout_section(data, 'ki', deck.get_layout_data_one_section('type_code', 'ki', 'type_name'));
+         deck.update_layout_section(data, 'mission', deck.get_layout_data_one_section('type_code', 'mission', 'type_name'));
+         deck.update_layout_section(data, 'relic', deck.get_layout_data_one_section('type_code', 'relic', 'type_name'));
+         deck.update_layout_section(data, 'special', deck.get_layout_data_one_section('type_code', 'special', 'type_name'));
+         deck.update_layout_section(data, 'symmetry', deck.get_layout_data_one_section('type_code', 'symmetry', 'type_name'));
+         deck.update_layout_section(data, 'warrior', deck.get_layout_data_one_section('type_code', 'warrior', 'type_name'));
+         deck.update_layout_section(data, 'warzone', deck.get_layout_data_one_section('type_code', 'warzone', 'type_name'));
+         deck.update_layout_section(data, 'alliance', deck.get_layout_data_one_section('type_code', 'alliance', 'type_name'));
+         layout_template = 'types';
+         break;
      }
 
      if (options && options.layout) {
@@ -428,10 +423,9 @@
    {
      var cards = deck.get_cards();
      var content = {};
-     cards.forEach(function (card)
-                   {
-                     content[card.code] = card.indeck;
-                   });
+     cards.forEach(function (card) {
+       content[card.code] = card.indeck;
+     });
      return content;
    };
 
@@ -457,19 +451,18 @@
    deck.get_copies_and_deck_limit = function get_copies_and_deck_limit()
    {
      var copies_and_deck_limit = {};
-     deck.get_draw_deck().forEach(function (card)
-                                  {
-                                    var value = copies_and_deck_limit[card.name];
-                                    if(!value) {
-                                      copies_and_deck_limit[card.name] = {
-                                        nb_copies: card.indeck,
-                                        deck_limit: card.deck_limit
-                                      };
-                                    } else {
-                                      value.nb_copies += card.indeck;
-                                      value.deck_limit = Math.min(card.deck_limit, value.deck_limit);
-                                    }
-                                  })
+     deck.get_draw_deck().forEach(function (card) {
+       var value = copies_and_deck_limit[card.name];
+       if(!value) {
+         copies_and_deck_limit[card.name] = {
+           nb_copies: card.indeck,
+           deck_limit: card.deck_limit
+         };
+       } else {
+         value.nb_copies += card.indeck;
+         value.deck_limit = Math.min(card.deck_limit, value.deck_limit);
+       }
+     });
      return copies_and_deck_limit;
    };
 
@@ -488,10 +481,9 @@
      }
 
      // too many copies of one card
-     if(!_.isUndefined(_.findKey(deck.get_copies_and_deck_limit(), function (value)
-                                 {
-                                   return value.nb_copies > value.deck_limit;
-                                 }))) {
+     if(!_.isUndefined(_.findKey(deck.get_copies_and_deck_limit(), function (value) {
+       return value.nb_copies > value.deck_limit;
+     }))) {
        return 'too_many_copies';
      }
    };

@@ -50,13 +50,12 @@
        }
        qtyelt.html(qty);
 
-       qtyelt.find('label').each(function (index, element)
-                                 {
-                                   if(index == card.indeck)
-                                     $(element).addClass('active');
-                                   else
-                                     $(element).removeClass('active');
-                                 });
+       qtyelt.find('label').each(function (index, element) {
+         if(index == card.indeck)
+           $(element).addClass('active');
+         else
+           $(element).removeClass('active');
+       });
 
      } else {
        if(qtyelt)
@@ -67,16 +66,15 @@
    $(function ()
      {
 
-       $('body').on({click: function (event)
-                     {
-                       var element = $(this);
-                       if(event.shiftKey || event.altKey || event.ctrlKey || event.metaKey) {
-                         event.stopPropagation();
-                         return;
-                       }
-                       card_modal.display_modal(event, element);
-                     }}, '.card');
+       $('body').on({click: function (event) {
+         var element = $(this);
+         if(event.shiftKey || event.altKey || event.ctrlKey || event.metaKey) {
+           event.stopPropagation();
+           return;
+         }
+         card_modal.display_modal(event, element);
+       }}, '.card');
 
-     })
+     });
 
  })(app.card_modal = {}, jQuery);

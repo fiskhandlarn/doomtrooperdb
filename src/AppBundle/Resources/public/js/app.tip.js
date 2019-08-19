@@ -96,15 +96,14 @@
      }
    };
 
-   $(document).on('start.app', function ()
-                  {
-                    $('body').on({
-                      mouseover: tip.display
-                    }, 'a.card-tip');
+   $(document).on('start.app', function () {
+     $('body').on({
+       mouseover: tip.display
+     }, 'a.card-tip');
 
-                    $('body').on({
-                      mouseover: tip.guess
-                    }, 'a:not(.card-tip)');
-                  });
+     $('body').on({
+       mouseover: tip.guess
+     }, 'a:not(.card-tip)');
+   });
 
  })(app.tip = {}, jQuery);

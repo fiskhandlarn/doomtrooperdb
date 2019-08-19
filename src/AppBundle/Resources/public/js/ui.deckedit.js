@@ -46,16 +46,14 @@
    ui.init_config_buttons = function init_config_buttons()
    {
      // radio
-     ['display-column', 'buttons-behavior'].forEach(function (radio)
-                                                    {
-                                                      $('input[name=' + radio + '][value=' + Config[radio] + ']').prop('checked', true);
-                                                    });
+     ['display-column', 'buttons-behavior'].forEach(function (radio) {
+       $('input[name=' + radio + '][value=' + Config[radio] + ']').prop('checked', true);
+     });
      // checkbox
-     ['show-only-deck'].forEach(function (checkbox)
-                                {
-                                  if(Config[checkbox])
-                                    $('input[name=' + checkbox + ']').prop('checked', true);
-                                });
+     ['show-only-deck'].forEach(function (checkbox) {
+       if(Config[checkbox])
+         $('input[name=' + checkbox + ']').prop('checked', true);
+     });
    };
 
    /**
@@ -89,9 +87,11 @@
 
      faction_codes.forEach(function (faction_code) {
        var example = app.data.cards.find({"faction_code": faction_code})[0];
-       var label = $('<label class="btn btn-default btn-sm" data-code="'
-                     + faction_code + '" title="' + example.faction_name + '"><input type="checkbox" name="' + faction_code
-                     + '"><span class="icon-' + faction_code + '"></span></label>');
+       var label = $(
+         '<label class="btn btn-default btn-sm" data-code="'
+           + faction_code + '" title="' + example.faction_name + '"><input type="checkbox" name="' + faction_code
+           + '"><span class="icon-' + faction_code + '"></span></label>'
+       );
        label.tooltip({container: 'body'});
        $('[data-filter=faction_code]').append(label);
      });
@@ -118,15 +118,16 @@
        'symmetry',
        'warrior',
        'warzone',
-     ].forEach(function (type_code)
-               {
-                 var example = app.data.cards.find({"type_code": type_code})[0];
-                 var label = $('<label class="btn btn-default btn-sm" data-code="'
-                               + type_code + '" title="' + example.type_name + '"><input type="checkbox" name="' + type_code
-                               + '"><span class="icon-' + type_code + '"></span></label>');
-                 label.tooltip({container: 'body'});
-                 $('[data-filter=type_code]').append(label);
-               });
+     ].forEach(function (type_code) {
+       var example = app.data.cards.find({"type_code": type_code})[0];
+       var label = $(
+         '<label class="btn btn-default btn-sm" data-code="'
+           + type_code + '" title="' + example.type_name + '"><input type="checkbox" name="' + type_code
+           + '"><span class="icon-' + type_code + '"></span></label>'
+       );
+       label.tooltip({container: 'body'});
+       $('[data-filter=type_code]').append(label);
+     });
      $('[data-filter=type_code]').button();
    };
 
@@ -145,28 +146,27 @@
        $orderBy: {
          position: 1
        }
-     }).forEach(function (record)
-                {
-                  // checked or unchecked ? checked by default
-                  var checked = true;
-                  // if not yet available, uncheck expansion
-                  if(record.available === "")
-                    checked = false;
-                  // if user checked it previously, check expansion
-                  if(localStorage && localStorage.getItem('set_code_' + record.code) !== null)
-                    checked = true;
-                  // if expansion used by cards in deck, check expansion
-                  var cards = app.data.cards.find({
-                    expansion_code: record.code,
-                    indeck: {
-                      '$gt': 0
-                    }
-                  });
-                  if(cards.length)
-                    checked = true;
+     }).forEach(function (record) {
+       // checked or unchecked ? checked by default
+       var checked = true;
+       // if not yet available, uncheck expansion
+       if(record.available === "")
+         checked = false;
+       // if user checked it previously, check expansion
+       if(localStorage && localStorage.getItem('set_code_' + record.code) !== null)
+         checked = true;
+       // if expansion used by cards in deck, check expansion
+       var cards = app.data.cards.find({
+         expansion_code: record.code,
+         indeck: {
+           '$gt': 0
+         }
+       });
+       if(cards.length)
+         checked = true;
 
-                  $('<li><a href="#"><label><input type="checkbox" name="' + record.code + '"' + (checked ? ' checked="checked"' : '') + '>' + record.name + '</label></a></li>').appendTo('[data-filter=expansion_code]');
-                });
+       $('<li><a href="#"><label><input type="checkbox" name="' + record.code + '"' + (checked ? ' checked="checked"' : '') + '>' + record.name + '</label></a></li>').appendTo('[data-filter=expansion_code]');
+     });
    };
 
    /**
@@ -327,34 +327,31 @@
      modal.modal('hide');
      ui.on_quantity_change(code, quantity);
 
-     setTimeout(function ()
-                {
-                  $('#filter-text').typeahead('val', '').focus();
-                }, 100);
+     setTimeout(function () {
+       $('#filter-text').typeahead('val', '').focus();
+     }, 100);
    };
 
    ui.refresh_row = function refresh_row(card_code, quantity)
    {
      // for each set of divs (1, 2, 3 columns)
-     CardDivs.forEach(function (rows)
-                      {
-                        var row = rows[card_code];
-                        if(!row)
-                          return;
+     CardDivs.forEach(function (rows) {
+       var row = rows[card_code];
+       if(!row)
+         return;
 
-                        // rows[card_code] is the card row of our card
-                        // for each "quantity switch" on that row
-                        row.find('input[name="qty-' + card_code + '"]').each(function (i, element)
-                                                                             {
-                                                                               // if that switch is NOT the one with the new quantity, uncheck it
-                                                                               // else, check it
-                                                                               if($(element).val() !== ''+quantity) {
-                                                                                 $(element).prop('checked', false).closest('label').removeClass('active');
-                                                                               } else {
-                                                                                 $(element).prop('checked', true).closest('label').addClass('active');
-                                                                               }
-                                                                             });
-                      });
+       // rows[card_code] is the card row of our card
+       // for each "quantity switch" on that row
+       row.find('input[name="qty-' + card_code + '"]').each(function (i, element) {
+         // if that switch is NOT the one with the new quantity, uncheck it
+         // else, check it
+         if($(element).val() !== ''+quantity) {
+           $(element).prop('checked', false).closest('label').removeClass('active');
+         } else {
+           $(element).prop('checked', true).closest('label').addClass('active');
+         }
+       });
+     });
    };
 
    /**
@@ -388,36 +385,33 @@
 
      $('#save_form').on('submit', ui.on_submit_form);
 
-     $('#btn-save-as-copy').on('click', function (event)
-                               {
-                                 $('#deck-save-as-copy').val(1);
-                               });
+     $('#btn-save-as-copy').on('click', function (event) {
+       $('#deck-save-as-copy').val(1);
+     });
 
-     $('#btn-cancel-edits').on('click', function (event)
-                               {
-                                 var unsaved_edits = app.deck_history.get_unsaved_edits();
-                                 if(unsaved_edits.length) {
-                                   var confirmation = confirm("This operation will revert the changes made to the deck since " + unsaved_edits[0].date_creation.calendar() + ". The last " + (unsaved_edits.length > 1 ? unsaved_edits.length + " edits" : "edit") + " will be lost. Do you confirm?");
-                                   if(!confirmation)
-                                     return false;
-                                 } else {
-                                   if(app.deck_history.is_changed_since_last_autosave()) {
-                                     var confirmation = confirm("This operation will revert the changes made to the deck. Do you confirm?");
-                                     if(!confirmation)
-                                       return false;
-                                   }
-                                 }
-                                 $('#deck-cancel-edits').val(1);
-                               });
+     $('#btn-cancel-edits').on('click', function (event) {
+       var unsaved_edits = app.deck_history.get_unsaved_edits();
+       if(unsaved_edits.length) {
+         var confirmation = confirm("This operation will revert the changes made to the deck since " + unsaved_edits[0].date_creation.calendar() + ". The last " + (unsaved_edits.length > 1 ? unsaved_edits.length + " edits" : "edit") + " will be lost. Do you confirm?");
+         if(!confirmation)
+           return false;
+       } else {
+         if(app.deck_history.is_changed_since_last_autosave()) {
+           var confirmation = confirm("This operation will revert the changes made to the deck. Do you confirm?");
+           if(!confirmation)
+             return false;
+         }
+       }
+       $('#deck-cancel-edits').val(1);
+     });
 
      $('#config-options').on('change', 'input', ui.on_config_change);
      $('#collection').on('change', 'input[type=radio]', ui.on_list_quantity_change);
 
-     $('#cardModal').on('keypress', function (event)
-                        {
-                          var num = parseInt(event.which, 10) - 48;
-                          $('#cardModal input[type=radio][value=' + num + ']').trigger('change');
-                        });
+     $('#cardModal').on('keypress', function (event){
+       var num = parseInt(event.which, 10) - 48;
+       $('#cardModal input[type=radio][value=' + num + ']').trigger('change');
+     });
      $('#cardModal').on('change', 'input[type=radio]', ui.on_modal_quantity_change);
 
      $('thead').on('click', 'a[data-sort]', ui.on_table_sort_click);
@@ -542,56 +536,54 @@
     * don't fire unless 250ms has passed since last invocation
     * @memberOf ui
     */
-   ui.refresh_list = _.debounce(function refresh_list()
-                                {
-                                  $('#collection-table').empty();
-                                  $('#collection-grid').empty();
+   ui.refresh_list = _.debounce(function refresh_list() {
+     $('#collection-table').empty();
+     $('#collection-grid').empty();
 
-                                  var counter = 0,
-                                      container = $('#collection-table'),
-                                      filters = ui.get_filters(),
-                                      query = app.smart_filter.get_query(filters),
-                                      orderBy = {};
+     var counter = 0,
+         container = $('#collection-table'),
+         filters = ui.get_filters(),
+         query = app.smart_filter.get_query(filters),
+         orderBy = {};
 
-                                  SortKey.split('|').forEach(function (key)
-                                                             {
-                                                               orderBy[key] = SortOrder;
-                                                             });
-                                  if(SortKey !== 'name')
-                                    orderBy['name'] = 1;
-                                  var cards = app.data.cards.find(query, {'$orderBy': orderBy});
-                                  var divs = CardDivs[ Config['display-column'] - 1 ];
+     SortKey.split('|').forEach(function (key) {
+       orderBy[key] = SortOrder;
+     });
+     if(SortKey !== 'name')
+       orderBy['name'] = 1;
+     var cards = app.data.cards.find(query, {'$orderBy': orderBy});
+     var divs = CardDivs[ Config['display-column'] - 1 ];
 
-                                  cards.forEach(function (card) {
+     cards.forEach(function (card) {
 
-                                    if(Config['show-only-deck'] && !card.indeck)
-                                      return;
+       if(Config['show-only-deck'] && !card.indeck)
+         return;
 
-                                    var row = divs[card.code];
-                                    if(!row)
-                                      row = divs[card.code] = ui.build_row(card);
+       var row = divs[card.code];
+       if(!row)
+         row = divs[card.code] = ui.build_row(card);
 
-                                    row.data("code", card.code).addClass('card-container');
+       row.data("code", card.code).addClass('card-container');
 
-                                    row.find('input[name="qty-' + card.code + '"]').each(
-                                      function (i, element)
-                                      {
-                                        if($(element).val() === ''+card.indeck) {
-                                          $(element).prop('checked', true).closest('label').addClass('active');
-                                        } else {
-                                          $(element).prop('checked', false).closest('label').removeClass('active');
-                                        }
-                                      }
-                                    );
+       row.find('input[name="qty-' + card.code + '"]').each(
+         function (i, element)
+         {
+           if($(element).val() === ''+card.indeck) {
+             $(element).prop('checked', true).closest('label').addClass('active');
+           } else {
+             $(element).prop('checked', false).closest('label').removeClass('active');
+           }
+         }
+       );
 
-                                    if(Config['display-column'] > 1 && (counter % Config['display-column'] === 0)) {
-                                      container = $('<div class="row"></div>').appendTo($('#collection-grid'));
-                                    }
+       if(Config['display-column'] > 1 && (counter % Config['display-column'] === 0)) {
+         container = $('<div class="row"></div>').appendTo($('#collection-grid'));
+       }
 
-                                    container.append(row);
-                                    counter++;
-                                  });
-                                }, 250);
+       container.append(row);
+       counter++;
+     });
+   }, 250);
 
    /**
     * called when the deck is modified and we don't know what has changed
