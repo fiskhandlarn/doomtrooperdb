@@ -55,7 +55,6 @@
 * preventDefault for exports in Actions dropdown
 * new test for /factions/
 * click on factions/types in deckbuilder should add to selection
-* separate tags with commas instead
 
 ## Restore
 * about credits
@@ -81,3 +80,4 @@
 * add support for digital doomtrooper (3rd edition)
 * global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`
 * get types from api instead of hardcoded in `ui.build_type_selector`, `SlotCollectionDecorator`
+* separate tags with commas instead
