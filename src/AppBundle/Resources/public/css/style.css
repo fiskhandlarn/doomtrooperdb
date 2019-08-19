@@ -15,9 +15,6 @@ body {
   font-family: 'Julius Sans One', sans-serif;
   font-weight: 700;
 }
-.card-preview {
-  color: red;
-}
 .card-type, .card-designer {
   font-weight: 700;
 }
