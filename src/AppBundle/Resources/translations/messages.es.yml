@@ -291,9 +291,7 @@ decklist:
         likes: por Número de \"me gusta\"
         reputation: por Reputación del autor
       allowed:
-        label: Expansiones permitidas
-        onoff: "(%on% sí, %off% no)"
-        core: "Caja básica / Deluxe"
+        label: Expansiones permitidas:
         all: todo
         none: ninguno
       tournament:

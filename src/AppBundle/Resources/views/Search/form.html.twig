@@ -1,96 +1,91 @@
 <form method="GET" action="{{ path('decklists_list', {type:'find'}) }}"
       role="form">
-    <div class="row" style="margin-bottom:1em">
-        <div class="col-sm-4">
-            <div class="form-group">
-                <label for="">{{ 'decklist.list.search.faction.label' | trans }}</label> <select class="form-control"
-                                                                                                 id="faction"
-                                                                                                 name="faction">
-                    <option value="">{{ 'decklist.list.search.faction.any' | trans }}</option>
-                    {% for faction in factions %}
-                        <option value="{{ faction.code }}"{% if faction_selected is defined  and faction_selected == faction.code %} selected="selected"{% endif %}>{{ faction.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="">{{ 'decklist.list.search.used.label' | trans }}</label>
-                {{ cards|default('')|raw }}
-                <input type="text" class="form-control" id="card"
-                       placeholder="{{ 'decklist.list.search.used.hint' | trans }}">
-            </div>
-            <div class="form-group">
-                <label for="tournament">{{ 'decklist.list.search.tournament.label' | trans }}</label>
-                <select class="form-control" id="tournament" name="tournament">
-                    <option value="">{{ 'decklist.list.search.tournament.any' | trans }}</option>
-                    {% for tier in activeTournamentTiers %}
-                        <option value="{{ tier.id }}"{% if tier.id == selectedTournament %} selected{% endif %}>
-                            {{ tier.description }}
-                        </option>
-                    {% endfor %}
-                    {% if not inactiveTournamentTiers is empty %}
-                        <option disabled>――――――――</option>
-                    {% endif %}
-                    {% for tier in inactiveTournamentTiers %}
-                        <option value="{{ tier.id }}"{% if tier.id == selectedTournament %} selected{% endif %}>
-                            {{ tier.description }}
-                        </option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                <label for="">{{ 'decklist.list.search.author.label' | trans }}</label> <input type="text"
-                                                                                               class="form-control"
-                                                                                               id="author" name="author"
-                                                                                               placeholder="{{ 'decklist.list.search.author.hint' | trans }}"
-                                                                                               value="{{ author }}">
-            </div>
-            <div class="form-group">
-                <label for="">{{ 'decklist.list.search.decklist.label' | trans }}</label> <input type="text"
-                                                                                                 class="form-control"
-                                                                                                 id="name" name="name"
-                                                                                                 value="{{ name }}"
-                                                                                                 placeholder="{{ 'decklist.list.search.decklist.hint' | trans }}">
-            </div>
-            <div class="form-group">
-                <label for="">{{ 'decklist.list.search.sort.label' | trans }}</label> <select class="form-control"
-                                                                                              id="sort"
-                                                                                              name="sort">
-                    <option value="popularity"{{ sort_popularity|default('') }}>{{ 'decklist.list.search.sort.popularity' | trans }}</option>
-                    <option value="date"{{ sort_date|default('') }}>{{ 'decklist.list.search.sort.date' | trans }}</option>
-                    <option value="likes"{{ sort_likes|default('') }}>{{ 'decklist.list.search.sort.likes' | trans }}</option>
-                    <option value="reputation"{{ sort_reputation|default('') }}>{{ 'decklist.list.search.sort.reputation' | trans }}</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">{{ 'forms.search' | trans }}</button>
-        </div>
-        <div class="col-sm-4">
-            <p>
-                <a data-toggle="collapse" data-target="#allowed_expansions" href="#allowed_expansions">
-                    {{ 'decklist.list.search.allowed.label' | trans }}
-                </a>
-                {% set expansionson %}<span id="expansions-on">{{ on }}</span>{% endset %}
-                {% set expansionsoff %}<span id="expansions-off">{{ off }}</span>{% endset %}
-                {{ 'decklist.list.search.allowed.onoff' | trans({'%on%': expansionson, '%off%': expansionsoff}) | raw }}
-            </p>
-            <div id="allowed_expansions" class="collapse">
-                {% for category in allowed %}
-                    <p>
-                        <small>{{ category.label }}</small>
-                    </p>
-                    {% for expansion in category.expansions %}
-                        <div class="checkbox"><label class="{% if expansion.future %}expansion-future{% endif %}"><input
-                                        type="checkbox" name="expansions[]" value="{{ expansion.id }}"
-                                        {% if expansion.checked %}checked="checked" {% endif %}>{{ expansion.label }}</label>
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-                <a href="#" id="select_all"><span
-                            class="fas fa-check"></span> {{ 'decklist.list.search.allowed.all' | trans }}</a>
-                / <a href="#" id="select_none"><span
-                            class="fas fa-times"></span> {{ 'decklist.list.search.allowed.none' | trans }}</a>
-            </div>
-        </div>
+  <div class="row" style="margin-bottom:1em">
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">{{ 'decklist.list.search.faction.label' | trans }}</label> <select class="form-control"
+                                                                                         id="faction"
+                                                                                         name="faction">
+          <option value="">{{ 'decklist.list.search.faction.any' | trans }}</option>
+          {% for faction in factions %}
+          <option value="{{ faction.code }}"{% if faction_selected is defined  and faction_selected == faction.code %} selected="selected"{% endif %}>{{ faction.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="">{{ 'decklist.list.search.used.label' | trans }}</label>
+        {{ cards|default('')|raw }}
+        <input type="text" class="form-control" id="card"
+               placeholder="{{ 'decklist.list.search.used.hint' | trans }}">
+      </div>
+      <div class="form-group">
+        <label for="tournament">{{ 'decklist.list.search.tournament.label' | trans }}</label>
+        <select class="form-control" id="tournament" name="tournament">
+          <option value="">{{ 'decklist.list.search.tournament.any' | trans }}</option>
+          {% for tier in activeTournamentTiers %}
+          <option value="{{ tier.id }}"{% if tier.id == selectedTournament %} selected{% endif %}>
+            {{ tier.description }}
+          </option>
+          {% endfor %}
+          {% if not inactiveTournamentTiers is empty %}
+          <option disabled>――――――――</option>
+          {% endif %}
+          {% for tier in inactiveTournamentTiers %}
+          <option value="{{ tier.id }}"{% if tier.id == selectedTournament %} selected{% endif %}>
+            {{ tier.description }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
     </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">{{ 'decklist.list.search.author.label' | trans }}</label> <input type="text"
+                                                                                       class="form-control"
+                                                                                       id="author" name="author"
+                                                                                       placeholder="{{ 'decklist.list.search.author.hint' | trans }}"
+                                                                                       value="{{ author }}">
+      </div>
+      <div class="form-group">
+        <label for="">{{ 'decklist.list.search.decklist.label' | trans }}</label> <input type="text"
+                                                                                         class="form-control"
+                                                                                         id="name" name="name"
+                                                                                         value="{{ name }}"
+                                                                                         placeholder="{{ 'decklist.list.search.decklist.hint' | trans }}">
+      </div>
+      <div class="form-group">
+        <label for="">{{ 'decklist.list.search.sort.label' | trans }}</label> <select class="form-control"
+                                                                                      id="sort"
+                                                                                      name="sort">
+          <option value="popularity"{{ sort_popularity|default('') }}>{{ 'decklist.list.search.sort.popularity' | trans }}</option>
+          <option value="date"{{ sort_date|default('') }}>{{ 'decklist.list.search.sort.date' | trans }}</option>
+          <option value="likes"{{ sort_likes|default('') }}>{{ 'decklist.list.search.sort.likes' | trans }}</option>
+          <option value="reputation"{{ sort_reputation|default('') }}>{{ 'decklist.list.search.sort.reputation' | trans }}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">{{ 'forms.search' | trans }}</button>
+    </div>
+    <div class="col-sm-4">
+      <p>{{ 'decklist.list.search.allowed.label' | trans }}</p>
+      <div id="allowed_expansions">
+        {% for expansion in expansions %}
+        <div class="checkbox">
+          <label class="{% if expansion.future %}expansion-future{% endif %}">
+            <input type="checkbox" name="expansions[]" value="{{ expansion.id }}" {% if expansion.checked %}checked="checked" {% endif %}>
+            {{ expansion.label }}
+          </label>
+        </div>
+        {% endfor %}
+        <a href="#" id="select_all">
+          <span class="fas fa-check"></span>
+          {{ 'decklist.list.search.allowed.all' | trans }}
+        </a>
+        /
+        <a href="#" id="select_none">
+          <span class="fas fa-times"></span>
+          {{ 'decklist.list.search.allowed.none' | trans }}
+        </a>
+      </div>
+    </div>
+  </div>
 </form>

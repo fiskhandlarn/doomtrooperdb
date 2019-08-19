@@ -73,6 +73,9 @@
 * remove link for comment on decklists https://github.com/ThronesDB/thronesdb/issues/352
 * remove available for cards and expansions
 * add icons for expansions? `src/AppBundle/Resources/public/images/factions`
+  * cards
+  * search
+  * decklist search
 * add to card info and card searches (inline in builder and on global search)
   * flavor
     * fix `app.smart_filter.js`'s `a: [add_string_sf, 'flavor', Translator.trans('decks.smartfilter.filters.flavor')],`(search for `a:airborne` returns all cards, http://localhost/find?q=a%3AAirborne&sort=set&view=list yields MARTIAN BANSHEE)

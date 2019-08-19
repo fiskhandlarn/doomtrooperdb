@@ -291,9 +291,7 @@ decklist:
         likes: Nach Anzahl der \"Gefällt mir\"
         reputation: Nach Ansehen des Autors / der Autorin
       allowed:
-        label: Zulässige Expansions
-        onoff: "(%on% Ja, %off% Nein)"
-        core: "Grundspiel / Erweiterungen"
+        label: Zulässige Expansions:
         all: Alle
         none: Keine
       tournament:

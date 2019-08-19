@@ -291,9 +291,7 @@ decklist:
         likes: By Number of Likes
         reputation: By Reputation of Author
       allowed:
-        label: Select allowed expansions
-        onoff: "(%on% on, %off% off)"
-        core: "Core / Deluxe"
+        label: Select allowed expansions:
         all: all
         none: none
       tournament:

@@ -355,35 +355,21 @@ class SocialController extends Controller
             $expansions = $dbh->executeQuery("select id from expansion")->fetchAll(\PDO::FETCH_COLUMN);
         }
 
-        $categories = [];
-        $on = 0;
-        $off = 0;
-        $categories[] = array(
-            "label" => $this->get("translator")->trans('decklist.list.search.allowed.core'),
-            "expansions" => []
-        );
+        $expansions_twig = [];
         $list_expansions = $this->getDoctrine()->getRepository('AppBundle:Expansion')->findAll();
 
         foreach ($list_expansions as $expansion) {
-//$size = count($expansion->getExpansions());
-            $size = $expansion->getSize();
-            if ($expansion->getPosition() == 0 || $size == 0) {
+            if ($expansion->getSize() == 0) {
                 continue;
             }
 
-            $category = array("label" => $expansion->getName(), "expansions" => []);
             $checked = count($expansions) ? in_array($expansion->getId(), $expansions) : true;
-            if ($checked) {
-                $on++;
-            } else {
-                $off++;
-            }
-            $category['expansions'][] = array(
+
+            $expansions_twig[] = [
                 "id" => $expansion->getId(),
                 "label" => $expansion->getName(),
                 "checked" => $checked,
-            );
-            $categories[] = $category;
+            ];
         }
 
         $activeTournamentTiers = $this->getDoctrine()
@@ -395,9 +381,7 @@ class SocialController extends Controller
             ->findBy(['active'=> false]);
 
         $params = array(
-            'allowed' => $categories,
-            'on' => $on,
-            'off' => $off,
+            'expansions' => $expansions_twig,
             'author' => $author_name,
             'name' => $decklist_name,
             'activeTournamentTiers' => $activeTournamentTiers,
@@ -1107,24 +1091,18 @@ class SocialController extends Controller
 
         $factions = $this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName();
 
-        $categories = [];
-        $on = 0;
-        $off = 0;
-        $categories[] = array("label" => $translator->trans("decklist.list.search.allowed.core"), "expansions" => []);
+        $expansions_twig = [];
         $list_expansions = $this->getDoctrine()->getRepository('AppBundle:Expansion')->findAll();
         foreach ($list_expansions as $expansion) {
-            $size = $expansion->getSize();
-            if ($expansion->getPosition() == 0 || $size == 0) {
+            if ($expansion->getSize() == 0) {
                 continue;
             }
 
-            $category = array("label" => $expansion->getName(), "expansions" => []);
-            $on++;
-
-            $category['expansions'][] = array(
+            $expansions_twig[] = [
                 "id" => $expansion->getId(),
                 "label" => $expansion->getName(),
-            );
+                "checked" => true,
+            ];
         }
 
         $activeTournamentTiers = $this->getDoctrine()
@@ -1139,9 +1117,7 @@ class SocialController extends Controller
             'AppBundle:Search:form.html.twig',
             array(
                 'factions' => $factions,
-                'allowed' => $categories,
-                'on' => $on,
-                'off' => $off,
+                'expansions' => $expansions_twig,
                 'author' => '',
                 'name' => '',
                 'activeTournamentTiers' => $activeTournamentTiers,
