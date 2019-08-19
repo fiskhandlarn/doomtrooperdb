@@ -47,8 +47,6 @@
   * flavor
     * fix `app.smart_filter.js`'s `a: [add_string_sf, 'flavor', Translator.trans('decks.smartfilter.filters.flavor')],`(search for `a:airborne` returns all cards, http://localhost/find?q=a%3AAirborne&sort=set&view=list yields MARTIAN BANSHEE)
   * clarification_text
-* http://localhost/tag/bauhaus ?
-* add tags to deck?
 * test import
 * do we even need `selection.json`?
 * add Doomtrooper font for headings
@@ -56,6 +54,8 @@
 * remove console.log: "deck.set_slots put on hold until data.app"
 * preventDefault for exports in Actions dropdown
 * new test for /factions/
+* click on factions/types in deckbuilder should add to selection
+* separate tags with commas instead
 
 ## Restore
 * about credits
