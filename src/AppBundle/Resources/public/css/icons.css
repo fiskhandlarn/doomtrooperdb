@@ -1,16 +1,16 @@
 @font-face {
-	font-family: 'thronesdb';
-	src:url('../fonts/thronesdb.eot?irjt2b');
-	src:url('../fonts/thronesdb.eot?#iefixirjt2b') format('embedded-opentype'),
-		url('../fonts/thronesdb.ttf?irjt2b') format('truetype'),
-		url('../fonts/thronesdb.woff?irjt2b') format('woff'),
-		url('../fonts/thronesdb.svg?irjt2b#thronesdb') format('svg');
+	font-family: 'doomtrooperdb';
+	src:url('../fonts/doomtrooperdb.eot?irjt2b');
+	src:url('../fonts/doomtrooperdb.eot?#iefixirjt2b') format('embedded-opentype'),
+		url('../fonts/doomtrooperdb.ttf?irjt2b') format('truetype'),
+		url('../fonts/doomtrooperdb.woff?irjt2b') format('woff'),
+		url('../fonts/doomtrooperdb.svg?irjt2b#doomtrooperdb') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-	font-family: 'thronesdb';
+	font-family: 'doomtrooperdb';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
@@ -79,4 +79,19 @@
 }
 .icon-general:before {
 	content: "\e612";
+}
+.icon-warrior:before {
+	content: "\e613";
+}
+.icon-warzone:before {
+	content: "\e614";
+}
+.icon-lutheran:before {
+	content: "\e615";
+}
+.icon-rasputin:before {
+	content: "\e616";
+}
+.icon-templars:before {
+	content: "\e617";
 }
