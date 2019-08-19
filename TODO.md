@@ -20,12 +20,14 @@
 * images from https://raw.githubusercontent.com/ instead?
 * stylelint
 * INSERT decklist 1 to pass ApiControllerTest::testGetDecklist?
-* fix mapping and remove `--skip-mapping` from `doctrine:schema:validate`
-* ```        switch (deck.sort_type) {
-            case "type":
-            default:
-                console.log('TODO!');
-```
+* deckbuilder seems to show equipment first ..?
+* prevent default in `deck.change_sort`
+* don't output div wrapping type if cards of type is nonexistant in `.deck-content`
+* restore faction colors in `.deck-content` (and more places?)
+* CSS -> SCSS
+  * different col spans in `.deck-content` in `deck/publish`
+  * collapse col heights in `.deck-content`
+  * bootstrap 4
 * add more fields
   * `src/AppBundle/Controller/SearchController.php`
     * update `$searchType`
@@ -82,7 +84,6 @@
 * "Quantity in expansion"? http://localhost/deck/edit/14
 * remove on/off
 
-* deployer
 
 ## Restore
 * about credits
@@ -95,3 +96,7 @@
   * run `php bin/console app:import:trans ../doomtrooperdb-json-data` if you want to import the translations
 * language menu
 * decklist-faction-image (from used factions in deck)
+
+## Prio 2
+* deployer
+* fix mapping and remove `--skip-mapping` from `doctrine:schema:validate`
