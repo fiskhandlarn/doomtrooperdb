@@ -113,7 +113,10 @@
   {
     var tags = [];
     $('#decks span[data-tag]').each(function (index, elt) {
-      tags.push($(elt).data('tag'));
+      // don't add empty tags
+      if ($(elt).data('tag')) {
+        tags.push($(elt).data('tag'));
+      }
     });
     $('#tag_toggles').empty();
     _.uniq(tags).forEach(function (tag) {
