@@ -101,28 +101,64 @@
    {
      $('[data-filter=type_code]').empty();
      [
-       'alliance',
-       'art',
-       'beast',
-       'equipment',
-       'fortification',
-       'ki',
-       'mission',
-       'relic',
-       'special',
-       'symmetry',
-       'warrior',
-       'warzone',
-     ].forEach(function (type_code) {
-       var example = app.data.cards.find({"type_code": type_code})[0];
-       var label = $(
-         '<label class="btn btn-default btn-sm" data-code="'
-           + type_code + '" title="' + example.type_name + '"><input type="checkbox" name="' + type_code
-           + '"><span class="icon-' + type_code + '"></span></label>'
-       );
-       label.tooltip({container: 'body'});
-       $('[data-filter=type_code]').append(label);
-     });
+       {
+         code: "alliance",
+         name: "Alliance"
+       },
+       {
+         code: "art",
+         name: "Art"
+       },
+       {
+         code: "beast",
+         name: "Beast"
+       },
+       {
+         code: "symmetry",
+         name: "Dark Symmetry"
+       },
+       {
+         code: "equipment",
+         name: "Equipment"
+       },
+       {
+         code: "fortification",
+         name: "Fortification"
+       },
+       {
+         code: "ki",
+         name: "Ki Power"
+       },
+       {
+         code: "mission",
+         name: "Mission"
+       },
+       {
+         code: "relic",
+         name: "Relic"
+       },
+       {
+         code: "special",
+         name: "Special"
+       },
+       {
+         code: "warrior",
+         name: "Warrior"
+       },
+       {
+         code: "warzone",
+         name: "Warzone"
+       }
+     ]
+       .forEach(function (type) {
+         var label = $(
+           '<label class="btn btn-default btn-sm" data-code="'
+             + type.code + '" title="' + type.name + '"><input type="checkbox" name="' + type.code
+             + '"><span class="icon-' + type.code + '"></span></label>'
+         );
+         label.tooltip({container: 'body'});
+         $('[data-filter=type_code]').append(label);
+       });
      $('[data-filter=type_code]').button();
    };
 
@@ -245,26 +281,26 @@
      var name = $(this).attr('name');
      var type = $(this).prop('type');
      switch(type) {
-       case 'radio':
-         var value = $(this).val();
-         if(!isNaN(parseInt(value, 10)))
-           value = parseInt(value, 10);
-         Config[name] = value;
-         break;
-       case 'checkbox':
-         Config[name] = $(this).prop('checked');
-         break;
+         case 'radio':
+           var value = $(this).val();
+           if(!isNaN(parseInt(value, 10)))
+             value = parseInt(value, 10);
+           Config[name] = value;
+           break;
+         case 'checkbox':
+           Config[name] = $(this).prop('checked');
+           break;
      }
      ui.write_config_to_storage();
      switch(name) {
-       case 'buttons-behavior':
-         break;
-       case 'display-column':
-         ui.update_list_template();
-         ui.refresh_list();
-         break;
-       default:
-         ui.refresh_list();
+         case 'buttons-behavior':
+           break;
+         case 'display-column':
+           ui.update_list_template();
+           ui.refresh_list();
+           break;
+         default:
+           ui.refresh_list();
      }
    };
 
@@ -445,41 +481,41 @@
    ui.update_list_template = function update_list_template()
    {
      switch(Config['display-column']) {
-       case 1:
-         DisplayColumnsTpl = _.template(
-           '<tr>'
-             + '<td><div class="btn-group" data-toggle="buttons"><%= radios %></div></td>'
-             + '<td><a class="card card-tip" data-code="<%= card.code %>" href="<%= url %>" data-target="#cardModal" data-remote="false" data-toggle="modal"><%= card.label %></a></td>'
-             + '<td class="type"><span class="icon-<%= card.type_code %>" title="<%= card.type_name %>"></span></td>'
-             + '<td class="faction"><span class="icon-<%= card.faction_code %> fg-<%= card.faction_code %>" title="<%= card.faction_name %>"></span></td>'
-             + '</tr>'
-         );
-         break;
-       case 2:
-         DisplayColumnsTpl = _.template(
-           '<div class="col-sm-6">'
-             + '<div class="media">'
-             + '<div class="media-left"><img class="media-object" src="<%= card.image_url %>" alt="<%= card.name %>"></div>'
-             + '<div class="media-body">'
-             + '<h4 class="media-heading"><a class="card card-tip" data-code="<%= card.code %>" href="<%= url %>" data-target="#cardModal" data-remote="false" data-toggle="modal"><%= card.name %></a></h4>'
-             + '<div class="btn-group" data-toggle="buttons"><%= radios %></div>'
-             + '</div>'
-             + '</div>'
-             + '</div>'
-         );
-         break;
-       case 3:
-         DisplayColumnsTpl = _.template(
-           '<div class="col-sm-4">'
-             + '<div class="media">'
-             + '<div class="media-left"><img class="media-object" src="<%= card.image_url %>" alt="<%= card.name %>"></div>'
-             + '<div class="media-body">'
-             + '<h5 class="media-heading"><a class="card card-tip" data-code="<%= card.code %>" href="<%= url %>" data-target="#cardModal" data-remote="false" data-toggle="modal"><%= card.name %></a></h5>'
-             + '<div class="btn-group" data-toggle="buttons"><%= radios %></div>'
-             + '</div>'
-             + '</div>'
-             + '</div>'
-         );
+         case 1:
+           DisplayColumnsTpl = _.template(
+             '<tr>'
+               + '<td><div class="btn-group" data-toggle="buttons"><%= radios %></div></td>'
+               + '<td><a class="card card-tip" data-code="<%= card.code %>" href="<%= url %>" data-target="#cardModal" data-remote="false" data-toggle="modal"><%= card.label %></a></td>'
+               + '<td class="type"><span class="icon-<%= card.type_code %>" title="<%= card.type_name %>"></span></td>'
+               + '<td class="faction"><span class="icon-<%= card.faction_code %> fg-<%= card.faction_code %>" title="<%= card.faction_name %>"></span></td>'
+               + '</tr>'
+           );
+           break;
+         case 2:
+           DisplayColumnsTpl = _.template(
+             '<div class="col-sm-6">'
+               + '<div class="media">'
+               + '<div class="media-left"><img class="media-object" src="<%= card.image_url %>" alt="<%= card.name %>"></div>'
+               + '<div class="media-body">'
+               + '<h4 class="media-heading"><a class="card card-tip" data-code="<%= card.code %>" href="<%= url %>" data-target="#cardModal" data-remote="false" data-toggle="modal"><%= card.name %></a></h4>'
+               + '<div class="btn-group" data-toggle="buttons"><%= radios %></div>'
+               + '</div>'
+               + '</div>'
+               + '</div>'
+           );
+           break;
+         case 3:
+           DisplayColumnsTpl = _.template(
+             '<div class="col-sm-4">'
+               + '<div class="media">'
+               + '<div class="media-left"><img class="media-object" src="<%= card.image_url %>" alt="<%= card.name %>"></div>'
+               + '<div class="media-body">'
+               + '<h5 class="media-heading"><a class="card card-tip" data-code="<%= card.code %>" href="<%= url %>" data-target="#cardModal" data-remote="false" data-toggle="modal"><%= card.name %></a></h5>'
+               + '<div class="btn-group" data-toggle="buttons"><%= radios %></div>'
+               + '</div>'
+               + '</div>'
+               + '</div>'
+           );
      }
    };
 
