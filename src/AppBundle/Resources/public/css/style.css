@@ -47,14 +47,41 @@ body {
   border-radius: 20px;
 }
 
-.color-art {
-  color: #c8232a;
-}
 .color-alliance {
   color: #13522f;
 }
+.color-art {
+  color: #c8232a;
+}
 .color-beast {
   color: #292e5f;
+}
+.color-equipment {
+  color: #ff0000;
+}
+.color-fortification {
+  color: #fff000;
+}
+.color-ki {
+  color: #00ff00;
+}
+.color-mission {
+  color: #f00ff0;
+}
+.color-relic {
+  color: #00000f;
+}
+.color-special {
+  color: #0ffff0;
+}
+.color-symmetry {
+  color: #00ff00;
+}
+.color-warrior {
+  color: #0000ff;
+}
+.color-warzone {
+  color: #f00fff;
 }
 
 .table-expanded>thead>tr>th, .table-expanded>tbody>tr>th, .table-expanded>tfoot>tr>th, .table-expanded>thead>tr>td, .table-expanded>tbody>tr>td, .table-expanded>tfoot>tr>td {
