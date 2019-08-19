@@ -37,10 +37,7 @@
   * values/icons on all cards that have those properties
 * https in js
   * replace https://localhost
-* remove items in Options js dropdown
 * deck settings for tournament/classic, restricted/banned
-* don't sort factions in deckbuilder
-* sort types by display name in deckbuilder
 * replace `src/AppBundle/Resources/public/images/factions`
 * add icons for expansions? `src/AppBundle/Resources/public/images/factions`
   * cards
@@ -57,6 +54,8 @@
 * add Doomtrooper font for headings
 * favicons
 * remove console.log: "deck.set_slots put on hold until data.app"
+* preventDefault for exports in Actions dropdown
+* new test for /factions/
 
 ## Restore
 * about credits
@@ -81,3 +80,4 @@
 * add graphs for FSAV(?)
 * add support for digital doomtrooper (3rd edition)
 * global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`
+* get types from api instead of hardcoded in `ui.build_type_selector`, `SlotCollectionDecorator`
