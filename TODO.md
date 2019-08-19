@@ -24,7 +24,6 @@
 * smaller throbber in deckbuilder
 * add throbber in `/decklist/view/` and `/deck/publish/`
 * don't output div wrapping type if cards of type is nonexistant in `.deck-content`
-* restore faction colors in `.deck-content` (and more places?)
 * CSS -> SCSS
   * different col spans in `.deck-content` in `deck/publish`
   * collapse col heights in `.deck-content`
