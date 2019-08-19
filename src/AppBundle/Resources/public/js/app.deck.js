@@ -270,7 +270,7 @@
      var problem = deck.get_problem();
 
      var expansions = _.map(deck.get_included_expansions({ 'position': 1 }), function (expansion) {
-       return expansion.name + (expansion.quantity > 1 ? ' (' + expansion.quantity + ')' : '');
+       return expansion.name;
      }).join(', ');
      deck.update_layout_section(data, 'meta', $('<div>' + Translator.trans('decks.edit.meta.expansions', {"expansions": expansions}) + '</div>'));
 
