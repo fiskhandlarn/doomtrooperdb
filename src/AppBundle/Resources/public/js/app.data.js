@@ -11,6 +11,7 @@
   data.db = database;
   var masters = {
     expansions: database.collection('master_expansion', {primaryKey: 'code'}),
+    factions: database.collection('master_faction', {primaryKey: 'code'}),
     cards: database.collection('master_card', {primaryKey: 'code'})
   };
 
@@ -34,33 +35,38 @@
       if (err) {
         console.log('error when loading expansions', err);
       }
-      masters.cards.load(function (err) {
+      masters.factions.load(function (err) {
         if (err) {
-          console.log('error when loading cards', err);
+          console.log('error when loading factions', err);
         }
+        masters.cards.load(function (err) {
+          if (err) {
+            console.log('error when loading cards', err);
+          }
 
-        /*
-         * data has been fetched from local store
-         */
+          /*
+           * data has been fetched from local store
+           */
 
-        /*
-         * we set up insert and update listeners now
-         * if we did it before, .load() would have called onInsert
-         */
-        masters.expansions.on("insert", onCollectionInsert).on("update", onCollectionUpdate);
-        masters.cards.on("insert", onCollectionInsert).on("update", onCollectionUpdate);
+          /*
+           * we set up insert and update listeners now
+           * if we did it before, .load() would have called onInsert
+           */
+          masters.expansions.on("insert", onCollectionInsert).on("update", onCollectionUpdate);
+          masters.cards.on("insert", onCollectionInsert).on("update", onCollectionUpdate);
 
-        /*
-         * if database is not empty, use it for now
-         */
-        if (masters.expansions.count() > 0 && masters.cards.count() > 0) {
-          release();
-        }
+          /*
+           * if database is not empty, use it for now
+           */
+          if (masters.expansions.count() > 0 && masters.cards.count() > 0) {
+            release();
+          }
 
-        /*
-         * then we ask the server if new data is available
-         */
-        query();
+          /*
+           * then we ask the server if new data is available
+           */
+          query();
+        });
       });
     });
   }
@@ -72,6 +78,9 @@
   function release() {
     data.expansions = database.collection('expansion', {primaryKey: 'code', changeTimestamp: false});
     data.expansions.setData(masters.expansions.find());
+
+    data.factions = database.collection('faction', {primaryKey: 'code', changeTimestamp: false});
+    data.factions.setData(masters.factions.find());
 
     data.cards = database.collection('card', {primaryKey: 'code', changeTimestamp: false});
     data.cards.setData(masters.cards.find());
@@ -88,6 +97,7 @@
   function query() {
     dfd = {
       expansions: new $.Deferred(),
+      factions: new $.Deferred(),
       cards: new $.Deferred()
     };
     $.when(dfd.expansions, dfd.cards).done(update_done).fail(update_fail);
@@ -98,6 +108,15 @@
       error: function (jqXHR, textStatus, errorThrown) {
         console.log('error when requesting expansions', errorThrown);
         dfd.expansions.reject(false);
+      }
+    });
+
+    $.ajax({
+      url: Routing.generate('api_factions'),
+      success: parse_factions,
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log('error when requesting factions', errorThrown);
+        dfd.factions.reject(false);
       }
     });
 
@@ -139,8 +158,8 @@
    * deferred returns true if data has been loaded
    * @memberOf data
    */
-  function update_fail(expansions_loaded, cards_loaded) {
-    if (expansions_loaded === false || cards_loaded === false) {
+  function update_fail(expansions_loaded, factions_loaded, cards_loaded) {
+    if (expansions_loaded === false || factions_loaded === false || cards_loaded === false) {
       var message = Translator.trans('data_load_fail');
       app.ui.insert_alert_message('danger', message);
     } else {
@@ -190,6 +209,15 @@
   function parse_expansions(response, textStatus, jqXHR) {
     var locale = jqXHR.getResponseHeader('Content-Language');
     update_collection(response, masters.expansions, locale, dfd.expansions);
+  }
+
+  /**
+   * handles the response to the ajax query for factions data
+   * @memberOf data
+   */
+  function parse_factions(response, textStatus, jqXHR) {
+    var locale = jqXHR.getResponseHeader('Content-Language');
+    update_collection(response, masters.factions, locale, dfd.factions);
   }
 
   /**

@@ -5,7 +5,7 @@ AppBundle\Entity\Faction:
     oneToMany:
         cards:
             targetEntity: Card
-            orderBy: {'position':'ASC'}
+            orderBy: {'code':'ASC'}
             mappedBy: faction
     fields:
         id:
@@ -25,6 +25,20 @@ AppBundle\Entity\Faction:
             type: string
             nullable: true
             column: octgn_id
+        dateCreation:
+            type: datetime
+            nullable: false
+            column: date_creation
+            gedmo:
+                timestampable:
+                    on: create
+        dateUpdate:
+            type: datetime
+            nullable: false
+            column: date_update
+            gedmo:
+                timestampable:
+                    on: update
     uniqueConstraints:
         faction_code_idx:
             columns: [ code ]

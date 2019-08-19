@@ -131,6 +131,36 @@ class SearchController extends Controller
         );
     }
 
+    public function listFactionsAction($faction_code, $view, $sort, $page, Request $request)
+    {
+        $faction = $this->getDoctrine()->getRepository('AppBundle:Faction')->findByCode($faction_code);
+        if (!$faction) {
+            throw $this->createNotFoundException('This faction does not exist');
+        }
+
+        $game_name = $this->container->getParameter('game_name');
+        $publisher_name = $this->container->getParameter('publisher_name');
+
+        $meta = $faction->getName().", a set of cards for $game_name"
+                ." by $publisher_name.";
+
+        $key = array_search('faction', SearchController::$searchKeys);
+
+        return $this->forward(
+            'AppBundle:Search:display',
+            array(
+                '_route' => $request->attributes->get('_route'),
+                '_route_params' => $request->attributes->get('_route_params'),
+                'q' => $key.':'.$faction_code,
+                'view' => $view,
+                'sort' => $sort,
+                'page' => $page,
+                'pagetitle' => $faction->getName(),
+                'meta' => $meta,
+            )
+        );
+    }
+
     /**
      * Processes the action of the card search form
      * @param Request $request

@@ -79,18 +79,13 @@
    ui.build_faction_selector = function build_faction_selector()
    {
      $('[data-filter=faction_code]').empty();
-     var faction_codes = app.data.cards.distinct('faction_code').sort();
+     var factions = app.data.factions.find();
 
-     var general_index = faction_codes.indexOf('general');
-     faction_codes.splice(general_index, 1);
-     faction_codes.unshift('general');
-
-     faction_codes.forEach(function (faction_code) {
-       var example = app.data.cards.find({"faction_code": faction_code})[0];
+     factions.forEach(function (faction) {
        var label = $(
          '<label class="btn btn-default btn-sm" data-code="'
-           + faction_code + '" title="' + example.faction_name + '"><input type="checkbox" name="' + faction_code
-           + '"><span class="icon-' + faction_code + '"></span></label>'
+           + faction.code + '" title="' + faction.name + '"><input type="checkbox" name="' + faction.code
+           + '"><span class="icon-' + faction.code + '"></span></label>'
        );
        label.tooltip({container: 'body'});
        $('[data-filter=faction_code]').append(label);

@@ -1,24 +1,24 @@
 
 cards_list:
-    path: /set/{expansion_code}/{view}/{sort}/{page}
+    path: /expansion/{expansion_code}/{view}/{sort}/{page}
     defaults:
         _controller: AppBundle:Search:list
         view: list
         sort: set
         page: 1
 
+cards_faction:
+    path: /faction/{faction_code}/{view}/{sort}/{page}
+    defaults:
+        _controller: AppBundle:Search:listFactions
+        view: list
+        sort: faction
+        page: 1
+
 cards_zoom:
     path: /card/{card_code}
     defaults:
         _controller: AppBundle:Search:zoom
-
-cards_expansion:
-    path: /expansion/{expansion_code}/{view}/{sort}/{page}
-    defaults:
-        _controller: AppBundle:Search:expansion
-        view: list
-        sort: faction
-        page: 1
 
 cards_search:
     path: /search
