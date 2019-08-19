@@ -21,7 +21,8 @@
 * stylelint
 * INSERT decklist 1 to pass ApiControllerTest::testGetDecklist?
 * deckbuilder seems to show equipment first ..?
-* prevent default in `deck.change_sort`
+* smaller throbber in deckbuilder
+* add throbber in `/decklist/view/` and `/deck/publish/`
 * don't output div wrapping type if cards of type is nonexistant in `.deck-content`
 * restore faction colors in `.deck-content` (and more places?)
 * CSS -> SCSS
