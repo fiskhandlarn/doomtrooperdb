@@ -35,20 +35,13 @@
   * columns in deckbuilder list?
   * icons on cards
   * values/icons on all cards that have those properties
-* remove "last expansion"
-* remove public/app_dev.php
-* remove patchwork/jsqueeze
 * https in js
-* add deck name to `build_markdown` and `build_dtcards`
+  * replace https://localhost
 * remove items in Options js dropdown
 * deck settings for tournament/classic, restricted/banned
 * don't sort factions in deckbuilder
 * sort types by display name in deckbuilder
-* `app_deck_charts.charts.faction_colors`
-* global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`
 * replace `src/AppBundle/Resources/public/images/factions`
-* remove link for comment on decklists https://github.com/ThronesDB/thronesdb/issues/352
-* remove available for cards and expansions
 * add icons for expansions? `src/AppBundle/Resources/public/images/factions`
   * cards
   * search
@@ -62,6 +55,8 @@
 * test import
 * do we even need `selection.json`?
 * add Doomtrooper font for headings
+* favicons
+* remove console.log: "deck.set_slots put on hold until data.app"
 
 ## Restore
 * about credits
@@ -85,3 +80,4 @@
 * move "Member since" to messages.*.yml
 * add graphs for FSAV(?)
 * add support for digital doomtrooper (3rd edition)
+* global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`
