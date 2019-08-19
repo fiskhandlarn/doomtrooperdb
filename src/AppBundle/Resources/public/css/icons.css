@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'doomtrooperdb';
-  src:  url('fonts/doomtrooperdb.eot?6aq2kj');
-  src:  url('fonts/doomtrooperdb.eot?6aq2kj#iefix') format('embedded-opentype'),
-    url('fonts/doomtrooperdb.ttf?6aq2kj') format('truetype'),
-    url('fonts/doomtrooperdb.woff?6aq2kj') format('woff'),
-    url('fonts/doomtrooperdb.svg?6aq2kj#doomtrooperdb') format('svg');
+  src:  url('../fonts/doomtrooperdb.eot?6aq2kj');
+  src:  url('../fonts/doomtrooperdb.eot?6aq2kj#iefix') format('embedded-opentype'),
+    url('../fonts/doomtrooperdb.ttf?6aq2kj') format('truetype'),
+    url('../fonts/doomtrooperdb.woff?6aq2kj') format('woff'),
+    url('../fonts/doomtrooperdb.svg?6aq2kj#doomtrooperdb') format('svg');
   font-weight: normal;
   font-style: normal;
 }
