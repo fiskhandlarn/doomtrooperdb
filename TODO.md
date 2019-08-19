@@ -13,14 +13,15 @@
   * selection.json
   * tighten card page text and image
   * nicer looking bullet list in "Smart filter syntax"? (at least remove margin-left)
+  * colors
 * fonts
   * convert svg to other format(s?)
 * `google_analytics_tracking_code`
 * sidebar
+  * compare/diff `src/AppBundle/Resources/views/Compare/deck_compare.html.twig` b639334eb3f02d223022feebf0426b34571783df
 * images from https://raw.githubusercontent.com/ instead?
 * stylelint
 * INSERT decklist 1 to pass ApiControllerTest::testGetDecklist?
-* deckbuilder seems to show equipment first ..?
 * smaller throbber in deckbuilder
 * add throbber in `/decklist/view/` and `/deck/publish/`
 * don't output div wrapping type if cards of type is nonexistant in `.deck-content`
@@ -28,35 +29,12 @@
   * different col spans in `.deck-content` in `deck/publish`
   * collapse col heights in `.deck-content`
   * bootstrap 4
-* add more fields
-  * `src/AppBundle/Controller/SearchController.php`
-    * update `$searchType`
-  * `src/AppBundle/Resources/public/js/app.smart_filter.js`
-  * messages.en.yml: `smartfilter.filters`
-  * `src/AppBundle/Services/CardsData.php`
-  * `src/AppBundle/Resources/views/Search/searchform.html.twig`
-  * `src/AppBundle/Resources/views/Export/default.txt.twig`
-  * `src/AppBundle/Services/CardsData.php`
-* more fields in `src/AppBundle/Resources/public/js/app.ui.js` x3 (`var sections`)
-* change keywords
-* icons
-  * icons.css
-  * messages.*.yml
-  * replace all icons
-  * add icons for
-    * lutheran
-    * rasputin
-    * templars
-    * warrior
-    * warzone
-* add graphs for FSAV(?)
+* replace all icons via https://icomoon.io/app/
 * add FSAV
   * columns in global search
   * columns in deckbuilder list?
   * icons on cards
   * values/icons on all cards that have those properties
-* allow all factions in deckbuilder (`DeckValidationHelper::canIncludeCard`?)
-  * Deck.orm.yml
 * remove "last expansion"
 * remove public/app_dev.php
 * remove patchwork/jsqueeze
@@ -65,6 +43,7 @@
 * remove items in Options js dropdown
 * deck settings for tournament/classic, restricted/banned
 * don't sort factions in deckbuilder
+* sort types by display name in deckbuilder
 * `app_deck_charts.charts.faction_colors`
 * global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`
 * replace `src/AppBundle/Resources/public/images/factions`
@@ -80,10 +59,9 @@
   * clarification_text
 * http://localhost/tag/bauhaus ?
 * add tags to deck?
-* move "Member since" to messages.*.yml
-* "Quantity in expansion"? http://localhost/deck/edit/14
-* remove on/off
-
+* test import
+* do we even need `selection.json`?
+* add Doomtrooper font for headings
 
 ## Restore
 * about credits
@@ -100,3 +78,10 @@
 ## Prio 2
 * deployer
 * fix mapping and remove `--skip-mapping` from `doctrine:schema:validate`
+* certain searches in deckbuilder returns all cards (e.g. `g:-1`)
+* list all expansions instead of from/to in
+  * `src/AppBundle/Resources/views/Export/default.txt.twig`
+  * `src/AppBundle/Resources/public/js/app.ui.js` x3
+* move "Member since" to messages.*.yml
+* add graphs for FSAV(?)
+* add support for digital doomtrooper (3rd edition)
