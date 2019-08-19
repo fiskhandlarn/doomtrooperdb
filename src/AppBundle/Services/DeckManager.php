@@ -66,8 +66,6 @@ class DeckManager
         $deck->setUser($user);
         $deck->setMinorVersion($deck->getMinorVersion() + 1);
         $cards = [];
-        /* @var $latestExpansion \AppBundle\Entity\Expansion */
-        $latestExpansion = null;
         foreach ($content as $card_code => $qty) {
             $card = $this->doctrine->getRepository('AppBundle:Card')->findOneBy(array(
                 "code" => $card_code
@@ -77,10 +75,7 @@ class DeckManager
             }
 
             $cards [$card_code] = $card;
-
-            $latestExpansion = $card->getExpansion();
         }
-        $deck->setLastExpansion($latestExpansion);
 
         if (is_string($tags)) {
             $tags = preg_split('/\s+/', $tags);

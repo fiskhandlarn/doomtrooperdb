@@ -9,12 +9,6 @@ AppBundle\Entity\Deck:
             joinColumn:
                 name: user_id
                 referencedColumnName: id
-        lastExpansion:
-            targetEntity: Expansion
-            nullable: false
-            joinColumn:
-                name: last_expansion_id
-                referencedColumnName: id
         parent:
             targetEntity: Decklist
             nullable: true
