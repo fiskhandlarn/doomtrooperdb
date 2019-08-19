@@ -352,6 +352,7 @@ card:
     set: Expansion
     type: Type
     sidebarlimit: side bar limit
+    quantity: Quantity
     illustrator: Illustrator
     fight: Fight
     shoot: Shoot

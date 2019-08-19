@@ -352,6 +352,7 @@ card:
     set: Expansion
     type: Typ
     sidebarlimit: Strategiestapel-Limit TODO
+    quantity: Anzahl
     illustrator: Illustrator/in
     fight: Fight
     shoot: Shoot

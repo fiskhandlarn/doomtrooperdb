@@ -352,6 +352,7 @@ card:
     set: Expansión
     type: Tipo
     sidebarlimit: Límite por mazo TODO
+    quantity: Cantidad
     illustrator: Ilustrador
     fight: Fight
     shoot: Shoot
