@@ -49,7 +49,6 @@
 
    smart_filter.get_help = function get_help()
    {
-     console.log(Translator.trans('decks.smartfilter.example'));
      var items = _.map(configuration, function (value, key)
                        {
                          return '<li><tt>' + key + '</tt> &ndash; ' + value[2] + '</li>';
