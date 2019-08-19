@@ -147,25 +147,14 @@
          position: 1
        }
      }).forEach(function (record) {
-       // checked or unchecked ? checked by default
-       var checked = true;
-       // if not yet available, uncheck expansion
-       if(record.available === "")
-         checked = false;
-       // if user checked it previously, check expansion
-       if(localStorage && localStorage.getItem('set_code_' + record.code) !== null)
-         checked = true;
-       // if expansion used by cards in deck, check expansion
        var cards = app.data.cards.find({
          expansion_code: record.code,
          indeck: {
            '$gt': 0
          }
        });
-       if(cards.length)
-         checked = true;
 
-       $('<li><a href="#"><label><input type="checkbox" name="' + record.code + '"' + (checked ? ' checked="checked"' : '') + '>' + record.name + '</label></a></li>').appendTo('[data-filter=expansion_code]');
+       $('<li><a href="#"><label><input type="checkbox" name="' + record.code + '" checked="checked">' + record.name + '</label></a></li>').appendTo('[data-filter=expansion_code]');
      });
    };
 

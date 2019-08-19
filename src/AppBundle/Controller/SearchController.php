@@ -251,8 +251,6 @@ class SearchController extends Controller
         $response->setPublic();
         $response->setMaxAge($this->container->getParameter('cache_expiration'));
 
-        static $availability = [];
-
         $cards = [];
         $first = 0;
         $last = 0;
@@ -317,10 +315,6 @@ class SearchController extends Controller
                 $card = $rows[$rowindex];
                 $expansion = $card->getExpansion();
                 $cardinfo = $this->get('cards_data')->getCardInfo($card, false, null);
-                if (empty($availability[$expansion->getCode()])) {
-                    $availability[$expansion->getCode()] = true;
-                }
-                $cardinfo['available'] = $availability[$expansion->getCode()];
                 if ($includeReviews) {
                     $cardinfo['reviews'] = $this->get('cards_data')->getReviews($card);
                 }

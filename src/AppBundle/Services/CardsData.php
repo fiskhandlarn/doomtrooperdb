@@ -62,7 +62,6 @@ class CardsData
             $lines[] = array(
                 "code" => $expansion->getCode(),
                 "label" => $label,
-                "available" => true,
                 "url" => $this->router->generate(
                     'cards_list',
                     array('expansion_code' => $expansion->getCode()),
@@ -88,7 +87,6 @@ class CardsData
             $expansions[] = [
                 "code" => $expansion->getCode(),
                 "label" => $label,
-                "available" => true,
                 "url" => $this->router->generate(
                     'cards_list',
                     array('expansion_code' => $expansion->getCode()),
