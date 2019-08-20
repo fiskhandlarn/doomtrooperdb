@@ -211,6 +211,10 @@ footer {
   background-color: #95a5a6;
 }
 
+.navbar-default {
+  background: url(../images/pattern.jpg);
+}
+
 .navbar-brand,
 .navbar-nav {
   font-family: 'Copperplate Gothic Std';
@@ -227,7 +231,51 @@ footer {
 .navbar-brand .logo {
   float: left;
   height: 100%;
-  margin-right: 7px;
+  margin-right: 10px;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > .open > a {
+  color: #f6c230;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #ca9f26;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #1c2812;
+}
+.navbar-default .navbar-toggle {
+  border-color: #f6c230;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #f6c230;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #f6c230;
+    font-weight: bold;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ca9f26;
+  }
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ca9f26;
 }
 
 .navbar-nav {
