@@ -71,6 +71,8 @@
          ui.export_dtcards(app.deck);
          break;
      }
+
+     event.preventDefault();
    };
 
    ui.send_like = function send_like(event)
