@@ -1,9 +1,4 @@
 * Change localhost to variable
-* update to symfony 4: https://symfony.com/doc/current/setup/upgrade_major.html
-* change default values in Incenteev\ParameterHandler\ScriptHandler::buildParameters
-* thronesdb issues
-  * https://github.com/ThronesDB/thronesdb/labels/bug
-  * https://github.com/ThronesDB/thronesdb/labels/code%20quality
 * factions as array
 * DeckValidationHelper.php
   * validate side board
@@ -52,9 +47,13 @@
 * add Doomtrooper font for headings
 * favicons
 * remove console.log: "deck.set_slots put on hold until data.app"
-* preventDefault for exports in Actions dropdown
 * new test for /factions/
-* click on factions/types in deckbuilder should add to selection
+* 3 columns in deckbuilder list
+  * fix pushed "5" on the row beneath
+  * vertical align center (for long card names)
+* add cache buster for js and css
+* default checked "Share your decks. "
+* "sort by expansion, then number" shouldn't show expansion next to each card
 
 ## Restore
 * about credits
@@ -81,3 +80,7 @@
 * global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`
 * get types from api instead of hardcoded in `ui.build_type_selector`, `SlotCollectionDecorator`
 * separate tags with commas instead
+* update to symfony 4: https://symfony.com/doc/current/setup/upgrade_major.html
+* thronesdb issues
+  * https://github.com/ThronesDB/thronesdb/labels/bug
+  * https://github.com/ThronesDB/thronesdb/labels/code%20quality
