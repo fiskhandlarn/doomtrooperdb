@@ -9,8 +9,6 @@
   * tighten card page text and image
   * nicer looking bullet list in "Smart filter syntax"? (at least remove margin-left)
   * colors
-* fonts
-  * convert svg to other format(s?)
 * `google_analytics_tracking_code`
 * sidebar
   * compare/diff `src/AppBundle/Resources/views/Compare/deck_compare.html.twig` b639334eb3f02d223022feebf0426b34571783df
@@ -44,7 +42,6 @@
   * clarification_text
 * test import
 * do we even need `selection.json`?
-* add Doomtrooper font for headings
 * favicons
 * remove console.log: "deck.set_slots put on hold until data.app"
 * new test for /factions/
@@ -54,6 +51,12 @@
 * add cache buster for js and css
 * default checked "Share your decks. "
 * "sort by expansion, then number" shouldn't show expansion next to each card
+* remove eot and otf (and woff?)
+* replace `decklists_by_faction` on index
+* test emails: `src/AppBundle/Resources/views/Email/`
+* mark current page as `.active` in navbar
+* expand profile/user dropdown menu on xs
+* fix for logo vs hamburger in navbar on small/tight screens
 
 ## Restore
 * about credits
