@@ -1,21 +1,87 @@
 /* fonts */
+@font-face {
+  font-family: 'Copperplate Gothic Std';
+  src: url('../fonts/CopperplateGothicStd-33BC.woff2') format('woff2'),
+       url('../fonts/CopperplateGothicStd-33BC.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* typography */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: 'Copperplate Gothic Std';
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small,
+.h1 small,
+.h2 small,
+.h3 small,
+.h4 small,
+.h5 small,
+.h6 small,
+h1 .small,
+h2 .small,
+h3 .small,
+h4 .small,
+h5 .small,
+h6 .small,
+.h1 .small,
+.h2 .small,
+.h3 .small,
+.h4 .small,
+.h5 .small,
+.h6 .small {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: none;
+}
+
+/* begin site specific styles */
+
+h1.decks small {
+  font-size: 16px;
+}
 
 .card-content {
-  font: 16px/20px 'Crimson Text', serif;
+  font: 16px/20px;
 }
 .card-content abbr[title] {
   border-bottom: none;
 }
 .card-name {
-  font-family: 'Julius Sans One', sans-serif;
-  font-weight: 700;
+  font-family: 'Copperplate Gothic Std';
+  font-weight: bold;
 }
 .card-type, .card-designer {
-  font-weight: 700;
+  font-weight: bold;
 }
 .card-text i {
-  font-weight: 700;
-  font-style: italic;
+  font-weight: bold;
+  /* font-style: italic; */ /* TODO? */
+}
+.card-text {
+  font-family: 'Times New Roman', Times, serif;
 }
 .card-text {
   border-left-width: 2px;
@@ -144,8 +210,34 @@ footer {
   padding-top: 20px;
   background-color: #95a5a6;
 }
-.navbar-default {
+
+.navbar-brand,
+.navbar-nav {
+  font-family: 'Copperplate Gothic Std';
+  font-weight: bold;
   font-size: 16px;
+}
+
+.navbar-brand {
+  font-size: 26px;
+  padding: 15px;
+  line-height: 48px; /* slightly less than 50px to offset brand text */
+}
+
+.navbar-brand .logo {
+  float: left;
+  height: 100%;
+  margin-right: 7px;
+}
+
+.navbar-nav {
+  text-transform: uppercase;
+}
+
+.navbar-right {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  text-transform: none;
 }
 
 div.tags span.tag {
@@ -417,18 +509,20 @@ ol {
 
 /************** INDEX PAGE ***************/
 
-h1.site-title {
-  font-family: 'Julius Sans One', sans-serif;
-  position:relative;
-  font-size:116px;
-  text-align:center;
+.site-title,
+.site-slogan {
   margin-top: 0;
+  position: relative;
+  text-align: center;
+  text-transform: none;
 }
-div.site-slogan {
-  font-family: 'Open Sans Condensed', sans-serif;
-  position:relative;
-  font-size:40px;
-  text-align:center;
+
+.site-title {
+  font-size: 116px;
+}
+.site-slogan {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 40px;
 }
 
 /************ LIST OF DECKLISTS **************/
@@ -444,8 +538,8 @@ div.site-slogan {
 /************* DECKLIST *********************/
 
 .row.title {
-  padding-top:20px;
-  padding-bottom:10px
+  padding-top: 20px;
+  padding-bottom: 10px
 }
 #deck-description h1 {
   font-size: 171%;
@@ -587,18 +681,18 @@ article.review {
   padding-top: 2em;
   border-top: 1px solid #ddd;
 }
-article.review:first-child {
+article.review: first-child {
   margin-top: 0;
 }
 article.review .review-like {
-  float:left;
+  float: left;
   font-size: 120%;
-  width:50px
+  width: 50px
 }
 article.review .review-content {
   margin-left: 50px
 }
-article.review .review-text :first-child {
+article.review .review-text : first-child {
   margin-top: 0px
 }
 article.review .review-date {
@@ -626,7 +720,7 @@ article.review .review-comment {
     font-size: 24px;
 
   }
-  a[href]:after {
+  a[href]: after {
     content: none !important;
 
   }
@@ -637,52 +731,52 @@ article.review .review-comment {
   }
 
   .col-print-1 {
-    width:8%;
-    float:left;
+    width: 8%;
+    float: left;
   }
   .col-print-2 {
-    width:16%;
-    float:left;
+    width: 16%;
+    float: left;
   }
   .col-print-3 {
-    width:25%;
-    float:left;
+    width: 25%;
+    float: left;
   }
   .col-print-4 {
-    width:33%;
-    float:left;
+    width: 33%;
+    float: left;
   }
   .col-print-5 {
-    width:42%;
-    float:left;
+    width: 42%;
+    float: left;
   }
   .col-print-6 {
-    width:50%;
-    float:left;
+    width: 50%;
+    float: left;
   }
   .col-print-7 {
-    width:58%;
-    float:left;
+    width: 58%;
+    float: left;
   }
   .col-print-8 {
-    width:66%;
-    float:left;
+    width: 66%;
+    float: left;
   }
   .col-print-9 {
-    width:75%;
-    float:left;
+    width: 75%;
+    float: left;
   }
   .col-print-10{
-    width:83%;
-    float:left;
+    width: 83%;
+    float: left;
   }
   .col-print-11{
-    width:92%;
-    float:left;
+    width: 92%;
+    float: left;
   }
   .col-print-12{
-    width:100%;
-    float:left;
+    width: 100%;
+    float: left;
   }
 }
 

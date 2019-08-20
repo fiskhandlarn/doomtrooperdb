@@ -19,8 +19,6 @@
     {% if pagedescription is defined %}
         <meta name="description" content="{{ pagedescription }}">{% endif %}
 
-    <link href='https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,700,700i|Julius+Sans+One|Open+Sans:400,400i,700,700i|Open+Sans+Condensed:300'
-          rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/2.1.1/jquery.qtip.css">
     <link rel="stylesheet"
@@ -61,9 +59,8 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="{{ path('index') }}">
-                        <span class="icon icon-link-half-top"></span>
-                        <span class="icon icon-link-half-bottom"></span>
-                        <span class="icon icon-beast"></span> DoomtrooperDB
+                      <img class="logo" src="/images/logo.png" />
+                      <span class="text">DoomtrooperDB</span>
                     </a>
                 </div>
                 <div class="navbar-collapse collapse">

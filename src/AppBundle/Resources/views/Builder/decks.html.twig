@@ -100,9 +100,9 @@
             <!-- Left-side column -->
             <div class="col-md-8 col-md-pull-4">
 
-                <h1>
+                <h1 class="decks">
                     {{ 'decks.privatedecks' | trans }}
-                    <small style="font-size:16px" class="hidden-xs {% if cannotcreate %}text-danger{% endif %}">
+                    <small class="hidden-xs {% if cannotcreate %}text-danger{% endif %}">
                         {{ 'decks.slotcount' | trans({'%max%': nbmax, '%current%': nbdecks}) }}
                     </small>
                 </h1>
