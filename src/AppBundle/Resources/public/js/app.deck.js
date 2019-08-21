@@ -78,7 +78,7 @@
      if(app.data.isLoaded) {
        deck.set_slots(data.slots);
      } else {
-       console.log("deck.set_slots put on hold until data.app");
+       //console.log("deck.set_slots put on hold until data.app");
        $(document).on('data.app', function () {
          deck.set_slots(data.slots);
        });

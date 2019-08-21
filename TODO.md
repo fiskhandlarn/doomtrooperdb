@@ -39,7 +39,6 @@
   * clarification_text
 * test import
 * do we even need `selection.json`?
-* remove console.log: "deck.set_slots put on hold until data.app"
 * new test for /factions/
 * 3 columns in deckbuilder list
   * fix pushed "5" on the row beneath
