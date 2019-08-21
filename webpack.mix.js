@@ -47,24 +47,24 @@ mix.webpackConfig({
     ],
   },
   plugins: [
-    // new WebappWebpackPlugin({
-    //   logo: './src/AppBundle/Resources/public/images/favicons/favicon.svg',
-    //   outputPath: 'images/favicons',
-    //   inject: true,
-    //   favicons: {
-    //     background: '#000000',
-    //     icons: {
-    //       android: true,
-    //       appleIcon: true,
-    //       appleStartup: false,
-    //       coast: true,
-    //       favicons: true,
-    //       firefox: true,
-    //       windows: true,
-    //       yandex: true,
-    //     },
-    //   },
-    // }),
+    new WebappWebpackPlugin({
+      logo: './src/AppBundle/Resources/public/images/favicon.png',
+      outputPath: 'images/favicons',
+      inject: true,
+      favicons: {
+        background: '#000000',
+        icons: {
+          android: true,
+          appleIcon: true,
+          appleStartup: false,
+          coast: true,
+          favicons: true,
+          firefox: true,
+          windows: true,
+          yandex: true,
+        },
+      },
+    }),
     // new StyleLintPlugin({
     //     context: '// src/AppBundle/Resources/public/css doesnt work o_O',
     //     context: 'src/AppBundle/Resources/public/css',
