@@ -44,7 +44,6 @@
   * fix pushed "5" on the row beneath
   * vertical align center (for long card names)
 * add cache buster for js and css
-* default checked "Share your decks. "
 * "sort by expansion, then number" shouldn't show expansion next to each card
 * remove eot and otf (and woff?)
 * replace `decklists_by_faction` on index
@@ -55,6 +54,7 @@
 * credits += Leon Ilian
 * real background pattern
 * different front page art?
+* prevent mouse default event for user menu in navbar
 
 ## Restore
 * about credits

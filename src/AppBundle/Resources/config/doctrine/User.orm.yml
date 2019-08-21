@@ -110,4 +110,4 @@ AppBundle\Entity\User:
             nullable: false
             column: is_share_decks
             options:
-                default: false
+                default: true

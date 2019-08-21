@@ -67,7 +67,7 @@ class User extends BaseUser
     /**
      * @var boolean
      */
-    private $isShareDecks = false;
+    private $isShareDecks = true;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
