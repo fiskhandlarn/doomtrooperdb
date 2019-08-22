@@ -43,7 +43,7 @@
   * fix pushed "5" on the row beneath
   * vertical align center (for long card names)
 * "sort by expansion, then number" shouldn't show expansion next to each card
-* replace `decklists_by_faction` on index
+* change paddings for front page decklists
 * test emails: `src/AppBundle/Resources/views/Email/`
 * mark current page as `.active` in navbar
 * expand profile/user dropdown menu on xs
@@ -73,7 +73,10 @@
 * list all expansions instead of from/to in
   * `src/AppBundle/Resources/views/Export/default.txt.twig`
   * `src/AppBundle/Resources/public/js/app.ui.js` x3
-* move "Member since" to messages.*.yml
+* move to messages.*.yml
+  * "Member since"
+  * `'pagetitle' =>  "$game_name Deckbuilder",`
+  * `'pagedescription' => "Build your deck for $game_name by $publisher_name."`
 * add graphs for FSAV(?)
 * add support for digital doomtrooper (3rd edition)
 * global var for `icons = 'baratheon greyjoy alliance lannister martell art thenightswatch beast stark targaryen tyrell equipment fortification ki mission relic special symmetry general'.split(' ');`

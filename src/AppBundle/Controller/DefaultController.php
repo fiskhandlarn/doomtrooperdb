@@ -22,27 +22,21 @@ class DefaultController extends Controller
          * @var $decklist_manager DecklistManager
          */
         $decklist_manager = $this->get('decklist_manager');
-        $decklist_manager->setLimit(1);
+        $decklist_manager->setLimit(10);
 
         $typeNames = [];
         foreach ($this->getDoctrine()->getRepository('AppBundle:Type')->findAll() as $type) {
             $typeNames[$type->getCode()] = $type->getName();
         }
 
-        $decklists_by_faction = [];
+        $decklists = [];
         $factions = $this->getDoctrine()
             ->getRepository('AppBundle:Faction')
             ->findBy(['code' => 'ASC']);
 
-        foreach ($factions as $faction) {
-            $array = [];
-            $array['faction'] = $faction;
+        $paginator = $decklist_manager->findDecklistsByPopularity();
 
-            $decklist_manager->setFaction($faction);
-            $paginator = $decklist_manager->findDecklistsByPopularity();
-            /**
-             * @var $decklist Decklist
-             */
+        foreach ($paginator as $decklist) {
             $decklist = $paginator->getIterator()->current();
 
             if ($decklist) {
@@ -56,10 +50,7 @@ class DefaultController extends Controller
                 }
                 $array['count_by_type'] = join(' &bull; ', $counts);
 
-                $factions = [ $faction->getName() ];
-                $array['factions'] = join(' / ', $factions);
-
-                $decklists_by_faction[] = $array;
+                $decklists[] = $array;
             }
         }
 
@@ -71,7 +62,7 @@ class DefaultController extends Controller
             'pagedescription' => "Build your deck for $game_name by $publisher_name."
                 . " Browse the cards and the thousand of decklists submitted by the community."
                 . " Publish your own decks and get feedback.",
-            'decklists_by_faction' => $decklists_by_faction
+            'decklists' => $decklists
         ], $response);
     }
 

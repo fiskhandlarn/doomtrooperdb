@@ -585,6 +585,25 @@ ol {
   font-size: 40px;
 }
 
+.front-page-decklist > .header {
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 10px 10px 5px 10px;
+}
+
+.front-page-decklist > .header > .media-heading {
+  white-space: nowrap;
+}
+
+.front-page-decklist > .body {
+  background-color: #fff;
+  padding: 10px 20px 20px 20px
+}
+
+.front-page-decklist > .body > p {
+  margin-bottom: 0;
+}
+
 /************ LIST OF DECKLISTS **************/
 
 .decklist-faction-image {
