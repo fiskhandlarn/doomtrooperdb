@@ -54,6 +54,7 @@
 * real background pattern
 * different front page art?
 * prevent mouse default event for user menu in navbar
+* include external css and js in webpack instead
 
 ## Restore
 * about credits
