@@ -106,40 +106,40 @@ h1.decks small {
 }
 
 .color-alliance {
-  color: #13522f;
+  color: #ac6a50;
 }
 .color-art {
-  color: #c8232a;
+  color: #c02e2e;
 }
 .color-beast {
-  color: #292e5f;
+  color: #63b15d;
 }
 .color-equipment {
-  color: #ff0000;
+  color: #ea7c61;
 }
 .color-fortification {
-  color: #fff000;
+  color: #a85f46;
 }
 .color-ki {
-  color: #00ff00;
+  color: #e5970f;
 }
 .color-mission {
-  color: #f00ff0;
+  color: #1a687e;
 }
 .color-relic {
-  color: #00000f;
+  color: #417174;
 }
 .color-special {
-  color: #0ffff0;
+  color: #508662;
 }
 .color-symmetry {
-  color: #00ff00;
+  color: #7f48a6;
 }
 .color-warrior {
-  color: #0000ff;
+  color: #465ba0;
 }
 .color-warzone {
-  color: #f00fff;
+  color: #0c82c9;
 }
 
 .table-expanded>thead>tr>th, .table-expanded>tbody>tr>th, .table-expanded>tfoot>tr>th, .table-expanded>thead>tr>td, .table-expanded>tbody>tr>td, .table-expanded>tfoot>tr>td {
