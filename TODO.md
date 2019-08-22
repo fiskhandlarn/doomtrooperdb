@@ -43,7 +43,6 @@
   * fix pushed "5" on the row beneath
   * vertical align center (for long card names)
 * "sort by expansion, then number" shouldn't show expansion next to each card
-* remove eot and otf (and woff?)
 * replace `decklists_by_faction` on index
 * test emails: `src/AppBundle/Resources/views/Email/`
 * mark current page as `.active` in navbar
