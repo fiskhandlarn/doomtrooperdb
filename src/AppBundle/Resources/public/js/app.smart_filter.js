@@ -5,6 +5,7 @@
 
    var configuration = {
      a: [add_string_sf, 'armor', Translator.trans('decks.smartfilter.filters.armor')],
+     c: [add_string_sf, 'clarification_text', Translator.trans('decks.smartfilter.filters.clarification_text')],
      e: [add_string_sf, 'expansion_code', Translator.trans('decks.smartfilter.filters.expansion_code')],
      f: [add_string_sf, 'faction_code', Translator.trans('decks.smartfilter.filters.faction_code')],
      g: [add_string_sf, 'fight', Translator.trans('decks.smartfilter.filters.fight')],

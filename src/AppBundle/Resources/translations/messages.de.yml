@@ -176,6 +176,7 @@ decks:
     title: Syntax des intelligenten Filters
     example: "Beispiel: <tt>b:1 s:3</tt> shows all <span class='icon-bauhaus'></span> warriors with 3 in Shoot"
     filters:
+      clarification_text: Clarification/gEngine text
       flavor: Atmosphärischer Text
       expansion_code: Expansion
       faction_code: Fraktion
@@ -347,6 +348,7 @@ card:
   info:
     name: Name
     text: Text
+    clarification_text: Clarification/gEngine text
     flavor: Atmosphärischer Text
     faction: Fraktion
     set: Expansion

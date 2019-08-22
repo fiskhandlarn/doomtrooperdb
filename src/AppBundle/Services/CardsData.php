@@ -203,10 +203,15 @@ class CardsData
                         }
                         $qb->andWhere(implode(" or ", $or));
                     } else if ($searchCode === 'x' ||
+                               $searchCode === 'c' ||
                                $searchCode === 'l' ||
                                $searchCode === 'i') {
                         if ($searchCode === 'x') { // text
                             $property = 'text';
+                        }
+
+                        if ($searchCode === 'c') { // clarification text
+                            $property = 'clarificationText';
                         }
 
                         if ($searchCode === 'l') { // flavor
@@ -352,6 +357,7 @@ class CardsData
             unset($cardinfo['id']);
         } else {
             $cardinfo['text'] = $this->splitInParagraphs($cardinfo['text']);
+            $cardinfo['clarification_text'] = $this->splitInParagraphs($cardinfo['clarification_text']);
         }
 
         return $cardinfo;

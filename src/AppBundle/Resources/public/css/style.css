@@ -83,11 +83,13 @@ h1.decks small {
 .card-text {
   font-family: 'Times New Roman', Times, serif;
 }
-.card-text {
+.card-text,
+.card-clarification_text {
   border-left-width: 2px;
   border-left-style: solid;
 }
-.card-text p {
+.card-text p,
+.card-clarification_text p {
   margin: 6px;
 }
 .card-flavor {

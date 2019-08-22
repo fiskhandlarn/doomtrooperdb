@@ -8,33 +8,35 @@ use Symfony\Component\HttpFoundation\Request;
 
 class SearchController extends Controller
 {
-    public static $searchKeys = array(
-            ''  => 'code',
-            'a' => 'armor',
-            'e' => 'expansion',
-            'f' => 'faction',
-            'g' => 'fight',
-            'i' => 'illustrator',
-            'l' => 'flavor',
-            's' => 'shoot',
-            't' => 'type',
-            'v' => 'value',
-            'x' => 'text',
-    );
+    public static $searchKeys = [
+        ''  => 'code',
+        'a' => 'armor',
+        'c' => 'clarification_text',
+        'e' => 'expansion',
+        'f' => 'faction',
+        'g' => 'fight',
+        'i' => 'illustrator',
+        'l' => 'flavor',
+        's' => 'shoot',
+        't' => 'type',
+        'v' => 'value',
+        'x' => 'text',
+    ];
 
-    public static $searchTypes = array(
-            ''  => 'string',
-            'a' => 'string',
-            'e' => 'code',
-            'f' => 'code',
-            'g' => 'string',
-            'i' => 'string',
-            'l' => 'string',
-            's' => 'string',
-            't' => 'code',
-            'v' => 'string',
-            'x' => 'string',
-    );
+    public static $searchTypes = [
+        ''  => 'string',
+        'a' => 'string',
+        'c' => 'string',
+        'e' => 'code',
+        'f' => 'code',
+        'g' => 'string',
+        'i' => 'string',
+        'l' => 'string',
+        's' => 'string',
+        't' => 'code',
+        'v' => 'string',
+        'x' => 'string',
+    ];
 
     public function formAction()
     {
@@ -59,12 +61,12 @@ class SearchController extends Controller
         }, $list_illustrators);
 
         return $this->render('AppBundle:Search:searchform.html.twig', array(
-                "pagetitle" => $this->get("translator")->trans('search.title'),
-                "pagedescription" => "Find all the cards of the game, easily searchable.",
-                "expansions" => $expansions,
-                "types" => $types,
-                "factions" => $factions,
-                "illustrators" => $illustrators,
+            "pagetitle" => $this->get("translator")->trans('search.title'),
+            "pagedescription" => "Find all the cards of the game, easily searchable.",
+            "expansions" => $expansions,
+            "types" => $types,
+            "factions" => $factions,
+            "illustrators" => $illustrators,
         ), $response);
     }
 
@@ -79,7 +81,7 @@ class SearchController extends Controller
         $publisher_name = $this->container->getParameter('publisher_name');
 
         $meta = $card->getName()
-             . ", a "
+            . ", a "
             . $card->getFaction()->getName()
             . " "
             . $card->getType()->getName()
@@ -112,7 +114,7 @@ class SearchController extends Controller
         $publisher_name = $this->container->getParameter('publisher_name');
 
         $meta = $expansion->getName().", a set of cards for $game_name"
-                ." by $publisher_name.";
+            ." by $publisher_name.";
 
         $key = array_search('expansion', SearchController::$searchKeys);
 
@@ -142,7 +144,7 @@ class SearchController extends Controller
         $publisher_name = $this->container->getParameter('publisher_name');
 
         $meta = $faction->getName().", a set of cards for $game_name"
-                ." by $publisher_name.";
+            ." by $publisher_name.";
 
         $key = array_search('faction', SearchController::$searchKeys);
 
@@ -417,24 +419,24 @@ class SearchController extends Controller
         $prev = $repo->findPreviousCard($card);
         $next = $repo->findNextCard($card);
         return $this->renderView('AppBundle:Search:setnavigation.html.twig', array(
-                "prevtitle" => $prev ? $prev->getName() : "",
-                "prevhref" => $prev ? $this->get('router')
-                    ->generate(
-                        'cards_zoom',
-                        array('card_code' => $prev->getCode())
-                    ) : "",
-                "nexttitle" => $next ? $next->getName() : "",
-                "nexthref" => $next ? $this->get('router')
-                    ->generate(
-                        'cards_zoom',
-                        array('card_code' => $next->getCode())
-                    ) : "",
-                "settitle" => $card->getExpansion()->getName(),
-                "sethref" => $this->get('router')
-                    ->generate(
-                        'cards_list',
-                        array('expansion_code' => $card->getExpansion()->getCode())
-                    ),
+            "prevtitle" => $prev ? $prev->getName() : "",
+            "prevhref" => $prev ? $this->get('router')
+            ->generate(
+                'cards_zoom',
+                array('card_code' => $prev->getCode())
+            ) : "",
+            "nexttitle" => $next ? $next->getName() : "",
+            "nexthref" => $next ? $this->get('router')
+            ->generate(
+                'cards_zoom',
+                array('card_code' => $next->getCode())
+            ) : "",
+            "settitle" => $card->getExpansion()->getName(),
+            "sethref" => $this->get('router')
+            ->generate(
+                'cards_list',
+                array('expansion_code' => $card->getExpansion()->getCode())
+            ),
         ));
     }
 
@@ -442,7 +444,7 @@ class SearchController extends Controller
     {
         return $this->renderView('AppBundle:Search:paginationitem.html.twig', array(
             "href" => $q == null ? "" : $this->get('router')
-                ->generate('cards_find', array('q' => $q, 'view' => $v, 'sort' => $s, 'page' => $pi)),
+            ->generate('cards_find', array('q' => $q, 'view' => $v, 'sort' => $s, 'page' => $pi)),
             "ps" => $ps,
             "pi" => $pi,
             "s" => $ps*($pi-1)+1,
