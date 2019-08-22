@@ -40,7 +40,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.9.0/css/bootstrap-markdown.min.css">
     <link rel="stylesheet" type="text/css"
           href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"/>
-    <link rel="stylesheet" href="{{ asset_url }}/css/app.css"/>
+    <link rel="stylesheet" href="{{ cached_asset('/css/app.css') }}"/>
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
@@ -126,7 +126,7 @@
 </footer>
 {% include 'AppBundle:Modale:card.html.twig' %}
 
-<script src="{{ asset_url }}/js/router.js"></script>
+<script src="{{ cached_asset('/js/router.js') }}"></script>
 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -160,7 +160,7 @@
     {% include 'AppBundle:Default:google-analytics.html.twig' %}
 {% endif %}
 
-<script src="{{ asset_url }}/js/app.js"></script>
+    <script src="{{ cached_asset('/js/app.js') }}"></script>
 
 {% block javascripts %}{% endblock %}
 </body>

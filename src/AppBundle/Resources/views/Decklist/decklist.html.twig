@@ -2,7 +2,7 @@
 {% import "AppBundle::macros.html.twig" as macros %}
 
 {% block javascripts %}
-    <script src="{{ asset_url }}/js/ui.decklist.js"></script>
+    <script src="{{ cached_asset('/js/ui.decklist.js') }}"></script>
 
     <script type="text/javascript">
       var Commenters = {{ commenters|json_encode|raw }};

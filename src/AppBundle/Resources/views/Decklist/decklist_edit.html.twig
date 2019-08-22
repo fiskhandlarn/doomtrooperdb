@@ -2,7 +2,7 @@
 {% import "AppBundle::macros.html.twig" as macros %}
 
 {% block javascripts %}
-    <script src="{{ asset_url }}/js/ui.decklist_edit.js"></script>
+    <script src="{{ cached_asset('/js/ui.decklist_edit.js') }}"></script>
 
     <script type="text/javascript">
       app.deck.init({{ decklist|json_encode|raw }});

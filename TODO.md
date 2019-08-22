@@ -42,7 +42,6 @@
 * 3 columns in deckbuilder list
   * fix pushed "5" on the row beneath
   * vertical align center (for long card names)
-* add cache buster for js and css
 * "sort by expansion, then number" shouldn't show expansion next to each card
 * remove eot and otf (and woff?)
 * replace `decklists_by_faction` on index

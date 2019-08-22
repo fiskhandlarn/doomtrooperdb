@@ -1,7 +1,7 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block javascripts %}
-    <script src="{{ asset_url }}/js/ui.deckimport.js"></script>
+    <script src="{{ cached_asset('/js/ui.deckimport.js') }}"></script>
 {% endblock %}
 
 {% block body %}
