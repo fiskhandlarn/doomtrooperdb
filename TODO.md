@@ -49,7 +49,9 @@
 * mark current page as `.active` in navbar
 * expand profile/user dropdown menu on xs
 * fix for logo vs hamburger in navbar on small/tight screens
-* credits += Leon Ilian
+* credits +=
+  * Erik
+  * Justin
 * real background pattern
 * different front page art?
 * prevent mouse default event for user menu in navbar
