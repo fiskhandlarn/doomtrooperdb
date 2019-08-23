@@ -588,16 +588,12 @@ ol {
 .front-page-decklist > .header {
   background: rgba(0, 0, 0, 0.75);
   color: #fff;
-  padding: 10px 10px 5px 10px;
-}
-
-.front-page-decklist > .header > .media-heading {
-  white-space: nowrap;
+  padding: 20px 20px 15px 20px;
 }
 
 .front-page-decklist > .body {
   background-color: #fff;
-  padding: 10px 20px 20px 20px
+  padding: 15px 20px 20px 20px;
 }
 
 .front-page-decklist > .body > p {

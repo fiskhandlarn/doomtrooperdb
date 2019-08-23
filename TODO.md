@@ -21,7 +21,9 @@
 * don't output div wrapping type if cards of type is nonexistant in `.deck-content`
 * CSS -> SCSS
   * different col spans in `.deck-content` in `deck/publish`
-  * collapse col heights in `.deck-content`
+  * collapse col heights in
+    * `.deck-content`
+    * `.front-page-decklist`'s with long decklist names
   * bootstrap 4
 * replace all icons via https://icomoon.io/app/
 * add FSAV
@@ -43,7 +45,6 @@
   * fix pushed "5" on the row beneath
   * vertical align center (for long card names)
 * "sort by expansion, then number" shouldn't show expansion next to each card
-* change paddings for front page decklists
 * test emails: `src/AppBundle/Resources/views/Email/`
 * mark current page as `.active` in navbar
 * expand profile/user dropdown menu on xs

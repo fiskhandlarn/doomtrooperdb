@@ -25,12 +25,10 @@
           {{ 'userby' | trans({'%user%': username}) | raw }}
           &middot;
           <time datetime="{{ data.decklist.dateCreation|date('c') }}">{{ data.decklist.dateCreation|date('M d, Y') }}</time>
+          {{ macros.decklist_social_icons(data.decklist ) }}
         </div>
       </div>
       <div class="body">
-        <div class="small pull-right">
-          {{ macros.decklist_social_icons(data.decklist ) }}
-        </div>
         <p>{{ data.count_by_type|raw }}</p>
       </div>
     </div>
