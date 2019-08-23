@@ -37,8 +37,6 @@ class DefaultController extends Controller
         $paginator = $decklist_manager->findDecklistsByPopularity();
 
         foreach ($paginator as $decklist) {
-            $decklist = $paginator->getIterator()->current();
-
             if ($decklist) {
                 $array['decklist'] = $decklist;
 
