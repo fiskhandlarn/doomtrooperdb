@@ -30,9 +30,6 @@ class DefaultController extends Controller
         }
 
         $decklists = [];
-        $factions = $this->getDoctrine()
-            ->getRepository('AppBundle:Faction')
-            ->findBy(['code' => 'ASC']);
 
         $paginator = $decklist_manager->findDecklistsByPopularity();
 
@@ -43,8 +40,10 @@ class DefaultController extends Controller
                 $countByType = $decklist->getSlots()->getCountByType();
                 $counts = [];
                 foreach ($countByType as $code => $qty) {
-                    $typeName = $typeNames[$code];
-                    $counts[] = $qty . " " . $typeName . "s";
+                    if ($qty !== 0) {
+                        $typeName = $typeNames[$code];
+                        $counts[] = $typeName . ": " . $qty;
+                    }
                 }
                 $array['count_by_type'] = join(' &bull; ', $counts);
 
