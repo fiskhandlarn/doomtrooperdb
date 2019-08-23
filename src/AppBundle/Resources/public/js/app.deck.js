@@ -29,22 +29,6 @@
        },
        layout_data = {};
 
-   // TODO remove codes/keys?
-   var factions = {
-     'bauhaus': 'bauhaus',
-     'brotherhood': 'brotherhood',
-     'capitol': 'capitol',
-     'crescentia': 'crescentia',
-     'cybertronic': 'cybertronic',
-     'general': 'general',
-     'imperial': 'imperial',
-     'legion': 'legion',
-     'lutheran': 'lutheran',
-     'mishima': 'mishima',
-     'rasputin': 'rasputin',
-     'templars': 'templars'
-   };
-
    /**
     * Creates a new line-item for a given card to a given DOM element.
     * @param {Object} card The card object
@@ -486,16 +470,6 @@
      }))) {
        return 'too_many_copies';
      }
-   };
-
-   /**
-    * Returns all list of all faction codes.
-    * @memberOf deck
-    * @returns {Array}
-    */
-   deck.get_all_faction_codes = function get_all_faction_codes()
-   {
-     return _.values(factions);
    };
 
    /**
