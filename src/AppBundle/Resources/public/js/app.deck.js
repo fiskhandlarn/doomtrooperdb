@@ -12,6 +12,7 @@
        unsaved,
        user_id,
        problem_labels = _.reduce(
+         // TODO side bar
          ['too_few_cards', 'too_many_copies'],
          function (problems, key) {
            problems[key] = Translator.trans('decks.problems.' + key);
@@ -252,6 +253,15 @@
      };
 
      var problem = deck.get_problem();
+
+     var drawDeckSection = $('<div>' + Translator.transChoice('decks.edit.meta.drawdeck', deck.get_draw_deck_size(), {count: deck.get_draw_deck_size()}) + '</div>');
+     drawDeckSection.addClass(problem && problem.indexOf('cards') !== -1 ? 'text-danger' : '');
+     deck.update_layout_section(data, 'meta', drawDeckSection);
+
+     // TODO
+     // var sideBarSection = $('<div>' + Translator.transChoice('decks.edit.meta.plotdeck', deck.get_side_bar_size(), {count: deck.get_side_bar_size()}) + '</div>');
+     // sideBarSection.addClass(problem && problem.indexOf('sidebar') !== -1 ? 'text-danger' : '');
+     // deck.update_layout_section(data, 'meta', sideBarSection);
 
      var expansions = _.map(deck.get_included_expansions({ 'position': 1 }), function (expansion) {
        return expansion.name;
