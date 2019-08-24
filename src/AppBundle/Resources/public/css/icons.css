@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'doomtrooperdb';
-  src: url('../fonts/doomtrooperdb.woff?6aq2kj') format('woff');
+  src:  url('../fonts/doomtrooperdb.woff?8pwbla') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -20,6 +20,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-legion:before {
+  content: "\e900";
+}
 .icon-general:before {
   content: "\e612";
 }
@@ -55,9 +58,6 @@
 }
 .icon-brotherhood:before {
   content: "\e608";
-}
-.icon-legion:before {
-  content: "\e609";
 }
 .icon-crescentia:before {
   content: "\e60a";
