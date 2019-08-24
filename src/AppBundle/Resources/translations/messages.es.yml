@@ -93,9 +93,9 @@ decks:
       name: Nombre
       cancel: Cancelar cambios
     meta:
-      drawdeck: "{0} <em>Mazo de robo:</em> %count% cartas | {1} <em>Mazo de robo:</em> %count% carta | ]1,Inf] <em>Mazo de robo:</em> %count% cartas"
-      sidebar: "{0} <em>Mazo de tramas TODO:</em> %count% cartas | {1} <em>Mazo de tramas:</em> %count% carta | ]1,Inf] <em>Mazo de tramas:</em> %count% cartas"
-      expansions: "<em>Expansiones:</em> %expansions%"
+      drawdeck: "{0} <strong>Mazo de robo:</strong> %count% cartas | {1} <strong>Mazo de robo:</strong> %count% carta | ]1,Inf] <strong>Mazo de robo:</strong> %count% cartas"
+      sidebar: "{0} <strong>Mazo de tramas TODO:</strong> %count% cartas | {1} <strong>Mazo de tramas:</strong> %count% carta | ]1,Inf] <strong>Mazo de tramas:</strong> %count% cartas"
+      expansions: "<strong>Expansiones:</strong> %expansions%"
   form:
     build: Construir nuevo mazo
     uploadarchive: Subir archivo

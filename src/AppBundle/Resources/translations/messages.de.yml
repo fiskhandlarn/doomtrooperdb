@@ -93,9 +93,9 @@ decks:
       name: Name
       cancel: Änderungen verwerfen
     meta:
-      drawdeck: "{0} <em>Nachziehstapel:</em> %count% Karten | {1} <em>Nachziehstapel:</em> %count% Karte | ]1,Inf] <em>Nachziehstapel:</em> %count% Karten"
-      sidebar: "{0} <em>Strategiestapel TODO:</em> %count% Karten | {1} <em>Strategiestapel:</em> %count% Karte | ]1,Inf] <em>Strategiestapel:</em> %count% Karten"
-      expansions: "<em>Expansions</em>: %expansions%"
+      drawdeck: "{0} <strong>Nachziehstapel:</strong> %count% Karten | {1} <strong>Nachziehstapel:</strong> %count% Karte | ]1,Inf] <strong>Nachziehstapel:</strong> %count% Karten"
+      sidebar: "{0} <strong>Strategiestapel TODO:</strong> %count% Karten | {1} <strong>Strategiestapel:</strong> %count% Karte | ]1,Inf] <strong>Strategiestapel:</strong> %count% Karten"
+      expansions: "<strong>Expansions</strong>: %expansions%"
   form:
     build: Neue Deckliste erstellen
     uploadarchive: Archiv hochladen

@@ -93,9 +93,9 @@ decks:
       name: Name
       cancel: Cancel edits
     meta:
-      drawdeck: "{0} <em>Draw deck:</em> %count% cards | {1} <em>Draw deck</em>: %count% card | ]1,Inf] <em>Draw deck</em>: %count% cards"
-      sidebar: "{0} <em>Side bar:</em> %count% cards | {1} <em>Side bar</em>: %count% card | ]1,Inf] <em>Side bar</em>: %count% cards"
-      expansions: "<em>Expansions</em>: %expansions%"
+      drawdeck: "{0} <strong>Draw deck:</strong> %count% cards | {1} <strong>Draw deck</strong>: %count% card | ]1,Inf] <strong>Draw deck</strong>: %count% cards"
+      sidebar: "{0} <strong>Side bar:</strong> %count% cards | {1} <strong>Side bar</strong>: %count% card | ]1,Inf] <strong>Side bar</strong>: %count% cards"
+      expansions: "<strong>Expansions</strong>: %expansions%"
   form:
     build: Build New Deck
     uploadarchive: Upload archive
