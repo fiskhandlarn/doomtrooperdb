@@ -12,8 +12,10 @@ class CacheBuster extends \Twig_Extension
 {
     public function __construct(RequestStack $requestStack)
     {
-        $this->rootDir = $requestStack->getCurrentRequest()->server->get('DOCUMENT_ROOT');
-        $this->rootURL = $requestStack->getCurrentRequest()->getSchemeAndHttpHost();
+        if ($requestStack && $requestStack->getCurrentRequest()) {
+            $this->rootDir = $requestStack->getCurrentRequest()->server->get('DOCUMENT_ROOT');
+            $this->rootURL = $requestStack->getCurrentRequest()->getSchemeAndHttpHost();
+        }
     }
 
     public function asset(string $path): string {
