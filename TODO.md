@@ -3,7 +3,6 @@
 * DeckValidationHelper.php
   * validate side board
 * TODO's in source code
-* JS
 * CSS
   * selection.json
   * tighten card page text and image
@@ -54,7 +53,6 @@
   * Justin
 * real background pattern
 * different front page art?
-* prevent mouse default event for user menu in navbar
 * include external css and js in webpack instead
 
 ## Restore
