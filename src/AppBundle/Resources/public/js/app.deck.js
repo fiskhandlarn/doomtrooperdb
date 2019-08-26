@@ -275,6 +275,10 @@
      var layout_template;
 
      switch (deck.sort_type) {
+       case "faction":
+         deck.update_layout_section(data, "cards", deck.get_layout_section({'faction_name': 1, 'name': 1}, {'faction_name': 1}, null));
+         layout_template = 'cards';
+         break;
        case "name":
          deck.update_layout_section(data, "cards", $('<br>'));
          deck.update_layout_section(data, "cards", deck.get_layout_section({'name': 1},  null, null, "number"));
@@ -282,15 +286,6 @@
          break;
        case "set":
          deck.update_layout_section(data, "cards", deck.get_layout_section_for_cards_sorted_by_set(true));
-         layout_template = 'cards';
-         break;
-       case "setnumber":
-         deck.update_layout_section(data, "cards", deck.get_layout_section_for_cards_sorted_by_set(false));
-         layout_template = 'cards';
-         break;
-       case "cardnumber":
-         deck.update_layout_section(data, "cards", $('<br>'));
-         deck.update_layout_section(data, "cards", deck.get_layout_section({'code': 1},  null, null, "number"));
          layout_template = 'cards';
          break;
        case "type":
@@ -323,53 +318,44 @@
      data[section] = data[section] + element[0].outerHTML;
    };
 
-   deck.get_layout_section = function(sort, group, query, context){
+   deck.get_layout_section = function(sort, group, query){
      var cards;
      var section = $('<div>');
      cards = deck.get_cards(sort, query, group);
      if(cards.length) {
-       deck.create_card_group(cards, context).appendTo(section);
+       deck.create_card_group(cards).appendTo(section);
 
      } else if (cards.constructor !== Array){
        $.each(cards, function (index, group_cards) {
          if (group_cards.constructor === Array){
            $(header_tpl({code: index, name: index === "undefined" ? "Null" : index, quantity: group_cards.reduce(function(a,b){ return a + b.indeck}, 0) })).appendTo(section);
-           deck.create_card_group(group_cards, context).appendTo(section);
+           deck.create_card_group(group_cards).appendTo(section);
          }
        });
      }
      return section;
    };
 
-   /**
-    * @param {boolean} sortByName set to TRUE for sorting by name within sets, or FALSE to sort by card number.
-    */
-   deck.get_layout_section_for_cards_sorted_by_set = function(sortByName) {
-     sortByName = !!sortByName;
-
+   deck.get_layout_section_for_cards_sorted_by_set = function() {
      var section = $('<div>');
-     var context = sortByName ? "" : "number";
-     var sort = sortByName ? {"name": 1} : {"code": 1};
+     var sort = {"name": 1};
      var expansions = deck.get_included_expansions({"position": 1});
      var cards = deck.get_cards(sort, {}, {"expansion_name": 1});
 
      expansions.forEach(function(expansion){
        $(header_tpl({code: expansion.code, name: expansion.name, quantity: cards[expansion.name].reduce(function(a,b){ return a + b.indeck}, 0) })).appendTo(section);
-       deck.create_card_group(cards[expansion.name], context).appendTo(section);
+       deck.create_card_group(cards[expansion.name]).appendTo(section);
      });
      return section;
    };
 
-   deck.create_card_group = function(cards, context){
+   deck.create_card_group = function(cards){
      var section = $('<div>');
      cards.forEach(function (card) {
        var $div = $('<div>');
 
        $div.append($(card_line_tpl({card:card})));
        $div.prepend(card.indeck+'x ');
-       if (context && context === "number"){
-         $div.append(" | "+card.expansion_name);
-       }
 
        $div.appendTo(section);
      });

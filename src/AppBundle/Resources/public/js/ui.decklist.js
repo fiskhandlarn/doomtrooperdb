@@ -49,17 +49,8 @@
        case 'btn-sort-set':
          app.deck.change_sort('set');
          break;
-       case 'btn-sort-setnumber':
-         app.deck.change_sort('setnumber');
-         break;
        case 'btn-sort-faction':
          app.deck.change_sort('faction');
-         break;
-       case 'btn-sort-factionnumber':
-         app.deck.change_sort('factionnumber');
-         break;
-       case 'btn-sort-cardnumber':
-         app.deck.change_sort('cardnumber');
          break;
        case 'btn-export-plaintext':
          ui.export_plaintext(app.deck);

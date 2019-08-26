@@ -439,10 +439,7 @@
      $('#btn-sort-default').on('click', function(event) { event.preventDefault(); app.deck.change_sort('type'); });
      $('#btn-sort-name').on('click', function(event) { event.preventDefault(); app.deck.change_sort('name'); });
      $('#btn-sort-set').on('click', function(event) { event.preventDefault(); app.deck.change_sort('set'); });
-     $('#btn-sort-setnumber').on('click', function(event) { event.preventDefault(); app.deck.change_sort('setnumber'); });
      $('#btn-sort-faction').on('click', function(event) { event.preventDefault(); app.deck.change_sort('faction'); });
-     $('#btn-sort-factionnumber').on('click', function(event) { event.preventDefault(); app.deck.change_sort('factionnumber'); });
-     $('#btn-sort-cardnumber').on('click', function(event) { event.preventDefault(); app.deck.change_sort('cardnumber'); });
    };
 
    /**

@@ -127,12 +127,9 @@ decks:
       markdown: Markdown
       plaintext: einfacher Text
     sort:
-      by_cardnumber: nach Kartennummer
-      by_faction: nach Fraktion, dann Name
-      by_factionnumber: nach Fraktion, dann Kartennummer
+      by_faction: nach Fraktion
       by_name: nach Name
-      by_set: nach Expansion, dann Name
-      by_setnumber: nach Expansion, dann Kartennummer
+      by_set: nach Expansion
       by_type: nach Typ
   modals:
     card:

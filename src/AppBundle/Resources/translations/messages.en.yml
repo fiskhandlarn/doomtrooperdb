@@ -127,13 +127,10 @@ decks:
       markdown: Markdown
       plaintext: Plain text
     sort:
-      by_cardnumber: by Card Number
-      by_faction: by Faction, then Name
-      by_factionnumber: by Faction, then Number
-      by_name: by Name
-      by_set: by Expansion, then Name
-      by_setnumber: by Expansion, then Number
-      by_type: by Type
+      by_faction: by faction
+      by_name: by name
+      by_set: by expansion
+      by_type: by type
   modals:
     card:
       go: Go to card page
