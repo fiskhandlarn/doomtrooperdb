@@ -49,11 +49,11 @@
 * expand profile/user dropdown menu on xs
 * fix for logo vs hamburger in navbar on small/tight screens
 * credits +=
-  * Erik
   * Justin
 * real background pattern
 * different front page art?
 * include external css and js in webpack instead
+* use same layout for all sortings in deckbuilder?
 
 ## Restore
 * about credits
