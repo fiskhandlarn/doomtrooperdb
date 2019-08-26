@@ -284,10 +284,10 @@ decklist:
         hint: Introduce nombre del mazo
       sort:
         label: Ordenar
-        popularity: por Popularidad
-        date: por Fecha
-        likes: por Número de \"me gusta\"
-        reputation: por Reputación del autor
+        popularity: por popularidad
+        date: por fecha
+        likes: por número de \"me gusta\"
+        reputation: por reputación del autor
       allowed:
         label: Expansiones permitidas:
         all: todo

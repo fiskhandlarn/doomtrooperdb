@@ -284,10 +284,10 @@ decklist:
         hint: Enter text to search in name
       sort:
         label: Sort
-        popularity: By Popularity
-        date: By Date
-        likes: By Number of Likes
-        reputation: By Reputation of Author
+        popularity: By popularity
+        date: By date
+        likes: By number of likes
+        reputation: By reputation of author
       allowed:
         label: Select allowed expansions:
         all: all
@@ -310,16 +310,16 @@ search:
   no: No
   only: Only
   sort:
-    name: Sort by Name
-    set: Sort by Expansion
-    faction: Sort by Faction
-    type: Sort by Type
+    name: Sort by name
+    set: Sort by expansion
+    faction: Sort by faction
+    type: Sort by type
   view:
-    list: View as a Checklist
-    spoiler: View as a Spoiler
-    card: View as Full Cards
-    scan: View as Scans Only
-    short: View as Simple List
+    list: View as a checklist
+    spoiler: View as a spoiler
+    card: View as full cards
+    scan: View as scans only
+    short: View as simple list
 
 pag:
   cardscount: "{0} There is no cards | {1} One card | ]1,Inf] %count% cards"
