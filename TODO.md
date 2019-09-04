@@ -68,6 +68,7 @@
 
 ## Prio 2
 * deployer
+* card collections
 * fix mapping and remove `--skip-mapping` from `doctrine:schema:validate`
 * certain searches in deckbuilder returns all cards (e.g. `g:-1`)
 * list all expansions instead of from/to in
