@@ -18,7 +18,8 @@ class CacheBuster extends \Twig_Extension
         }
     }
 
-    public function asset(string $path): string {
+    public function asset(string $path): string
+    {
         $file = $this->rootDir . $path;
         $url = $this->rootURL . $path;
 

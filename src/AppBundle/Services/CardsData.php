@@ -202,7 +202,7 @@ class CardsData
                             }
                         }
                         $qb->andWhere(implode(" or ", $or));
-                    } else if ($searchCode === 'x' ||
+                    } elseif ($searchCode === 'x' ||
                                $searchCode === 'c' ||
                                $searchCode === 'l' ||
                                $searchCode === 'i') {
@@ -235,7 +235,7 @@ class CardsData
                             $qb->setParameter($i++, "%$arg%");
                         }
                         $qb->andWhere(implode($operator == '!' ? " and " : " or ", $or));
-                    } else if ($searchCode === 's' ||
+                    } elseif ($searchCode === 's' ||
                                $searchCode === 'g' ||
                                $searchCode === 'a' ||
                                $searchCode === 'v') {
