@@ -28,7 +28,6 @@ final class Version20190819113430 extends AbstractMigration
         $this->addSql('ALTER TABLE decklist DROP FOREIGN KEY FK_ED030EC655E35EC9');
         $this->addSql('DROP INDEX IDX_ED030EC655E35EC9 ON decklist');
         $this->addSql('ALTER TABLE decklist DROP last_expansion_id');
-        $this->addSql('ALTER TABLE user DROP donation');
     }
 
     public function down(Schema $schema) : void
@@ -42,6 +41,5 @@ final class Version20190819113430 extends AbstractMigration
         $this->addSql('ALTER TABLE decklist ADD last_expansion_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE decklist ADD CONSTRAINT FK_ED030EC655E35EC9 FOREIGN KEY (last_expansion_id) REFERENCES expansion (id) ON UPDATE NO ACTION ON DELETE NO ACTION');
         $this->addSql('CREATE INDEX IDX_ED030EC655E35EC9 ON decklist (last_expansion_id)');
-        $this->addSql('ALTER TABLE user ADD donation INT NOT NULL');
     }
 }
