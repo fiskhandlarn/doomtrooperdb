@@ -366,6 +366,30 @@ ol {
   height: 70px;
 }
 
+/* https://stackoverflow.com/a/25932731 */
+#collection .table-condensed > tbody > tr > td {
+  vertical-align: middle;
+}
+
+.card-container > .type,
+.card-container > .faction {
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 20px; /* larger icons */
+}
+
+.filter-buttons > .btn {
+  font-size: 30px; /* larger icons */
+
+  /* same as horizontal padding for .btn-sm */
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.filter-buttons > .btn > [class^="icon-"] {
+  display: block; /* fix vertical alignment
+}
+
 /********* LIST OF DECKS ************/
 
 .list-decks>tbody>tr>td {
