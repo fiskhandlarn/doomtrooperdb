@@ -1,22 +1,15 @@
 # DoomtrooperDB
 [![Build Status](https://api.travis-ci.org/fiskhandlarn/doomtrooperdb.svg?branch=master)](https://travis-ci.org/fiskhandlarn/doomtrooperdb)
 
-## Very quick guide on how to install a local copy
-
-This guide assumes you know how to use the command-line and that your machine has PHP and MySQL installed.
-
-- install composer: https://getcomposer.org/download/
-- clone the repo somewhere
-- cd to it
-- run `composer install` (at the end it will ask for the database configuration parameters)
-- run `php bin/console doctrine:database:create`
-- run `php bin/console doctrine:migrations:migrate`
-- run `php bin/console doctrine:fixtures:load --env=prod` to load default application data
-- run `php bin/console app:import:std ../doomtrooperdb-json-data` or whatever the path to your DoomtrooperDB JSON data repository is
-- run `php bin/console app:import:images ../doomtrooperdb-json-data public/images`
-- run `php bin/console bazinga:js-translation:dump src/AppBundle/Resources/public/js` to generate translation JS
-- run `npm install && npm run dev` to compile CSS and JS
-
+## Install
+- Run `composer install` (at the end it will ask for the database configuration parameters)
+- Run `php bin/console doctrine:database:create`
+- Run `php bin/console doctrine:migrations:migrate`
+- Run `php bin/console doctrine:fixtures:load --env=prod` to load default application data
+- Run `php bin/console app:import:std ../doomtrooperdb-json-data` or whatever the path to your [DoomtrooperDB JSON data repository](https://github.com/fiskhandlarn/doomtrooperdb-json-data) is
+- Run `php bin/console app:import:images ../doomtrooperdb-json-data public/images`
+- Run `php bin/console bazinga:js-translation:dump src/AppBundle/Resources/public/js` to generate translation JS
+- Run `npm install && npm run dev` to compile CSS and JS
 
 Or use `make`:
 ```bash
@@ -76,6 +69,6 @@ $ docker-compose down
 
 ## Setup an admin account
 
-- register (or run `php bin/console fos:user:create <username>`)
-- make sure your account is enabled (or run `php bin/console fos:user:activate <username>`)
-- run `php bin/console fos:user:promote --super <username>`
+- Register (or run `php bin/console fos:user:create <username>`)
+- Make sure your account is enabled (or run `php bin/console fos:user:activate <username>`)
+- Run `php bin/console fos:user:promote --super <username>`
