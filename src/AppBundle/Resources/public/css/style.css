@@ -379,15 +379,36 @@ ol {
 }
 
 .filter-buttons > .btn {
-  font-size: 30px; /* larger icons */
+  font-size: 15px; /* slightly larger icons */
 
-  /* same as horizontal padding for .btn-sm */
-  padding-top: 10px;
-  padding-bottom: 10px;
+  /* make room for wide icons */
+  /* same horizontal padding as .btn-sm */
+  padding: 10px 0;
+}
+
+/* sm */
+@media (min-width: 768px) {
+  .filter-buttons > .btn {
+    font-size: 30px; /* larger icons */
+  }
+}
+
+/* md */
+@media (min-width: 992px) {
+  .filter-buttons > .btn {
+    font-size: 15px; /* slightly larger icons */
+  }
+}
+
+/* lg */
+@media (min-width: 1200px) {
+  .filter-buttons > .btn {
+    font-size: 25px; /* medium size icons */
+  }
 }
 
 .filter-buttons > .btn > [class^="icon-"] {
-  display: block; /* fix vertical alignment
+  display: block; /* fix vertical alignment */
 }
 
 /********* LIST OF DECKS ************/
