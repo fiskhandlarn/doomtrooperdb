@@ -9,6 +9,8 @@
   * nicer looking bullet list in "Smart filter syntax"? (at least remove margin-left)
   * colors
     * footer
+    * imperial and capitol colors are to light on white background
+  * move inline styles to css
 * `google_analytics_tracking_code`
 * sidebar
   * compare/diff `src/AppBundle/Resources/views/Compare/deck_compare.html.twig` b639334eb3f02d223022feebf0426b34571783df
