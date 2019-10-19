@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'doomtrooperdb';
-  src: url('../fonts/doomtrooperdb.woff?2xrtgz') format('woff');
+  src: url('../fonts/doomtrooperdb.woff?vvi96o') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -20,6 +20,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-art:before {
+  content: "\e909";
+}
 .icon-mishima:before {
   content: "\e908";
 }
@@ -55,9 +58,6 @@
 }
 .icon-alliance:before {
   content: "\e602";
-}
-.icon-art:before {
-  content: "\e605";
 }
 .icon-beast:before {
   content: "\e607";
