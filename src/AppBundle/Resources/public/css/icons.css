@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'doomtrooperdb';
-  src: url('../fonts/doomtrooperdb.woff?jh73yj') format('woff');
+  src: url('../fonts/doomtrooperdb.woff?hexzq1') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -20,6 +20,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-fortification:before {
+  content: "\e90c";
+}
+.icon-ki:before {
+  content: "\e90d";
+}
 .icon-beast:before {
   content: "\e90a";
 }
@@ -65,9 +71,6 @@
 .icon-alliance:before {
   content: "\e602";
 }
-.icon-fortification:before {
-  content: "\e60c";
-}
 .icon-mission:before {
   content: "\e60e";
 }
@@ -79,9 +82,6 @@
 }
 .icon-symmetry:before {
   content: "\e611";
-}
-.icon-ki:before {
-  content: "\e60d";
 }
 .icon-warrior:before {
   content: "\e613";
