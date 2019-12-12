@@ -12,12 +12,12 @@ class TagController extends Controller
     {
         $list_id = $request->get('ids');
         $list_tag = $request->get('tags');
-        
+
         /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
-        
+
         $response = array("success" => true);
-        
+
         foreach ($list_id as $id) {
             /* @var $deck Deck */
             $deck = $em->getRepository('AppBundle:Deck')->find($id);
@@ -32,20 +32,20 @@ class TagController extends Controller
             $deck->setTags(implode(' ', $tags));
         }
         $em->flush();
-        
+
         return new Response(json_encode($response));
     }
-    
+
     public function removeAction(Request $request)
     {
         $list_id = $request->get('ids');
         $list_tag = $request->get('tags');
-        
+
         /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
-        
+
         $response = array("success" => true);
-        
+
         foreach ($list_id as $id) {
             /* @var $deck Deck */
             $deck = $em->getRepository('AppBundle:Deck')->find($id);
@@ -60,19 +60,19 @@ class TagController extends Controller
             $deck->setTags(implode(' ', $tags));
         }
         $em->flush();
-        
+
         return new Response(json_encode($response));
     }
-    
+
     public function clearAction(Request $request)
     {
         $list_id = $request->get('ids');
-        
+
         /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
-        
+
         $response = array("success" => true);
-        
+
         foreach ($list_id as $id) {
             /* @var $deck Deck */
             $deck = $em->getRepository('AppBundle:Deck')->find($id);
@@ -86,7 +86,7 @@ class TagController extends Controller
             $deck->setTags('');
         }
         $em->flush();
-        
+
         return new Response(json_encode($response));
     }
 }
