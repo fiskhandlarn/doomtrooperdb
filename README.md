@@ -35,9 +35,9 @@ npm install && npm run dev
 
 Or use `make`:
 ```bash
-make docker_install
-make docker_import
-make docker_build
+make docker:install
+make docker:import
+make docker:build
 ```
 
 ### Start/stop Docker
