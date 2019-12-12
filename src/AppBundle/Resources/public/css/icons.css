@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'doomtrooperdb';
-  src: url('../fonts/doomtrooperdb.woff?q3e5te') format('woff');
+  src: url('../fonts/doomtrooperdb.woff?7tl9g4') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -20,6 +20,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-warzone:before {
+  content: "\e910";
+}
 .icon-symmetry:before {
   content: "\e90f";
 }
@@ -85,9 +88,6 @@
 }
 .icon-warrior:before {
   content: "\e613";
-}
-.icon-warzone:before {
-  content: "\e614";
 }
 .icon-rasputin:before {
   content: "\e616";
