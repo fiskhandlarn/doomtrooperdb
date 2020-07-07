@@ -56,6 +56,7 @@
 * different front page art?
 * include external css and js in webpack instead
 * use same layout for all sortings in deckbuilder?
+* implement fix for "Is it an expected behaviour for the favorite button to also send like?": https://github.com/ThronesDB/thronesdb/issues/353
 
 ## Restore
 * about credits
